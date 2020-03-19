@@ -6,14 +6,14 @@
 
 typedef struct product* Product;
 
-bool verifyProduct(char *product);
+bool verifyProduct(char*);
 
-Product newProduct(char* product);
+Product newProduct(char*);
 
-char* getProductCode(Product product);
+char* getProductCode(Product);
 
-int equalsProduct(Product a, Product b);
+int equalsProduct(Product, Product);
 
-void destroyProduct(Product product);
+void destroyProduct(Product);
 
 #endif

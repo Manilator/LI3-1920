@@ -6,22 +6,22 @@
 
 typedef struct sale* Sale;
 
-Sale isValidSale(char* sale, Clients client_catalogue, Products product_catalogue);
+Sale isValidSale(char*, Clients, Products);
 
-char* getProduct(Sale sale);
+char* getProduct(Sale);
 
-char* getClient(Sale sale);
+char* getClient(Sale);
 
-double getPrice(Sale sale);
+double getPrice(Sale);
 
-int getUnits(Sale sale);
+int getUnits(Sale);
 
-char getPromotion(Sale sale);
+char getPromotion(Sale);
 
-int getMonth(Sale sale);
+int getMonth(Sale);
 
-int getBranch(Sale sale);
+int getBranch(Sale);
 
-void destroySale(Sale sale);
+void destroySale(Sale);
 
 #endif

@@ -7,12 +7,12 @@ typedef struct clients* Clients;
 
 Clients initClients();
 
-int addClient(Clients clients, char* client);
+int addClient(Clients, char*);
 
-int getSizeClients(Clients clients);
+int getSizeClients(Clients);
 
-int existClient (Clients clients, Client client);
+int existClient (Clients, Client);
 
-void destroyClients(Clients clients);
+void destroyClients(Clients);
 
 #endif

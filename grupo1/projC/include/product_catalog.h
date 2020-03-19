@@ -7,12 +7,12 @@ typedef struct products* Products;
 
 Products initProducts();
 
-int addProduct(Products products,char* product);
+int addProduct(Products, char*);
 
-int getSizeProducts(Products products);
+int getSizeProducts(Products);
 
-int existProduct (Products products, Product product);
+int existProduct (Products, Product);
 
-void destroyProducts(Products products);
+void destroyProducts(Products);
 
 #endif

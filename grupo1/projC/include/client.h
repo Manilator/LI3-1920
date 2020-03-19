@@ -6,14 +6,14 @@
 
 typedef struct client* Client;
 
-bool verifyClient(char *client);
+bool verifyClient(char*);
 
-Client newClient(char* client);
+Client newClient(char*);
 
-char* getClientCode(Client client);
+char* getClientCode(Client);
 
-int equalsClient(Client a, Client b);
+int equalsClient(Client, Client);
 
-void destroyClient(Client client);
+void destroyClient(Client);
 
 #endif
