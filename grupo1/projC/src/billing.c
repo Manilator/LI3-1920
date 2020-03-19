@@ -7,129 +7,122 @@
 #define N 0
 #define P 1
 
-struct fatura
+struct billing
 {
-    float totalFaturado;
-    int unidadesP;
-    int unidadesN;
-    int filiais[3];
-    GHashTable* faturasProduto;
+    float totalBilled;
+    int unitiesP;
+    int unitiesN;
+    int branches[3];
+    GHashTable* billingsProduct;
 };
 
-struct faturaProduto
+struct billingProduct
 {
-    float totalFaturadoN;
-    int totalFaturadoP;
-    int unidadesP;
-    int unidadesN;
-    int filiaisQnt[3][2];
-    float filiaisFaturado[3][2];
+    float totalBilledN;
+    int totalBilledP;
+    int unitiesP;
+    int unitiesN;
+    int branchesQnt[3][2];
+    float brachesBilled[3][2];
 };
 
-Fatura initFatura() {
-    Fatura new = g_malloc(sizeof(struct fatura));
-    new->totalFaturado = 0;
-    new->unidadesP = 0;
-    new->unidadesN = 0;
+Billing initBilling() {
+    Billing new = g_malloc(sizeof(struct billing));
+    new->totalBilled = 0;
+    new->unitiesP = 0;
+    new->unitiesN = 0;
     int i;
     for(i = 0; i < 3; i++) {
-        new->filiais[i] = 0;
+        new->branches[i] = 0;
     }
-     new->faturasProduto = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (gpointer)freeFaturaProduto);
+     new->billingsProduct = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (gpointer)freeBillingProduct);
      return new;
 }
 
-FaturaProduto initFaturaProduto() {
-    FaturaProduto new = g_malloc(sizeof(struct faturaProduto));
-    new->totalFaturadoN = 0;
-    new->totalFaturadoP = 0;
-    new->unidadesP = 0;
-    new->unidadesN = 0;
+BillingProduct initBillingProduct() {
+    BillingProduct new = g_malloc(sizeof(struct billingProduct));
+    new->totalBilledN = 0;
+    new->totalBilledP = 0;
+    new->unitiesP = 0;
+    new->unitiesN = 0;
     int i, j;
     for(i = 0; i < 3; i++) {
         for(j = 0; j < 2; j++) {
-            new->filiaisQnt[i][j] = 0;
-            new->filiaisFaturado[i][j] = 0;
+            new->branchesQnt[i][j] = 0;
+            new->brachesBilled[i][j] = 0;
         }
     }
     return new;
 }
 
-int addFaturaProduto(Fatura f, char* code) {
-    FaturaProduto new = initFaturaProduto();
+int addBillingProduct(Billing b, char* code) {
+    BillingProduct new = initBillingProduct();
     char* _code = strdup(code);
 
     strtok(_code, "\r\n");
 
-    if (!g_hash_table_contains(f->faturasProduto,_code)) {
-        g_hash_table_insert(f->faturasProduto, (char*)_code, (gpointer)new);
+    if (!g_hash_table_contains(b->billingsProduct,_code)) {
+        g_hash_table_insert(b->billingsProduct, (char*)_code, (gpointer)new);
         return 1;
     }
     g_free(_code);
     return 0;
 }
 
-void updateFatura(Fatura f, char* code, float tf, int u, char tipo, int filial) {
+void updateBilling(Billing b, char* code, float totalBilled, int unities, char promotion_type, int branch) {
 
-    f->totalFaturado += tf;
-    if(tipo == 'N') {
-        f->unidadesN += u;
-    } else if (tipo == 'P') {
-        f->unidadesP += u;
+    b->totalBilled += totalBilled;
+    if(promotion_type == 'N') {
+        b->unitiesN += unities;
+    } else if (promotion_type == 'P') {
+        b->unitiesP += unities;
     }
-    f->filiais[filial-1] += u;
-    FaturaProduto fp = (FaturaProduto)g_hash_table_lookup(f->faturasProduto, code);
-    updateFaturaProduto(fp, tf, u, tipo, filial);
+    b->branches[branch-1] += unities;
+    BillingProduct bp = (BillingProduct)g_hash_table_lookup(b->billingsProduct, code);
+    updateBillingProduct(bp, totalBilled, unities, promotion_type, branch);
 }
 
-int updateFaturaProduto(FaturaProduto fp, float tf, int u, char tipo, int filial) {
+int updateBillingProduct(BillingProduct bp, float totalBilled, int unities, char promotion_type, int branch) {
     int r = 0;
-    if (tipo == 'N') {
-        fp->totalFaturadoN += tf;
-        fp->unidadesN += u;
-        fp->filiaisFaturado[filial-1][N] += tf;
-        fp->filiaisQnt[filial-1][N] += u;
+    if (promotion_type == 'N') {
+        bp->totalBilledN += totalBilled;
+        bp->unitiesN += unities;
+        bp->brachesBilled[branch-1][N] += totalBilled;
+        bp->branchesQnt[branch-1][N] += unities;
         r = 1;
-    } else if (tipo == 'P') {
-        fp->totalFaturadoP += tf;
-        fp->unidadesP += u;
-        fp->filiaisFaturado[filial-1][P] += tf;
-        fp->filiaisQnt[filial-1][P] += u;
+    } else if (promotion_type == 'P') {
+        bp->totalBilledP += totalBilled;
+        bp->unitiesP += unities;
+        bp->brachesBilled[branch-1][P] += totalBilled;
+        bp->branchesQnt[branch-1][P] += unities;
         r = 1;
     }
     return r;
 }
 
-float getTotalFaturadoFatura(Fatura f) {
-    return f->totalFaturado;
+float getTotalBilledBilling(Billing b) {
+    return b->totalBilled;
 }
 
-FaturaProduto getFaturaProduto(Fatura f, char* product) {
-    return g_hash_table_lookup(f->faturasProduto, product);
+BillingProduct getBillingProduct(Billing b, char* product_code) {
+    return g_hash_table_lookup(b->billingsProduct, product_code);
 }
 
-float getTotalFaturadoN_FP(FaturaProduto fp) {
-    return fp->totalFaturadoN;
+float getTotalBilledN_BP(BillingProduct bp) {
+    return bp->totalBilledN;
 }
 
-char* getFirstKey(Fatura f) {
+char* getFirstKey(Billing b) {
     guint *size = g_malloc(sizeof(guint));
     *size = 10;
-    return (char *)g_hash_table_get_keys_as_array(f->faturasProduto,size)[1];
-
+    return (char *)g_hash_table_get_keys_as_array(b->billingsProduct,size)[1];
 }
 
-void freeFaturaProduto(FaturaProduto fp) {
-    /*printf("Vou dar free das filiaisQnt\n");
-    g_free(fp->filiaisQnt);
-    printf("Vou dar free das filiaisFaturado\n");
-    g_free(fp->filiaisFaturado);*/
-    g_free(fp);
+void freeBillingProduct(BillingProduct bp) {
+    g_free(bp);
 }
 
-void freeFatura(Fatura f) {
-    /*printf("Vou dar free das filiais\n");
-    g_free(f->filiais);*/
-    g_hash_table_destroy(f->faturasProduto);
-    g_free(f);
+void freeBilling(Billing b) {
+    g_hash_table_destroy(b->billingsProduct);
+    g_free(b);
 }

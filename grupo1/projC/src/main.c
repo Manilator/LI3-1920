@@ -2,6 +2,6 @@
 
 int main()
 {
-    coolfunc();
+    startSGV();
     return 0;
 }

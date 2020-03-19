@@ -30,7 +30,7 @@ int parseClients(char* filename, Clients clients)
 }
 
 
-int parseProducts(char* filename, Products products, Faturas fs)
+int parseProducts(char* filename, Products products, Billings bs)
 {
     FILE* file_pointer = fopen(filename,"r");
     /*int total_read = 0;*/
@@ -44,7 +44,7 @@ int parseProducts(char* filename, Products products, Faturas fs)
             /* is okay*/
             int month;
             for (month = 1; month < 13; month++) {
-                addFaturaProduto(getFatura(fs, month), _fileline);
+                addBillingProduct(getBilling(bs, month), _fileline);
             }
             /*printf("Teste: %f\n", getTotalFaturadoN_FP(getFaturaProduto(getFatura(fs,0), _fileline)));*/
             /*printf("First Key: %s\n", getFirstKey(getFatura(fs,0)));*/
@@ -59,7 +59,7 @@ int parseProducts(char* filename, Products products, Faturas fs)
     return getSizeProducts(products);
 }
 
-int parseSales(char* filename, Filiais branches, Faturas faturas, Clients clients, Products products)
+int parseSales(char* filename, Branches branches, Billings billings, Clients clients, Products products)
 {
     FILE* file_pointer = fopen(filename,"r");
     int valid_sales = 0;
@@ -72,11 +72,11 @@ int parseSales(char* filename, Filiais branches, Faturas faturas, Clients client
         /*Validar a venda*/
         if ((_new = isValidSale(_fileline, clients, products))) {
 
-            /* Atualizar as Filiais e Faturação */
-            /* Atualizar fatura usando a sale */
-            updateFaturas(faturas, _new);
-            /* Atualizar Filial usando a sale */
-            updateFiliais(branches, _new);
+            /* Update Billing and Branches */
+            /* Updating billing using a sale */
+            updateBillings(billings, _new);
+            /* Updating branch using a sale */
+            updateBranches(branches, _new);
 
             ++valid_sales;
             destroySale(_new);
@@ -92,24 +92,23 @@ int parseSales(char* filename, Filiais branches, Faturas faturas, Clients client
 }
 /*printf("TOTAL:%f\n",getTotalFaturadoFatura(getFatura(faturas,2)));*/
 
-int coolfunc()
+int startSGV()
 {
     Clients clients = initClients();
     Products products = initProducts();
-    /*Sales sales = initSales();*/
-    Filiais branches = initFiliais(3);
-    Faturas faturas = initFaturas();
+    Branches branches = initBranches(3);
+    Billings billings = initBillings();
 
     int total_clients = parseClients("data/Clientes.txt", clients);
-    int total_products = parseProducts("data/Produtos.txt",products,faturas);
-    int total_sales = parseSales("data/Vendas_1M.txt",branches, faturas, clients, products);
+    int total_products = parseProducts("data/Produtos.txt",products,billings);
+    int total_sales = parseSales("data/Vendas_1M.txt",branches, billings, clients, products);
 
     printf("Clients: %d\n", total_clients);
     destroyClients(clients);
     printf("Products: %d\n", total_products);
     destroyProducts(products);
     printf("Sales: %d\n", total_sales);
-    freeFiliais(branches);
-    freeFaturas(faturas);
+    freeBranches(branches);
+    freeBillings(billings);
     return 0;
 }

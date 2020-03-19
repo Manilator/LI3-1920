@@ -5,14 +5,14 @@
 #include "branch.h"
 #include "sale.h"
 
-typedef struct filiais* Filiais;
+typedef struct branches* Branches;
 
-Filiais initFiliais(int filiais);
+Branches initBranches(int);
 
-void addFilial(Filiais filiais, Filial filial, int number);
+void addBranch(Branches, Branch, int);
 
-void updateFiliais(Filiais filiais, Sale sale);
+void updateBranches(Branches, Sale);
 
-void freeFiliais(Filiais fs);
+void freeBranches(Branches);
 
 #endif

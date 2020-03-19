@@ -4,16 +4,16 @@
 #include "billing.h"
 #include "sale.h"
 
-typedef struct faturas* Faturas;
+typedef struct billings* Billings;
 
-Faturas initFaturas();
+Billings initBillings();
 
-void addFatura(Faturas faturas, Fatura fatura, int month);
+void addBilling(Billings, Billing, int);
 
-void updateFaturas(Faturas fs, Sale sale);
+void updateBillings(Billings, Sale);
 
-Fatura getFatura(Faturas f, int month);
+Billing getBilling(Billings, int);
 
-void freeFaturas(Faturas f);
+void freeBillings(Billings);
 
 #endif

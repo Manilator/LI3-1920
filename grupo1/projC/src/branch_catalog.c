@@ -3,37 +3,37 @@
 
 #include <glib.h>
 
-struct filiais 
+struct branches
 {
-    GHashTable* filiais;
+    GHashTable* branches;
 };
 
-Filiais initFiliais(int filiais) {
-    Filiais new = g_malloc(sizeof(struct filiais));
-    new->filiais = g_hash_table_new_full(g_int_hash, g_int_equal, g_free, (gpointer)freeFilial);
-    int n_filial;
+Branches initBranches(int branches) {
+    Branches new = g_malloc(sizeof(struct branches));
+    new->branches = g_hash_table_new_full(g_int_hash, g_int_equal, g_free, (gpointer)freeBranch);
+    int branch_number;
 
-    for (n_filial = 1; n_filial <= filiais; n_filial++) {
-        addFilial(new, initFilial(), n_filial);
+    for (branch_number = 1; branch_number <= branches; branch_number++) {
+        addBranch(new, initBranch(), branch_number);
     }
     return new;
 }
 
-void addFilial(Filiais filiais, Filial filial, int number) {
+void addBranch(Branches branches, Branch filial, int number) {
     int *nr = g_malloc(sizeof(int));
     *nr = number;
-    g_hash_table_insert(filiais->filiais, nr, filial);
+    g_hash_table_insert(branches->branches, nr, filial);
 }
 
-void updateFiliais(Filiais filiais, Sale sale) {
-    int *n_filial = g_malloc(sizeof(int));
-    *n_filial = getBranch(sale);
-    Filial exist = (Filial)g_hash_table_lookup(filiais->filiais,n_filial);
-    updateFilial(exist, getClient(sale), getProduct(sale), getUnits(sale), getPromotion(sale), getUnits(sale) * getPrice(sale), getMonth(sale));
-    g_free(n_filial);
+void updateBranches(Branches branches, Sale sale) {
+    int *branch_number = g_malloc(sizeof(int));
+    *branch_number = getBranch(sale);
+    Branch exist = (Branch)g_hash_table_lookup(branches->branches,branch_number);
+    updateBranch(exist, getClient(sale), getProduct(sale), getUnits(sale), getPromotion(sale), getUnits(sale) * getPrice(sale), getMonth(sale));
+    g_free(branch_number);
 }
 
-void freeFiliais(Filiais fs) {
-    g_hash_table_destroy(fs->filiais);
+void freeBranches(Branches fs) {
+    g_hash_table_destroy(fs->branches);
     g_free(fs);
 }

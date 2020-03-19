@@ -4,47 +4,47 @@
 #include <stdio.h>
 
 
-struct faturas
+struct billings
 {
-    GHashTable* faturas;
+    GHashTable* billings;
 };
 
-Faturas initFaturas() {
-    Faturas new = g_malloc(sizeof(struct faturas));
-    new->faturas = g_hash_table_new_full(g_int_hash, g_int_equal, g_free, (gpointer)freeFatura);
+Billings initBillings() {
+    Billings new = g_malloc(sizeof(struct billings));
+    new->billings = g_hash_table_new_full(g_int_hash, g_int_equal, g_free, (gpointer)freeBilling);
     int month;
 
     for (month = 1; month < 13; month++) {
-        addFatura(new, initFatura(), month);
+        addBilling(new, initBilling(), month);
     }
 
     return new;
 }
 
-void addFatura(Faturas faturas, Fatura fatura, int month) {
+void addBilling(Billings billings, Billing billing, int month) {
     int *mes = g_malloc(sizeof(int));
     *mes = month;
-    g_hash_table_insert(faturas->faturas, mes, fatura);
+    g_hash_table_insert(billings->billings, mes, billing);
 }
 
-void updateFaturas(Faturas fs, Sale sale) {
+void updateBillings(Billings bs, Sale sale) {
     int *mes = g_malloc(sizeof(int));
     *mes = getMonth(sale);
-    Fatura exist = (Fatura)g_hash_table_lookup(fs->faturas,mes);
-    updateFatura(exist, getProduct(sale), getPrice(sale) * getUnits(sale), getUnits(sale), getPromotion(sale), getBranch(sale));
+    Billing exist = (Billing)g_hash_table_lookup(bs->billings,mes);
+    updateBilling(exist, getProduct(sale), getPrice(sale) * getUnits(sale), getUnits(sale), getPromotion(sale), getBranch(sale));
     g_free(mes);
-    /*g_hash_table_replace(fs->faturas,mes,exist);*/
+    /*g_hash_table_replace(fs->billings,mes,exist);*/
 }
 
-Fatura getFatura(Faturas f, int month) {
+Billing getBilling(Billings bs, int month) {
     int* key = g_malloc(sizeof(int));
     *key = month;
-    Fatura r = (Fatura)g_hash_table_lookup(f->faturas, key);
+    Billing r = (Billing)g_hash_table_lookup(bs->billings, key);
     g_free(key);
     return r;
 }
 
-void freeFaturas(Faturas f) {
-    g_hash_table_destroy(f->faturas);
-    g_free(f);
+void freeBillings(Billings bs) {
+    g_hash_table_destroy(bs->billings);
+    g_free(bs);
 }

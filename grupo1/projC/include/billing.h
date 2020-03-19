@@ -1,30 +1,30 @@
 #ifndef ___BILLING_H___
 #define ___BILLING_H___
 
-typedef struct fatura* Fatura;
+typedef struct billing* Billing;
 
-typedef struct faturaProduto* FaturaProduto;
+typedef struct billingProduct* BillingProduct;
 
-Fatura initFatura();
+Billing initBilling();
 
-FaturaProduto initFaturaProduto();
+BillingProduct initBillingProduct();
 
-int addFaturaProduto(Fatura f, char* code);
+int addBillingProduct(Billing, char*);
 
-void updateFatura(Fatura f, char* code, float tf, int u, char tipo, int filial);
+void updateBilling(Billing, char*, float, int, char, int);
 
-int updateFaturaProduto(FaturaProduto fp, float tf, int u, char tipo, int filial);
+int updateBillingProduct(BillingProduct , float, int, char, int);
 
-FaturaProduto getFaturaProduto(Fatura f, char* product);
+BillingProduct getBillingProduct(Billing, char*);
 
-float getTotalFaturadoFatura(Fatura f);
+float getTotalBilledBilling(Billing);
 
-float getTotalFaturadoN_FP(FaturaProduto fp);
+float getTotalBilledN_BP(BillingProduct);
 
-char* getFirstKey(Fatura f);
+char* getFirstKey(Billing);
 
-void freeFaturaProduto(FaturaProduto fp);
+void freeBillingProduct(BillingProduct);
 
-void freeFatura(Fatura f);
+void freeBilling(Billing);
 
 #endif

@@ -2,52 +2,52 @@
 #define ___BRANCH_H___
 
 
-typedef struct filial* Filial;
+typedef struct branch* Branch;
 
-typedef struct relacaoComCliente* RelacaoComCliente;
+typedef struct relationWithClient* RelationWithClient;
 
-typedef struct relacaoComProduto* RelacaoComProduto;
+typedef struct relationWithProduct* RelationWithProduct;
 
-typedef struct infoCliente* InfoCliente;
+typedef struct infoClient* InfoClient;
 
-typedef struct infoProduto* InfoProduto;
+typedef struct infoProduct* InfoProduct;
 
-Filial initFilial();
+Branch initBranch();
 
-RelacaoComCliente initRelacaoComCliente();
+RelationWithClient initRelationWithClient();
 
-RelacaoComProduto initRelacaoComProduto();
+RelationWithProduct initRelationWithProduct();
 
-InfoCliente initInfoCliente();
+InfoClient initInfoClient();
 
-InfoProduto initInfoProduto();
+InfoProduct initInfoProduct();
 
-void addRelacaoComCliente(Filial f, char* product, RelacaoComCliente rcc);
+void addRelationWithClient(Branch, char*, RelationWithClient);
 
-void addRelacaoComProduto(Filial f, char* client, RelacaoComProduto rcp);
+void addRelationWithProduct(Branch, char*, RelationWithProduct);
 
-void addInfoCliente(RelacaoComCliente rcc, char* client, InfoCliente ic);
+void addInfoClient(RelationWithClient, char*, InfoClient);
 
-void addInfoProduto(RelacaoComProduto rcp, char* product, InfoProduto ip);
+void addInfoProduct(RelationWithProduct, char*, InfoProduct);
 
-void updateFilial(Filial f, char* client_code, char* product_code, int units, char promotion, float faturado, int month);
+void updateBranch(Branch, char*, char*, int, char, float, int);
 
-void updateRelacaoComProduto(RelacaoComProduto rcp, char* product, int qnt, float faturado, int mes);
+void updateRelationWithProduct(RelationWithProduct, char*, int, float, int);
 
-void updateRelacaoComCliente(RelacaoComCliente rcc, char* client, int units, char promotion);
+void updateRelationWithClient(RelationWithClient, char*, int, char);
 
-void updateInfoCliente(InfoCliente ic, int units, char promotion);
+void updateInfoClient(InfoClient, int, char);
 
-void updateInfoProduto(InfoProduto ip, int quantidade, float faturado, int mes);
+void updateInfoProduct(InfoProduct, int, float, int);
 
-void freeFilial(Filial f);
+void freeBranch(Branch);
 
-void freeRelacaoComCliente(RelacaoComCliente rc);
+void freeRelationWithClient(RelationWithClient);
 
-void freeRelacaoComProduto(RelacaoComProduto rp);
+void freeRelationWithProduct(RelationWithProduct);
 
-void freeInfoCliente(InfoCliente ic);
+void freeInfoClient(InfoClient);
 
-void freeInfoProduto(InfoProduto ip);
+void freeInfoProduct(InfoProduct);
 
 #endif
