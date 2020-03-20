@@ -28,8 +28,6 @@ struct startValues{
     gint read_sales;
 };
 
-typedef struct startValues * StartValues;
-
 StartValues initStartValues(){
     StartValues startValues = g_malloc(sizeof(struct startValues));
 
@@ -143,24 +141,49 @@ void destroyStartValues(StartValues sv){
     g_free(sv->path_sales);
     g_free(sv);
 }
-void printStartValues(StartValues sv){
-    printf("Path Clients:%s\n",(sv->path_clients)->str);
-    printf("Path Products:%s\n",(sv->path_products)->str);
-    printf("Path Sales:%s\n",(sv->path_sales)->str);
-    printf("Clientes válidos: %d\n", sv->valid_clients);
-    printf("Produtos válidos: %d\n", sv->valid_products);
-    printf("Vendas válidas: %d\n", sv->valid_sales);
-    printf("Clientes lidos: %d\n", sv->read_clients);
-    printf("Produtos lidos: %d\n", sv->read_products);
-    printf("Vendas lidos: %d\n", sv->read_sales);
-}
-int startSGV()
+
+SGV startSGV(StartValues sv)
 {
-    StartValues startValues = initStartValues();
     SGV sgv = initSGV();
 
-    parseClients(sgv->client_catalog, startValues);
-    parseProducts(sgv->product_catalog, sgv->billings, startValues);
-    parseSales(sgv, startValues);
-    return 0;
+    parseClients(sgv->client_catalog, sv);
+    parseProducts(sgv->product_catalog, sgv->billings, sv);
+    parseSales(sgv, sv);
+    return sgv;
+}
+
+char* getClientsPath(StartValues sv) {
+    return (sv->path_clients)->str;
+}
+
+char* getProductsPath(StartValues sv) {
+    return (sv->path_products)->str;
+}
+
+char* getSalesPath(StartValues sv) {
+    return (sv->path_sales)->str;
+}
+
+int getValidClients(StartValues sv) {
+    return sv->valid_clients;
+}
+
+int getValidProducts(StartValues sv) {
+    return sv->valid_products;
+}
+
+int getValidSales(StartValues sv) {
+    return sv->valid_sales;
+}
+
+int getReadClients (StartValues sv) {
+    return sv->read_clients;
+}
+
+int getReadProducts (StartValues sv) {
+    return sv->read_products;
+}
+
+int getReadSales (StartValues sv) {
+    return sv->read_sales;
 }

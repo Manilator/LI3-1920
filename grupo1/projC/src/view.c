@@ -1,13 +1,25 @@
-/*
+#include "view.h"
 
-void printStartValues(StartValues sv){
-    printf("Path Clients:%s\n",(sv->path_clients)->str);
-    printf("Path Products:%s\n",(sv->path_products)->str);
-    printf("Path Sales:%s\n",(sv->path_sales)->str);
-    printf("Clientes válidos: %d\n", sv->valid_clients);
-    printf("Produtos válidos: %d\n", sv->valid_products);
-    printf("Vendas válidas: %d\n", sv->valid_sales);
-    printf("Clientes lidos: %d\n", sv->read_clients);
-    printf("Produtos lidos: %d\n", sv->read_products);
-    printf("Vendas lidos: %d\n", sv->read_sales);
-}*/
+#include <stdio.h>
+
+
+void viewPrintStartValues(char *clients_path,
+                          char *products_path,
+                          char *sales_path,
+                          int   valid_clients,
+                          int   valid_products,
+                          int   valid_sales,
+                          int   clients_read,
+                          int   products_read,
+                          int   sales_read)
+{
+    printf("Path Clients:%s\n", clients_path);
+    printf("Path Products:%s\n", products_path);
+    printf("Path Sales:%s\n", sales_path);
+    printf("Clientes válidos: %d\n", valid_clients);
+    printf("Produtos válidos: %d\n", valid_products);
+    printf("Vendas válidas: %d\n", valid_sales);
+    printf("Clientes lidos: %d\n", clients_read);
+    printf("Produtos lidos: %d\n", products_read);
+    printf("Vendas lidos: %d\n", sales_read);
+}

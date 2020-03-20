@@ -1,22 +1,40 @@
 #include "controller.h"
+#include "view.h"
 #include "sgv.h"
+
 
 #include <stdio.h>
 
-void menu(){
+void menu(SGV sgv)
+{
     char n;
-    while(n != '0'){
+    StartValues sv;
+    while (n != '0')
+    {
         n = getchar();
-        switch (n) {
-            case '1':
-                startSGV();
-                break;
+        switch (n)
+        {
+        case '1' :
+            sv = initStartValues();
+            sgv = startSGV(sv);
+            viewPrintStartValues(getClientsPath(sv),
+                                 getProductsPath(sv),
+                                 getSalesPath(sv),
+                                 getValidClients(sv),
+                                 getValidProducts(sv),
+                                 getValidSales(sv),
+                                 getReadClients(sv),
+                                 getReadProducts(sv),
+                                 getReadSales(sv));
+            break;
         }
     }
     /* Destroy memory */
 }
 
-void startController(){
+void startController()
+{
     /*controller->view = initView();*/
-    menu();
+    SGV sgv = initSGV();
+    menu(sgv);
 }

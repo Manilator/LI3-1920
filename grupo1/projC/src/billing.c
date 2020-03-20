@@ -1,18 +1,17 @@
 #include "billing.h"
+#include "constants.h"
 
 #include <glib.h>
 #include <stdio.h>
 #include <string.h>
 
-#define N 0
-#define P 1
 
 struct billing
 {
     float totalBilled;
     int unitiesP;
     int unitiesN;
-    int branches[3];
+    int branches[N_BRANCHES];
     GHashTable* billingsProduct;
 };
 
@@ -22,8 +21,8 @@ struct billingProduct
     int totalBilledP;
     int unitiesP;
     int unitiesN;
-    int branchesQnt[3][2];
-    float brachesBilled[3][2];
+    int branchesQnt[N_BRANCHES][N_TYPES];
+    float brachesBilled[N_BRANCHES][N_TYPES];
 };
 
 Billing initBilling() {
@@ -32,7 +31,7 @@ Billing initBilling() {
     new->unitiesP = 0;
     new->unitiesN = 0;
     int i;
-    for(i = 0; i < 3; i++) {
+    for(i = 0; i < N_BRANCHES; i++) {
         new->branches[i] = 0;
     }
      new->billingsProduct = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (gpointer)freeBillingProduct);
@@ -46,8 +45,8 @@ BillingProduct initBillingProduct() {
     new->unitiesP = 0;
     new->unitiesN = 0;
     int i, j;
-    for(i = 0; i < 3; i++) {
-        for(j = 0; j < 2; j++) {
+    for(i = 0; i < N_BRANCHES; i++) {
+        for(j = 0; j < N_TYPES; j++) {
             new->branchesQnt[i][j] = 0;
             new->brachesBilled[i][j] = 0;
         }
