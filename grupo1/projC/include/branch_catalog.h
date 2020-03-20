@@ -13,6 +13,6 @@ void addBranch(Branches, Branch, int);
 
 void updateBranches(Branches, Sale);
 
-void freeBranches(Branches);
+void destroyBranches(Branches);
 
 #endif

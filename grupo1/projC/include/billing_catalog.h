@@ -14,6 +14,6 @@ void updateBillings(Billings, Sale);
 
 Billing getBilling(Billings, int);
 
-void freeBillings(Billings);
+void destroyBillings(Billings);
 
 #endif

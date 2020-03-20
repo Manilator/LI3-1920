@@ -1,7 +1,7 @@
-#include "sgv.h"
+#include "controller.h"
 
 int main()
 {
-    startSGV();
+    startController();
     return 0;
 }

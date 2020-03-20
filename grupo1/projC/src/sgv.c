@@ -9,36 +9,80 @@
 #include <stdio.h>
 #include <glib.h>
 
-int parseClients(char* filename, Clients clients)
+struct sgv{
+    Clients client_catalog;
+    Products product_catalog;
+    Billings billings;
+    Branches branches;
+};
+
+struct startValues{
+    GString * path_clients;
+    GString * path_products;
+    GString * path_sales;
+    gint valid_clients;
+    gint read_clients;
+    gint valid_products;
+    gint read_products;
+    gint valid_sales;
+    gint read_sales;
+};
+
+typedef struct startValues * StartValues;
+
+StartValues initStartValues(){
+    StartValues startValues = g_malloc(sizeof(struct startValues));
+
+    startValues->path_clients = g_string_new("data/Clientes.txt");
+    startValues->path_products = g_string_new("data/Produtos.txt");
+    startValues->path_sales = g_string_new("data/Vendas_1M.txt");
+    startValues->valid_clients = 0;
+    startValues->read_clients = 0;
+    startValues->valid_products = 0;
+    startValues->read_products = 0;
+    startValues->valid_sales = 0;
+    startValues->read_sales = 0;
+    return startValues;
+}
+
+SGV initSGV(){
+    SGV sgv = g_malloc(sizeof(struct sgv));
+
+    sgv->client_catalog = initClients();
+    sgv->product_catalog = initProducts();
+    sgv->billings = initBillings();
+    sgv->branches = initBranches(3);
+
+    return sgv;
+}
+
+int parseClients(Clients clients, StartValues startValues)
 {
-    FILE* file_pointer = fopen(filename,"r");
-    /*int total_read = 0;*/
+    FILE* file_pointer = fopen((startValues->path_clients)->str,"r");
     char* _fileline = g_malloc(sizeof(char)*1024); /*Variável onde é guardada cada linha lida*/
-    printf("%s: \n",filename);
     while(fgets(_fileline, 1024, file_pointer) != NULL)
     {
         if(addClient(clients,_fileline))
         {
             /* is okay*/
+            startValues->valid_clients++;
         }
+        startValues->read_clients++;
         g_free(_fileline);
         _fileline = g_malloc(sizeof(char)*1024);
     }
     g_free(_fileline);
     fclose(file_pointer);
-    return getSizeClients(clients);
+    return 1;
 }
 
 
-int parseProducts(char* filename, Products products, Billings bs)
+int parseProducts(Products products, Billings bs, StartValues startValues)
 {
-    FILE* file_pointer = fopen(filename,"r");
-    /*int total_read = 0;*/
+    FILE* file_pointer = fopen((startValues->path_products)->str,"r");
     char* _fileline = g_malloc(sizeof(char)*1024); /*Variável onde é guardada cada linha lida*/
-    printf("%s: \n",filename);
     while(fgets(_fileline, 1024, file_pointer) != NULL)
     {
-        /*_fileline = cleanString(_fileline);*/
         if(addProduct(products,_fileline))
         {
             /* is okay*/
@@ -46,69 +90,77 @@ int parseProducts(char* filename, Products products, Billings bs)
             for (month = 1; month < 13; month++) {
                 addBillingProduct(getBilling(bs, month), _fileline);
             }
-            /*printf("Teste: %f\n", getTotalFaturadoN_FP(getFaturaProduto(getFatura(fs,0), _fileline)));*/
-            /*printf("First Key: %s\n", getFirstKey(getFatura(fs,0)));*/
-
-
+            startValues->valid_products++;
         }
+        startValues->read_products++;
         g_free(_fileline);
         _fileline = g_malloc(sizeof(char)*1024);
     }
     g_free(_fileline);
     fclose(file_pointer);
-    return getSizeProducts(products);
+    return 1;
 }
 
-int parseSales(char* filename, Branches branches, Billings billings, Clients clients, Products products)
+int parseSales(SGV sgv, StartValues startValues)
 {
-    FILE* file_pointer = fopen(filename,"r");
-    int valid_sales = 0;
-    int total_read = 0;
+    FILE* file_pointer = fopen((startValues->path_sales)->str,"r");
     char* _fileline = g_malloc(sizeof(char)*1024); /*Variável onde é guardada cada linha lida*/
-    printf("%s: \n",filename);
     while(fgets(_fileline, 1024, file_pointer) != NULL)
     {
         Sale _new;
         /*Validar a venda*/
-        if ((_new = isValidSale(_fileline, clients, products))) {
+        if ((_new = isValidSale(_fileline, sgv->client_catalog, sgv->product_catalog))) {
 
             /* Update Billing and Branches */
             /* Updating billing using a sale */
-            updateBillings(billings, _new);
+            updateBillings(sgv->billings, _new);
             /* Updating branch using a sale */
-            updateBranches(branches, _new);
+            updateBranches(sgv->branches, _new);
 
-            ++valid_sales;
+            startValues->valid_sales++;
             destroySale(_new);
         }
-        ++total_read;
+        startValues->read_sales++;
         g_free(_fileline);
         _fileline = g_malloc(sizeof(char)*1024);
     }
     g_free(_fileline);
     fclose(file_pointer);
-    printf("Válidos: %d\n", valid_sales);
-    return total_read;
+    return 1;
 }
-/*printf("TOTAL:%f\n",getTotalFaturadoFatura(getFatura(faturas,2)));*/
 
+void destroySGV(SGV sgv){
+    destroyClients(sgv->client_catalog);
+    destroyProducts(sgv->product_catalog);
+    destroyBranches(sgv->branches);
+    destroyBillings(sgv->billings);
+    g_free(sgv);
+}
+
+void destroyStartValues(StartValues sv){
+    g_free(sv->path_clients);
+    g_free(sv->path_products);
+    g_free(sv->path_sales);
+    g_free(sv);
+}
+void printStartValues(StartValues sv){
+    printf("Path Clients:%s\n",(sv->path_clients)->str);
+    printf("Path Products:%s\n",(sv->path_products)->str);
+    printf("Path Sales:%s\n",(sv->path_sales)->str);
+    printf("Clientes válidos: %d\n", sv->valid_clients);
+    printf("Produtos válidos: %d\n", sv->valid_products);
+    printf("Vendas válidas: %d\n", sv->valid_sales);
+    printf("Clientes lidos: %d\n", sv->read_clients);
+    printf("Produtos lidos: %d\n", sv->read_products);
+    printf("Vendas lidos: %d\n", sv->read_sales);
+}
 int startSGV()
 {
-    Clients clients = initClients();
-    Products products = initProducts();
-    Branches branches = initBranches(3);
-    Billings billings = initBillings();
+    StartValues startValues = initStartValues();
+    SGV sgv = initSGV();
 
-    int total_clients = parseClients("data/Clientes.txt", clients);
-    int total_products = parseProducts("data/Produtos.txt",products,billings);
-    int total_sales = parseSales("data/Vendas_1M.txt",branches, billings, clients, products);
-
-    printf("Clients: %d\n", total_clients);
-    destroyClients(clients);
-    printf("Products: %d\n", total_products);
-    destroyProducts(products);
-    printf("Sales: %d\n", total_sales);
-    freeBranches(branches);
-    freeBillings(billings);
+    parseClients(sgv->client_catalog, startValues);
+    parseProducts(sgv->product_catalog, sgv->billings, startValues);
+    parseSales(sgv, startValues);
     return 0;
 }

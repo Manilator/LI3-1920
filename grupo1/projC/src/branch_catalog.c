@@ -33,7 +33,7 @@ void updateBranches(Branches branches, Sale sale) {
     g_free(branch_number);
 }
 
-void freeBranches(Branches fs) {
+void destroyBranches(Branches fs) {
     g_hash_table_destroy(fs->branches);
     g_free(fs);
 }

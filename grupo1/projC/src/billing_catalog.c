@@ -44,7 +44,7 @@ Billing getBilling(Billings bs, int month) {
     return r;
 }
 
-void freeBillings(Billings bs) {
+void destroyBillings(Billings bs) {
     g_hash_table_destroy(bs->billings);
     g_free(bs);
 }
