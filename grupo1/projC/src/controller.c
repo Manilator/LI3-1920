@@ -27,6 +27,9 @@ void menu(SGV sgv)
                                  getReadProducts(sv),
                                  getReadSales(sv));
             break;
+        case '2' :
+            /*productsByLetter(sgv,'A');*/
+            break;
         }
     }
     /* Destroy memory */

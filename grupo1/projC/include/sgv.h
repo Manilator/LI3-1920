@@ -1,6 +1,8 @@
 #ifndef ___SGV__H___
 #define ___SGV__H___
 
+#include <glib.h>
+
 typedef struct sgv* SGV;
 
 typedef struct startValues* StartValues;
@@ -11,22 +13,24 @@ SGV initSGV();
 
 StartValues initStartValues();
 
-char* getClientsPath(StartValues sv);
+GSList * productsByLetter(SGV, char);
 
-char* getProductsPath(StartValues sv);
+char* getClientsPath(StartValues);
 
-char* getSalesPath(StartValues sv);
+char* getProductsPath(StartValues);
 
-int getValidClients(StartValues sv);
+char* getSalesPath(StartValues);
 
-int getValidProducts(StartValues sv);
+int getValidClients(StartValues);
 
-int getValidSales(StartValues sv);
+int getValidProducts(StartValues);
 
-int getReadClients (StartValues sv);
+int getValidSales(StartValues);
 
-int getReadProducts (StartValues sv);
+int getReadClients (StartValues);
 
-int getReadSales (StartValues sv);
+int getReadProducts (StartValues);
+
+int getReadSales (StartValues);
 
 #endif
