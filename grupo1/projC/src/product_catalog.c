@@ -1,7 +1,9 @@
 #include "glibW.h"
+#include "constants.h"
+#include "product_catalog.h"
+
 #include <string.h>
 
-#include "product_catalog.h"
 
 struct products
 {
@@ -13,6 +15,22 @@ Products initProducts() {
     products = g_malloc(sizeof(struct products));
     products->products = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
     return products;
+}
+
+GSList * getProductsByLetter(Products products_catalog, char letter){
+    GSList *list = NULL;
+
+    GHashTableIter iter;
+    gpointer key, value;
+
+    g_hash_table_iter_init (&iter, products_catalog->products);
+    while (g_hash_table_iter_next (&iter, &key, &value)) {
+        if( ((char*)key)[0] == letter)
+            list = g_slist_append (list, key);
+    }
+
+
+    return list;
 }
 
 int addProduct(Products products,char* product) {

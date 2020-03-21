@@ -3,8 +3,9 @@
 #include "client_catalog.h"
 #include "product_catalog.h"
 #include "sgv.h"
-#include "sale.h"
+    #include "sale.h"
 #include "utils.h"
+
 
 #include <stdio.h>
 #include <glib.h>
@@ -150,6 +151,23 @@ SGV startSGV(StartValues sv)
     parseProducts(sgv->product_catalog, sgv->billings, sv);
     parseSales(sgv, sv);
     return sgv;
+}
+
+/*
+ * [QUERIE 2] - Returns all of the product codes started by "letter"
+*/
+GSList * productsByLetter(SGV sgv, char letter){
+    return getProductsByLetter(sgv->product_catalog, letter);
+    printf("ELEM:");
+    GSList * new = getProductsByLetter(sgv->product_catalog, letter);
+    /*int i,len;
+    len = (int)(g_slist_length(new));
+    for (i = 0; i < len; i++) {
+        printf("ELEM:%s\n",(char*)(new->data));
+        new = g_slist_next(new);
+    }
+    printf("%d\n", len);
+    return NULL;*/
 }
 
 char* getClientsPath(StartValues sv) {
