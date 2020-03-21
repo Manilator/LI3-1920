@@ -158,9 +158,9 @@ SGV startSGV(StartValues sv)
 */
 GSList * productsByLetter(SGV sgv, char letter){
     return getProductsByLetter(sgv->product_catalog, letter);
-    printf("ELEM:");
+    /*printf("ELEM:");
     GSList * new = getProductsByLetter(sgv->product_catalog, letter);
-    /*int i,len;
+    int i,len;
     len = (int)(g_slist_length(new));
     for (i = 0; i < len; i++) {
         printf("ELEM:%s\n",(char*)(new->data));
