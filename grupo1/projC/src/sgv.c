@@ -29,12 +29,12 @@ struct startValues{
     gint read_sales;
 };
 
-StartValues initStartValues(){
+StartValues initStartValues(char* clients_path, char* products_path, char* sales_path){
     StartValues startValues = g_malloc(sizeof(struct startValues));
 
-    startValues->path_clients = g_string_new("data/Clientes.txt");
-    startValues->path_products = g_string_new("data/Produtos.txt");
-    startValues->path_sales = g_string_new("data/Vendas_1M.txt");
+    startValues->path_clients = g_string_new(clients_path);
+    startValues->path_products = g_string_new(products_path);
+    startValues->path_sales = g_string_new(sales_path);
     startValues->valid_clients = 0;
     startValues->read_clients = 0;
     startValues->valid_products = 0;

@@ -7,16 +7,23 @@
 
 void menu(SGV sgv)
 {
-    char n;
+    char querie;
+    char clients_path[1024];
+    char products_path[1024];
+    char sales_path[1024];
     StartValues sv;
-    while (n != '0')
+    cleanConsole();
+    while (querie != '0')
     {
-        n = getchar();
-        switch (n)
+        printMenu();
+        scanf(" %c", &querie);
+        switch (querie)
         {
         case '1' :
-            sv = initStartValues();
+            querie1View(clients_path, products_path, sales_path);
+            sv = initStartValues(clients_path, products_path, sales_path);
             sgv = startSGV(sv);
+            cleanConsole();
             viewPrintStartValues(getClientsPath(sv),
                                  getProductsPath(sv),
                                  getSalesPath(sv),
