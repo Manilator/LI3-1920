@@ -87,7 +87,7 @@ int parseProducts(Products products, Billings bs, StartValues startValues)
             /* is okay*/
             int month;
             for (month = 1; month < 13; month++) {
-                addBillingProduct(getBilling(bs, month), _fileline);
+                insertBillingProduct(bs, month, _fileline);            
             }
             startValues->valid_products++;
         }

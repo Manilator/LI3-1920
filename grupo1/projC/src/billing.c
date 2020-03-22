@@ -53,6 +53,19 @@ BillingProduct initBillingProduct() {
     }
     return new;
 }
+/*
+Billing cloneBilling(Billing b) {
+    Billing new = g_malloc(sizeof(struct billing));
+    new->totalBilled = b->totalBilled;
+    new->unitiesP = b->unitiesP;
+    new->unitiesN = b->unitiesN;
+
+    memcpy(new->branches, b->branches, N_BRANCHES * sizeof(int));
+    new->billingsProduct = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (gpointer)freeBillingProduct);
+    memcpy(new->billingProduct, b->billingProduct, g_hash_table_size(b->billingProduct) * sizeof(struct billingProduct));
+    return new;
+}
+*/
 
 int addBillingProduct(Billing b, char* code) {
     BillingProduct new = initBillingProduct();
