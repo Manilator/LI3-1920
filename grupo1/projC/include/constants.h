@@ -5,3 +5,6 @@
 #define N 0
 #define P 1
 #define N_TYPES 2
+#define CLIENTS_PATH "data/Clientes.txt"
+#define PRODUCTS_PATH "data/Produtos.txt"
+#define SALES_PATH "data/Vendas_1M.txt"
