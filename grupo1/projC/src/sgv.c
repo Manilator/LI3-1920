@@ -187,3 +187,39 @@ int getReadProducts (StartValues sv) {
 int getReadSales (StartValues sv) {
     return sv->read_sales;
 }
+
+/* QUERY 5 */
+
+void query5_aux(SGV sgv)
+{
+    
+    printBranch1(sgv->branches);
+
+/*
+    int *n = g_malloc(sizeof(int));
+    char** codes = query5(sgv->branches, n);
+
+    printf("[sgv.c/query5_aux] n = %d\n", *n);
+
+    int i;
+    puts("Printing codes:");
+    for(i = 0; i < *n; i++)
+        printf("%s\n", codes[i]);
+    puts("End of codes.");
+*/
+
+/*
+    int *x = g_malloc(sizeof(int));
+    char** codes = teste(x);
+    printf("x = %d\n", *x);
+
+    int i;
+    for(i = 0; i < *x; i++)
+        printf("%s\n", codes[i]);
+*/
+/*
+    int *x = g_malloc(sizeof(int));
+    *x = 3;
+    printClientsBranch(sgv->branches, x);
+*/
+}
