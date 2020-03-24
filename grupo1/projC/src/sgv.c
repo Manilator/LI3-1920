@@ -3,8 +3,9 @@
 #include "client_catalog.h"
 #include "product_catalog.h"
 #include "sgv.h"
-#include "sale.h"
+    #include "sale.h"
 #include "utils.h"
+
 
 #include <stdio.h>
 #include <glib.h>
@@ -28,12 +29,12 @@ struct startValues{
     gint read_sales;
 };
 
-StartValues initStartValues(){
+StartValues initStartValues(char* clients_path, char* products_path, char* sales_path){
     StartValues startValues = g_malloc(sizeof(struct startValues));
 
-    startValues->path_clients = g_string_new("data/Clientes.txt");
-    startValues->path_products = g_string_new("data/Produtos.txt");
-    startValues->path_sales = g_string_new("data/Vendas_1M.txt");
+    startValues->path_clients = g_string_new(clients_path);
+    startValues->path_products = g_string_new(products_path);
+    startValues->path_sales = g_string_new(sales_path);
     startValues->valid_clients = 0;
     startValues->read_clients = 0;
     startValues->valid_products = 0;
@@ -86,7 +87,7 @@ int parseProducts(Products products, Billings bs, StartValues startValues)
             /* is okay*/
             int month;
             for (month = 1; month < 13; month++) {
-                addBillingProduct(getBilling(bs, month), _fileline);
+                insertBillingProduct(bs, month, _fileline);            
             }
             startValues->valid_products++;
         }
@@ -150,6 +151,23 @@ SGV startSGV(StartValues sv)
     parseProducts(sgv->product_catalog, sgv->billings, sv);
     parseSales(sgv, sv);
     return sgv;
+}
+
+/*
+ * [QUERIE 2] - Returns all of the product codes started by "letter"
+*/
+GSList * productsByLetter(SGV sgv, char letter){
+    return getProductsByLetter(sgv->product_catalog, letter);
+    /*printf("ELEM:");
+    GSList * new = getProductsByLetter(sgv->product_catalog, letter);
+    int i,len;
+    len = (int)(g_slist_length(new));
+    for (i = 0; i < len; i++) {
+        printf("ELEM:%s\n",(char*)(new->data));
+        new = g_slist_next(new);
+    }
+    printf("%d\n", len);
+    return NULL;*/
 }
 
 char* getClientsPath(StartValues sv) {

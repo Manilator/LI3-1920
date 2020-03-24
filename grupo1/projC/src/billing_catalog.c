@@ -36,12 +36,13 @@ void updateBillings(Billings bs, Sale sale) {
     /*g_hash_table_replace(fs->billings,mes,exist);*/
 }
 
-Billing getBilling(Billings bs, int month) {
+void insertBillingProduct(Billings bs,int month, char* product_code){
     int* key = g_malloc(sizeof(int));
     *key = month;
     Billing r = (Billing)g_hash_table_lookup(bs->billings, key);
+
+    addBillingProduct(r, product_code);
     g_free(key);
-    return r;
 }
 
 void destroyBillings(Billings bs) {
