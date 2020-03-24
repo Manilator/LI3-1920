@@ -1,7 +1,5 @@
 #include "branch_catalog.h"
 
-
-#include <stdio.h> /* temporario */
 #include <glib.h>
 
 struct branches
@@ -39,7 +37,7 @@ void destroyBranches(Branches fs) {
     g_free(fs);
 }
 
-/* interseçao de 3 arrays */
+/* Interseção de 3 arrays */
 char** intersect(char *ar1[], char *ar2[], char *ar3[], int n1, int n2, int n3, int *x) 
 {
     int i = 0, j = 0, k = 0;
@@ -82,34 +80,8 @@ char** intersect(char *ar1[], char *ar2[], char *ar3[], int n1, int n2, int n3, 
     return res;
 }
 
-/* para testar que funciona */
-char** teste(int *x) {
-    char* codes1[] = {"AA1006", "AA1011", "AA1017", "AA1038", "AA1041", "AA1045", "AA1063", "AA1064", "AA1071", "AA1073", "AA1078"};
-    char* codes2[] = {"AA1011", "AA1017", "AA1032", "AA1038", "AA1045", "AA1055", "AA1063", "AA1064", "AA1071"};
-    char* codes3[] = {"AA1006", "AA1011", "AA1017", "AA1032", "AA1041", "AA1045", "AA1055", "AA1063", "AA1064", "AA1071", "AA1073", "AA1075"};
-    int n1 = sizeof(codes1)/sizeof(codes1[0]);
-    int n2 = sizeof(codes2)/sizeof(codes2[0]);
-    int n3 = sizeof(codes3)/sizeof(codes3[0]);
-    char **res = intersect(codes1, codes2, codes3, n1, n2, n3, x);
-    return res;
-}
-
-void printBranch1(Branches bs) {
-
-    int *branch_number = g_malloc(sizeof(int));
-    *branch_number = 1;
-    Branch b1 = (Branch)g_hash_table_lookup(bs->branches, branch_number);
-
-    int n1;
-    char** codes = getClientCodes(b1, &n1);
-    printf("n1 = %d\n", n1);
-/*    while (*codes++)
-        printf ("%s\n", *codes);
-*/
-}
-
-/* depois mudar nome*/
-char** query5(Branches bs, int *x) {
+/* Encontrar os clientes que compraram nas 3 filiais */
+char** clientsInCommon(Branches bs, int *x) {
 
     int *branch_number = g_malloc(sizeof(int));
 
@@ -131,16 +103,4 @@ char** query5(Branches bs, int *x) {
     char** codes = intersect(codes1, codes2, codes3, n1, n2, n3, x);
 
     return codes;
-}
-
-/* auxiliar para imprimir os codigos de cliente de uma branch especifica
-esta funcao pega numa branch 
-*/
-void printClientsBranch(Branches bs, int *branch_number) {
-
-    Branch b = (Branch)g_hash_table_lookup(bs->branches, branch_number);
-    int *inutil;
-    char** codes = getClientCodes(b, inutil);
-    while (*++codes)
-        printf ("%s\n", *codes);
 }

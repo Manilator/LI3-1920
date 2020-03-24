@@ -29,6 +29,6 @@ int getReadProducts (StartValues sv);
 
 int getReadSales (StartValues sv);
 
-void query5_aux(SGV sgv);
+void query5(SGV sgv);
 
 #endif

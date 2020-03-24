@@ -15,16 +15,8 @@ void updateBranches(Branches, Sale);
 
 void destroyBranches(Branches);
 
-/*Branch getBranchByNumber(Branches, int*);*/
-
-char** query5(Branches, int*);
-
-char** teste(int*);
-
 char** intersect(char**, char**, char**, int, int, int, int*);
 
-void printBranch1(Branches);
-
-void printClientsBranch(Branches, int*);
+char** clientsInCommon(Branches, int*);
 
 #endif

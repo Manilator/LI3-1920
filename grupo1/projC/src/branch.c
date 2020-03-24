@@ -179,18 +179,16 @@ void freeInfoProduct(InfoProduct ip) {
     g_free(ip);
 }
 
-static int myCompare(const void* a, const void* b) 
-{
+static int compare(const void* a, const void* b) {
     return strcmp(*(const char**)a, *(const char**)b); 
 }
 
-void sort(const char* arr[], int n) 
-{
-    qsort(arr, n, sizeof(const char*), myCompare); 
+void sort(const char* arr[], int n) {
+    qsort(arr, n, sizeof(const char*), compare); 
 }
 
 char** getClientCodes(Branch b, int *len) {
-    /*uint len;*/
+    
     char** codes = (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
     printf("[branch.c/getClientCodes] len1 = %d\n", *len);
     sort((const char**)codes, *len);

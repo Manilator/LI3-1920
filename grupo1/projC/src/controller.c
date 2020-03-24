@@ -7,22 +7,31 @@
 
 void menu(SGV sgv)
 {
-    char n;
+    char n = ' ';
     StartValues sv;
-
-    sv = initStartValues();
-    sgv = startSGV(sv);
-    viewPrintStartValues(getClientsPath(sv),
-                        getProductsPath(sv),
-                        getSalesPath(sv),
-                        getValidClients(sv),
-                        getValidProducts(sv),
-                        getValidSales(sv),
-                        getReadClients(sv),
-                        getReadProducts(sv),
-                        getReadSales(sv));
-    query5_aux(sgv);
-    
+    while (n != '0')
+    {
+        n = getchar();
+        switch (n)
+        {
+            case '1':
+                sv = initStartValues();
+                sgv = startSGV(sv);
+                viewPrintStartValues(getClientsPath(sv),
+                                    getProductsPath(sv),
+                                    getSalesPath(sv),
+                                    getValidClients(sv),
+                                    getValidProducts(sv),
+                                    getValidSales(sv),
+                                    getReadClients(sv),
+                                    getReadProducts(sv),
+                                    getReadSales(sv));
+            break;
+            case '5':
+                query5(sgv);
+            break;
+        }
+    }
     /* Destroy memory */
 }
 
