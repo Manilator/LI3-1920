@@ -11,7 +11,7 @@ SGV startSGV(StartValues sv);
 
 SGV initSGV();
 
-StartValues initStartValues();
+StartValues initStartValues(char* clients_path, char* products_path, char* sales_path);
 
 GSList * productsByLetter(SGV, char);
 

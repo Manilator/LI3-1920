@@ -2,32 +2,48 @@
 #include "view.h"
 #include "sgv.h"
 
-
 #include <stdio.h>
+
+
+void controllerQuerie1(StartValues sv, SGV sgv)
+{   
+    char *clients_path = g_malloc(sizeof(char) * 1024);
+    char *products_path = g_malloc(sizeof(char) * 1024);
+    char *sales_path = g_malloc(sizeof(char) * 1024);
+    querie1View(clients_path, products_path, sales_path);
+    sv = initStartValues(clients_path, products_path, sales_path);
+    sgv = startSGV(sv);
+    cleanConsole();
+    viewPrintStartValues(clients_path,
+                         products_path,
+                         sales_path,
+                         getValidClients(sv),
+                         getValidProducts(sv),
+                         getValidSales(sv),
+                         getReadClients(sv),
+                         getReadProducts(sv),
+                         getReadSales(sv));
+    g_free(clients_path);
+    g_free(products_path);
+    g_free(sales_path);
+}
+
 
 void menu(SGV sgv)
 {
-    char n;
+    char querie;
     StartValues sv;
-    while (n != '0')
+    cleanConsole();
+    while (querie != '0')
     {
-        n = getchar();
-        switch (n)
+        printMenu();
+        scanf(" %c", &querie);
+        switch (querie)
         {
-        case '1' :
-            sv = initStartValues();
-            sgv = startSGV(sv);
-            viewPrintStartValues(getClientsPath(sv),
-                                 getProductsPath(sv),
-                                 getSalesPath(sv),
-                                 getValidClients(sv),
-                                 getValidProducts(sv),
-                                 getValidSales(sv),
-                                 getReadClients(sv),
-                                 getReadProducts(sv),
-                                 getReadSales(sv));
+        case '1':
+            controllerQuerie1(sv, sgv);
             break;
-        case '2' :
+        case '2':
             /*productsByLetter(sgv,'A');*/
             break;
         case '3' :

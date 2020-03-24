@@ -12,7 +12,7 @@ void addBilling(Billings, Billing, int);
 
 void updateBillings(Billings, Sale);
 
-Billing getBilling(Billings, int);
+void insertBillingProduct(Billings, int, char*);
 
 float * getProductValuesByMonthBillingCat(Billings, char*, int, int);
 
