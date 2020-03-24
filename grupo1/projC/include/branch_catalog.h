@@ -15,4 +15,8 @@ void updateBranches(Branches, Sale);
 
 void destroyBranches(Branches);
 
+char** intersect(char**, char**, char**, int, int, int, int*);
+
+char** clientsInCommon(Branches, int*);
+
 #endif

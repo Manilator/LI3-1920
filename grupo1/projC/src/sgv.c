@@ -205,3 +205,18 @@ int getReadProducts (StartValues sv) {
 int getReadSales (StartValues sv) {
     return sv->read_sales;
 }
+
+/* QUERY 5 */
+void query5(SGV sgv)
+{
+    int *n = g_malloc(sizeof(int));
+    char** codes = clientsInCommon(sgv->branches, n);
+
+    int i;
+    puts("Printing codes:");
+    for(i = 0; i < *n; i++)
+        printf("%s\n", codes[i]);
+    puts("End of codes.");
+
+    printf("Clients in common: %d\n", *n);
+}

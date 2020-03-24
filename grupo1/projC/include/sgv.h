@@ -33,4 +33,6 @@ int getReadProducts (StartValues);
 
 int getReadSales (StartValues);
 
+void query5(SGV sgv);
+
 #endif

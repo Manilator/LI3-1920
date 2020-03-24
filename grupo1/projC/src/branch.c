@@ -87,7 +87,6 @@ void addRelationWithClient(Branch b, char* product_code, RelationWithClient rcc)
 void addRelationWithProduct(Branch b, char* client_code, RelationWithProduct rcp) {
     g_hash_table_insert(b->clientsProducts, client_code, rcp);
 }
-
 void addInfoClient(RelationWithClient rcc, char* client_code, InfoClient ic) {
     g_hash_table_insert(rcc->infoClients, client_code, ic);
 }
@@ -97,21 +96,21 @@ void addInfoProduct(RelationWithProduct rcp, char* product_code, InfoProduct ip)
 }
 
 void updateBranch(Branch b, char* client_code, char* product_code, int units, char promotion_type, float billed, int month) {
-    RelationWithClient rcc = g_hash_table_lookup(b->productsClients, client_code);
-    RelationWithProduct rcp = g_hash_table_lookup(b->clientsProducts, product_code);
+    RelationWithClient rcc = g_hash_table_lookup(b->productsClients, product_code);
+    RelationWithProduct rcp = g_hash_table_lookup(b->clientsProducts, client_code);
     if (rcc == NULL) {
-        char* _code_client = strdup(client_code);
-
-        strtok(_code_client, "\r\n");
-        g_hash_table_insert(b->productsClients, _code_client, initRelationWithClient());
-        rcc = g_hash_table_lookup(b->productsClients, _code_client);
-    }
-    if (rcp == NULL) {
         char* _code_product = strdup(product_code);
 
         strtok(_code_product, "\r\n");
-        g_hash_table_insert(b->clientsProducts, _code_product, initRelationWithProduct());
-        rcp = g_hash_table_lookup(b->clientsProducts, _code_product);
+        g_hash_table_insert(b->productsClients, _code_product, initRelationWithClient());
+        rcc = g_hash_table_lookup(b->productsClients, _code_product);
+    } 
+    if (rcp == NULL) {
+        char* _code_client = strdup(client_code);
+
+        strtok(_code_client, "\r\n");
+        g_hash_table_insert(b->clientsProducts, _code_client, initRelationWithProduct());
+        rcp = g_hash_table_lookup(b->clientsProducts, _code_client);
     }
     updateRelationWithClient(rcc, client_code, units, promotion_type);
     updateRelationWithProduct(rcp, product_code, units, billed, month);
@@ -178,4 +177,21 @@ void freeInfoClient(InfoClient ic) {
 
 void freeInfoProduct(InfoProduct ip) {
     g_free(ip);
+}
+
+static int compare(const void* a, const void* b) {
+    return strcmp(*(const char**)a, *(const char**)b); 
+}
+
+void sort(const char* arr[], int n) {
+    qsort(arr, n, sizeof(const char*), compare); 
+}
+
+char** getClientCodes(Branch b, int *len) {
+    
+    char** codes = (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
+    printf("[branch.c/getClientCodes] len1 = %d\n", *len);
+    sort((const char**)codes, *len);
+    printf("[branch.c/getClientCodes] len2 = %d\n", *len);
+    return codes;
 }

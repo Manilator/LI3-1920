@@ -50,4 +50,6 @@ void freeInfoClient(InfoClient);
 
 void freeInfoProduct(InfoProduct);
 
+char** getClientCodes(Branch, int*);
+
 #endif

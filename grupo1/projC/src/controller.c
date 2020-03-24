@@ -46,6 +46,9 @@ void menu(SGV sgv)
         case '2':
             /*productsByLetter(sgv,'A');*/
             break;
+        case '5':
+            query5(sgv);
+            break;
         }
     }
     /* Destroy memory */
