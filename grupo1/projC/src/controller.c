@@ -46,6 +46,10 @@ void menu(SGV sgv)
         case '2':
             /*productsByLetter(sgv,'A');*/
             break;
+        case '3' :
+            /* SGV / CODIGO PRODUTO / MES / É GLOBAL OU NAO? */
+            /*productValuesByMonth(sgv,"AF1184", 12, 1);*/
+            break;
         }
     }
     /* Destroy memory */
