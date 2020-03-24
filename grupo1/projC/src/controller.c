@@ -6,7 +6,7 @@
 
 
 void controllerQuerie1(StartValues sv, SGV sgv)
-{   
+{
     char *clients_path = g_malloc(sizeof(char) * 1024);
     char *products_path = g_malloc(sizeof(char) * 1024);
     char *sales_path = g_malloc(sizeof(char) * 1024);
@@ -45,6 +45,10 @@ void menu(SGV sgv)
             break;
         case '2':
             /*productsByLetter(sgv,'A');*/
+            break;
+        case '3' :
+            /* SGV / CODIGO PRODUTO / MES / É GLOBAL OU NAO? */
+            /*productValuesByMonth(sgv,"AF1184", 12, 1);*/
             break;
         case '5':
             query5(sgv);

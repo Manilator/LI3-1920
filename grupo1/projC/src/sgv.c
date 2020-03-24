@@ -87,7 +87,7 @@ int parseProducts(Products products, Billings bs, StartValues startValues)
             /* is okay*/
             int month;
             for (month = 1; month < 13; month++) {
-                insertBillingProduct(bs, month, _fileline);            
+                insertBillingProduct(bs, month, _fileline);
             }
             startValues->valid_products++;
         }
@@ -168,6 +168,13 @@ GSList * productsByLetter(SGV sgv, char letter){
     }
     printf("%d\n", len);
     return NULL;*/
+}
+
+/*
+ * [QUERIE 3] 
+*/
+void productValuesByMonth(SGV sgv, char* product_code, int month, int branches){
+    getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
 }
 
 char* getClientsPath(StartValues sv) {
