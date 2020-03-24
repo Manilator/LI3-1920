@@ -2,7 +2,7 @@
 
 #include <glib.h>
 #include <stdio.h>
-#include <stdlib.h>
+/*#include <stdlib.h>*/
 #include <string.h>
 
 struct branch
@@ -189,7 +189,6 @@ void sort(const char* arr[], int n) {
 }
 
 char** getClientCodes(Branch b, int *len) {
-
     char** codes = (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
     sort((const char**)codes, *len);
     return codes;

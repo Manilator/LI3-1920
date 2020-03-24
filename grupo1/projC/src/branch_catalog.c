@@ -1,6 +1,7 @@
 #include "branch_catalog.h"
 
 #include <glib.h>
+#include <stdio.h>
 #include <string.h>
 
 struct branches
@@ -104,4 +105,15 @@ char** clientsInCommon(Branches bs, int *x) {
     char** codes = intersect(codes1, codes2, codes3, n1, n2, n3, x);
 
     return codes;
+}
+
+void printBranch1(Branches bs) {
+
+    int *branch_number = g_malloc(sizeof(int));
+    *branch_number = 1;
+    Branch b1 = (Branch)g_hash_table_lookup(bs->branches, branch_number);
+
+    int n1;
+    char** codes = getClientCodes(b1, &n1);
+    printf("n1 = %d\n", n1);
 }
