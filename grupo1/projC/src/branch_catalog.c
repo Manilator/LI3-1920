@@ -53,7 +53,7 @@ char** intersect(char *ar1[], char *ar2[], char *ar3[], int n1, int n2, int n3, 
     }
 
     char **res;
-    res = g_malloc(n * sizeof(char *));
+    res = malloc(n * sizeof(char *));
     int count = 0;
 
     while (i < n1 && j < n2 && k < n3) {

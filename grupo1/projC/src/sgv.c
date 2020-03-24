@@ -3,7 +3,7 @@
 #include "client_catalog.h"
 #include "product_catalog.h"
 #include "sgv.h"
-    #include "sale.h"
+#include "sale.h"
 #include "utils.h"
 
 

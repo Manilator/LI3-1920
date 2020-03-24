@@ -191,8 +191,6 @@ void sort(const char* arr[], int n) {
 char** getClientCodes(Branch b, int *len) {
 
     char** codes = (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
-    printf("[branch.c/getClientCodes] len1 = %d\n", *len);
     sort((const char**)codes, *len);
-    printf("[branch.c/getClientCodes] len2 = %d\n", *len);
     return codes;
 }

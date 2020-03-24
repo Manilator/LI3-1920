@@ -40,19 +40,19 @@ void menu(SGV sgv)
         scanf(" %c", &querie);
         switch (querie)
         {
-        case '1':
-            controllerQuerie1(sv, sgv);
-            break;
-        case '2':
-            /*productsByLetter(sgv,'A');*/
-            break;
-        case '3' :
-            /* SGV / CODIGO PRODUTO / MES / É GLOBAL OU NAO? */
-            /*productValuesByMonth(sgv,"AF1184", 12, 1);*/
-            break;
-        case '5':
-            query5(sgv);
-            break;
+            case '1':
+                controllerQuerie1(sv, sgv);
+                break;
+            case '2':
+                /*productsByLetter(sgv,'A');*/
+                break;
+            case '3' :
+                /* SGV / CODIGO PRODUTO / MES / É GLOBAL OU NAO? */
+                /*productValuesByMonth(sgv,"AF1184", 12, 1);*/
+                break;
+            case '5':
+                query5(sgv);
+                break;
         }
     }
     /* Destroy memory */
