@@ -17,6 +17,7 @@ Products initProducts() {
     return products;
 }
 
+/* QUERIE 2 */
 GSList * getProductsByLetter(Products products_catalog, char letter){
     GSList *list = NULL;
 

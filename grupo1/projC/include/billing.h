@@ -9,6 +9,8 @@ Billing initBilling();
 
 BillingProduct initBillingProduct();
 
+float * getProductValuesByMonthBilling(Billing, char*, int);
+
 int addBillingProduct(Billing, char*);
 
 void updateBilling(Billing, char*, float, int, char, int);

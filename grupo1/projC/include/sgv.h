@@ -15,6 +15,8 @@ StartValues initStartValues();
 
 GSList * productsByLetter(SGV, char);
 
+void productValuesByMonth(SGV, char* , int, int);
+
 char* getClientsPath(StartValues);
 
 char* getProductsPath(StartValues);
