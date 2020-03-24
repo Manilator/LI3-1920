@@ -14,8 +14,6 @@ void updateBillings(Billings, Sale);
 
 void insertBillingProduct(Billings, int, char*);
 
-float * getProductValuesByMonthBillingCat(Billings, char*, int, int);
-
 void destroyBillings(Billings);
 
 #endif
