@@ -3,7 +3,7 @@
 #include "client_catalog.h"
 #include "product_catalog.h"
 #include "sgv.h"
-    #include "sale.h"
+#include "sale.h"
 #include "utils.h"
 
 
@@ -143,10 +143,8 @@ void destroyStartValues(StartValues sv){
     g_free(sv);
 }
 
-SGV startSGV(StartValues sv)
+SGV startSGV(SGV sgv, StartValues sv)
 {
-    SGV sgv = initSGV();
-
     parseClients(sgv->client_catalog, sv);
     parseProducts(sgv->product_catalog, sgv->billings, sv);
     parseSales(sgv, sv);
@@ -171,10 +169,10 @@ GSList * productsByLetter(SGV sgv, char letter){
 }
 
 /*
- * [QUERIE 3] 
+ * [QUERIE 3]
 */
-void productValuesByMonth(SGV sgv, char* product_code, int month, int branches){
-    getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
+float * productValuesByMonth(SGV sgv, char* product_code, int month, int branches){
+    return getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
 }
 
 char* getClientsPath(StartValues sv) {

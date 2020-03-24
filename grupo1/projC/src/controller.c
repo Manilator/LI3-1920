@@ -12,7 +12,7 @@ void controllerQuerie1(StartValues sv, SGV sgv)
     char *sales_path = g_malloc(sizeof(char) * 1024);
     querie1View(clients_path, products_path, sales_path);
     sv = initStartValues(clients_path, products_path, sales_path);
-    sgv = startSGV(sv);
+    sgv = startSGV(sgv, sv);
     cleanConsole();
     viewPrintStartValues(clients_path,
                          products_path,
@@ -44,11 +44,11 @@ void menu(SGV sgv)
             controllerQuerie1(sv, sgv);
             break;
         case '2':
-            /*productsByLetter(sgv,'A');*/
+            productsByLetter(sgv,'A');
             break;
         case '3' :
             /* SGV / CODIGO PRODUTO / MES / É GLOBAL OU NAO? */
-            /*productValuesByMonth(sgv,"AF1184", 12, 1);*/
+            productValuesByMonth(sgv,"AF1184", 12, 1);
             break;
         case '5':
             query5(sgv);
