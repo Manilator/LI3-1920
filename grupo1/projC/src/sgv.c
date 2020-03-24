@@ -170,16 +170,6 @@ GSList * productsByLetter(SGV sgv, char letter){
     return NULL;*/
 }
 
-/*
- * [QUERIE 3] - Dado um mês e um código de produto, ambos válidos,
-                determinar e apresentar o número total de vendas (nº de registos de venda) e o total facturado com esse produto  em  tal  mês,
-                distinguindo  os  totais  emmodo  N  e os  totais  em modoP.
-                O  utilizador  deverá  decidir  se  pretende  o  resultado  global  ou os resultados filial a filial para todas as 3 filiais
-*/
-void productValuesByMonth(SGV sgv, char* product_code, int month, int branches){
-    getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
-}
-
 char* getClientsPath(StartValues sv) {
     return (sv->path_clients)->str;
 }

@@ -18,7 +18,7 @@ struct billing
 struct billingProduct
 {
     float totalBilledN;
-    float totalBilledP;
+    int totalBilledP;
     int unitiesP;
     int unitiesN;
     int branchesQnt[N_BRANCHES][N_TYPES];
@@ -122,19 +122,6 @@ BillingProduct getBillingProduct(Billing b, char* product_code) {
 
 float getTotalBilledN_BP(BillingProduct bp) {
     return bp->totalBilledN;
-}
-
-/* QUERIE 3 */
-float * getProductValuesByMonthBilling(Billing b, char* product_code, int branch){
-    BillingProduct bp = (BillingProduct)g_hash_table_lookup(b->billingsProduct, product_code);
-    int elem_per_branch = 4;
-    float * _arrayResult = g_malloc(sizeof(float)*elem_per_branch);
-    _arrayResult[--elem_per_branch] = bp->brachesBilled[branch][P];
-    _arrayResult[--elem_per_branch] = bp->brachesBilled[branch][N];
-    _arrayResult[--elem_per_branch] = bp->branchesQnt[branch][P];
-    _arrayResult[--elem_per_branch] = bp->branchesQnt[branch][N];
-
-    return _arrayResult;
 }
 
 char* getFirstKey(Billing b) {
