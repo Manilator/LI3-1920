@@ -2,6 +2,7 @@
 
 #include <glib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 struct branch
@@ -104,7 +105,7 @@ void updateBranch(Branch b, char* client_code, char* product_code, int units, ch
         strtok(_code_product, "\r\n");
         g_hash_table_insert(b->productsClients, _code_product, initRelationWithClient());
         rcc = g_hash_table_lookup(b->productsClients, _code_product);
-    } 
+    }
     if (rcp == NULL) {
         char* _code_client = strdup(client_code);
 
@@ -180,15 +181,15 @@ void freeInfoProduct(InfoProduct ip) {
 }
 
 static int compare(const void* a, const void* b) {
-    return strcmp(*(const char**)a, *(const char**)b); 
+    return strcmp(*(const char**)a, *(const char**)b);
 }
 
 void sort(const char* arr[], int n) {
-    qsort(arr, n, sizeof(const char*), compare); 
+    qsort(arr, n, sizeof(const char*), compare);
 }
 
 char** getClientCodes(Branch b, int *len) {
-    
+
     char** codes = (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
     printf("[branch.c/getClientCodes] len1 = %d\n", *len);
     sort((const char**)codes, *len);

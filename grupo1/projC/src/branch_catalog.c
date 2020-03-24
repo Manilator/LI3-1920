@@ -1,6 +1,7 @@
 #include "branch_catalog.h"
 
 #include <glib.h>
+#include <string.h>
 
 struct branches
 {
@@ -38,7 +39,7 @@ void destroyBranches(Branches fs) {
 }
 
 /* Interseção de 3 arrays */
-char** intersect(char *ar1[], char *ar2[], char *ar3[], int n1, int n2, int n3, int *x) 
+char** intersect(char *ar1[], char *ar2[], char *ar3[], int n1, int n2, int n3, int *x)
 {
     int i = 0, j = 0, k = 0;
 
@@ -50,11 +51,11 @@ char** intersect(char *ar1[], char *ar2[], char *ar3[], int n1, int n2, int n3, 
     } else {
         n = n3;
     }
-    
+
     char **res;
-    res = malloc(n * sizeof(char *));
+    res = g_malloc(n * sizeof(char *));
     int count = 0;
-    
+
     while (i < n1 && j < n2 && k < n3) {
 
         if (!strcmp(ar1[i],ar2[j]) && !strcmp(ar2[j],ar3[k])) {
@@ -66,13 +67,13 @@ char** intersect(char *ar1[], char *ar2[], char *ar3[], int n1, int n2, int n3, 
         }
 
         else if (strcmp(ar1[i],ar2[j]) < 0)
-            i++; 
+            i++;
 
-        else if (strcmp(ar2[j],ar3[k]) < 0) 
-            j++; 
-  
+        else if (strcmp(ar2[j],ar3[k]) < 0)
+            j++;
+
         else
-            k++; 
+            k++;
     }
     res[count] = '\0';
     *x = count;
