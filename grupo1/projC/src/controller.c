@@ -28,6 +28,30 @@ void controllerQuerie1(StartValues sv, SGV sgv)
     g_free(sales_path);
 }
 
+void controllerQuerie2(SGV sgv) {
+    char letter = askQuerie2Letter();
+    querie2View(productsByLetter(sgv,letter));
+}
+
+void controllerQuerie3(SGV sgv) {
+    char* product = askQuerie3Product();
+    int month = askQuerie3Month();
+    int choice = askQuerie3Choice();
+    querie3View(productValuesByMonth(sgv,product, month, choice), choice);
+    free(product);
+}
+
+void controllerQuerie5(SGV sgv) {
+    char** clients = query5(sgv);
+    
+    int i;
+    puts("Printing codes:");
+    for(i = 0; clients[i] != NULL; i++)
+        printf("%s\n", clients[i]);
+
+    printf("Clients in common: %d\n", i);
+}
+
 
 void menu(SGV sgv)
 {
@@ -44,14 +68,13 @@ void menu(SGV sgv)
             controllerQuerie1(sv, sgv);
             break;
         case '2':
-            productsByLetter(sgv,'A');
+            controllerQuerie2(sgv);
             break;
         case '3' :
-            /* SGV / CODIGO PRODUTO / MES / É GLOBAL OU NAO? */
-            productValuesByMonth(sgv,"AF1184", 12, 1);
+            controllerQuerie3(sgv);
             break;
         case '5':
-            query5(sgv);
+            controllerQuerie5(sgv);
             break;
         }
     }

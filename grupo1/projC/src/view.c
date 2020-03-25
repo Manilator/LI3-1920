@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 void cleanConsole() {
     printf("\e[1;1H\e[2J");
@@ -149,4 +150,65 @@ void querie1View(char* clients_path, char* products_path, char* sales_path)
         break;
     }
     resetColor();
+}
+
+char askQuerie2Letter() {
+    char letter;
+    printf("1 - Choose product first letter\n");
+    scanf(" %c", &letter);
+    toupper(letter);
+    return letter;
+}
+
+void querie2View(GSList* list) {
+    int i,len;
+    len = (int)(g_slist_length(list));
+    for (i = 0; i < len; i++) {
+        printf("ELEM:%s\n",(char*)(list->data));
+        list = g_slist_next(list);
+    }
+    printf("Number of products: %d\n", len);
+}
+
+char* askQuerie3Product() {
+    char* product = malloc(sizeof(char) * PRODUCT_CODE_SIZE);
+    printf("Qual produto? \n");
+    scanf(" %s", product);
+    return product;
+}
+
+int askQuerie3Month() {
+    int month = -1;
+    printf("Qual mê?: \n");
+    scanf(" %d", &month);
+    return month;
+}
+
+int askQuerie3Choice() {
+    int choice = -1;
+    printf("0 - Filial a filial\n1 - Global: \n");
+    scanf(" %d", &choice);
+    return choice;
+}
+
+void querie3View(float * products, int choice) {
+    int i, j, branch;
+    int length;
+    char* _text[4] = {"Total Vendas N: ","Total Vendas P: ","Total Faturado N: ","Total Faturado P: "};
+    if (choice == 1) {
+        length = 4;
+    } else {
+        length = 12;
+    }
+    for (i = 0, j = 0, branch = 1; i < length; i++, j++) {
+        if (j == 0) {
+            printf("------ Filial %d ------\n", branch);
+            branch++;
+        }
+        printf("%s%f\n",_text[j], products[i]);
+        if (j == 3) {
+            j = -1;
+        }
+    }
+    printf("Number of products: %d\n", i);
 }
