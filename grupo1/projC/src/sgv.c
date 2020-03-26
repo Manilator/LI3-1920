@@ -5,6 +5,7 @@
 #include "sgv.h"
 #include "sale.h"
 #include "utils.h"
+#include "constants.h"
 
 
 #include <stdio.h>
@@ -173,6 +174,47 @@ GSList * productsByLetter(SGV sgv, char letter){
 */
 float * productValuesByMonth(SGV sgv, char* product_code, int month, int branches){
     return getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
+}
+
+/*
+ * [QUERIE 4] - Determinar a lista ordenada dos códigos dos produtos(e o seu número total)que ninguém  comprou,
+                podendo  o  utilizador  decidir  igualmente  se  pretende valores totais ou divididos pelas filiais.
+*/
+char ** productsNotBought(SGV sgv){
+    int branch,i;
+    char ** _productsBought;
+    GHashTable * _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+    for (branch = 1; branch <= N_BRANCHES; branch++) {
+        _productsBought = getProductsBought(sgv->branches, branch);
+        for(i=0;_productsBought[i] != NULL;i++){
+            if(!g_hash_table_contains(_htProductsBought, _productsBought[i]))
+                g_hash_table_insert(_htProductsBought, _productsBought[i],_productsBought[i]);
+        }
+        g_free(_productsBought);
+    }
+    _productsBought = getProductsNotArray(sgv->product_catalog, _htProductsBought);
+    /*g_free(_htProductsBought);*/
+    return _productsBought;
+}
+
+/*
+ * [QUERIE 4] - Determinar a lista ordenada dos códigos dos produtos(e o seu número total)que ninguém  comprou,
+                podendo  o  utilizador  decidir  igualmente  se  pretende valores totais ou divididos pelas filiais.
+*/
+char ** productsNotBoughtBranch(SGV sgv, int branch){
+    int i;
+    char ** _productsBought;
+    GHashTable * _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+
+    _productsBought = getProductsBought(sgv->branches, branch);
+    for(i=0;_productsBought[i] != NULL;i++){
+        if(!g_hash_table_contains(_htProductsBought, _productsBought[i]))
+            g_hash_table_insert(_htProductsBought, _productsBought[i],_productsBought[i]);
+    }
+    g_free(_productsBought);
+    _productsBought = getProductsNotArray(sgv->product_catalog, _htProductsBought);
+    /*g_free(_htProductsBought);*/
+    return _productsBought;
 }
 
 char* getClientsPath(StartValues sv) {

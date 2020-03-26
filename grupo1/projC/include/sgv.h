@@ -17,6 +17,10 @@ GSList * productsByLetter(SGV, char);
 
 float * productValuesByMonth(SGV, char* , int, int);
 
+char ** productsNotBought(SGV);
+
+char ** productsNotBoughtBranch(SGV, int);
+
 char* getClientsPath(StartValues);
 
 char* getProductsPath(StartValues);

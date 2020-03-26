@@ -73,6 +73,13 @@ void menu(SGV sgv)
         case '3' :
             controllerQuerie3(sgv);
             break;
+        case '4':
+            /* QUERIE - 4*/
+            /* GLOBAL */
+            /*productsNotBought(sgv);*/
+            /* BRANCH 1-3 */
+            /*productsNotBoughtBranch(sgv,3);*/
+            break;
         case '5':
             controllerQuerie5(sgv);
             break;

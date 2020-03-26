@@ -193,3 +193,10 @@ char** getClientCodes(Branch b, int *len) {
     sort((const char**)codes, *len);
     return codes;
 }
+
+
+char ** getProductsInBranch(Branch b){
+    guint * len = g_malloc(sizeof(guint));
+    *len = g_hash_table_size(b->productsClients);
+    return (char**)g_hash_table_get_keys_as_array(b->productsClients, len);
+}
