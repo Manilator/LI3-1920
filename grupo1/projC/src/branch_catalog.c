@@ -115,7 +115,7 @@ char ** getProductsBought(Branches bs, int branch){
     g_free(_tmp);
     return getProductsInBranch(b);
 }
-
+/*
 void printBranch1(Branches bs) {
 
     int *branch_number = g_malloc(sizeof(int));
@@ -125,4 +125,4 @@ void printBranch1(Branches bs) {
     int n1;
     char** codes = getClientCodes(b1, &n1);
     printf("n1 = %d\n", n1);
-}
+}*/

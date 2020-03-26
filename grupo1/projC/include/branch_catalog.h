@@ -21,6 +21,6 @@ char** clientsInCommon(Branches, int*);
 
 char ** getProductsBought(Branches, int);
 
-void printBranch1(Branches bs);
+/*void printBranch1(Branches bs);*/
 
 #endif

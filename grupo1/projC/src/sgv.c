@@ -254,12 +254,13 @@ int getReadSales (StartValues sv) {
 }
 
 /* QUERY 5 */
-void query5(SGV sgv)
+char** query5(SGV sgv)
 {
-    /*
     int *n = g_malloc(sizeof(int));
     char** codes = clientsInCommon(sgv->branches, n);
-
+    g_free(n);
+    return codes;
+/*
     int i;
     puts("Printing codes:");
     for(i = 0; i < *n; i++)
@@ -267,6 +268,6 @@ void query5(SGV sgv)
     puts("End of codes.");
 
     printf("Clients in common: %d\n", *n);
-    */
-    printBranch1(sgv->branches);
+*/
+
 }
