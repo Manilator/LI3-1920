@@ -188,9 +188,12 @@ void sort(const char* arr[], int n) {
     qsort(arr, n, sizeof(const char*), compare);
 }
 
-char** getClientCodes(Branch b, int *len) {
+char** getClientCodes(Branch b, int *n){
+    guint * len = g_malloc(sizeof(guint));
     char** codes = (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
     sort((const char**)codes, *len);
+    *n = *len;
+    g_free(len);
     return codes;
 }
 

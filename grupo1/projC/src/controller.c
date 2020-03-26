@@ -38,12 +38,12 @@ void controllerQuerie3(SGV sgv) {
     int month = askQuerie3Month();
     int choice = askQuerie3Choice();
     querie3View(productValuesByMonth(sgv,product, month, choice), choice);
-    free(product);
+    g_free(product);
 }
 
 void controllerQuerie5(SGV sgv) {
     char** clients = query5(sgv);
-    
+
     int i;
     puts("Printing codes:");
     for(i = 0; clients[i] != NULL; i++)
