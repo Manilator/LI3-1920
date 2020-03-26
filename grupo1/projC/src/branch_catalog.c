@@ -1,4 +1,5 @@
 #include "branch_catalog.h"
+#include "constants.h"
 
 #include <glib.h>
 #include <stdio.h>
@@ -105,6 +106,14 @@ char** clientsInCommon(Branches bs, int *x) {
     char** codes = intersect(codes1, codes2, codes3, n1, n2, n3, x);
 
     return codes;
+}
+
+char ** getProductsBought(Branches bs, int branch){
+    int *_tmp = g_malloc(sizeof(int));
+    *_tmp = branch;
+    Branch b = (Branch)g_hash_table_lookup(bs->branches, _tmp);
+    g_free(_tmp);
+    return getProductsInBranch(b);
 }
 
 void printBranch1(Branches bs) {

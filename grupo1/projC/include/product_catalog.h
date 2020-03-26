@@ -18,4 +18,6 @@ int existProduct (Products, Product);
 
 void destroyProducts(Products);
 
+char ** getProductsNotArray(Products, GHashTable*);
+
 #endif

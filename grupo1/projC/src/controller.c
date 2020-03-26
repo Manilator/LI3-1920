@@ -46,9 +46,16 @@ void menu(SGV sgv)
         case '2':
             productsByLetter(sgv,'A');
             break;
-        case '3' :
+        case '3':
             /* SGV / CODIGO PRODUTO / MES / É GLOBAL OU NAO? */
             productValuesByMonth(sgv,"AF1184", 12, 1);
+            break;
+        case '4':
+            /* QUERIE - 4*/
+            /* GLOBAL */
+            /*productsNotBought(sgv);*/
+            /* BRANCH 1-3 */
+            /*productsNotBoughtBranch(sgv,3);*/
             break;
         case '5':
             query5(sgv);

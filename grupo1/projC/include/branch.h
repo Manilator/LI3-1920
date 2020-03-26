@@ -52,4 +52,6 @@ void freeInfoProduct(InfoProduct);
 
 char** getClientCodes(Branch, int*);
 
+char ** getProductsInBranch(Branch);
+
 #endif

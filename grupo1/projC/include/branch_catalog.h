@@ -19,6 +19,8 @@ char** intersect(char**, char**, char**, int, int, int, int*);
 
 char** clientsInCommon(Branches, int*);
 
+char ** getProductsBought(Branches, int);
+
 void printBranch1(Branches bs);
 
 #endif
