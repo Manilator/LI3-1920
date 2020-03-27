@@ -3,7 +3,7 @@
 #include "product_catalog.h"
 
 #include <string.h>
-
+#include <stdlib.h>
 
 struct products
 {
@@ -17,21 +17,32 @@ Products initProducts() {
     return products;
 }
 
-/* QUERIE 2 */
-GSList * getProductsByLetter(Products products_catalog, char letter){
-    GSList *list = NULL;
+static int compare(const void* a, const void* b) {
+    return strcmp(*(const char**)a, *(const char**)b);
+}
 
+static void sort(const char* arr[], int n) {
+    qsort(arr, n, sizeof(const char*), compare);
+}
+
+
+/* QUERIE 2 */
+char ** getProductsByLetter(Products products_catalog, char letter){
     GHashTableIter iter;
     gpointer key, value;
+    int size = g_hash_table_size(products_catalog->products);
+    char** result = g_malloc(sizeof(char**)*size);
+    int i=0;
 
     g_hash_table_iter_init (&iter, products_catalog->products);
     while (g_hash_table_iter_next (&iter, &key, &value)) {
-        if( ((char*)key)[0] == letter)
-            list = g_slist_append (list, key);
+        if( ((char*)key)[0] == letter){
+            result[i] = g_malloc(sizeof(char*));
+            result[i++] = (char*)key;
+        }
     }
-
-
-    return list;
+    sort((const char**)result, i);
+    return result;
 }
 
 int addProduct(Products products,char* product) {

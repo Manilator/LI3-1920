@@ -160,14 +160,12 @@ char askQuerie2Letter() {
     return letter;
 }
 
-void querie2View(GSList* list) {
-    int i,len;
-    len = (int)(g_slist_length(list));
-    for (i = 0; i < len; i++) {
-        printf("ELEM:%s\n",(char*)(list->data));
-        list = g_slist_next(list);
+void querie2View(char** list) {
+    int i;
+    for (i = 0; list[i] != NULL; i++) {
+        printf("ELEM:%s\n",(char*)list[i]);
     }
-    printf("Number of products: %d\n", len);
+    printf("Number of products: %d\n", i);
 }
 
 char* askQuerie3Product() {

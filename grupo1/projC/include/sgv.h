@@ -13,7 +13,7 @@ SGV initSGV();
 
 StartValues initStartValues(char* clients_path, char* products_path, char* sales_path);
 
-GSList * productsByLetter(SGV, char);
+char ** productsByLetter(SGV, char);
 
 float * productValuesByMonth(SGV, char* , int, int);
 

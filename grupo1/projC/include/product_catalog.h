@@ -8,7 +8,7 @@ typedef struct products* Products;
 
 Products initProducts();
 
-GSList * getProductsByLetter(Products, char);
+char ** getProductsByLetter(Products, char);
 
 int addProduct(Products, char*);
 

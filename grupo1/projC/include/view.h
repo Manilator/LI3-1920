@@ -1,8 +1,6 @@
 #ifndef ___VIEW_H___
 #define ___VIEW_H___
 
-#include <glib.h>
-
 void printMenu();
 
 void printSeparator();
@@ -21,7 +19,7 @@ void viewPrintStartValues(char *clients_path,
 
 char askQuerie2Letter();
 
-void querie2View(GSList*);
+void querie2View(char**);
 
 void querie1View(char* clients_path, char* products_path, char* sales_path);
 
