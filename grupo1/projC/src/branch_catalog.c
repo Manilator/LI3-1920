@@ -21,10 +21,10 @@ Branches initBranches(int branches) {
     return new;
 }
 
-void addBranch(Branches branches, Branch filial, int number) {
+void addBranch(Branches branches, Branch branch, int number) {
     int *nr = g_malloc(sizeof(int));
     *nr = number;
-    g_hash_table_insert(branches->branches, nr, filial);
+    g_hash_table_insert(branches->branches, nr, branch);
 }
 
 void updateBranches(Branches branches, Sale sale) {
