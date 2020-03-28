@@ -79,9 +79,11 @@ char ** getProductsNotArray(Products product_catalog, GHashTable * products_boug
     {
         if(!g_hash_table_contains(products_bought, (char*)key)){
             result[i] = g_malloc(sizeof(char*));
-            result[i] = (char*)key;
+            result[i++] = (char*)key;
         }
     }
+    sort((const char**)result, i);
+    result[i]=NULL;
     return result;
 }
 

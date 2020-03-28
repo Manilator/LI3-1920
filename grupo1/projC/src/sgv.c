@@ -170,41 +170,48 @@ float * productValuesByMonth(SGV sgv, char* product_code, int month, int branche
  * [QUERIE 4] - Determinar a lista ordenada dos códigos dos produtos(e o seu número total)que ninguém  comprou,
                 podendo  o  utilizador  decidir  igualmente  se  pretende valores totais ou divididos pelas filiais.
 */
-char ** productsNotBought(SGV sgv){
-    int branch,i;
+char *** productsNotBought(SGV sgv, int isGlobal){
+    int i,branch;
+    char *** result;
     char ** _productsBought;
-    GHashTable * _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
-    for (branch = 1; branch <= N_BRANCHES; branch++) {
-        _productsBought = getProductsBought(sgv->branches, branch);
-        for(i=0;_productsBought[i] != NULL;i++){
-            if(!g_hash_table_contains(_htProductsBought, _productsBought[i]))
-                g_hash_table_insert(_htProductsBought, _productsBought[i],_productsBought[i]);
+    GHashTable * _htProductsBought;
+    if(isGlobal == 0){
+        result = g_malloc(sizeof(char***));
+        _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+        for (branch = 1; branch <= N_BRANCHES; branch++) {
+            _productsBought = getProductsBought(sgv->branches, branch);
+            for(i=0;_productsBought[i] != NULL;i++){
+                if(!g_hash_table_contains(_htProductsBought, _productsBought[i]))
+                    g_hash_table_insert(_htProductsBought, _productsBought[i],_productsBought[i]);
+            }
+            g_free(_productsBought);
         }
-        g_free(_productsBought);
+        _productsBought = getProductsNotArray(sgv->product_catalog, _htProductsBought);
+        result[ZERO] = _productsBought;
+        result[ONE] = NULL;
     }
-    _productsBought = getProductsNotArray(sgv->product_catalog, _htProductsBought);
-    /*g_free(_htProductsBought);*/
-    return _productsBought;
-}
+    else{
+        result = g_malloc(sizeof(char***)*N_BRANCHES);
+        for(branch = 1; branch <= N_BRANCHES; branch++){
+            _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+            _productsBought = getProductsBought(sgv->branches, branch);
 
-/*
- * [QUERIE 4] - Determinar a lista ordenada dos códigos dos produtos(e o seu número total)que ninguém  comprou,
-                podendo  o  utilizador  decidir  igualmente  se  pretende valores totais ou divididos pelas filiais.
-*/
-char ** productsNotBoughtBranch(SGV sgv, int branch){
-    int i;
-    char ** _productsBought;
-    GHashTable * _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
-
-    _productsBought = getProductsBought(sgv->branches, branch);
-    for(i=0;_productsBought[i] != NULL;i++){
-        if(!g_hash_table_contains(_htProductsBought, _productsBought[i]))
-            g_hash_table_insert(_htProductsBought, _productsBought[i],_productsBought[i]);
+            for(i=0;_productsBought[i] != NULL;i++){
+                if(!g_hash_table_contains(_htProductsBought, _productsBought[i]))
+                    g_hash_table_insert(_htProductsBought, _productsBought[i],_productsBought[i]);
+            }
+            _productsBought = getProductsNotArray(sgv->product_catalog, _htProductsBought);
+            result[branch] = _productsBought;
+        }
     }
-    g_free(_productsBought);
-    _productsBought = getProductsNotArray(sgv->product_catalog, _htProductsBought);
-    /*g_free(_htProductsBought);*/
-    return _productsBought;
+    /*
+    PRINT EXAMPLE
+    int j;
+    for (j = 0;result[3][j] != NULL; j++) {
+        printf("%s\n",result[3][j]);
+    }
+    printf("%d\n",j);*/
+    return result;
 }
 
 char* getClientsPath(StartValues sv) {
