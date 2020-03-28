@@ -1,3 +1,5 @@
+#define ZERO 0
+#define ONE 1
 #define N_BRANCHES 3
 #define MONTHS 12
 #define CLIENT_CODE_SIZE 5
