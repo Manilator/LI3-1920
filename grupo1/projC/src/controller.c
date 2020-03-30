@@ -81,6 +81,9 @@ void menu(SGV sgv)
         case '5':
             controllerQuerie5(sgv);
             break;
+        case '6':
+            productsClientsNotUsed(sgv);
+            break;
         }
     }
     /* Destroy memory */

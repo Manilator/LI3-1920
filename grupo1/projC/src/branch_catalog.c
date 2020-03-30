@@ -115,6 +115,15 @@ char ** getProductsBought(Branches bs, int branch){
     g_free(_tmp);
     return getProductsInBranch(b);
 }
+
+char ** getClientsUsed(Branches bs, int branch){
+    int *_tmp = g_malloc(sizeof(int));
+    *_tmp = branch;
+    Branch b = (Branch)g_hash_table_lookup(bs->branches, _tmp);
+    g_free(_tmp);
+    return getClientsInBranch(b);
+}
+
 /*
 void printBranch1(Branches bs) {
 

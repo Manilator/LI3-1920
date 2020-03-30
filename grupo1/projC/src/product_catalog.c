@@ -68,11 +68,16 @@ int existProduct (Products products, Product product) {
     return 0;
 }
 
+
+int getSizeProducts(Products products) {
+    return g_hash_table_size(products->products);
+}
+
 char ** getProductsNotArray(Products product_catalog, GHashTable * products_bought){
     GHashTableIter iter;
     gpointer key, value;
     int i=0;
-    int size = g_hash_table_size(product_catalog->products) - g_hash_table_size(products_bought);
+    int size = getSizeProducts(product_catalog) - g_hash_table_size(products_bought);
     char** result = g_malloc(sizeof(char**)*size);
     g_hash_table_iter_init (&iter, product_catalog->products);
     while (g_hash_table_iter_next (&iter, &key, &value))
@@ -87,8 +92,8 @@ char ** getProductsNotArray(Products product_catalog, GHashTable * products_boug
     return result;
 }
 
-int getSizeProducts(Products products) {
-    return g_hash_table_size(products->products);
+int getNumberProductsNotUsed(Products product_catalog, GHashTable * products_bought){
+    return getSizeProducts(product_catalog) - g_hash_table_size(products_bought);
 }
 
 void destroyProducts(Products products) {

@@ -42,6 +42,10 @@ int getSizeClients(Clients clients) {
     return g_hash_table_size(clients->clients);
 }
 
+int getNumberClientsNotUsed(Clients client_catalog, GHashTable * clients_used){
+    return getSizeClients(client_catalog) - g_hash_table_size(clients_used);
+}
+
 void destroyClients(Clients clients) {
     g_hash_table_destroy (clients->clients);
     g_free(clients);
