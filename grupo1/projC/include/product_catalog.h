@@ -22,4 +22,6 @@ char ** getProductsNotArray(Products, GHashTable*);
 
 int getNumberProductsNotUsed(Products, GHashTable *);
 
+int existProductCode (Products, char*);
+
 #endif
