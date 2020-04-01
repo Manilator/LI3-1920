@@ -203,3 +203,9 @@ char ** getProductsInBranch(Branch b){
     *len = g_hash_table_size(b->productsClients);
     return (char**)g_hash_table_get_keys_as_array(b->productsClients, len);
 }
+
+char ** getClientsInBranch(Branch b){
+    guint * len = g_malloc(sizeof(guint));
+    *len = g_hash_table_size(b->clientsProducts);
+    return (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
+}

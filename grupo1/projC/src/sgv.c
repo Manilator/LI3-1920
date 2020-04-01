@@ -214,6 +214,45 @@ char *** productsNotBought(SGV sgv, int isGlobal){
     return result;
 }
 
+/* QUERIE 6 */
+int * productsClientsNotUsed(SGV sgv){
+    int i;
+    int branch;
+    int products_not_used;
+    int clients_not_used;
+    char ** _productsBought;
+    GHashTable * _htProductsBought;
+
+    char ** _clientsUsed;
+    GHashTable * _htClientsUsed;
+
+    _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+    for (branch = 1; branch <= N_BRANCHES; branch++) {
+        _productsBought = getProductsBought(sgv->branches, branch);
+        for(i = 0; _productsBought[i] != NULL; i++){
+            if(!g_hash_table_contains(_htProductsBought, _productsBought[i]))
+                g_hash_table_insert(_htProductsBought, _productsBought[i],_productsBought[i]);
+        }
+        g_free(_productsBought);
+    }
+    products_not_used = getNumberProductsNotUsed(sgv->product_catalog, _htProductsBought);
+
+    _htClientsUsed = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+    for (branch = 1; branch <= N_BRANCHES; branch++) {
+        _clientsUsed = getClientsUsed(sgv->branches, branch);
+        for(i = 0; _clientsUsed[i] != NULL; i++){
+            if(!g_hash_table_contains(_htClientsUsed, _clientsUsed[i]))
+                g_hash_table_insert(_htClientsUsed, _clientsUsed[i],_clientsUsed[i]);
+        }
+        g_free(_clientsUsed);
+    }
+    clients_not_used = getNumberClientsNotUsed(sgv->client_catalog, _htClientsUsed);
+
+    printf("Products nobody bought: %d\n",products_not_used);
+    printf("Clients not used: %d\n",clients_not_used);
+    return NULL;
+}
+
 char* getClientsPath(StartValues sv) {
     return (sv->path_clients)->str;
 }

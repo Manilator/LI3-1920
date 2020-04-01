@@ -20,4 +20,6 @@ void destroyProducts(Products);
 
 char ** getProductsNotArray(Products, GHashTable*);
 
+int getNumberProductsNotUsed(Products, GHashTable *);
+
 #endif

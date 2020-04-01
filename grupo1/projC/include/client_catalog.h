@@ -15,4 +15,6 @@ int existClient (Clients, Client);
 
 void destroyClients(Clients);
 
+int getNumberClientsNotUsed(Clients, GHashTable *);
+
 #endif
