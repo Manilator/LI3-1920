@@ -248,8 +248,6 @@ int * productsClientsNotUsed(SGV sgv){
     }
     clients_not_used = getNumberClientsNotUsed(sgv->client_catalog, _htClientsUsed);
 
-    printf("Products nobody bought: %d\n",products_not_used);
-    printf("Clients not used: %d\n",clients_not_used);
     return NULL;
 }
 

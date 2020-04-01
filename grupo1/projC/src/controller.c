@@ -46,20 +46,23 @@ void controllerQuerie4(SGV sgv)
 {
     int choice = askQuerie4Choice();
     char ***products = productsNotBought(sgv, choice);
-
-    querie4View(products, choice);
+    if (products == NULL) {
+        printf("Informações não existentes.");
+    } else {
+        querie4View(products, choice);
+    }
 }
 
 void controllerQuerie5(SGV sgv)
 {
     char **clients = query5(sgv);
 
-    int i;
-    puts("Printing codes:");
-    for (i = 0; clients[i] != NULL; i++)
-        printf("%s\n", clients[i]);
+    querie5View(clients);
+}
 
-    printf("Clients in common: %d\n", i);
+void controllerQuerie6(SGV sgv) {
+    int* list = productsClientsNotUsed(sgv);
+    querie6View(list);
 }
 
 void menu(SGV sgv)
@@ -91,7 +94,21 @@ void menu(SGV sgv)
             controllerQuerie5(sgv);
             break;
         case '6':
-            productsClientsNotUsed(sgv);
+            controllerQuerie6(sgv);
+            break;
+        case '7':
+
+        case '8':
+
+        case '9':
+
+        case '10':
+
+        case '11':
+
+        case '12':
+
+        default:
             break;
         }
     }

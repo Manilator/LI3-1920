@@ -35,4 +35,8 @@ int askQuerie4Choice();
 
 void querie4View(char ***products, int choice);
 
+void querie5View(char** clients);
+
+void querie6View(int* list);
+
 #endif
