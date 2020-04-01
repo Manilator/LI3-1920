@@ -54,4 +54,6 @@ char** getClientCodes(Branch, int*);
 
 char ** getProductsInBranch(Branch);
 
+char *** productBoughtBy(Branch, char*, int*, int*);
+
 #endif

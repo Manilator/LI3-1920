@@ -52,7 +52,6 @@ void controllerQuerie5(SGV sgv) {
     printf("Clients in common: %d\n", i);
 }
 
-
 void menu(SGV sgv)
 {
     char querie;
@@ -80,6 +79,9 @@ void menu(SGV sgv)
             break;
         case '5':
             controllerQuerie5(sgv);
+            break;
+        case '9':
+            query9(sgv);
             break;
         }
     }
