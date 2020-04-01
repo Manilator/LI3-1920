@@ -278,3 +278,17 @@ void querie4View(char ***products, int choice)
     }
     */
 }
+
+void querie5View(char** clients) {
+    int i;
+    puts("Printing codes:");
+    for (i = 0; clients[i] != NULL; i++)
+        printf("%s\n", clients[i]);
+
+    printf("Clients in common: %d\n", i);
+}
+
+void querie6View(int* list) {
+    printf("Products nobody bought: %d\n",list[0]);
+    printf("Clients not used: %d\n",list[1]);
+}
