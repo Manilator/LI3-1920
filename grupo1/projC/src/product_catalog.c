@@ -68,6 +68,12 @@ int existProduct (Products products, Product product) {
     return 0;
 }
 
+int existProductCode (Products products, char* product_code) {
+    if (g_hash_table_contains(products->products, product_code)) {
+        return 1;
+    }
+    return 0;
+}
 
 int getSizeProducts(Products products) {
     return g_hash_table_size(products->products);

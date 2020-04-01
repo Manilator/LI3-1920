@@ -163,7 +163,12 @@ char ** productsByLetter(SGV sgv, char letter){
  * [QUERIE 3]
 */
 float * productValuesByMonth(SGV sgv, char* product_code, int month, int branches){
-    return getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
+    if(existProductCode (sgv->product_catalog,product_code)){
+        return getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
+    }
+    else{
+        return NULL;
+    }
 }
 
 /*
@@ -248,9 +253,12 @@ int * productsClientsNotUsed(SGV sgv){
     }
     clients_not_used = getNumberClientsNotUsed(sgv->client_catalog, _htClientsUsed);
 
+    int * result = g_malloc(sizeof(int));
+    result[ZERO] = products_not_used;
+    result[ONE] = clients_not_used;
     printf("Products nobody bought: %d\n",products_not_used);
     printf("Clients not used: %d\n",clients_not_used);
-    return NULL;
+    return result;
 }
 
 char* getClientsPath(StartValues sv) {
