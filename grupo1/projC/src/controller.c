@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 
-
 void controllerQuerie1(StartValues sv, SGV sgv)
 {
     char *clients_path = g_malloc(sizeof(char) * 1024);
@@ -28,35 +27,45 @@ void controllerQuerie1(StartValues sv, SGV sgv)
     g_free(sales_path);
 }
 
-void controllerQuerie2(SGV sgv) {
+void controllerQuerie2(SGV sgv)
+{
     char letter = askQuerie2Letter();
-    querie2View(productsByLetter(sgv,letter));
+    querie2View(productsByLetter(sgv, letter));
 }
 
-void controllerQuerie3(SGV sgv) {
-    char* product = askQuerie3Product();
+void controllerQuerie3(SGV sgv)
+{
+    char *product = askQuerie3Product();
     int month = askQuerie3Month();
     int choice = askQuerie3Choice();
-    querie3View(productValuesByMonth(sgv,product, month, choice), choice);
+    querie3View(productValuesByMonth(sgv, product, month, choice), choice);
     g_free(product);
 }
 
-void controllerQuerie5(SGV sgv) {
-    char** clients = query5(sgv);
+void controllerQuerie4(SGV sgv)
+{
+    int choice = askQuerie4Choice();
+    char ***products = productsNotBought(sgv, choice);
+
+    querie4View(products, choice);
+}
+
+void controllerQuerie5(SGV sgv)
+{
+    char **clients = query5(sgv);
 
     int i;
     puts("Printing codes:");
-    for(i = 0; clients[i] != NULL; i++)
+    for (i = 0; clients[i] != NULL; i++)
         printf("%s\n", clients[i]);
 
     printf("Clients in common: %d\n", i);
 }
 
-
 void menu(SGV sgv)
 {
     char querie;
-    StartValues sv;
+    StartValues sv = NULL;
     cleanConsole();
     while (querie != '0')
     {
@@ -70,13 +79,13 @@ void menu(SGV sgv)
         case '2':
             controllerQuerie2(sgv);
             break;
-        case '3' :
+        case '3':
             controllerQuerie3(sgv);
             break;
         case '4':
             /* QUERIE - 4*/
             /* GLOBAL  = 0, separado 1*/
-            productsNotBought(sgv,1);
+            controllerQuerie4(sgv);
             break;
         case '5':
             controllerQuerie5(sgv);

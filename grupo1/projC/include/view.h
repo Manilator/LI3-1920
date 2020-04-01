@@ -31,4 +31,8 @@ int askQuerie3Choice();
 
 void querie3View(float * products, int choice);
 
+int askQuerie4Choice();
+
+void querie4View(char ***products, int choice);
+
 #endif

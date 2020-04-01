@@ -2,67 +2,82 @@
 #include "constants.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-void cleanConsole() {
+void cleanConsole()
+{
     printf("\e[1;1H\e[2J");
 }
 
-void resetColor() {
+void resetColor()
+{
     printf("\033[0m");
 }
 
-void red() {
+void red()
+{
     printf("\033[0;31m");
 }
 
-void boldRed() {
+void boldRed()
+{
     printf("\033[1;31m");
 }
 
-void green() {
+void green()
+{
     printf("\033[0;32m");
 }
 
-void boldGreen() {
+void boldGreen()
+{
     printf("\033[1;32m");
 }
 
-void yellow() {
+void yellow()
+{
     printf("\033[0;33m");
 }
 
-void boldYellow() {
+void boldYellow()
+{
     printf("\033[1;33m");
 }
 
-void blue() {
+void blue()
+{
     printf("\033[0;34m");
 }
 
-void boldBlue() {
+void boldBlue()
+{
     printf("\033[1;34m");
 }
 
-void magenta() {
+void magenta()
+{
     printf("\033[0;35m");
 }
 
-void boldMagenta() {
+void boldMagenta()
+{
     printf("\033[1;35m");
 }
 
-void cyan() {
+void cyan()
+{
     printf("\033[1;36m");
 }
 
-void boldCyan() {
+void boldCyan()
+{
     printf("\033[1;36m");
 }
 
-
-void printMenu() {
+void printMenu()
+{
     printf("! --------------- !\n");
     printf("1  - Querie 1\n");
     printf("2  - Querie 2\n");
@@ -81,7 +96,8 @@ void printMenu() {
     boldCyan();
 }
 
-void printSeparator() {
+void printSeparator()
+{
     printf("===========================\n");
 }
 
@@ -128,7 +144,7 @@ void askSalesPath(char *sales_path)
     scanf("%s", sales_path);
 }
 
-void querie1View(char* clients_path, char* products_path, char* sales_path)
+void querie1View(char *clients_path, char *products_path, char *sales_path)
 {
     resetColor();
     char choice = '0';
@@ -152,7 +168,8 @@ void querie1View(char* clients_path, char* products_path, char* sales_path)
     resetColor();
 }
 
-char askQuerie2Letter() {
+char askQuerie2Letter()
+{
     char letter;
     printf("1 - Choose product first letter\n");
     scanf(" %c", &letter);
@@ -160,53 +177,104 @@ char askQuerie2Letter() {
     return letter;
 }
 
-void querie2View(char** list) {
+void querie2View(char **list)
+{
     int i;
-    for (i = 0; list[i] != NULL; i++) {
-        printf("ELEM:%s\n",(char*)list[i]);
+    for (i = 0; list[i] != NULL; i++)
+    {
+        printf("ELEM:%s\n", (char *)list[i]);
     }
     printf("Number of products: %d\n", i);
 }
 
-char* askQuerie3Product() {
-    char* product = malloc(sizeof(char) * PRODUCT_CODE_SIZE);
+char *askQuerie3Product()
+{
+    char *product = malloc(sizeof(char) * PRODUCT_CODE_SIZE);
     printf("Qual produto? \n");
     scanf(" %s", product);
     return product;
 }
 
-int askQuerie3Month() {
+int askQuerie3Month()
+{
     int month = -1;
     printf("Qual mê?: \n");
     scanf(" %d", &month);
     return month;
 }
 
-int askQuerie3Choice() {
+int askQuerie3Choice()
+{
     int choice = -1;
     printf("0 - Filial a filial\n1 - Global: \n");
     scanf(" %d", &choice);
     return choice;
 }
 
-void querie3View(float * products, int choice) {
+void querie3View(float *products, int choice)
+{
     int i, j, branch;
     int length;
-    char* _text[4] = {"Total Vendas N: ","Total Vendas P: ","Total Faturado N: ","Total Faturado P: "};
-    if (choice == 1) {
+    char *_text[4] = {"Total Vendas N: ", "Total Vendas P: ", "Total Faturado N: ", "Total Faturado P: "};
+    if (choice == 1)
+    {
         length = 4;
-    } else {
+    }
+    else
+    {
         length = 12;
     }
-    for (i = 0, j = 0, branch = 1; i < length; i++, j++) {
-        if (j == 0) {
+    for (i = 0, j = 0, branch = 1; i < length; i++, j++)
+    {
+        if (j == 0 && length == 12)
+        {
             printf("------ Filial %d ------\n", branch);
             branch++;
         }
-        printf("%s%f\n",_text[j], products[i]);
-        if (j == 3) {
+        printf("%s%f\n", _text[j], products[i]);
+        if (j == 3)
+        {
             j = -1;
         }
     }
     printf("Number of products: %d\n", i);
+}
+
+int askQuerie4Choice()
+{
+    int choice = -1;
+    printf("0 - Global\n1 - Filial a Filial: \n");
+    scanf(" %d", &choice);
+    return choice;
+}
+
+void querie4View(char ***products, int choice)
+{
+    int j, i, c, max;
+    if (choice == 0) {
+        i = 0;
+        max = 1;
+    } else {
+        i = 1;
+        max = 4;
+    }
+    for (; i < max; i++)
+    {
+        for (j = 0; products[i][j] != NULL; j++)
+        {
+            /*Fazer print em páginas*/
+            /*printf("%s\n",products[i][j]);*/
+        }
+        printf("%d\n", j);
+        for (c = 0; c < j; c++)
+        {
+            free(products[i][j]);
+        }
+    }
+    /*
+    for (c = 0; c < i; c++)
+    {
+        free(products[c]);
+    }
+    */
 }
