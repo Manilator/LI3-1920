@@ -246,3 +246,9 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
     
     return result;
 }
+
+char ** getClientsInBranch(Branch b){
+    guint * len = g_malloc(sizeof(guint));
+    *len = g_hash_table_size(b->clientsProducts);
+    return (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
+}

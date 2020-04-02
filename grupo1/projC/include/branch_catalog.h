@@ -23,4 +23,6 @@ char ** getProductsBought(Branches, int);
 
 char *** clientsWhoBoughtProduct(Branches, char*, int, int*, int*);
 
+char ** getClientsUsed(Branches, int);
+
 #endif

@@ -19,6 +19,8 @@ float * productValuesByMonth(SGV, char* , int, int);
 
 char *** productsNotBought(SGV, int);
 
+int * productsClientsNotUsed(SGV);
+
 char* getClientsPath(StartValues);
 
 char* getProductsPath(StartValues);
