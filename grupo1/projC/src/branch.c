@@ -1,4 +1,5 @@
 #include "branch.h"
+#include "constants.h"
 
 #include <glib.h>
 #include <stdio.h>
@@ -188,7 +189,7 @@ void sort(const char* arr[], int n) {
     qsort(arr, n, sizeof(const char*), compare);
 }
 
-char** getClientCodes(Branch b, int *n){
+char** getClientCodes(Branch b, int *n) {
     guint * len = g_malloc(sizeof(guint));
     char** codes = (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
     sort((const char**)codes, *len);
@@ -197,11 +198,53 @@ char** getClientCodes(Branch b, int *n){
     return codes;
 }
 
-
-char ** getProductsInBranch(Branch b){
+char ** getProductsInBranch(Branch b) {
     guint * len = g_malloc(sizeof(guint));
     *len = g_hash_table_size(b->productsClients);
     return (char**)g_hash_table_get_keys_as_array(b->productsClients, len);
+}
+
+char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
+{
+    RelationWithClient rcc = g_hash_table_lookup(b->productsClients, product_code);
+    InfoClient ic;
+    
+    GHashTableIter iter;
+    gpointer key, value;
+    int i = 0, j = 0;
+    int size = g_hash_table_size(rcc->infoClients);
+    
+    char*** result;
+    result = g_malloc(sizeof(char**)*2);
+    result[ZERO] = g_malloc(sizeof(char*)*size);
+    result[ONE] = g_malloc(sizeof(char*)*size);
+
+    g_hash_table_iter_init (&iter, rcc->infoClients);
+    while (g_hash_table_iter_next (&iter, &key, &value)) {
+
+        ic = (InfoClient)value;
+        
+        if (ic->unitsN)
+        {
+            printf("code: %s --> unitsN: %d\n", (char*)key, ic->unitsN);
+            (*totalN)++;
+            result[ZERO][i] = strdup((char*)key);
+            i++;
+        }
+        
+        if (ic->unitsP)
+        {
+            printf("code: %s --> unitsP: %d\n", (char*)key, ic->unitsP);
+            (*totalP)++;
+            result[ONE][j] = strdup((char*)key);
+            j++;
+        }
+    }
+    
+    result[ZERO][i]=NULL;
+    result[ONE][j]=NULL;
+    
+    return result;
 }
 
 char ** getClientsInBranch(Branch b){

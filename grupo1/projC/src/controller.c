@@ -93,6 +93,8 @@ void menu(SGV sgv)
         case 5:
             controllerQuerie5(sgv);
             break;
+        case '9':
+            query9(sgv);
         case 6:
             controllerQuerie6(sgv);
             break;
