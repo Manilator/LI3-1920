@@ -116,6 +116,14 @@ char ** getProductsBought(Branches bs, int branch){
     return getProductsInBranch(b);
 }
 
+char *** clientsWhoBoughtProduct(Branches bs, char *product_code, int branch, int *totalN, int *totalP){
+    int *_tmp = g_malloc(sizeof(int));
+    *_tmp = branch;
+    Branch b = (Branch)g_hash_table_lookup(bs->branches, _tmp);
+    g_free(_tmp);
+    return productBoughtBy(b, product_code, totalN, totalP);
+}
+
 char ** getClientsUsed(Branches bs, int branch){
     int *_tmp = g_malloc(sizeof(int));
     *_tmp = branch;
