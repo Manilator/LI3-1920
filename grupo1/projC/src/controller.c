@@ -67,46 +67,46 @@ void controllerQuerie6(SGV sgv) {
 
 void menu(SGV sgv)
 {
-    char querie;
+    int querie;
     StartValues sv = NULL;
     cleanConsole();
-    while (querie != '0')
+    while (querie != 0)
     {
         printMenu();
-        scanf(" %c", &querie);
+        scanf(" %d", &querie);
         switch (querie)
         {
-        case '1':
+        case 1:
             controllerQuerie1(sv, sgv);
             break;
-        case '2':
+        case 2:
             controllerQuerie2(sgv);
             break;
-        case '3':
+        case 3:
             controllerQuerie3(sgv);
             break;
-        case '4':
+        case 4:
             /* QUERIE - 4*/
             /* GLOBAL  = 0, separado 1*/
             controllerQuerie4(sgv);
             break;
-        case '5':
+        case 5:
             controllerQuerie5(sgv);
             break;
-        case '6':
+        case 6:
             controllerQuerie6(sgv);
             break;
-        case '7':
+        case 7:
 
-        case '8':
+        case 8:
 
-        case '9':
+        case 9:
 
-        case '10':
+        case 10:
 
-        case '11':
+        case 11:
 
-        case '12':
+        case 12:
 
         default:
             break;
