@@ -97,7 +97,8 @@ void menu(SGV sgv)
             controllerQuerie6(sgv);
             break;
         case 7:
-
+            clientShoppingLog(sgv,"F2916");
+            break;
         case 8:
 
         case 9:

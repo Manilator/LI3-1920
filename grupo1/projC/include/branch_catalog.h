@@ -25,4 +25,6 @@ char *** clientsWhoBoughtProduct(Branches, char*, int, int*, int*);
 
 char ** getClientsUsed(Branches, int);
 
+int * clientBranchShopLog(Branches, char*, int);
+
 #endif

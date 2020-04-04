@@ -208,12 +208,12 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
 {
     RelationWithClient rcc = g_hash_table_lookup(b->productsClients, product_code);
     InfoClient ic;
-    
+
     GHashTableIter iter;
     gpointer key, value;
     int i = 0, j = 0;
     int size = g_hash_table_size(rcc->infoClients);
-    
+
     char*** result;
     result = g_malloc(sizeof(char**)*2);
     result[ZERO] = g_malloc(sizeof(char*)*size);
@@ -223,7 +223,7 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
     while (g_hash_table_iter_next (&iter, &key, &value)) {
 
         ic = (InfoClient)value;
-        
+
         if (ic->unitsN)
         {
             printf("code: %s --> unitsN: %d\n", (char*)key, ic->unitsN);
@@ -231,7 +231,7 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
             result[ZERO][i] = strdup((char*)key);
             i++;
         }
-        
+
         if (ic->unitsP)
         {
             printf("code: %s --> unitsP: %d\n", (char*)key, ic->unitsP);
@@ -240,11 +240,31 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
             j++;
         }
     }
-    
+
     result[ZERO][i]=NULL;
     result[ONE][j]=NULL;
-    
+
     return result;
+}
+
+#include <stdio.h>
+
+int * getClientShopLog(Branch b, char* client_code){
+    RelationWithProduct rp = g_hash_table_lookup(b->clientsProducts,client_code);
+    int * quantities = g_malloc(sizeof(int)*12);
+    int i;
+
+    for(i=ZERO;i<12;i++)
+        quantities[i] = 0;
+
+    GHashTableIter iter;
+    gpointer key, value;
+    g_hash_table_iter_init (&iter, rp->infoProducts);
+    while (g_hash_table_iter_next (&iter, &key, &value))
+        for(i=ZERO;i<12;i++)
+            quantities[i] += ((InfoProduct)value)->quantities[i];
+
+    return quantities;
 }
 
 char ** getClientsInBranch(Branch b){
