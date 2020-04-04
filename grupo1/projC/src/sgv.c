@@ -261,6 +261,17 @@ int * productsClientsNotUsed(SGV sgv){
     return result;
 }
 
+/* QUERIE 7 */
+int ** clientShoppingLog(SGV sgv, char* client_code){
+    int branch,i;
+    int ** result = g_malloc(sizeof(int*)*N_BRANCHES);
+
+    for (branch=ONE; branch <= N_BRANCHES; branch++) {
+        result[branch-ONE] = clientBranchShopLog(sgv->branches, client_code, branch);
+    }
+    return result;
+}
+
 char* getClientsPath(StartValues sv) {
     return (sv->path_clients)->str;
 }
@@ -319,10 +330,10 @@ void query9(SGV sgv)
     int *totalP = g_malloc(sizeof(int));
     *totalN = 0;
     *totalP = 0;
-    
+
     /*char ***teste = clientsWhoBoughtProduct(sgv->branches, product_code, branch, totalN, totalP);*/
     char ***teste = clientsWhoBoughtProduct(sgv->branches, "AF1184", 1, totalN, totalP);
-    
+
     int i;
 
     puts("--------- CODIGOS N: ---------");
@@ -339,9 +350,9 @@ void query9(SGV sgv)
 
     puts("--------- TOTAIS: ---------");
     printf("N = %d\nP = %d\n", *totalN, *totalP);
-   
+
     g_free(totalN);
     g_free(totalP);
-    
+
     /* return teste; */
 }

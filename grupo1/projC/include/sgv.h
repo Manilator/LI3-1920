@@ -11,7 +11,7 @@ SGV startSGV(SGV, StartValues);
 
 SGV initSGV();
 
-StartValues initStartValues(char* clients_path, char* products_path, char* sales_path);
+StartValues initStartValues(char*, char*, char*);
 
 char ** productsByLetter(SGV, char);
 
@@ -20,6 +20,8 @@ float * productValuesByMonth(SGV, char* , int, int);
 char *** productsNotBought(SGV, int);
 
 int * productsClientsNotUsed(SGV);
+
+int ** clientShoppingLog(SGV, char*);
 
 char* getClientsPath(StartValues);
 
@@ -39,7 +41,7 @@ int getReadProducts (StartValues);
 
 int getReadSales (StartValues);
 
-char** query5(SGV sgv);
+char** query5(SGV);
 
 /* char *** query9(SGV, char*, int, int*, int*); */
 void query9(SGV);

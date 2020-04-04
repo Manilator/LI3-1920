@@ -131,3 +131,11 @@ char ** getClientsUsed(Branches bs, int branch){
     g_free(_tmp);
     return getClientsInBranch(b);
 }
+
+int * clientBranchShopLog(Branches bs, char* client_code, int branch){
+    int *_tmp = g_malloc(sizeof(int));
+    *_tmp = branch;
+    Branch b = (Branch)g_hash_table_lookup(bs->branches, _tmp);
+    g_free(_tmp);
+    return getClientShopLog(b, client_code);
+}

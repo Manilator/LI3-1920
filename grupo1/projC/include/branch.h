@@ -58,4 +58,6 @@ char *** productBoughtBy(Branch, char*, int*, int*);
 
 char ** getClientsInBranch(Branch);
 
+int * getClientShopLog(Branch, char*);
+
 #endif
