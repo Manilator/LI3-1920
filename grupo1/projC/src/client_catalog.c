@@ -1,7 +1,8 @@
-#include <glib.h>
-#include <string.h>
-
 #include "client_catalog.h"
+#include "constants.h"
+
+#include <string.h>
+#include <glib.h>
 
 struct clients
 {
@@ -21,10 +22,10 @@ int addClient(Clients clients, char* client) {
     if(verifyClient(client_code) && !g_hash_table_contains(clients->clients, client_code)) {
         /* Try/Except missing*/
         g_hash_table_insert(clients->clients, (char*)client_code, (gpointer)newClient(client_code));
-        return 1;
+        return ONE;
     }
     g_free(client_code);
-    return 0;
+    return ZERO;
 }
 
 int existClient (Clients clients, Client client) {
@@ -32,11 +33,19 @@ int existClient (Clients clients, Client client) {
     _temp = getClientCode(client);
     if (g_hash_table_contains(clients->clients, _temp)) {
         g_free(_temp);
-        return 1;
+        return ONE;
     }
     g_free(_temp);
-    return 0;
+    return ZERO;
 }
+
+int existClientCode (Clients clients, char* client_code) {
+    if (g_hash_table_contains(clients->clients, client_code)) {
+        return ONE;
+    }
+    return ZERO;
+}
+
 
 int getSizeClients(Clients clients) {
     return g_hash_table_size(clients->clients);

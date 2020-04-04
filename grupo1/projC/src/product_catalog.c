@@ -62,17 +62,17 @@ int existProduct (Products products, Product product) {
     _temp = getProductCode(product);
     if (g_hash_table_contains(products->products, _temp)) {
         g_free(_temp);
-        return 1;
+        return ONE;
     }
     g_free(_temp);
-    return 0;
+    return ZERO;
 }
 
 int existProductCode (Products products, char* product_code) {
     if (g_hash_table_contains(products->products, product_code)) {
-        return 1;
+        return ONE;
     }
-    return 0;
+    return ZERO;
 }
 
 int getSizeProducts(Products products) {
@@ -82,7 +82,7 @@ int getSizeProducts(Products products) {
 char ** getProductsNotArray(Products product_catalog, GHashTable * products_bought){
     GHashTableIter iter;
     gpointer key, value;
-    int i=0;
+    int i=ZERO;
     int size = getSizeProducts(product_catalog) - g_hash_table_size(products_bought);
     char** result = g_malloc(sizeof(char**)*size);
     g_hash_table_iter_init (&iter, product_catalog->products);

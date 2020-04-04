@@ -198,7 +198,7 @@ char *askQuerie3Product()
 int askQuerie3Month()
 {
     int month = -1;
-    printf("Qual mê?: \n");
+    printf("Qual mês?: \n");
     scanf(" %d", &month);
     return month;
 }

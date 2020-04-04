@@ -163,12 +163,11 @@ char ** productsByLetter(SGV sgv, char letter){
  * [QUERIE 3]
 */
 float * productValuesByMonth(SGV sgv, char* product_code, int month, int branches){
+    float * result = NULL;
     if(existProductCode (sgv->product_catalog,product_code)){
-        return getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
+        result = getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
     }
-    else{
-        return NULL;
-    }
+    return result;
 }
 
 /*
@@ -256,18 +255,19 @@ int * productsClientsNotUsed(SGV sgv){
     int * result = g_malloc(sizeof(int));
     result[ZERO] = products_not_used;
     result[ONE] = clients_not_used;
-    printf("Products nobody bought: %d\n",products_not_used);
-    printf("Clients not used: %d\n",clients_not_used);
     return result;
 }
 
 /* QUERIE 7 */
 int ** clientShoppingLog(SGV sgv, char* client_code){
-    int branch,i;
-    int ** result = g_malloc(sizeof(int*)*N_BRANCHES);
+    int ** result = NULL;
+    if(existClientCode (sgv->client_catalog,client_code)){
+        int branch;
+        result = g_malloc(sizeof(int*)*N_BRANCHES);
 
-    for (branch=ONE; branch <= N_BRANCHES; branch++) {
-        result[branch-ONE] = clientBranchShopLog(sgv->branches, client_code, branch);
+        for (branch=ONE; branch <= N_BRANCHES; branch++) {
+            result[branch-ONE] = clientBranchShopLog(sgv->branches, client_code, branch);
+        }
     }
     return result;
 }
