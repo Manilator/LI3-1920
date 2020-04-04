@@ -33,6 +33,20 @@ void querie3View(float * products, int choice);
 
 int askQuerie4Choice();
 
+char* askQuerie7Client();
+
+int* askQuerie8Interval();
+
+char *askQuerie9Product();
+
+int askQuerie9Branch();
+
+char* askQuerie10Client();
+
+int askQuerie10Month();
+
+char* askQuerie12Client();
+
 void querie4View(char ***products, int choice);
 
 void querie5View(char** clients);

@@ -248,6 +248,64 @@ int askQuerie4Choice()
     return choice;
 }
 
+char* askQuerie7Client()
+{
+    char *client = malloc(sizeof(char) * CLIENT_CODE_SIZE);
+    printf("Qual cliente? \n");
+    scanf(" %s", client);
+    return client;
+}
+
+int* askQuerie8Interval()
+{
+    int* interval = malloc(sizeof(int) * 2);
+    printf("Primeiro mês do intervalo?");
+    scanf(" %d", &interval[0]);
+    printf("Segundo mês do intervalo?");
+    scanf(" %d", &interval[1]);
+    return interval;
+}
+
+char *askQuerie9Product()
+{
+    char *product = malloc(sizeof(char) * PRODUCT_CODE_SIZE);
+    printf("Qual produto? \n");
+    scanf(" %s", product);
+    return product;
+}
+
+int askQuerie9Branch()
+{
+    int branch = -1;
+    printf("Qual filial?\n");
+    scanf(" %d", &branch);
+    return branch;
+}
+
+char* askQuerie10Client()
+{
+    char *client = malloc(sizeof(char) * CLIENT_CODE_SIZE);
+    printf("Qual cliente? \n");
+    scanf(" %s", client);
+    return client;
+}
+
+int askQuerie10Month()
+{
+    int month = -1;
+    printf("Qual mẽs?\n");
+    scanf(" %d", &month);
+    return month;
+}
+
+char* askQuerie12Client()
+{
+    char *client = malloc(sizeof(char) * CLIENT_CODE_SIZE);
+    printf("Qual cliente? \n");
+    scanf(" %s", client);
+    return client;
+}
+
 void querie4View(char ***products, int choice)
 {
     int j, i, c, max;
