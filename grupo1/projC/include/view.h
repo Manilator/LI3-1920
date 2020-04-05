@@ -17,35 +17,27 @@ void viewPrintStartValues(char *clients_path,
                           int   products_read,
                           int   sales_read);
 
-char askQuerie2Letter();
+char askProductLetter();
 
-void querie2View(char**);
+char *askProduct()
 
-void querie1View(char* clients_path, char* products_path, char* sales_path);
+int askMonth();
 
-char* askQuerie3Product();
+char* askClient();
 
-int askQuerie3Month();
+int* askMonthInterval();
+
+int askBranch();
 
 int askQuerie3Choice();
 
-void querie3View(float * products, int choice);
-
 int askQuerie4Choice();
 
-char* askQuerie7Client();
+void querie1View(char* clients_path, char* products_path, char* sales_path);
 
-int* askQuerie8Interval();
+void querie2View(char**);
 
-char *askQuerie9Product();
-
-int askQuerie9Branch();
-
-char* askQuerie10Client();
-
-int askQuerie10Month();
-
-char* askQuerie12Client();
+void querie3View(float * products, int choice);
 
 void querie4View(char ***products, int choice);
 
