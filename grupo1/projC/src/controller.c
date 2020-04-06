@@ -29,14 +29,14 @@ void controllerQuerie1(StartValues sv, SGV sgv)
 
 void controllerQuerie2(SGV sgv)
 {
-    char letter = askQuerie2Letter();
+    char letter = askProductLetter();
     querie2View(productsByLetter(sgv, letter));
 }
 
 void controllerQuerie3(SGV sgv)
 {
-    char *product = askQuerie3Product();
-    int month = askQuerie3Month();
+    char *product = askProduct();
+    int month = askMonth();
     int choice = askQuerie3Choice();
     querie3View(productValuesByMonth(sgv, product, month, choice), choice);
     g_free(product);
