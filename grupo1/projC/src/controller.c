@@ -3,6 +3,7 @@
 #include "sgv.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void controllerQuerie1(StartValues sv, SGV sgv)
 {
@@ -94,7 +95,7 @@ void controllerQuerie9(SGV sgv) {
 void controllerQuerie10(SGV sgv) {
     char* client = askClient();
     int month = askMonth();
-    
+
     char** result = clientMostBoughtByMonth(sgv, client, month);
 
     querie10View(result);
