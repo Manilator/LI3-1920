@@ -100,7 +100,8 @@ void menu(SGV sgv)
             clientShoppingLog(sgv,"F2916");
             break;
         case 8:
-
+            query8(sgv);
+            break;
         case 9:
             query9(sgv);
             break;

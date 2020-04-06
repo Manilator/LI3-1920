@@ -30,15 +30,15 @@ void addInfoClient(RelationWithClient, char*, InfoClient);
 
 void addInfoProduct(RelationWithProduct, char*, InfoProduct);
 
-void updateBranch(Branch, char*, char*, int, char, float, int);
+void updateBranch(Branch, char*, char*, int, char, double, int);
 
-void updateRelationWithProduct(RelationWithProduct, char*, int, float, int);
+void updateRelationWithProduct(RelationWithProduct, char*, int, double, int);
 
 void updateRelationWithClient(RelationWithClient, char*, int, char);
 
 void updateInfoClient(InfoClient, int, char);
 
-void updateInfoProduct(InfoProduct, int, float, int);
+void updateInfoProduct(InfoProduct, int, double, int);
 
 void freeBranch(Branch);
 

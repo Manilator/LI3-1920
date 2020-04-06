@@ -211,7 +211,7 @@ int askQuerie3Choice()
     return choice;
 }
 
-void querie3View(float *products, int choice)
+void querie3View(double *products, int choice)
 {
     int i, j, branch;
     int length;

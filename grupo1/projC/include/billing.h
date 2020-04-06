@@ -9,24 +9,26 @@ Billing initBilling();
 
 BillingProduct initBillingProduct();
 
-float * getProductValuesByMonthBilling(Billing, char*, int);
+double * getProductValuesByMonthBilling(Billing, char*, int);
 
 int addBillingProduct(Billing, char*);
 
-void updateBilling(Billing, char*, float, int, char, int);
+void updateBilling(Billing, char*, double, int, char, int);
 
-int updateBillingProduct(BillingProduct , float, int, char, int);
+int updateBillingProduct(BillingProduct , double, int, char, int);
 
 BillingProduct getBillingProduct(Billing, char*);
 
-float getTotalBilledBilling(Billing);
+double getTotalBilledBilling(Billing);
 
-float getTotalBilledN_BP(BillingProduct);
+double getTotalBilledN_BP(BillingProduct);
 
 char* getFirstKey(Billing);
 
 void freeBillingProduct(BillingProduct);
 
 void freeBilling(Billing);
+
+void getTotalsFromBilling(Billing, int*, double*, int*);
 
 #endif

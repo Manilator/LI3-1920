@@ -29,7 +29,7 @@ int askQuerie3Month();
 
 int askQuerie3Choice();
 
-void querie3View(float * products, int choice);
+void querie3View(double * products, int choice);
 
 int askQuerie4Choice();
 
