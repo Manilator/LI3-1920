@@ -19,7 +19,7 @@ void viewPrintStartValues(char *clients_path,
 
 char askProductLetter();
 
-char *askProduct()
+char *askProduct();
 
 int askMonth();
 
