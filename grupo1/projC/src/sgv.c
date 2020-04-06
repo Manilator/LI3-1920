@@ -372,10 +372,14 @@ char** query5(SGV sgv)
 /*void query9(SGV sgv)*/
 char *** query9(SGV sgv, char *product_code, int branch, int *totalN, int *totalP)
 {
-    *totalN = 0;
-    *totalP = 0;
+    char *** result = NULL;
+    if(existProductCode (sgv->product_catalog,product_code))
+    {
+        *totalN = 0;
+        *totalP = 0;
+        result = clientsWhoBoughtProduct(sgv->branches, product_code, branch, totalN, totalP);
+    }
 
-    char ***teste = clientsWhoBoughtProduct(sgv->branches, product_code, branch, totalN, totalP);
     /*char ***teste = clientsWhoBoughtProduct(sgv->branches, "AF1184", 1, totalN, totalP);*/
     /*
     int i;
@@ -399,7 +403,7 @@ char *** query9(SGV sgv, char *product_code, int branch, int *totalN, int *total
     /*g_free(totalN);
     g_free(totalP);*/
 
-    return teste;
+    return result;
 }
 
 /* QUERY 8 */
