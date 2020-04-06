@@ -273,7 +273,7 @@ char ** getClientsInBranch(Branch b){
 
 void getMostBoughtByBranch(Branch b, char* client_code, int month, GHashTable * _mostBought){
     RelationWithProduct rp = g_hash_table_lookup(b->clientsProducts,client_code);
-    int *lel, *_tmp;
+    int *initial_quantity, *_tmp;
     GHashTableIter iter;
     gpointer key, value;
     g_hash_table_iter_init (&iter, rp->infoProducts);
@@ -283,9 +283,9 @@ void getMostBoughtByBranch(Branch b, char* client_code, int month, GHashTable * 
             *_tmp += ((InfoProduct)value)->quantities[month];
         }
         else{
-            lel = g_malloc(sizeof(int));
-            *lel = (int)((InfoProduct)value)->quantities[month];
-            g_hash_table_insert(_mostBought, (char*)key, (gpointer)lel);
+            initial_quantity = g_malloc(sizeof(int));
+            *initial_quantity = (int)((InfoProduct)value)->quantities[month];
+            g_hash_table_insert(_mostBought, (char*)key, (gpointer)initial_quantity);
         }
     }
 }
