@@ -37,7 +37,7 @@ void querie1View(char* clients_path, char* products_path, char* sales_path);
 
 void querie2View(char**);
 
-void querie3View(float * products, int choice);
+void querie3View(double * products, int choice);
 
 void querie4View(char ***products, int choice);
 

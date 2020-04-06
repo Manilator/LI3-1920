@@ -245,7 +245,7 @@ void querie2View(char **list)
     printf("Number of products: %d\n", i);
 }
 
-void querie3View(float *products, int choice)
+void querie3View(double *products, int choice)
 {
     int i, j, branch;
     int length;
