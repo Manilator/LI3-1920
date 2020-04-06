@@ -226,7 +226,6 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
 
         if (ic->unitsN)
         {
-            printf("code: %s --> unitsN: %d\n", (char*)key, ic->unitsN);
             (*totalN)++;
             result[ZERO][i] = strdup((char*)key);
             i++;
@@ -234,7 +233,6 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
 
         if (ic->unitsP)
         {
-            printf("code: %s --> unitsP: %d\n", (char*)key, ic->unitsP);
             (*totalP)++;
             result[ONE][j] = strdup((char*)key);
             j++;
@@ -271,4 +269,23 @@ char ** getClientsInBranch(Branch b){
     guint * len = g_malloc(sizeof(guint));
     *len = g_hash_table_size(b->clientsProducts);
     return (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
+}
+
+void getMostBoughtByBranch(Branch b, char* client_code, int month, GHashTable * _mostBought){
+    RelationWithProduct rp = g_hash_table_lookup(b->clientsProducts,client_code);
+    int *lel, *_tmp;
+    GHashTableIter iter;
+    gpointer key, value;
+    g_hash_table_iter_init (&iter, rp->infoProducts);
+    while (g_hash_table_iter_next (&iter, &key, &value)){
+        if(g_hash_table_contains(_mostBought, (char*)key)){
+            _tmp = (int*)(g_hash_table_lookup(_mostBought, (char*)key));
+            *_tmp += ((InfoProduct)value)->quantities[month];
+        }
+        else{
+            lel = g_malloc(sizeof(int));
+            *lel = (int)((InfoProduct)value)->quantities[month];
+            g_hash_table_insert(_mostBought, (char*)key, (gpointer)lel);
+        }
+    }
 }

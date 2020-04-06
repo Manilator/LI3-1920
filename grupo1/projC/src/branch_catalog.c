@@ -139,3 +139,20 @@ int * clientBranchShopLog(Branches bs, char* client_code, int branch){
     g_free(_tmp);
     return getClientShopLog(b, client_code);
 }
+
+GHashTable* getMostBought(Branches bs, char* client_code, int month){
+    int branch;
+    int *_tmp;
+    Branch b;
+    GHashTable * _mostBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+
+    for (branch = ONE; branch <= N_BRANCHES; branch++) {
+        _tmp = g_malloc(sizeof(int));
+        *_tmp = branch;
+        b = (Branch)g_hash_table_lookup(bs->branches, _tmp);
+        getMostBoughtByBranch(b, client_code, month-ONE, _mostBought);
+        g_free(_tmp);
+    }
+
+    return _mostBought;
+}

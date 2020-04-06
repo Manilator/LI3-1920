@@ -168,13 +168,71 @@ void querie1View(char *clients_path, char *products_path, char *sales_path)
     resetColor();
 }
 
-char askQuerie2Letter()
+char askProductLetter()
 {
     char letter;
     printf("1 - Choose product first letter\n");
     scanf(" %c", &letter);
     toupper(letter);
     return letter;
+}
+
+char *askProduct()
+{
+    char *product = malloc(sizeof(char) * PRODUCT_CODE_SIZE);
+    printf("Qual produto? \n");
+    scanf(" %s", product);
+    return product;
+}
+
+int askMonth()
+{
+    int month = -1;
+    printf("Qual mês?: \n");
+    scanf(" %d", &month);
+    return month;
+}
+
+char *askClient()
+{
+    char *client = malloc(sizeof(char) * CLIENT_CODE_SIZE);
+    printf("Qual cliente? \n");
+    scanf(" %s", client);
+    return client;
+}
+
+int *askMonthInterval()
+{
+    int *interval = malloc(sizeof(int) * 2);
+    printf("Primeiro mês do intervalo?");
+    scanf(" %d", &interval[0]);
+    printf("Segundo mês do intervalo?");
+    scanf(" %d", &interval[1]);
+    return interval;
+}
+
+int askBranch()
+{
+    int branch = -1;
+    printf("Qual filial?\n");
+    scanf(" %d", &branch);
+    return branch;
+}
+
+int askQuerie3Choice()
+{
+    int choice = -1;
+    printf("0 - Filial a filial\n1 - Global: \n");
+    scanf(" %d", &choice);
+    return choice;
+}
+
+int askQuerie4Choice()
+{
+    int choice = -1;
+    printf("0 - Global\n1 - Filial a Filial: \n");
+    scanf(" %d", &choice);
+    return choice;
 }
 
 void querie2View(char **list)
@@ -187,31 +245,7 @@ void querie2View(char **list)
     printf("Number of products: %d\n", i);
 }
 
-char *askQuerie3Product()
-{
-    char *product = malloc(sizeof(char) * PRODUCT_CODE_SIZE);
-    printf("Qual produto? \n");
-    scanf(" %s", product);
-    return product;
-}
-
-int askQuerie3Month()
-{
-    int month = -1;
-    printf("Qual mês?: \n");
-    scanf(" %d", &month);
-    return month;
-}
-
-int askQuerie3Choice()
-{
-    int choice = -1;
-    printf("0 - Filial a filial\n1 - Global: \n");
-    scanf(" %d", &choice);
-    return choice;
-}
-
-void querie3View(double *products, int choice)
+void querie3View(float *products, int choice)
 {
     int i, j, branch;
     int length;
@@ -240,79 +274,16 @@ void querie3View(double *products, int choice)
     printf("Number of products: %d\n", i);
 }
 
-int askQuerie4Choice()
-{
-    int choice = -1;
-    printf("0 - Global\n1 - Filial a Filial: \n");
-    scanf(" %d", &choice);
-    return choice;
-}
-
-char* askQuerie7Client()
-{
-    char *client = malloc(sizeof(char) * CLIENT_CODE_SIZE);
-    printf("Qual cliente? \n");
-    scanf(" %s", client);
-    return client;
-}
-
-int* askQuerie8Interval()
-{
-    int* interval = malloc(sizeof(int) * 2);
-    printf("Primeiro mês do intervalo?");
-    scanf(" %d", &interval[0]);
-    printf("Segundo mês do intervalo?");
-    scanf(" %d", &interval[1]);
-    return interval;
-}
-
-char *askQuerie9Product()
-{
-    char *product = malloc(sizeof(char) * PRODUCT_CODE_SIZE);
-    printf("Qual produto? \n");
-    scanf(" %s", product);
-    return product;
-}
-
-int askQuerie9Branch()
-{
-    int branch = -1;
-    printf("Qual filial?\n");
-    scanf(" %d", &branch);
-    return branch;
-}
-
-char* askQuerie10Client()
-{
-    char *client = malloc(sizeof(char) * CLIENT_CODE_SIZE);
-    printf("Qual cliente? \n");
-    scanf(" %s", client);
-    return client;
-}
-
-int askQuerie10Month()
-{
-    int month = -1;
-    printf("Qual mẽs?\n");
-    scanf(" %d", &month);
-    return month;
-}
-
-char* askQuerie12Client()
-{
-    char *client = malloc(sizeof(char) * CLIENT_CODE_SIZE);
-    printf("Qual cliente? \n");
-    scanf(" %s", client);
-    return client;
-}
-
 void querie4View(char ***products, int choice)
 {
     int j, i, c, max;
-    if (choice == 0) {
+    if (choice == 0)
+    {
         i = 0;
         max = 1;
-    } else {
+    }
+    else
+    {
         i = 1;
         max = 4;
     }
@@ -337,7 +308,8 @@ void querie4View(char ***products, int choice)
     */
 }
 
-void querie5View(char** clients) {
+void querie5View(char **clients)
+{
     int i;
     puts("Printing codes:");
     for (i = 0; clients[i] != NULL; i++)
@@ -346,7 +318,71 @@ void querie5View(char** clients) {
     printf("Clients in common: %d\n", i);
 }
 
-void querie6View(int* list) {
-    printf("Products nobody bought: %d\n",list[0]);
-    printf("Clients not used: %d\n",list[1]);
+void querie6View(int *list)
+{
+    printf("Products nobody bought: %d\n", list[0]);
+    printf("Clients not used: %d\n", list[1]);
+}
+
+void querie7View(int **totals)
+{
+    int branch = 0;
+    int month = 1;
+
+    for (; branch < 3; branch++)
+    {
+        printf("--------- Filial %d ---------\n", branch + 1);
+
+        for (; month < 12; month++)
+        {
+            printf("--- Mês %d ---\n", month + 1);
+            printf("Total: %d\n", totals[branch][month]);
+        }
+        month = 0;
+    }
+}
+
+void querie9View(char ***array, int *total_N, int *total_P)
+{
+
+    if (array == NULL)
+    {
+        printf("Valores inválidos\n");
+    }
+    else
+    {
+        int i;
+
+        puts("--------- CODIGOS N: ---------");
+        for (i = 0; array[0][i] && i < *total_N; i++)
+        {
+            printf("%s\n", array[0][i]);
+        }
+
+        puts("--------- CODIGOS P: ---------");
+        for (i = 0; array[1][i] && i < *total_P; i++)
+        {
+            printf("%s\n", array[1][i]);
+        }
+
+        puts("--------- TOTAIS: ---------");
+        printf("N = %d\nP = %d\n", *total_N, *total_P);
+    }
+}
+
+void querie10View(char **products)
+{
+    int i = 0;
+
+    if (products == NULL)
+    {
+        printf("Cliente inválido ou não realizou nenhuma compra.\n");
+    }
+    else
+    {
+        for (i = 0; products[i] != NULL; i++)
+        {
+            printf("%s\n", products[i]);
+        }
+    }
 }

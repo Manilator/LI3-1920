@@ -23,6 +23,8 @@ int * productsClientsNotUsed(SGV);
 
 int ** clientShoppingLog(SGV, char*);
 
+char ** clientMostBoughtByMonth(SGV, char*, int);
+
 char* getClientsPath(StartValues);
 
 char* getProductsPath(StartValues);
@@ -43,8 +45,8 @@ int getReadSales (StartValues);
 
 char** query5(SGV);
 
-/* char *** query9(SGV, char*, int, int*, int*); */
-void query9(SGV);
+char *** query9(SGV, char*, int, int*, int*);
+/*void query9(SGV);*/
 
 void query8(SGV);
 

@@ -29,14 +29,14 @@ void controllerQuerie1(StartValues sv, SGV sgv)
 
 void controllerQuerie2(SGV sgv)
 {
-    char letter = askQuerie2Letter();
+    char letter = askProductLetter();
     querie2View(productsByLetter(sgv, letter));
 }
 
 void controllerQuerie3(SGV sgv)
 {
-    char *product = askQuerie3Product();
-    int month = askQuerie3Month();
+    char *product = askProduct();
+    int month = askMonth();
     int choice = askQuerie3Choice();
     querie3View(productValuesByMonth(sgv, product, month, choice), choice);
     g_free(product);
@@ -63,6 +63,43 @@ void controllerQuerie5(SGV sgv)
 void controllerQuerie6(SGV sgv) {
     int* list = productsClientsNotUsed(sgv);
     querie6View(list);
+}
+
+void controllerQuerie7(SGV sgv) {
+
+    char* client = askClient();
+
+    int **result = clientShoppingLog(sgv,client);
+
+    querie7View(result);
+
+    g_free(client);
+}
+
+void controllerQuerie9(SGV sgv) {
+
+    char* product = askProduct();
+    int branch = askBranch();
+    int* total_N = malloc(sizeof(int));
+    int* total_P = malloc(sizeof(int));
+    char*** result = query9(sgv, product, branch, total_N, total_P);
+
+    querie9View(result,total_N, total_P);
+
+    g_free(product);
+    g_free(total_N);
+    g_free(total_P);
+}
+
+void controllerQuerie10(SGV sgv) {
+    char* client = askClient();
+    int month = askMonth();
+    
+    char** result = clientMostBoughtByMonth(sgv, client, month);
+
+    querie10View(result);
+
+    g_free(client);
 }
 
 void menu(SGV sgv)
@@ -97,20 +134,23 @@ void menu(SGV sgv)
             controllerQuerie6(sgv);
             break;
         case 7:
-            clientShoppingLog(sgv,"F2916");
+            /*clientShoppingLog(sgv,"F2916");*/
+            controllerQuerie7(sgv);
             break;
         case 8:
             query8(sgv);
             break;
         case 9:
-            query9(sgv);
+            controllerQuerie9(sgv);
             break;
         case 10:
-
+            /*clientMostBoughtByMonth(sgv, "F2916", 1);*/
+            controllerQuerie10(sgv);
+            break;
         case 11:
-
+            break;
         case 12:
-
+            break;
         default:
             break;
         }
