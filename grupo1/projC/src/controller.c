@@ -65,6 +65,21 @@ void controllerQuerie6(SGV sgv) {
     querie6View(list);
 }
 
+void controllerQuerie9(SGV sgv) {
+
+    char* product = askProduct();
+    int branch = askBranch();
+    int* total_N = malloc(sizeof(int));
+    int* total_P = malloc(sizeof(int));
+    char*** result = query9(sgv, product, branch, total_N, total_P);
+
+    querie9View(result,total_N, total_P);
+
+    g_free(product);
+    g_free(total_N);
+    g_free(total_P);
+}
+
 void menu(SGV sgv)
 {
     int querie;
@@ -102,7 +117,7 @@ void menu(SGV sgv)
         case 8:
 
         case 9:
-            query9(sgv);
+            controllerQuerie9(sgv);
             break;
         case 10:
 

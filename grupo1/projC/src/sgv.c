@@ -323,17 +323,15 @@ char** query5(SGV sgv)
 /* Result[0]: codigos N, Result[1]: codigos P */
 /* Sugestao para a view: mostrar ambos os arrays na mesma pagina lado a lado */
 
-/* char *** query9(SGV sgv, char *product_code, int branch, int *totalN, int *totalP) */
-void query9(SGV sgv)
+/*void query9(SGV sgv)*/
+char *** query9(SGV sgv, char *product_code, int branch, int *totalN, int *totalP)
 {
-    int *totalN = g_malloc(sizeof(int));
-    int *totalP = g_malloc(sizeof(int));
     *totalN = 0;
     *totalP = 0;
 
-    /*char ***teste = clientsWhoBoughtProduct(sgv->branches, product_code, branch, totalN, totalP);*/
-    char ***teste = clientsWhoBoughtProduct(sgv->branches, "AF1184", 1, totalN, totalP);
-
+    char ***teste = clientsWhoBoughtProduct(sgv->branches, product_code, branch, totalN, totalP);
+    /*char ***teste = clientsWhoBoughtProduct(sgv->branches, "AF1184", 1, totalN, totalP);*/
+    /*
     int i;
 
     puts("--------- CODIGOS N: ---------");
@@ -350,9 +348,10 @@ void query9(SGV sgv)
 
     puts("--------- TOTAIS: ---------");
     printf("N = %d\nP = %d\n", *totalN, *totalP);
+    */
 
-    g_free(totalN);
-    g_free(totalP);
+    /*g_free(totalN);
+    g_free(totalP);*/
 
-    /* return teste; */
+    return teste;
 }
