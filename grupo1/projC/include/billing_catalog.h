@@ -8,7 +8,7 @@ typedef struct billings* Billings;
 
 Billings initBillings();
 
-float * getProductValuesByMonthBillingCat(Billings, char*, int, int);
+double * getProductValuesByMonthBillingCat(Billings, char*, int, int);
 
 void addBilling(Billings, Billing, int);
 
@@ -17,5 +17,7 @@ void updateBillings(Billings, Sale);
 void insertBillingProduct(Billings, int, char*);
 
 void destroyBillings(Billings);
+
+int getTotalsFromBillingMonthInterval(Billings, int, int, int*, double*, int*);
 
 #endif

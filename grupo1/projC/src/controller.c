@@ -138,6 +138,7 @@ void menu(SGV sgv)
             controllerQuerie7(sgv);
             break;
         case 8:
+            query8(sgv);
             break;
         case 9:
             controllerQuerie9(sgv);

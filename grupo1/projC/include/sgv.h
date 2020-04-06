@@ -15,7 +15,7 @@ StartValues initStartValues(char*, char*, char*);
 
 char ** productsByLetter(SGV, char);
 
-float * productValuesByMonth(SGV, char* , int, int);
+double * productValuesByMonth(SGV, char* , int, int);
 
 char *** productsNotBought(SGV, int);
 
@@ -47,5 +47,7 @@ char** query5(SGV);
 
 char *** query9(SGV, char*, int, int*, int*);
 /*void query9(SGV);*/
+
+void query8(SGV);
 
 #endif

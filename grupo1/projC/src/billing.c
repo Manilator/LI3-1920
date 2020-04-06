@@ -8,7 +8,8 @@
 
 struct billing
 {
-    float totalBilled;
+    int n_sales;
+    double totalBilled;
     int unitiesP;
     int unitiesN;
     int branches[N_BRANCHES];
@@ -17,17 +18,18 @@ struct billing
 
 struct billingProduct
 {
-    float totalBilledN;
-    float totalBilledP;
+    double totalBilledN;
+    double totalBilledP;
     int unitiesP;
     int unitiesN;
     int branchesQnt[N_BRANCHES][N_TYPES];
-    float brachesBilled[N_BRANCHES][N_TYPES];
+    double brachesBilled[N_BRANCHES][N_TYPES];
 };
 
 Billing initBilling() {
     Billing new = g_malloc(sizeof(struct billing));
-    new->totalBilled = 0;
+    new->n_sales = 0;
+    new->totalBilled = 0.0;
     new->unitiesP = 0;
     new->unitiesN = 0;
     int i;
@@ -81,8 +83,9 @@ int addBillingProduct(Billing b, char* code) {
     return 0;
 }
 
-void updateBilling(Billing b, char* code, float totalBilled, int unities, char promotion_type, int branch) {
+void updateBilling(Billing b, char* code, double totalBilled, int unities, char promotion_type, int branch) {
 
+    b->n_sales++;
     b->totalBilled += totalBilled;
     if(promotion_type == 'N') {
         b->unitiesN += unities;
@@ -94,7 +97,7 @@ void updateBilling(Billing b, char* code, float totalBilled, int unities, char p
     updateBillingProduct(bp, totalBilled, unities, promotion_type, branch);
 }
 
-int updateBillingProduct(BillingProduct bp, float totalBilled, int unities, char promotion_type, int branch) {
+int updateBillingProduct(BillingProduct bp, double totalBilled, int unities, char promotion_type, int branch) {
     int r = 0;
     if (promotion_type == 'N') {
         bp->totalBilledN += totalBilled;
@@ -112,7 +115,7 @@ int updateBillingProduct(BillingProduct bp, float totalBilled, int unities, char
     return r;
 }
 
-float getTotalBilledBilling(Billing b) {
+double getTotalBilledBilling(Billing b) {
     return b->totalBilled;
 }
 
@@ -120,15 +123,15 @@ BillingProduct getBillingProduct(Billing b, char* product_code) {
     return g_hash_table_lookup(b->billingsProduct, product_code);
 }
 
-float getTotalBilledN_BP(BillingProduct bp) {
+double getTotalBilledN_BP(BillingProduct bp) {
     return bp->totalBilledN;
 }
 
 /* QUERIE 3 */
-float * getProductValuesByMonthBilling(Billing b, char* product_code, int branch){
+double * getProductValuesByMonthBilling(Billing b, char* product_code, int branch){
     BillingProduct bp = (BillingProduct)g_hash_table_lookup(b->billingsProduct, product_code);
     int elem_per_branch = 4;
-    float * _arrayResult = g_malloc(sizeof(float)*elem_per_branch);
+    double * _arrayResult = g_malloc(sizeof(double)*elem_per_branch);
     _arrayResult[--elem_per_branch] = bp->brachesBilled[branch][P];
     _arrayResult[--elem_per_branch] = bp->brachesBilled[branch][N];
     _arrayResult[--elem_per_branch] = bp->branchesQnt[branch][P];
@@ -150,4 +153,14 @@ void freeBillingProduct(BillingProduct bp) {
 void freeBilling(Billing b) {
     g_hash_table_destroy(b->billingsProduct);
     g_free(b);
+}
+
+/* QUERY 8 */
+void getTotalsFromBilling(Billing b, int *totalUnits, double *totalBilled, int *totalSales)
+{
+    *totalBilled += b->totalBilled;
+    *totalUnits  += b->branches[0]
+                  + b->branches[1]
+                  + b->branches[2];
+    *totalSales += b->n_sales;
 }

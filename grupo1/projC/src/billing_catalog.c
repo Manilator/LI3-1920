@@ -54,9 +54,9 @@ void destroyBillings(Billings bs) {
 }
 
 /* QUERIE 3 */
-float * getProductValuesByMonthBillingCat(Billings bs, char* product_code, int month, int isGlobal){
-    float * _arrayResult;
-    float * _arrayFinal;
+double * getProductValuesByMonthBillingCat(Billings bs, char* product_code, int month, int isGlobal){
+    double * _arrayResult;
+    double * _arrayFinal;
     int branch,i=0;
     int elem_per_branch = 4;
 
@@ -66,7 +66,7 @@ float * getProductValuesByMonthBillingCat(Billings bs, char* product_code, int m
     g_free(key);
 
     if(isGlobal){
-        _arrayFinal = g_malloc(sizeof(float)*elem_per_branch);
+        _arrayFinal = g_malloc(sizeof(double)*elem_per_branch);
         for(i=0;i<elem_per_branch;i++)
             _arrayFinal[i]=0;
         for (branch = 0; branch < N_BRANCHES; branch++) {
@@ -83,11 +83,11 @@ float * getProductValuesByMonthBillingCat(Billings bs, char* product_code, int m
         printf("P - Bil: %.2f\n", _arrayFinal[i++]);*/
     }
     else{
-        _arrayFinal = g_malloc(sizeof(float)*N_BRANCHES*elem_per_branch);
+        _arrayFinal = g_malloc(sizeof(double)*N_BRANCHES*elem_per_branch);
 
         for (branch = 0; branch < N_BRANCHES; branch++) {
             _arrayResult = getProductValuesByMonthBilling(r, product_code, branch);
-            memcpy(_arrayFinal +(branch*elem_per_branch), _arrayResult, elem_per_branch * sizeof(float));
+            memcpy(_arrayFinal +(branch*elem_per_branch), _arrayResult, elem_per_branch * sizeof(double));
             g_free(_arrayResult);
         }
     }
@@ -105,4 +105,35 @@ float * getProductValuesByMonthBillingCat(Billings bs, char* product_code, int m
             printf("P - Bil: %.2f\n", _arrayFinal[i++]);
             printf("---------------\n");
         }*/
+}
+
+/* QUERY 8 */
+/* [I..F] */
+int getTotalsFromBillingMonthInterval(Billings bs, int monthI, int monthF, int *totalUnits, double *totalBilled, int *totalSales)
+{
+    int res = monthI > 0
+           && monthF < 13
+           && monthF >= monthI;
+
+    if (res)
+    {
+        *totalUnits = 0;
+        *totalBilled = 0;
+        *totalSales = 0;
+
+        int i;
+        Billing b;
+        for (i = monthI; i <= monthF; i++)
+        {
+            int *key = g_malloc(sizeof(int));
+            *key = i;
+
+            b = (Billing)g_hash_table_lookup(bs->billings,key);
+            getTotalsFromBilling(b, totalUnits, totalBilled, totalSales);
+            
+            g_free(key);
+        }
+    }
+
+    return res;
 }

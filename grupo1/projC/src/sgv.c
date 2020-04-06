@@ -162,8 +162,8 @@ char ** productsByLetter(SGV sgv, char letter){
 /*
  * [QUERIE 3]
 */
-float * productValuesByMonth(SGV sgv, char* product_code, int month, int branches){
-    float * result = NULL;
+double * productValuesByMonth(SGV sgv, char* product_code, int month, int branches){
+    double * result = NULL;
     if(existProductCode (sgv->product_catalog,product_code)){
         result = getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
     }
@@ -400,4 +400,19 @@ char *** query9(SGV sgv, char *product_code, int branch, int *totalN, int *total
     g_free(totalP);*/
 
     return teste;
+}
+
+/* QUERY 8 */
+void query8(SGV sgv)
+{
+    int *totalUnits = g_malloc(sizeof(int));
+    int *totalSales = g_malloc(sizeof(int));
+    double *totalBilled = g_malloc(sizeof(double));
+    
+    int valid = getTotalsFromBillingMonthInterval(sgv->billings, 1, 12, totalUnits, totalBilled, totalSales);
+    printf("valid: %d\nUnits: %d\nBilled: %f\nSales: %d\n", valid, *totalUnits, *totalBilled, *totalSales);
+
+    free(totalUnits);
+    free(totalBilled);
+    free(totalSales);
 }

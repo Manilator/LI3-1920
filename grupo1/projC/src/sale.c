@@ -3,11 +3,13 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include <stdio.h>
+
 struct sale
 {
     char*   product;
     char*   client;
-    double  price;
+    double   price;
     int     units;
     char    promotion; /*P ou N*/
     int     month;
@@ -39,6 +41,7 @@ Sale isValidSale(char* sale, Clients client_catalogue, Products product_catalogu
     new->month      = atoi( _fields[5]);
     new->branch     = atoi( _fields[6]);
     free(_temp);
+    free(_token);
 
     if (verifyClient(new->client)                           &&
         verifyProduct(new->product)                         &&

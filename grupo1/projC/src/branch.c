@@ -23,7 +23,7 @@ struct relationWithClient
 struct relationWithProduct
 {
     GHashTable* infoProducts;
-    float totalBilled[12];
+    double totalBilled[12];
 };
 
 struct infoClient
@@ -35,7 +35,7 @@ struct infoClient
 struct infoProduct
 {
     int quantities[12];
-    float totalBilled[12];
+    double totalBilled[12];
 };
 
 Branch initBranch() {
@@ -97,7 +97,7 @@ void addInfoProduct(RelationWithProduct rcp, char* product_code, InfoProduct ip)
     g_hash_table_insert(rcp->infoProducts, product_code, ip);
 }
 
-void updateBranch(Branch b, char* client_code, char* product_code, int units, char promotion_type, float billed, int month) {
+void updateBranch(Branch b, char* client_code, char* product_code, int units, char promotion_type, double billed, int month) {
     RelationWithClient rcc = g_hash_table_lookup(b->productsClients, product_code);
     RelationWithProduct rcp = g_hash_table_lookup(b->clientsProducts, client_code);
     if (rcc == NULL) {
@@ -118,7 +118,7 @@ void updateBranch(Branch b, char* client_code, char* product_code, int units, ch
     updateRelationWithProduct(rcp, product_code, units, billed, month);
 }
 
-void updateRelationWithProduct(RelationWithProduct rcp, char* product_code, int quantity, float billed, int month) {
+void updateRelationWithProduct(RelationWithProduct rcp, char* product_code, int quantity, double billed, int month) {
     rcp->totalBilled[month-1] += billed;
     InfoProduct ip = g_hash_table_lookup(rcp->infoProducts, product_code);
     if (ip == NULL) {
@@ -152,7 +152,7 @@ void updateInfoClient(InfoClient ic, int units, char promotion_type) {
     }
 }
 
-void updateInfoProduct(InfoProduct ip, int quantity, float billed, int month) {
+void updateInfoProduct(InfoProduct ip, int quantity, double billed, int month) {
     ip->quantities[month-1] += quantity;
     ip->totalBilled[month-1] += billed;
 }
