@@ -65,6 +65,17 @@ void controllerQuerie6(SGV sgv) {
     querie6View(list);
 }
 
+void controllerQuerie7(SGV sgv) {
+
+    char* client = askClient();
+
+    int **result = clientShoppingLog(sgv,client);
+
+    querie7View(result);
+
+    g_free(client);
+}
+
 void controllerQuerie9(SGV sgv) {
 
     char* product = askProduct();
@@ -112,7 +123,8 @@ void menu(SGV sgv)
             controllerQuerie6(sgv);
             break;
         case 7:
-            clientShoppingLog(sgv,"F2916");
+            /*clientShoppingLog(sgv,"F2916");*/
+            controllerQuerie7(sgv);
             break;
         case 8:
 
