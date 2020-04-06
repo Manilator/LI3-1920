@@ -105,7 +105,7 @@ void menu(SGV sgv)
             query9(sgv);
             break;
         case 10:
-
+            clientMostBoughtByMonth(sgv, "F2916", 1);
         case 11:
 
         case 12:
