@@ -45,7 +45,7 @@ int getReadSales (StartValues);
 
 char** query5(SGV);
 
-/* char *** query9(SGV, char*, int, int*, int*); */
-void query9(SGV);
+char *** query9(SGV, char*, int, int*, int*);
+/*void query9(SGV);*/
 
 #endif

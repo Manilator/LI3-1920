@@ -226,7 +226,6 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
 
         if (ic->unitsN)
         {
-            printf("code: %s --> unitsN: %d\n", (char*)key, ic->unitsN);
             (*totalN)++;
             result[ZERO][i] = strdup((char*)key);
             i++;
@@ -234,7 +233,6 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
 
         if (ic->unitsP)
         {
-            printf("code: %s --> unitsP: %d\n", (char*)key, ic->unitsP);
             (*totalP)++;
             result[ONE][j] = strdup((char*)key);
             j++;

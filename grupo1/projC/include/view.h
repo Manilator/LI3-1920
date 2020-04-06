@@ -45,4 +45,6 @@ void querie5View(char** clients);
 
 void querie6View(int* list);
 
+void querie9View(char*** array, int *total_N, int* total_P);
+
 #endif

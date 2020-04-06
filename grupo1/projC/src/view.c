@@ -193,7 +193,7 @@ int askMonth()
     return month;
 }
 
-char* askClient()
+char *askClient()
 {
     char *client = malloc(sizeof(char) * CLIENT_CODE_SIZE);
     printf("Qual cliente? \n");
@@ -201,9 +201,9 @@ char* askClient()
     return client;
 }
 
-int* askMonthInterval()
+int *askMonthInterval()
 {
-    int* interval = malloc(sizeof(int) * 2);
+    int *interval = malloc(sizeof(int) * 2);
     printf("Primeiro mês do intervalo?");
     scanf(" %d", &interval[0]);
     printf("Segundo mês do intervalo?");
@@ -277,10 +277,13 @@ void querie3View(float *products, int choice)
 void querie4View(char ***products, int choice)
 {
     int j, i, c, max;
-    if (choice == 0) {
+    if (choice == 0)
+    {
         i = 0;
         max = 1;
-    } else {
+    }
+    else
+    {
         i = 1;
         max = 4;
     }
@@ -305,7 +308,8 @@ void querie4View(char ***products, int choice)
     */
 }
 
-void querie5View(char** clients) {
+void querie5View(char **clients)
+{
     int i;
     puts("Printing codes:");
     for (i = 0; clients[i] != NULL; i++)
@@ -314,7 +318,36 @@ void querie5View(char** clients) {
     printf("Clients in common: %d\n", i);
 }
 
-void querie6View(int* list) {
-    printf("Products nobody bought: %d\n",list[0]);
-    printf("Clients not used: %d\n",list[1]);
+void querie6View(int *list)
+{
+    printf("Products nobody bought: %d\n", list[0]);
+    printf("Clients not used: %d\n", list[1]);
+}
+
+void querie9View(char ***array, int *total_N, int *total_P)
+{
+
+    if (array == NULL)
+    {
+        printf("Valores inválidos");
+    }
+    else
+    {
+        int i;
+
+        puts("--------- CODIGOS N: ---------");
+        for (i = 0; array[0][i] && i < *total_N; i++)
+        {
+            printf("%s\n", array[0][i]);
+        }
+
+        puts("--------- CODIGOS P: ---------");
+        for (i = 0; array[1][i] && i < *total_P; i++)
+        {
+            printf("%s\n", array[1][i]);
+        }
+
+        puts("--------- TOTAIS: ---------");
+        printf("N = %d\nP = %d\n", *total_N, *total_P);
+    }
 }
