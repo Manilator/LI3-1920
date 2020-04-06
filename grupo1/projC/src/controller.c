@@ -138,17 +138,18 @@ void menu(SGV sgv)
             controllerQuerie7(sgv);
             break;
         case 8:
-
+            break;
         case 9:
             controllerQuerie9(sgv);
             break;
         case 10:
             /*clientMostBoughtByMonth(sgv, "F2916", 1);*/
             controllerQuerie10(sgv);
+            break;
         case 11:
-
+            break;
         case 12:
-
+            break;
         default:
             break;
         }
