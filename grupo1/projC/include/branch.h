@@ -61,6 +61,6 @@ char ** getClientsInBranch(Branch);
 
 int * getClientShopLog(Branch, char*);
 
-void getMostBoughtByBranch(Branch b, char* client_code, int month, GHashTable * _mostBought);
+void getMostBoughtByBranch(Branch, char*, int, GHashTable *);
 
 #endif
