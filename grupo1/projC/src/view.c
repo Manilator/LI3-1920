@@ -324,6 +324,21 @@ void querie6View(int *list)
     printf("Clients not used: %d\n", list[1]);
 }
 
+void querie7View(int** totals) {
+    int branch = 0;
+    int month = 1;
+
+    for (; branch < 3; branch++) {
+        printf("--------- Filial %d ---------\n" ,branch + 1);
+
+        for (; month < 12; month++) {
+            printf("--- Mês %d ---\n", month + 1);
+            printf("Total: %d\n", totals[branch][month]);
+        }
+        month = 0;
+    }
+}
+
 void querie9View(char ***array, int *total_N, int *total_P)
 {
 
