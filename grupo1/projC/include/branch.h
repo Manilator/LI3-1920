@@ -1,6 +1,7 @@
 #ifndef ___BRANCH_H___
 #define ___BRANCH_H___
 
+#include <glib.h>
 
 typedef struct branch* Branch;
 
@@ -59,5 +60,7 @@ char *** productBoughtBy(Branch, char*, int*, int*);
 char ** getClientsInBranch(Branch);
 
 int * getClientShopLog(Branch, char*);
+
+void getMostBoughtByBranch(Branch b, char* client_code, int month, GHashTable * _mostBought);
 
 #endif

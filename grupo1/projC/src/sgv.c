@@ -7,7 +7,7 @@
 #include "utils.h"
 #include "constants.h"
 
-
+#include <stdlib.h>
 #include <stdio.h>
 #include <glib.h>
 
@@ -268,6 +268,52 @@ int ** clientShoppingLog(SGV sgv, char* client_code){
         for (branch=ONE; branch <= N_BRANCHES; branch++) {
             result[branch-ONE] = clientBranchShopLog(sgv->branches, client_code, branch);
         }
+    }
+    return result;
+}
+/* qsort int comparison function */
+int int_cmp(const void *a, const void *b)
+{
+    const int *ia = (const int *)a;
+    const int *ib = (const int *)b;
+    return *ib - *ia;
+	/* integer comparison: returns negative if b > a
+	and positive if a > b */
+}
+
+
+/* QUERIE 10 */
+char ** clientMostBoughtByMonth(SGV sgv, char* client_code, int month){
+    char ** result = NULL;
+    if(existClientCode (sgv->client_catalog,client_code)){
+        result = g_malloc(sizeof(char**));
+
+        GHashTable * _mostBought = getMostBought(sgv->branches, client_code, month);
+
+        int* _tmp = g_malloc(sizeof(int)* g_hash_table_size(_mostBought));
+        int i = ZERO;
+        int j;
+        GHashTableIter iter;
+        gpointer key, value;
+        g_hash_table_iter_init (&iter, _mostBought);
+        while (g_hash_table_iter_next (&iter, &key, &value)){
+            if(*((int*)value) == ZERO)
+                g_hash_table_iter_remove(&iter);
+            else
+                _tmp[i++] = *((int*)value);
+        }
+        qsort(_tmp, i, sizeof(int), int_cmp);
+
+        g_hash_table_iter_init (&iter, _mostBought);
+        while (g_hash_table_iter_next (&iter, &key, &value)){
+            for(j=ZERO; j < i; j++)
+                if(_tmp[j] == *((int*)value))
+                    result[j] = (char*)key;
+        }
+
+
+        for(j=0;j<i;j++)
+            printf("%s\n",result[j]);
     }
     return result;
 }

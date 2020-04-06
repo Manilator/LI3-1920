@@ -27,4 +27,6 @@ char ** getClientsUsed(Branches, int);
 
 int * clientBranchShopLog(Branches, char*, int);
 
+GHashTable* getMostBought(Branches, char*, int);
+
 #endif
