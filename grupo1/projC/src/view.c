@@ -324,14 +324,17 @@ void querie6View(int *list)
     printf("Clients not used: %d\n", list[1]);
 }
 
-void querie7View(int** totals) {
+void querie7View(int **totals)
+{
     int branch = 0;
     int month = 1;
 
-    for (; branch < 3; branch++) {
-        printf("--------- Filial %d ---------\n" ,branch + 1);
+    for (; branch < 3; branch++)
+    {
+        printf("--------- Filial %d ---------\n", branch + 1);
 
-        for (; month < 12; month++) {
+        for (; month < 12; month++)
+        {
             printf("--- Mês %d ---\n", month + 1);
             printf("Total: %d\n", totals[branch][month]);
         }
@@ -344,7 +347,7 @@ void querie9View(char ***array, int *total_N, int *total_P)
 
     if (array == NULL)
     {
-        printf("Valores inválidos");
+        printf("Valores inválidos\n");
     }
     else
     {
@@ -364,5 +367,22 @@ void querie9View(char ***array, int *total_N, int *total_P)
 
         puts("--------- TOTAIS: ---------");
         printf("N = %d\nP = %d\n", *total_N, *total_P);
+    }
+}
+
+void querie10View(char **products)
+{
+    int i = 0;
+
+    if (products == NULL)
+    {
+        printf("Cliente inválido ou não realizou nenhuma compra.\n");
+    }
+    else
+    {
+        for (i = 0; products[i] != NULL; i++)
+        {
+            printf("%s\n", products[i]);
+        }
     }
 }

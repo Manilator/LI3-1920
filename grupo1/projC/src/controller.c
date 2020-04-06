@@ -91,6 +91,17 @@ void controllerQuerie9(SGV sgv) {
     g_free(total_P);
 }
 
+void controllerQuerie10(SGV sgv) {
+    char* client = askClient();
+    int month = askMonth();
+    
+    char** result = clientMostBoughtByMonth(sgv, client, month);
+
+    querie10View(result);
+
+    g_free(client);
+}
+
 void menu(SGV sgv)
 {
     int querie;
@@ -127,16 +138,18 @@ void menu(SGV sgv)
             controllerQuerie7(sgv);
             break;
         case 8:
-
+            break;
         case 9:
             controllerQuerie9(sgv);
             break;
         case 10:
-            clientMostBoughtByMonth(sgv, "F2916", 1);
+            /*clientMostBoughtByMonth(sgv, "F2916", 1);*/
+            controllerQuerie10(sgv);
+            break;
         case 11:
-
+            break;
         case 12:
-
+            break;
         default:
             break;
         }
