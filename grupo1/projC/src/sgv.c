@@ -284,37 +284,15 @@ int int_cmp(const void *a, const void *b)
 
 
 /* QUERIE 10 */
-char ** clientMostBoughtByMonth(SGV sgv, char* client_code, int month){
-    char ** result = NULL;
-    if(existClientCode (sgv->client_catalog,client_code)){
-        result = g_malloc(sizeof(char**));
-
-        GHashTable * _mostBought = getMostBought(sgv->branches, client_code, month);
-
-        int* _tmp = g_malloc(sizeof(int)* g_hash_table_size(_mostBought));
-        int i = ZERO;
-        int j;
-        GHashTableIter iter;
-        gpointer key, value;
-        g_hash_table_iter_init (&iter, _mostBought);
-        while (g_hash_table_iter_next (&iter, &key, &value)){
-            if(*((int*)value) == ZERO)
-                g_hash_table_iter_remove(&iter);
-            else
-                _tmp[i++] = *((int*)value);
+Info * clientMostBoughtByMonth(SGV sgv, char* client_code, int month){
+    Info * result = NULL;
+    if(existClientCode (sgv->client_catalog,client_code) && month >= ZERO && month <= MONTHS){
+        result = getMostBought(sgv->branches, client_code, month);
+        int i;
+        for (i = 0; result[i]!= NULL; i++) {
+            Info info = (Info)result[i];
+            printf("Product: %s | Units: %d\n", info->product_code, info->unitsSold);
         }
-        qsort(_tmp, i, sizeof(int), int_cmp);
-
-        g_hash_table_iter_init (&iter, _mostBought);
-        while (g_hash_table_iter_next (&iter, &key, &value)){
-            for(j=ZERO; j < i; j++){
-                if(_tmp[j] == *((int*)value)){
-                    char* nova = strdup((char*)key);
-                    result[j] = nova;
-                }
-            }
-        }
-        result[i] = NULL;
     }
     return result;
 }

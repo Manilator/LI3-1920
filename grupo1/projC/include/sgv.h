@@ -25,7 +25,7 @@ int * productsClientsNotUsed(SGV);
 
 int ** clientShoppingLog(SGV, char*);
 
-char ** clientMostBoughtByMonth(SGV, char*, int);
+Info * clientMostBoughtByMonth(SGV, char*, int);
 
 Aux * nMostBought(SGV, int);
 
