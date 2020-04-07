@@ -165,7 +165,7 @@ char ** productsByLetter(SGV sgv, char letter){
 */
 double * productValuesByMonth(SGV sgv, char* product_code, int month, int branches){
     double * result = NULL;
-    if(existProductCode (sgv->product_catalog,product_code)){
+    if(existProductCode (sgv->product_catalog,product_code) && month >= 1 && month <= 12 && (branches == 0 || branches == 1)){
         result = getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
     }
     return result;
