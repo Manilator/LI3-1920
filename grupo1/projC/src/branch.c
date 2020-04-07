@@ -245,8 +245,6 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
     return result;
 }
 
-#include <stdio.h>
-
 int * getClientShopLog(Branch b, char* client_code){
     RelationWithProduct rp = g_hash_table_lookup(b->clientsProducts,client_code);
     int * quantities = g_malloc(sizeof(int)*12);
@@ -286,6 +284,58 @@ void getMostBoughtByBranch(Branch b, char* client_code, int month, GHashTable * 
             initial_quantity = g_malloc(sizeof(int));
             *initial_quantity = (int)((InfoProduct)value)->quantities[month];
             g_hash_table_insert(_mostBought, (char*)key, (gpointer)initial_quantity);
+        }
+    }
+}
+
+
+void updateAux(Aux aux, int branch, int * value){
+    (aux->totalClients[branch])++;
+    int i;
+    for (i = ZERO; i < MONTHS; i++)
+        aux->unitsSold[branch] += value[i];
+}
+
+
+Aux initAux(char* key, int branch, int * value){
+    Aux aux = g_malloc(sizeof(struct aux));
+    aux->totalClients = g_malloc(sizeof(int*)*N_BRANCHES);
+    aux->unitsSold = g_malloc(sizeof(int*)*N_BRANCHES);
+
+    aux->product_code = strdup(key);
+    int i;
+    for (i = ZERO; i < N_BRANCHES; i++) {
+        aux->unitsSold[i] = ZERO;
+        aux->totalClients[i] = ZERO;
+    }
+
+    aux->totalClients[branch] = ONE;
+    for (i = ZERO; i < MONTHS; i++)
+        aux->unitsSold[branch] += value[i];
+
+    return aux;
+}
+
+void updateNMostBought(Branch b, GHashTable * _mostBought, int branch){
+
+    GHashTableIter iter2;
+    gpointer key2, value2;
+
+    GHashTableIter iter;
+    gpointer key, value;
+    g_hash_table_iter_init (&iter, b->clientsProducts);
+    while (g_hash_table_iter_next (&iter, &key, &value)){
+        RelationWithProduct rp = (RelationWithProduct)value;
+        g_hash_table_iter_init (&iter2, rp->infoProducts);
+        while (g_hash_table_iter_next (&iter2, &key2, &value2)){
+            if(g_hash_table_contains(_mostBought, (char*)key2)){
+                Aux aux = (Aux)g_hash_table_lookup(_mostBought, (char*)key2);
+                updateAux(aux, branch, (int*)((InfoProduct)value2)->quantities);
+            }
+            else{
+                Aux aux = (Aux)initAux((char*)key2, branch, (int*)((InfoProduct)value2)->quantities);
+                g_hash_table_insert(_mostBought, (char*)key2, (gpointer)aux);
+            }
         }
     }
 }
