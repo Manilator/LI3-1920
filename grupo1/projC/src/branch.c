@@ -280,7 +280,7 @@ void getMostBoughtByBranch(Branch b, char* client_code, int month, GHashTable * 
             _tmp = (int*)(g_hash_table_lookup(_mostBought, (char*)key));
             *_tmp += ((InfoProduct)value)->quantities[month];
         }
-        else{
+        else if((int)((InfoProduct)value)->quantities[month] != 0){
             initial_quantity = g_malloc(sizeof(int));
             *initial_quantity = (int)((InfoProduct)value)->quantities[month];
             g_hash_table_insert(_mostBought, (char*)key, (gpointer)initial_quantity);
