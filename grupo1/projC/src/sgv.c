@@ -312,8 +312,7 @@ char ** clientMostBoughtByMonth(SGV sgv, char* client_code, int month){
         }
 
 
-        for(j=0;j<i;j++)
-            printf("%s\n",result[j]);
+        result[i] = NULL;
     }
     return result;
 }
@@ -419,4 +418,10 @@ void query8(SGV sgv)
     free(totalUnits);
     free(totalBilled);
     free(totalSales);
+}
+
+int listSize(char** list) {
+    int i = 0;
+    for(; list[i] != 0; i++);
+    return i;
 }

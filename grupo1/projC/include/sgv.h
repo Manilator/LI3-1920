@@ -50,4 +50,6 @@ char *** query9(SGV, char*, int, int*, int*);
 
 void query8(SGV);
 
+int listSize(char**);
+
 #endif

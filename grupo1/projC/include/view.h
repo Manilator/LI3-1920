@@ -33,6 +33,10 @@ int askQuerie3Choice();
 
 int askQuerie4Choice();
 
+void listView(char **list, int size);
+
+void tableView(int** list);
+
 void querie1View(char* clients_path, char* products_path, char* sales_path);
 
 void querie2View(char**);
