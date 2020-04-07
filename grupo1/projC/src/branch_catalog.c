@@ -151,9 +151,16 @@ void freeInfo(Info info){
 
 }
 
-Info * getMostBought(Branches bs, char* client_code, int month){
+Info cloneInfo(Info info){
+    Info clone = g_malloc(sizeof(struct info));
+    clone->product_code = strdup(info->product_code);
 
-    GHashTable * _mostBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (gpointer)freeInfo);
+    clone->unitsSold = info->unitsSold;
+    return clone;
+}
+
+Info * getMostBought(Branches bs, char* client_code, int month){
+    GHashTable* _mostBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (gpointer)freeInfo);
     GHashTableIter iter;
     gpointer key, value;
     g_hash_table_iter_init (&iter, bs->branches);
@@ -170,10 +177,11 @@ Info * getMostBought(Branches bs, char* client_code, int month){
     GList * l;
     int k=0;
     for (l = _tmpList; n_products > 0; l = l->next){
-        array[k++] = (Info)l->data;
+        array[k++] = cloneInfo((Info)l->data);
         n_products--;
     }
     array[k] = NULL;
+    /*g_hash_table_destroy(_mostBought);*/
     return array;
 }
 
@@ -218,5 +226,6 @@ Aux * getNMostBoughtProducts(Branches bs, int n_products){
         n_products--;
     }
     array[k] = NULL;
+    g_hash_table_unref(_mostBought);
     return array;
 }
