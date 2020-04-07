@@ -1,6 +1,8 @@
 #ifndef ___SGV__H___
 #define ___SGV__H___
 
+#include "info.h"
+
 #include <glib.h>
 
 typedef struct sgv* SGV;
@@ -24,6 +26,8 @@ int * productsClientsNotUsed(SGV);
 int ** clientShoppingLog(SGV, char*);
 
 char ** clientMostBoughtByMonth(SGV, char*, int);
+
+Aux * nMostBought(SGV, int);
 
 char* getClientsPath(StartValues);
 

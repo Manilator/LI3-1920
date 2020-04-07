@@ -130,7 +130,7 @@ int getTotalsFromBillingMonthInterval(Billings bs, int monthI, int monthF, int *
 
             b = (Billing)g_hash_table_lookup(bs->billings,key);
             getTotalsFromBilling(b, totalUnits, totalBilled, totalSales);
-            
+
             g_free(key);
         }
     }

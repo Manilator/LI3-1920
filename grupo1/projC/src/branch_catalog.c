@@ -55,7 +55,7 @@ char** intersect(char *ar1[], char *ar2[], char *ar3[], int n1, int n2, int n3, 
     }
 
     char **res;
-    res = malloc(n * sizeof(char *));
+    res = g_malloc(n * sizeof(char *));
     int count = 0;
 
     while (i < n1 && j < n2 && k < n3) {
@@ -155,4 +155,44 @@ GHashTable* getMostBought(Branches bs, char* client_code, int month){
     }
 
     return _mostBought;
+}
+
+
+int compare(gconstpointer a, gconstpointer b){
+    Aux n1 = (const Aux)a;
+    Aux n2 = (const Aux)b;
+    int total1=0,total2=0;
+    int i;
+    for (i = 0; i < N_BRANCHES; i++) {
+        total1 += n1->unitsSold[i];
+        total2 += n2->unitsSold[i];
+    }
+    return total2 - total1;
+}
+
+Aux * getNMostBoughtProducts(Branches bs, int n_products){
+    GHashTable * _mostBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+    int *i;
+    GHashTableIter iter;
+    gpointer key, value;
+    g_hash_table_iter_init (&iter, bs->branches);
+    while (g_hash_table_iter_next (&iter, &key, &value)){
+        i = ((int*)key);
+        updateNMostBought((Branch)value, _mostBought, (*i)-1);
+    }
+
+    GList * _tmpList = g_hash_table_get_values(_mostBought);
+    _tmpList = g_list_sort(_tmpList, compare);
+
+    Aux * array = g_malloc(sizeof(Aux)*n_products);
+
+    GList * l;
+    int k=0;
+    for (l = _tmpList; n_products > 0; l = l->next){
+        array[k++] = (Aux)l->data;
+        n_products--;
+    }
+
+
+    return array;
 }
