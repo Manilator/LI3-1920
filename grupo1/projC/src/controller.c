@@ -41,7 +41,7 @@ void controllerQuerie3(SGV sgv)
     char *product = askProduct();
     int month = askMonth();
     int choice = askQuerie3Choice();
-    querie3View(productValuesByMonth(sgv, product, month, choice), choice);
+    querie3View(productValuesByMonth(sgv, product, month, choice), choice, product);
     g_free(product);
 }
 
@@ -52,7 +52,18 @@ void controllerQuerie4(SGV sgv)
     if (products == NULL) {
         printf("Informações não existentes.");
     } else {
-        querie4View(products, choice);
+        if (choice == 0) {
+            querie4View(products, choice, 0,listSize(products[0]));
+        } else {
+            int branch = askBranch();
+            while (branch > 3 || branch < 0) {
+                boldRed();
+                printf("Filial %d não existe.\n", branch);
+                resetColor();
+                branch = askBranch();
+            }
+            querie4View(products, choice, branch, listSize(products[branch]));
+        }
     }
 }
 
