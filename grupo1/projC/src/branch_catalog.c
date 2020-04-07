@@ -185,6 +185,20 @@ Info * getMostBought(Branches bs, char* client_code, int month){
     return array;
 }
 
+Aux cloneAux(Aux aux){
+    Aux clone = g_malloc(sizeof(struct aux));
+    clone->totalClients = g_malloc(sizeof(int*)*N_BRANCHES);
+    clone->unitsSold = g_malloc(sizeof(int*)*N_BRANCHES);
+
+    clone->product_code = strdup(aux->product_code);
+    int i;
+    for (i = ZERO; i < N_BRANCHES; i++) {
+        clone->unitsSold[i] = aux->unitsSold[i];
+        clone->totalClients[i] = aux->totalClients[i];
+    }
+    return clone;
+}
+
 void freeAux(Aux aux){
     g_free(aux->product_code);
     g_free(aux->totalClients);
@@ -222,10 +236,10 @@ Aux * getNMostBoughtProducts(Branches bs, int n_products){
     GList * l;
     int k=0;
     for (l = _tmpList; n_products > 0; l = l->next){
-        array[k++] = (Aux)l->data;
+        array[k++] = cloneAux((Aux)l->data);
         n_products--;
     }
     array[k] = NULL;
-    g_hash_table_unref(_mostBought);
+
     return array;
 }
