@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <glib.h>
+#include <string.h>
 
 struct sgv{
     Clients client_catalog;
@@ -306,16 +307,32 @@ char ** clientMostBoughtByMonth(SGV sgv, char* client_code, int month){
 
         g_hash_table_iter_init (&iter, _mostBought);
         while (g_hash_table_iter_next (&iter, &key, &value)){
-            for(j=ZERO; j < i; j++)
-                if(_tmp[j] == *((int*)value))
-                    result[j] = (char*)key;
+            for(j=ZERO; j < i; j++){
+                if(_tmp[j] == *((int*)value)){
+                    char* nova = strdup((char*)key);
+                    result[j] = nova;
+                }
+            }
         }
-
-
         result[i] = NULL;
     }
     return result;
 }
+
+/* QUERIE 11 */
+Aux * nMostBought(SGV sgv, int n_products){
+    Aux * result = getNMostBoughtProducts(sgv->branches, n_products);
+    /*int k,j;
+    for (k = 0; k < n_products; k++) {
+        Aux aux = result[k];
+        printf("%s\n",(char*)aux->product_code);
+        for (j = 0; j < N_BRANCHES; j++) {
+            printf("Branch:%d | Total different Clients:%d | UnitsSold:%d\n", (j+1), aux->totalClients[j], aux->unitsSold[j]);
+        }
+    }*/
+    return result;
+}
+
 
 char* getClientsPath(StartValues sv) {
     return (sv->path_clients)->str;
@@ -411,7 +428,7 @@ void query8(SGV sgv)
     int *totalUnits = g_malloc(sizeof(int));
     int *totalSales = g_malloc(sizeof(int));
     double *totalBilled = g_malloc(sizeof(double));
-    
+
     int valid = getTotalsFromBillingMonthInterval(sgv->billings, 1, 12, totalUnits, totalBilled, totalSales);
     printf("valid: %d\nUnits: %d\nBilled: %f\nSales: %d\n", valid, *totalUnits, *totalBilled, *totalSales);
 

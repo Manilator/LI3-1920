@@ -153,6 +153,7 @@ void menu(SGV sgv)
             controllerQuerie10(sgv);
             break;
         case 11:
+            nMostBought(sgv, 5);
             break;
         case 12:
             break;

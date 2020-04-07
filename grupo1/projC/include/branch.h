@@ -2,6 +2,7 @@
 #define ___BRANCH_H___
 
 #include <glib.h>
+#include "info.h"
 
 typedef struct branch* Branch;
 
@@ -62,5 +63,7 @@ char ** getClientsInBranch(Branch);
 int * getClientShopLog(Branch, char*);
 
 void getMostBoughtByBranch(Branch, char*, int, GHashTable *);
+
+void updateNMostBought(Branch, GHashTable *, int);
 
 #endif
