@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 
 void cleanConsole()
 {
@@ -235,6 +236,150 @@ int askQuerie4Choice()
     return choice;
 }
 
+void listView(char **list, int size)
+{
+    int page = 0;
+    int max = size / ELEMENTS_PER_PAGE;
+    int i;
+    int j = 0;
+    char *choice = malloc(sizeof(char) * 32);
+
+    /* Página inicial */
+    cleanConsole();
+    printf("--------- Página %d de %d ---------\n", page, max);
+    for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && list[i] != 0; i++, j++)
+    {
+        printf("%s\n", list[i]);
+    }
+    printf("--------- Página %d de %d ---------\n", page, max);
+    printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
+    /* Pagina inicial */
+
+    scanf(" %s", choice);
+    for (; page <= max && page >= 0 && choice[0] != '0';)
+    {
+        if (choice[0] == 'p' && page > 0)
+        {
+            page--;
+        }
+        else if (choice[0] == 'n' && page < max)
+        {
+            page++;
+        }
+        else if (choice[0] == 'c')
+        {
+            printf("Número da página:\n");
+            scanf(" %s", choice);
+            while (atoi(choice) > max || page < 0)
+            {
+                printf("Página não existe. Insira novo número:\n");
+                scanf(" %s", choice);
+            }
+            page = atoi(choice);
+        }
+        cleanConsole();
+        printf("--------- Página %d de %d ---------\n", page, max);
+        for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && list[i] != 0; i++, j++)
+        {
+            printf("%s\n", list[i]);
+        }
+        printf("--------- Página %d de %d ---------\n", page, max);
+        printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
+        *choice = 0;
+        scanf(" %s", choice);
+    }
+    cleanConsole();
+}
+
+void tableView(int **list)
+{
+    if (list != NULL)
+    {
+
+        int columns = MONTHS;
+        int rows = N_BRANCHES;
+        int space = 0;
+        int ss = 0;
+        char *_text[12] = {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"};
+
+        int i, j, h;
+
+        /* Calcular o maior valor da lista */
+        for (i = 0; i < 3; i++)
+        {
+            for (j = 0; j < 12; j++)
+            {
+                if (floor(log10(abs(list[i][j]))) + 1 > space)
+                {
+                    space = floor(log10(abs(list[i][j]))) + 1;
+                }
+            }
+        }
+
+        /* Determinar espaço das colunas */
+        if (space <= 3)
+        {
+            space = 5;
+        }
+        else
+        {
+            if (space % 2 == 0)
+            {
+                space++;
+            }
+        }
+        /* Imprimir meses */
+        printf("    ");
+        printf("|");
+        for (j = 0; j < columns; j++)
+        {
+            for (h = 0; h < ((space - 3) / 2); h++)
+                printf(" ");
+
+            printf("%s", _text[j]);
+
+            for (h = 0; h < ((space - 3) / 2); h++)
+                printf(" ");
+
+            printf("|");
+        }
+        printf("\n");
+        printf("----+");
+        for (i = 0; i < columns; i++) {
+            for(j = 0; j < space; j++)
+                printf("-");
+            printf("+");
+        }
+        printf("\n");
+
+        /* Inicio da linha com o n da filial*/
+        for (i = 0; i < rows; i++)
+        {
+            printf("%d", i + 1);
+            printf("   ");
+            printf("|");
+            for (j = 0; j < columns; j++)
+            {
+                if (list[i][j] == 0)
+                {
+                    ss = 2;
+                }
+                else
+                {
+                    ss = floor(log10(abs(list[i][j]))) + 2;
+                }
+                for (h = 0; h <= (space - ss); h++)
+                    printf(" ");
+                printf("%d", list[i][j]);
+                printf("|");
+            }
+            printf("\n");
+        }
+    } else {
+        printf("Cliente não existe.\n");
+    }
+}
+
 void querie2View(char **list)
 {
     int i;
@@ -271,7 +416,7 @@ void querie3View(double *products, int choice)
             j = -1;
         }
     }
-    printf("Number of products: %d\n", i);
+    /*printf("Number of products: %d\n", i);*/
 }
 
 void querie4View(char ***products, int choice)

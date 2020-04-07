@@ -314,8 +314,7 @@ char ** clientMostBoughtByMonth(SGV sgv, char* client_code, int month){
                 }
             }
         }
-        g_hash_table_destroy(_mostBought);
-        result[i]=NULL;
+        result[i] = NULL;
     }
     return result;
 }
@@ -436,4 +435,10 @@ void query8(SGV sgv)
     free(totalUnits);
     free(totalBilled);
     free(totalSales);
+}
+
+int listSize(char** list) {
+    int i = 0;
+    for(; list[i] != 0; i++);
+    return i;
 }

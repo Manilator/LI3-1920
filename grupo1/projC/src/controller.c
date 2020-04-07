@@ -31,7 +31,9 @@ void controllerQuerie1(StartValues sv, SGV sgv)
 void controllerQuerie2(SGV sgv)
 {
     char letter = askProductLetter();
-    querie2View(productsByLetter(sgv, letter));
+    char** result = productsByLetter(sgv, letter); 
+    listView(result, listSize(result));
+    /*querie2View();*/
 }
 
 void controllerQuerie3(SGV sgv)
@@ -58,7 +60,8 @@ void controllerQuerie5(SGV sgv)
 {
     char **clients = query5(sgv);
 
-    querie5View(clients);
+    listView(clients, listSize(clients));
+    /*querie5View(clients);*/
 }
 
 void controllerQuerie6(SGV sgv) {
@@ -72,7 +75,8 @@ void controllerQuerie7(SGV sgv) {
 
     int **result = clientShoppingLog(sgv,client);
 
-    querie7View(result);
+    tableView(result);
+    /*querie7View(result);*/
 
     g_free(client);
 }
