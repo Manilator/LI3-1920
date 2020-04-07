@@ -389,7 +389,7 @@ char** query5(SGV sgv)
 char *** query9(SGV sgv, char *product_code, int branch, int *totalN, int *totalP)
 {
     char *** result = NULL;
-    if(existProductCode (sgv->product_catalog,product_code))
+    if(existProductCode (sgv->product_catalog,product_code) && branch >= 1 && branch <=3)
     {
         *totalN = 0;
         *totalP = 0;
