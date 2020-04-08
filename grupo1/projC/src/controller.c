@@ -31,7 +31,7 @@ void controllerQuerie1(StartValues sv, SGV sgv)
 void controllerQuerie2(SGV sgv)
 {
     char letter = askProductLetter();
-    char** result = productsByLetter(sgv, letter); 
+    char** result = productsByLetter(sgv, letter);
     listView(result, listSize(result));
     /*querie2View();*/
 }
@@ -100,9 +100,10 @@ void controllerQuerie10(SGV sgv) {
     char* client = askClient();
     int month = askMonth();
 
-    char** result = clientMostBoughtByMonth(sgv, client, month);
+    /*Info * result = */
+    clientMostBoughtByMonth(sgv, client, month);
 
-    querie10View(result);
+    /*querie10View(result);*/
 
     g_free(client);
 }

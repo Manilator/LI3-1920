@@ -269,21 +269,34 @@ char ** getClientsInBranch(Branch b){
     return (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
 }
 
+
+void updateInfo(Info info, int value){
+    (info->unitsSold) += value;
+}
+
+
+Info initInfo(char* key, int value){
+    Info info = g_malloc(sizeof(struct info));
+    info->product_code = strdup(key);
+
+    info->unitsSold = value;
+    return info;
+}
+
 void getMostBoughtByBranch(Branch b, char* client_code, int month, GHashTable * _mostBought){
     RelationWithProduct rp = g_hash_table_lookup(b->clientsProducts,client_code);
-    int *initial_quantity, *_tmp;
+
     GHashTableIter iter;
     gpointer key, value;
     g_hash_table_iter_init (&iter, rp->infoProducts);
     while (g_hash_table_iter_next (&iter, &key, &value)){
         if(g_hash_table_contains(_mostBought, (char*)key)){
-            _tmp = (int*)(g_hash_table_lookup(_mostBought, (char*)key));
-            *_tmp += ((InfoProduct)value)->quantities[month];
+            Info info = (Info)(g_hash_table_lookup(_mostBought, (char*)key));
+            updateInfo(info, (int)((InfoProduct)value)->quantities[month]);
         }
-        else{
-            initial_quantity = g_malloc(sizeof(int));
-            *initial_quantity = (int)((InfoProduct)value)->quantities[month];
-            g_hash_table_insert(_mostBought, (char*)key, (gpointer)initial_quantity);
+        else if((int)((InfoProduct)value)->quantities[month] != 0){
+            Info info = (Info)initInfo((char*)key, (int)((InfoProduct)value)->quantities[month]);
+            g_hash_table_insert(_mostBought, (char*)key, (gpointer)info);
         }
     }
 }
