@@ -188,6 +188,22 @@ void controllerQuerie11(SGV sgv) {
     querie11View(result, n);
 }
 
+void controllerQuerie12(SGV sgv) {
+    char* client = askClient();
+    int n = askQuerie11N();
+
+    Money *result = query12(sgv, client, n);
+
+    if (result == NULL) {
+        cleanConsole();
+        boldRed();
+        printf("Cliente inválido.\n");
+        resetColor();
+    } else {
+        querie12View(result, n);
+    }
+}
+
 void menu(SGV sgv)
 {
     int querie;
@@ -233,7 +249,7 @@ void menu(SGV sgv)
             controllerQuerie11(sgv);
             break;
         case 12:
-            query12(sgv, "F2916", 5);
+            controllerQuerie12(sgv);
             break;
         default:
             querie = 0;

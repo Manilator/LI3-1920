@@ -416,13 +416,6 @@ Money * query12(SGV sgv, char *client_code, int n)
     if (existClientCode (sgv->client_catalog, client_code) && n > 0)
     {
         result = clientSpentMostOn(sgv->branches, client_code, n);
-
-        int k;
-        for (k = 0; k < n; k++)
-        {
-            Money money = result[k];
-            printf("product:%s, spent:%f\n",(char*)money->product_code, (double)money->moneySpent);
-        }
     }
     return result;
 }

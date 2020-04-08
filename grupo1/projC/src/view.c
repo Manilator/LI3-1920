@@ -619,7 +619,7 @@ void querie11View(Aux *result, int n)
     for (k = 0; k < n; k++)
     {
         Aux aux = result[k];
-        printf("--------- Produto %s (%dº)\n", (char *)aux->product_code, k+1);
+        printf("--------- Produto %s (%dº)\n", (char *)aux->product_code, k + 1);
         boldGreen();
         for (j = 0; j < N_BRANCHES; j++)
         {
@@ -627,4 +627,17 @@ void querie11View(Aux *result, int n)
         }
         resetColor();
     }
+}
+
+void querie12View(Money *result, int n)
+{
+    cleanConsole();
+    int k;
+    boldGreen();
+    for (k = 0; k < n; k++)
+    {
+        Money money = result[k];
+        printf("Produto: %s | Gastou: %f\n", (char *)money->product_code, (double)money->moneySpent);
+    }
+    resetColor();
 }
