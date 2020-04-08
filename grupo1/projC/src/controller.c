@@ -31,7 +31,7 @@ void controllerQuerie1(StartValues sv, SGV sgv)
 void controllerQuerie2(SGV sgv)
 {
     char letter = askProductLetter();
-    char** result = productsByLetter(sgv, letter);
+    char **result = productsByLetter(sgv, letter);
     listView(result, listSize(result));
     /*querie2View();*/
 }
@@ -41,7 +41,18 @@ void controllerQuerie3(SGV sgv)
     char *product = askProduct();
     int month = askMonth();
     int choice = askQuerie3Choice();
-    querie3View(productValuesByMonth(sgv, product, month, choice), choice, product);
+    double *result = productValuesByMonth(sgv, product, month, choice);
+    if (result == NULL)
+    {
+        cleanConsole();
+        boldRed();
+        printf("Produto inválido.\n");
+        resetColor();
+    }
+    else
+    {
+        querie3View(result, choice, product);
+    }
     g_free(product);
 }
 
@@ -49,14 +60,21 @@ void controllerQuerie4(SGV sgv)
 {
     int choice = askQuerie4Choice();
     char ***products = productsNotBought(sgv, choice);
-    if (products == NULL) {
+    if (products == NULL)
+    {
         printf("Informações não existentes.");
-    } else {
-        if (choice == 0) {
-            querie4View(products, choice, 0,listSize(products[0]));
-        } else {
+    }
+    else
+    {
+        if (choice == 0)
+        {
+            querie4View(products, choice, 0, listSize(products[0]));
+        }
+        else
+        {
             int branch = askBranch();
-            while (branch > 3 || branch <= 0) {
+            while (branch > 3 || branch <= 0)
+            {
                 boldRed();
                 printf("Filial %d não existe.\n", branch);
                 resetColor();
@@ -75,16 +93,18 @@ void controllerQuerie5(SGV sgv)
     /*querie5View(clients);*/
 }
 
-void controllerQuerie6(SGV sgv) {
-    int* list = productsClientsNotUsed(sgv);
+void controllerQuerie6(SGV sgv)
+{
+    int *list = productsClientsNotUsed(sgv);
     querie6View(list);
 }
 
-void controllerQuerie7(SGV sgv) {
+void controllerQuerie7(SGV sgv)
+{
 
-    char* client = askClient();
+    char *client = askClient();
 
-    int **result = clientShoppingLog(sgv,client);
+    int **result = clientShoppingLog(sgv, client);
 
     tableView(result, client);
     /*querie7View(result);*/
@@ -92,8 +112,9 @@ void controllerQuerie7(SGV sgv) {
     g_free(client);
 }
 
-void controllerQuerie8(SGV sgv) {
-    int *month = g_malloc(sizeof(int)*2);
+void controllerQuerie8(SGV sgv)
+{
+    int *month = g_malloc(sizeof(int) * 2);
     month = askMonthInterval();
 
     int *totalUnits = g_malloc(sizeof(int));
@@ -102,9 +123,12 @@ void controllerQuerie8(SGV sgv) {
 
     int valid = query8(sgv, month[0], month[1], totalUnits, totalSales, totalBilled);
 
-    if (valid) {
+    if (valid)
+    {
         querie8View(*totalUnits, *totalSales, *totalBilled, month[0], month[1]);
-    } else {
+    }
+    else
+    {
         cleanConsole();
         boldRed();
         printf("Intervalo de meses errado.\n");
@@ -116,37 +140,52 @@ void controllerQuerie8(SGV sgv) {
     free(totalSales);
 }
 
-void controllerQuerie9(SGV sgv) {
+void controllerQuerie9(SGV sgv)
+{
 
-    char* product = askProduct();
+    char *product = askProduct();
     int branch = askBranch();
-    while (branch > 3 || branch <= 0) {
-                boldRed();
-                printf("Filial %d não existe.\n", branch);
-                resetColor();
-                branch = askBranch();
+    while (branch > 3 || branch <= 0)
+    {
+        boldRed();
+        printf("Filial %d não existe.\n", branch);
+        resetColor();
+        branch = askBranch();
     }
-    int* total_N = malloc(sizeof(int));
-    int* total_P = malloc(sizeof(int));
-    char*** result = query9(sgv, product, branch, total_N, total_P);
+    int *total_N = malloc(sizeof(int));
+    int *total_P = malloc(sizeof(int));
+    char ***result = query9(sgv, product, branch, total_N, total_P);
 
-    querie9View(result,total_N, total_P);
+    querie9View(result, total_N, total_P);
 
     g_free(product);
     g_free(total_N);
     g_free(total_P);
 }
 
-void controllerQuerie10(SGV sgv) {
-    char* client = askClient();
+void controllerQuerie10(SGV sgv)
+{
+    char *client = askClient();
     int month = askMonth();
 
-    /*Info * result = */
-    clientMostBoughtByMonth(sgv, client, month);
+    Info * result = clientMostBoughtByMonth(sgv, client, month);
 
-    /*querie10View(result);*/
-
+    if (result == NULL) {
+        cleanConsole();
+        boldRed();
+        printf("Cliente inválido.\n");
+        resetColor();
+    } else {
+        querie10View(result, client);
+    }
     g_free(client);
+}
+
+void controllerQuerie11(SGV sgv) {
+    int n = askQuerie11N();
+    Aux * result = nMostBought(sgv, n);
+
+    querie11View(result, n);
 }
 
 void menu(SGV sgv)
@@ -170,8 +209,6 @@ void menu(SGV sgv)
             controllerQuerie3(sgv);
             break;
         case 4:
-            /* QUERIE - 4*/
-            /* GLOBAL  = 0, separado 1*/
             controllerQuerie4(sgv);
             break;
         case 5:
@@ -181,7 +218,6 @@ void menu(SGV sgv)
             controllerQuerie6(sgv);
             break;
         case 7:
-            /*clientShoppingLog(sgv,"F2916");*/
             controllerQuerie7(sgv);
             break;
         case 8:
@@ -191,15 +227,15 @@ void menu(SGV sgv)
             controllerQuerie9(sgv);
             break;
         case 10:
-            /*clientMostBoughtByMonth(sgv, "F2916", 1);*/
             controllerQuerie10(sgv);
             break;
         case 11:
-            nMostBought(sgv, 5);
+            controllerQuerie11(sgv);
             break;
         case 12:
             break;
         default:
+            querie = 0;
             break;
         }
     }
