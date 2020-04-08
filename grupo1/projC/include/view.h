@@ -67,4 +67,6 @@ void querie10View(Info *info, char* client);
 
 void querie11View(Aux * result, int n);
 
+void querie12View(Money *result, int n);
+
 #endif
