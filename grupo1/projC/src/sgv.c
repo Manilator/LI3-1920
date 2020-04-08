@@ -267,15 +267,6 @@ int ** clientShoppingLog(SGV sgv, char* client_code){
     }
     return result;
 }
-/* qsort int comparison function */
-int int_cmp(const void *a, const void *b)
-{
-    const int *ia = (const int *)a;
-    const int *ib = (const int *)b;
-    return *ib - *ia;
-	/* integer comparison: returns negative if b > a
-	and positive if a > b */
-}
 
 
 /* QUERIE 10 */
@@ -289,16 +280,7 @@ Info * clientMostBoughtByMonth(SGV sgv, char* client_code, int month){
 
 /* QUERIE 11 */
 Aux * nMostBought(SGV sgv, int n_products){
-    Aux * result = getNMostBoughtProducts(sgv->branches, n_products);
-    /*int k,j;
-    for (k = 0; k < n_products; k++) {
-        Aux aux = result[k];
-        printf("%s\n",(char*)aux->product_code);
-        for (j = 0; j < N_BRANCHES; j++) {
-            printf("Branch:%d | Total different Clients:%d | UnitsSold:%d\n", (j+1), aux->totalClients[j], aux->unitsSold[j]);
-        }
-    }*/
-    return result;
+    return getNMostBoughtProducts(sgv->branches, n_products);
 }
 
 
