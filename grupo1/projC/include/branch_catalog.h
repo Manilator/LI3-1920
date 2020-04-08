@@ -31,4 +31,6 @@ Info * getMostBought(Branches, char*, int);
 
 Aux * getNMostBoughtProducts(Branches, int);
 
+Money * query12_aux_catalog(Branches, char*, int);
+
 #endif

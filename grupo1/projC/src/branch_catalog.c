@@ -243,3 +243,57 @@ Aux * getNMostBoughtProducts(Branches bs, int n_products){
 
     return array;
 }
+
+int compareMoney(gconstpointer a, gconstpointer b)
+{
+    Money money1 = (const Money)a;
+    Money money2 = (const Money)b;
+    return (money2->moneySpent) - (money1->moneySpent);
+}
+
+Money cloneMoney(Money money)
+{
+    Money clone = g_malloc(sizeof(struct money));
+
+    clone->product_code = strdup(money->product_code);
+    clone->moneySpent = money->moneySpent;
+
+    return clone;
+}
+
+void freeMoney(Money money)
+{
+    g_free(money->product_code);
+}
+
+Money * query12_aux_catalog(Branches bs, char *client_code, int n)
+{
+    GHashTable* _maxSpent = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (gpointer)freeMoney);
+
+    GHashTableIter iter;
+    gpointer key, value;
+    g_hash_table_iter_init (&iter, bs->branches);
+    while (g_hash_table_iter_next (&iter, &key, &value)){
+        query12_aux((Branch)value, client_code, _maxSpent);
+    }
+
+    GList * _tmpList = g_hash_table_get_values(_maxSpent);
+    _tmpList = g_list_sort(_tmpList, compareMoney);
+
+    int n_products = n;
+    Money *array = g_malloc(sizeof(Money)*n_products);
+
+    GList * l;
+    int k = 0;
+    for (l = _tmpList; n_products > 0; l = l->next)
+    {
+        array[k++] = cloneMoney((Money)l->data);
+        n_products--;
+    }
+
+    array[k] = NULL;
+
+    /*g_hash_table_destroy(_maxSpent);*/
+
+    return array;
+}

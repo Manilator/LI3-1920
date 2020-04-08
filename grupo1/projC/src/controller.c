@@ -157,6 +157,7 @@ void menu(SGV sgv)
             nMostBought(sgv, 5);
             break;
         case 12:
+            query12(sgv, "F2916", 5);
             break;
         default:
             break;

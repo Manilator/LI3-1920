@@ -56,4 +56,6 @@ void query8(SGV);
 
 int listSize(char**);
 
+Money * query12(SGV sgv, char*, int);
+
 #endif

@@ -12,4 +12,10 @@ typedef struct aux{
   int * unitsSold;
 }*Aux;
 
+
+typedef struct money{
+  char * product_code;
+  double moneySpent;
+}*Money;
+
 #endif
