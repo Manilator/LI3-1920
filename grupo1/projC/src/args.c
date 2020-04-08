@@ -11,13 +11,6 @@
 #define ANSWER "Answer Query"
 #define FREE "Free Structs"
 
-void doWork(){
-       int i=0;
-       for (i = 0; i < 1000000; ++i){
-               printf("work\n" );
-       }
-}
-
 clock_t start, end;
 double cpu_time_used;
 
@@ -58,7 +51,7 @@ void argsQuery2(StartValues sv, SGV sgv, int n, char *args[])
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 2 [Char]");
+        puts("--- Wrong Input ---\n  ./SGV 2 [Letra]");
     }
 }
 
@@ -98,7 +91,7 @@ void argsQuery3(StartValues sv, SGV sgv, int n, char *args[])
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 3 [Product Code] [Month] [Global/Branch]");
+        puts("--- Wrong Input ---\n  ./SGV 3 [Código de Produto] [Mês] [Global/Filial]");
     }
 }
 
@@ -128,7 +121,7 @@ void argsQuery4(StartValues sv, SGV sgv, int n, char *args[])
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 4 [Global/Branch]");
+        puts("--- Wrong Input ---\n  ./SGV 4 [Global/Filial]");
     }
 }
 
@@ -218,7 +211,7 @@ void argsQuery7(StartValues sv, SGV sgv, int n, char *args[])
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 6");
+        puts("--- Wrong Input ---\n  ./SGV 7 [Código de Cliente]");
     }
 }
 /*
@@ -308,7 +301,7 @@ void argsQuery10(StartValues sv, SGV sgv, int n, char *args[])
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 10 [Client Code] [Month]");
+        puts("--- Wrong Input ---\n  ./SGV 10 [Código de Cliente] [Mês]");
     }
 }
 
@@ -337,14 +330,15 @@ void argsQuery11(StartValues sv, SGV sgv, int n, char *args[])
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 10 [Client Code] [Month]");
+        puts("--- Wrong Input ---\n  ./SGV 11 [Numero de Produtos]");
     }
 }
 
 void argsQuery12(StartValues sv, SGV sgv, int n, char *args[])
 {
 
-    /*args[0]: ?*/
+    /*args[0]: cliente code
+      args[1]: month*/
 
     if (n == 2 && isNumber(args[1]))
     {
@@ -366,7 +360,7 @@ void argsQuery12(StartValues sv, SGV sgv, int n, char *args[])
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 10 [Client Code] [Month]");
+        puts("--- Wrong Input ---\n  ./SGV 12 [Client Code] [Month]");
     }
 }
 
@@ -412,7 +406,6 @@ void input(SGV sgv, int n, char *args[], int query)
         default:
             break;
     }
-    /* Destroy memory */
 }
 
 void startInput(int n, char *args[])
