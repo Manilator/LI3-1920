@@ -352,3 +352,47 @@ void updateNMostBought(Branch b, GHashTable * _mostBought, int branch){
         }
     }
 }
+
+
+Money initMoney(char* key, double value)
+{
+    Money money = g_malloc(sizeof(struct money));
+    money->product_code = strdup(key);
+
+    money->moneySpent = value;
+    return money;
+}
+
+void updateMoney(Money money, double value)
+{
+    (money->moneySpent) += value;
+}
+
+void clientSpentMostOnBranch(Branch b, char* client_code, GHashTable * _maxSpent)
+{
+    RelationWithProduct rp = g_hash_table_lookup(b->clientsProducts,client_code);
+
+    int month;
+    double spent;
+    GHashTableIter iter;
+    gpointer key, value;
+    g_hash_table_iter_init (&iter, rp->infoProducts);
+    while (g_hash_table_iter_next (&iter, &key, &value))
+    {
+        spent = 0;
+        for(month = 0; month < 12; month++)
+        {
+            spent += (double)((InfoProduct)value)->totalBilled[month];
+        }   
+        if(g_hash_table_contains(_maxSpent, (char*)key))
+        {
+            Money money = (Money)(g_hash_table_lookup(_maxSpent, (char*)key));
+            updateMoney(money, spent);
+        }
+        else if(spent != 0)
+        {            
+            Money money = (Money)initMoney((char*)key, spent);
+            g_hash_table_insert(_maxSpent, (char*)key, (gpointer)money);
+        }
+    }
+}

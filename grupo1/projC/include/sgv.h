@@ -56,4 +56,6 @@ int query8(SGV sgv, int first, int second,int *totalUnits, int *totalSales, doub
 
 int listSize(char**);
 
+Money * query12(SGV sgv, char*, int);
+
 #endif

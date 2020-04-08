@@ -31,4 +31,6 @@ Info * getMostBought(Branches, char*, int);
 
 Aux * getNMostBoughtProducts(Branches, int);
 
+Money * clientSpentMostOn(Branches, char*, int);
+
 #endif

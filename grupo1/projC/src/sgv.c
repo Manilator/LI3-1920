@@ -414,3 +414,20 @@ int listSize(char** list) {
     for(; list[i] != 0; i++);
     return i;
 }
+
+Money * query12(SGV sgv, char *client_code, int n)
+{
+    Money * result = NULL;
+    if (existClientCode (sgv->client_catalog, client_code) && n > 0)
+    {
+        result = clientSpentMostOn(sgv->branches, client_code, n);
+
+        int k;
+        for (k = 0; k < n; k++)
+        {
+            Money money = result[k];
+            printf("product:%s, spent:%f\n",(char*)money->product_code, (double)money->moneySpent);
+        }
+    }
+    return result;
+}
