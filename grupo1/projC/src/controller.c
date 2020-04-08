@@ -41,7 +41,7 @@ void controllerQuerie3(SGV sgv)
     char *product = askProduct();
     int month = askMonth();
     int choice = askQuerie3Choice();
-    querie3View(productValuesByMonth(sgv, product, month, choice), choice);
+    querie3View(productValuesByMonth(sgv, product, month, choice), choice, product);
     g_free(product);
 }
 
@@ -52,7 +52,18 @@ void controllerQuerie4(SGV sgv)
     if (products == NULL) {
         printf("Informações não existentes.");
     } else {
-        querie4View(products, choice);
+        if (choice == 0) {
+            querie4View(products, choice, 0,listSize(products[0]));
+        } else {
+            int branch = askBranch();
+            while (branch > 3 || branch <= 0) {
+                boldRed();
+                printf("Filial %d não existe.\n", branch);
+                resetColor();
+                branch = askBranch();
+            }
+            querie4View(products, choice, branch, listSize(products[branch]));
+        }
     }
 }
 
@@ -75,16 +86,46 @@ void controllerQuerie7(SGV sgv) {
 
     int **result = clientShoppingLog(sgv,client);
 
-    tableView(result);
+    tableView(result, client);
     /*querie7View(result);*/
 
     g_free(client);
+}
+
+void controllerQuerie8(SGV sgv) {
+    int *month = g_malloc(sizeof(int)*2);
+    month = askMonthInterval();
+
+    int *totalUnits = g_malloc(sizeof(int));
+    int *totalSales = g_malloc(sizeof(int));
+    double *totalBilled = g_malloc(sizeof(double));
+
+    int valid = query8(sgv, month[0], month[1], totalUnits, totalSales, totalBilled);
+
+    if (valid) {
+        querie8View(*totalUnits, *totalSales, *totalBilled, month[0], month[1]);
+    } else {
+        cleanConsole();
+        boldRed();
+        printf("Intervalo de meses errado.\n");
+        resetColor();
+    }
+
+    free(totalUnits);
+    free(totalBilled);
+    free(totalSales);
 }
 
 void controllerQuerie9(SGV sgv) {
 
     char* product = askProduct();
     int branch = askBranch();
+    while (branch > 3 || branch <= 0) {
+                boldRed();
+                printf("Filial %d não existe.\n", branch);
+                resetColor();
+                branch = askBranch();
+    }
     int* total_N = malloc(sizeof(int));
     int* total_P = malloc(sizeof(int));
     char*** result = query9(sgv, product, branch, total_N, total_P);
@@ -144,7 +185,7 @@ void menu(SGV sgv)
             controllerQuerie7(sgv);
             break;
         case 8:
-            query8(sgv);
+            controllerQuerie8(sgv);
             break;
         case 9:
             controllerQuerie9(sgv);

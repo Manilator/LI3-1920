@@ -52,7 +52,7 @@ char** query5(SGV);
 char *** query9(SGV, char*, int, int*, int*);
 /*void query9(SGV);*/
 
-void query8(SGV);
+int query8(SGV sgv, int first, int second,int *totalUnits, int *totalSales, double *totalBilled);
 
 int listSize(char**);
 

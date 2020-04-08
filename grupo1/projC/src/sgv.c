@@ -401,18 +401,12 @@ char *** query9(SGV sgv, char *product_code, int branch, int *totalN, int *total
 }
 
 /* QUERY 8 */
-void query8(SGV sgv)
+int query8(SGV sgv, int first, int second, int *totalUnits, int *totalSales, double *totalBilled)
 {
-    int *totalUnits = g_malloc(sizeof(int));
-    int *totalSales = g_malloc(sizeof(int));
-    double *totalBilled = g_malloc(sizeof(double));
-
-    int valid = getTotalsFromBillingMonthInterval(sgv->billings, 1, 12, totalUnits, totalBilled, totalSales);
+    int valid = getTotalsFromBillingMonthInterval(sgv->billings, first, second, totalUnits, totalBilled, totalSales);
     printf("valid: %d\nUnits: %d\nBilled: %f\nSales: %d\n", valid, *totalUnits, *totalBilled, *totalSales);
 
-    free(totalUnits);
-    free(totalBilled);
-    free(totalSales);
+    return valid;
 }
 
 int listSize(char** list) {

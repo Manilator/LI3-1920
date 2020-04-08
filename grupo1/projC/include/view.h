@@ -7,6 +7,10 @@ void printSeparator();
 
 void cleanConsole();
 
+void resetColor();
+
+void boldRed();
+
 void viewPrintStartValues(char *clients_path,
                           char *products_path,
                           char *sales_path,
@@ -35,21 +39,23 @@ int askQuerie4Choice();
 
 void listView(char **list, int size);
 
-void tableView(int** list);
+void tableView(int** list, char* client);
 
 void querie1View(char* clients_path, char* products_path, char* sales_path);
 
 void querie2View(char**);
 
-void querie3View(double * products, int choice);
+void querie3View(double * products, int choice, char* product);
 
-void querie4View(char ***products, int choice);
+void querie4View(char ***products, int choice, int branch, int size);
 
 void querie5View(char** clients);
 
 void querie6View(int* list);
 
 void querie7View(int** totals);
+
+void querie8View(int totalUnits, int totalSales, double totalBilled, int first, int second);
 
 void querie9View(char*** array, int *total_N, int* total_P);
 
