@@ -58,4 +58,10 @@ int listSize(char**);
 
 Money * query12(SGV sgv, char*, int);
 
+void freeStringList(char **);
+
+void freeStringMatrix(char ***);
+
+void freeIntMatrix(int **);
+
 #endif

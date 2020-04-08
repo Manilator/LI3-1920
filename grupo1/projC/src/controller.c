@@ -80,7 +80,7 @@ void controllerQuerie4(SGV sgv)
                 resetColor();
                 branch = askBranch();
             }
-            querie4View(products, choice, branch, listSize(products[branch]));
+            querie4View(products, choice, branch-1, listSize(products[branch-1]));
         }
     }
 }
