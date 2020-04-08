@@ -426,7 +426,7 @@ Money * query12(SGV sgv, char *client_code, int n)
     Money * result = NULL;
     if (existClientCode (sgv->client_catalog, client_code) && n > 0)
     {
-        result = query12_aux_catalog(sgv->branches, client_code, n);
+        result = clientSpentMostOn(sgv->branches, client_code, n);
 
         int k;
         for (k = 0; k < n; k++)

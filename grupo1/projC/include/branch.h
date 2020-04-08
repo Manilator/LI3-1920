@@ -66,6 +66,6 @@ void getMostBoughtByBranch(Branch, char*, int, GHashTable *);
 
 void updateNMostBought(Branch, GHashTable *, int);
 
-void query12_aux(Branch, char*, GHashTable *);
+void clientSpentMostOnBranch(Branch, char*, GHashTable *);
 
 #endif

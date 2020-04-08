@@ -266,7 +266,7 @@ void freeMoney(Money money)
     g_free(money->product_code);
 }
 
-Money * query12_aux_catalog(Branches bs, char *client_code, int n)
+Money * clientSpentMostOn(Branches bs, char *client_code, int n)
 {
     GHashTable* _maxSpent = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (gpointer)freeMoney);
 
@@ -274,7 +274,7 @@ Money * query12_aux_catalog(Branches bs, char *client_code, int n)
     gpointer key, value;
     g_hash_table_iter_init (&iter, bs->branches);
     while (g_hash_table_iter_next (&iter, &key, &value)){
-        query12_aux((Branch)value, client_code, _maxSpent);
+        clientSpentMostOnBranch((Branch)value, client_code, _maxSpent);
     }
 
     GList * _tmpList = g_hash_table_get_values(_maxSpent);

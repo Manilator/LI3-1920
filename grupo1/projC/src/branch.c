@@ -368,7 +368,7 @@ void updateMoney(Money money, double value)
     (money->moneySpent) += value;
 }
 
-void query12_aux(Branch b, char* client_code, GHashTable * _maxSpent)
+void clientSpentMostOnBranch(Branch b, char* client_code, GHashTable * _maxSpent)
 {
     RelationWithProduct rp = g_hash_table_lookup(b->clientsProducts,client_code);
 
