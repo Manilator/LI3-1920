@@ -224,11 +224,11 @@ int *askMonthInterval()
 {
     int *interval = malloc(sizeof(int) * 2);
     resetColor();
-    printf("Primeiro mês do intervalo?");
+    printf("Primeiro mês do intervalo?\n");
     boldCyan();
     scanf(" %d", &interval[0]);
     resetColor();
-    printf("Segundo mês do intervalo?");
+    printf("Segundo mês do intervalo?\n");
     boldCyan();
     scanf(" %d", &interval[1]);
     resetColor();
@@ -276,6 +276,7 @@ void listView(char **list, int size)
 
     /* Página inicial */
     cleanConsole();
+    resetColor();
     printf("--------- Página %d de %d ---------\n", page, max);
     boldGreen();
     for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && list[i] != 0; i++, j++)
@@ -329,11 +330,11 @@ void listView(char **list, int size)
     cleanConsole();
 }
 
-void tableView(int **list)
+void tableView(int **list, char* client)
 {
+    cleanConsole();
     if (list != NULL)
     {
-
         int columns = MONTHS;
         int rows = N_BRANCHES;
         int space = 0;
@@ -366,6 +367,9 @@ void tableView(int **list)
                 space++;
             }
         }
+
+        printf("--------- Cliente %s\n", client);
+        boldGreen();
         /* Imprimir meses */
         printf("    ");
         printf("|");
@@ -413,9 +417,12 @@ void tableView(int **list)
             }
             printf("\n");
         }
+        resetColor();
     } else {
+        boldRed();
         printf("Cliente não existe.\n");
     }
+    resetColor();
 }
 
 void querie2View(char **list)
@@ -465,7 +472,6 @@ void querie3View(double *products, int choice, char* product)
 
 void querie4View(char ***products, int choice, int branch, int size)
 {
-    int j, i, c, max;
     if (choice == 0) {
         listView(products[0],size);
     } else {
@@ -485,8 +491,11 @@ void querie5View(char **clients)
 
 void querie6View(int *list)
 {
-    printf("Products nobody bought: %d\n", list[0]);
-    printf("Clients not used: %d\n", list[1]);
+    cleanConsole();
+    boldGreen();
+    printf("Produtos que ninguém comprou: %d\n", list[0]);
+    printf("Clientes que não compraram: %d\n", list[1]);
+    resetColor();
 }
 
 void querie7View(int **totals)
@@ -507,32 +516,53 @@ void querie7View(int **totals)
     }
 }
 
+void querie8View(int totalUnits, int totalSales, double totalBilled, int first, int second) {
+    cleanConsole();
+    resetColor();
+    printf("--------- Meses [%d-%d] ---------\n", first, second);
+    boldGreen();
+    printf("Unidades vendidas: %d\n", totalUnits);
+    printf("Total faturado: %f\n", totalBilled);
+    printf("Registo de Vendas: %d\n", totalSales);
+    resetColor();
+    printf("--------- Meses [%d-%d] ---------\n", first, second);
+}
+
 void querie9View(char ***array, int *total_N, int *total_P)
-{
+{      
+    cleanConsole();
 
     if (array == NULL)
     {
-        printf("Valores inválidos\n");
+        boldRed();
+        printf("Produto inválido\n");
     }
     else
     {
         int i;
 
-        puts("--------- CODIGOS N: ---------");
+        resetColor();
+        puts("--------- Clientes N: ---------");
+        boldGreen();
         for (i = 0; array[0][i] && i < *total_N; i++)
         {
             printf("%s\n", array[0][i]);
         }
 
-        puts("--------- CODIGOS P: ---------");
+        resetColor();
+        puts("--------- Clientes P: ---------");
+        boldGreen();
         for (i = 0; array[1][i] && i < *total_P; i++)
         {
             printf("%s\n", array[1][i]);
         }
 
+        resetColor();
         puts("--------- TOTAIS: ---------");
+        boldGreen();
         printf("N = %d\nP = %d\n", *total_N, *total_P);
     }
+    resetColor();
 }
 
 void querie10View(char **products)
