@@ -1,6 +1,8 @@
 #ifndef ___VIEW_H___
 #define ___VIEW_H___
 
+#include "info.h"
+
 void printMenu();
 
 void printSeparator();
@@ -37,6 +39,8 @@ int askQuerie3Choice();
 
 int askQuerie4Choice();
 
+int askQuerie11N();
+
 void listView(char **list, int size);
 
 void tableView(int** list, char* client);
@@ -59,6 +63,8 @@ void querie8View(int totalUnits, int totalSales, double totalBilled, int first, 
 
 void querie9View(char*** array, int *total_N, int* total_P);
 
-void querie10View(char** products);
+void querie10View(Info *info, char* client);
+
+void querie11View(Aux * result, int n);
 
 #endif

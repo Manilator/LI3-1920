@@ -92,7 +92,7 @@ void printMenu()
     printf("10 - Querie 10\n");
     printf("11 - Querie 11\n");
     printf("12 - Querie 12\n");
-    printf("0  - Exit\n");
+    printf("*  - Exit\n");
     printf("! --------------- !\n");
     boldCyan();
 }
@@ -201,11 +201,14 @@ char *askProduct()
 int askMonth()
 {
     int month = -1;
-    resetColor();
-    printf("Qual mês?: \n");
-    boldCyan();
-    scanf(" %d", &month);
-    resetColor();
+    while (month <= 0 || month > 12)
+    {
+        resetColor();
+        printf("Qual mês?: \n");
+        boldCyan();
+        scanf(" %d", &month);
+        resetColor();
+    }
     return month;
 }
 
@@ -238,32 +241,55 @@ int *askMonthInterval()
 int askBranch()
 {
     int branch = -1;
-    printf("Qual filial?\n");
-    boldCyan();
-    scanf(" %d", &branch);
-    resetColor();
+    while (branch < 1 || branch > 3)
+    {
+        printf("Qual filial?\n");
+        boldCyan();
+        scanf(" %d", &branch);
+        resetColor();
+    }
     return branch;
 }
 
 int askQuerie3Choice()
 {
     int choice = -1;
-    printf("0 - Filial a filial\n1 - Global: \n");
-    boldCyan();
-    scanf(" %d", &choice);
-    resetColor();
+    while (choice != 0 && choice != 1)
+    {
+        printf("0 - Filial a filial\n1 - Global: \n");
+        boldCyan();
+        scanf(" %d", &choice);
+        resetColor();
+    }
     return choice;
 }
 
 int askQuerie4Choice()
 {
     int choice = -1;
-    resetColor();
-    printf("0 - Global\n1 - Filial a Filial: \n");
-    boldCyan();
-    scanf(" %d", &choice);
-    resetColor();
+    while (choice != 0 && choice != 1)
+    {
+        resetColor();
+        printf("0 - Global\n1 - Filial a Filial: \n");
+        boldCyan();
+        scanf(" %d", &choice);
+        resetColor();
+    }
     return choice;
+}
+
+int askQuerie11N()
+{
+    int n = 0;
+    while (n <= 0)
+    {
+        resetColor();
+        printf("Quantos produtos pretende ver?\n");
+        boldCyan();
+        scanf(" %d", &n);
+        resetColor();
+    }
+    return n;
 }
 
 void listView(char **list, int size)
@@ -330,7 +356,7 @@ void listView(char **list, int size)
     cleanConsole();
 }
 
-void tableView(int **list, char* client)
+void tableView(int **list, char *client)
 {
     cleanConsole();
     if (list != NULL)
@@ -387,8 +413,9 @@ void tableView(int **list, char* client)
         }
         printf("\n");
         printf("----+");
-        for (i = 0; i < columns; i++) {
-            for(j = 0; j < space; j++)
+        for (i = 0; i < columns; i++)
+        {
+            for (j = 0; j < space; j++)
                 printf("-");
             printf("+");
         }
@@ -418,7 +445,9 @@ void tableView(int **list, char* client)
             printf("\n");
         }
         resetColor();
-    } else {
+    }
+    else
+    {
         boldRed();
         printf("Cliente não existe.\n");
     }
@@ -435,7 +464,7 @@ void querie2View(char **list)
     printf("Number of products: %d\n", i);
 }
 
-void querie3View(double *products, int choice, char* product)
+void querie3View(double *products, int choice, char *product)
 {
     cleanConsole();
     int i, j, branch;
@@ -455,7 +484,9 @@ void querie3View(double *products, int choice, char* product)
         {
             printf("------ Filial %d (%s) ------\n", branch, product);
             branch++;
-        } else if (branch == 1) {
+        }
+        else if (branch == 1)
+        {
             printf("------ Global (%s) ------\n", product);
             branch++;
         }
@@ -467,14 +498,16 @@ void querie3View(double *products, int choice, char* product)
             j = -1;
         }
     }
-    /*printf("Number of products: %d\n", i);*/
 }
 
 void querie4View(char ***products, int choice, int branch, int size)
 {
-    if (choice == 0) {
-        listView(products[0],size);
-    } else {
+    if (choice == 0)
+    {
+        listView(products[0], size);
+    }
+    else
+    {
         listView(products[branch], size);
     }
 }
@@ -516,7 +549,8 @@ void querie7View(int **totals)
     }
 }
 
-void querie8View(int totalUnits, int totalSales, double totalBilled, int first, int second) {
+void querie8View(int totalUnits, int totalSales, double totalBilled, int first, int second)
+{
     cleanConsole();
     resetColor();
     printf("--------- Meses [%d-%d] ---------\n", first, second);
@@ -529,7 +563,7 @@ void querie8View(int totalUnits, int totalSales, double totalBilled, int first, 
 }
 
 void querie9View(char ***array, int *total_N, int *total_P)
-{      
+{
     cleanConsole();
 
     if (array == NULL)
@@ -565,19 +599,32 @@ void querie9View(char ***array, int *total_N, int *total_P)
     resetColor();
 }
 
-void querie10View(char **products)
+void querie10View(Info *info, char *client)
 {
+    cleanConsole();
     int i = 0;
-
-    if (products == NULL)
+    printf("--------- Cliente %s\n", client);
+    boldGreen();
+    for (i = 0; info[i] != NULL; i++)
     {
-        printf("Cliente inválido ou não realizou nenhuma compra.\n");
+        printf("Produto: %s | Unidades: %d\n", info[i]->product_code, info[i]->unitsSold);
     }
-    else
+    resetColor();
+}
+
+void querie11View(Aux *result, int n)
+{
+    cleanConsole();
+    int k, j;
+    for (k = 0; k < n; k++)
     {
-        for (i = 0; products[i] != NULL; i++)
+        Aux aux = result[k];
+        printf("--------- Produto %s (%dº)\n", (char *)aux->product_code, k+1);
+        boldGreen();
+        for (j = 0; j < N_BRANCHES; j++)
         {
-            printf("%s\n", products[i]);
+            printf("Filial: %d | Total de clientes diferentes: %d | Unidades vendidas: %d\n", (j + 1), aux->totalClients[j], aux->unitsSold[j]);
         }
+        resetColor();
     }
 }

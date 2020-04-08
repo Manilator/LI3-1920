@@ -288,11 +288,6 @@ Info * clientMostBoughtByMonth(SGV sgv, char* client_code, int month){
     Info * result = NULL;
     if(existClientCode (sgv->client_catalog,client_code) && month >= ZERO && month <= MONTHS){
         result = getMostBought(sgv->branches, client_code, month);
-        int i;
-        for (i = 0; result[i]!= NULL; i++) {
-            Info info = (Info)result[i];
-            printf("Product: %s | Units: %d\n", info->product_code, info->unitsSold);
-        }
     }
     return result;
 }
