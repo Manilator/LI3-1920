@@ -206,16 +206,10 @@ char *** productsNotBought(SGV sgv, int isGlobal){
                     g_hash_table_insert(_htProductsBought, _productsBought[i],_productsBought[i]);
             }
             _productsBought = getProductsNotArray(sgv->product_catalog, _htProductsBought);
-            result[branch] = _productsBought;
+            result[branch-1] = _productsBought;
         }
+        result[branch-1] = NULL;
     }
-    /*
-    PRINT EXAMPLE
-    int j;
-    for (j = 0;result[3][j] != NULL; j++) {
-        printf("%s\n",result[3][j]);
-    }
-    printf("%d\n",j);*/
     return result;
 }
 
@@ -269,6 +263,7 @@ int ** clientShoppingLog(SGV sgv, char* client_code){
         for (branch=ONE; branch <= N_BRANCHES; branch++) {
             result[branch-ONE] = clientBranchShopLog(sgv->branches, client_code, branch);
         }
+        result[branch-ONE] = NULL;
     }
     return result;
 }
@@ -430,4 +425,25 @@ Money * query12(SGV sgv, char *client_code, int n)
         }
     }
     return result;
+}
+
+void freeStringList(char ** list){
+    int i = 0;
+    while(list[i] != NULL){
+        g_free(list[i++]);
+    }
+}
+
+void freeStringMatrix(char *** matrix){
+    int i = 0;
+    while(matrix[i] != NULL){
+        freeStringList(matrix[i++]);
+    }
+}
+
+void freeIntMatrix(int ** list){
+    int i = 0;
+    while(list[i] != NULL){
+        g_free(list[i++]);
+    }
 }

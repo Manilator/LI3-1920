@@ -1,11 +1,30 @@
 #include "args.h"
-#include "view.h"
 #include "sgv.h"
 #include "constants.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <time.h>
+
+#define LOAD "Load Files"
+#define ANSWER "Answer Query"
+#define FREE "Free Structs"
+
+void doWork(){
+       int i=0;
+       for (i = 0; i < 1000000; ++i){
+               printf("work\n" );
+       }
+}
+
+clock_t start, end;
+double cpu_time_used;
+
+void printElapsedTime(char * action_name){
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("CPU Time used to %s:%f\n", action_name, cpu_time_used );
+}
 
 /* Testar com argumentos */
 
@@ -13,15 +32,6 @@ void argsQuery1(StartValues sv, SGV sgv)
 {
     sv = initStartValues(CLIENTS_PATH, PRODUCTS_PATH, SALES_PATH);
     sgv = startSGV(sgv, sv);
-    viewPrintStartValues(CLIENTS_PATH,
-                         PRODUCTS_PATH,
-                         SALES_PATH,
-                         getValidClients(sv),
-                         getValidProducts(sv),
-                         getValidSales(sv),
-                         getReadClients(sv),
-                         getReadProducts(sv),
-                         getReadSales(sv));
 }
 
 void argsQuery2(StartValues sv, SGV sgv, int n, char *args[])
@@ -29,152 +39,337 @@ void argsQuery2(StartValues sv, SGV sgv, int n, char *args[])
     /* args[0]: product first letter */
     if (n == 1 && isalpha(args[0][0]) && args[0][1] == '\0')
     {
+        start = clock();
         argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        /*------------------------------------------------*/
+        start = clock();
         char** result = productsByLetter(sgv, args[0][0]);
-        listView(result, listSize(result));
+        end = clock();
+        printElapsedTime(ANSWER);
+
+        /*------------------------------------------------*/
+        start = clock();
+        freeStringList(result);
+        end = clock();
+        printElapsedTime(FREE);
     }
     else
     {
         puts("--- Wrong Input ---\n  ./SGV 2 [Char]");
     }
 }
-/*
+
+int isNumber(char * str){
+    int i=0,r=1;
+    while(str[i] != '\0')
+        if(!isdigit(str[i++]))
+            r = 0;
+    return r;
+}
+
 void argsQuery3(StartValues sv, SGV sgv, int n, char *args[])
 {
-    /*
+/*
     args[0]: produto
     args[1]: mes
-    args[2]: 0 ou 1
-    
-    if ()
-    {}
+    args[2]: 0 ou 1*/
+
+    if (n == 3 && isNumber(args[1]) && isdigit(args[2][0]) && args[2][1] == '\0')
+    {
+        start = clock();
+        argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        /*------------------------------------------------*/
+        start = clock();
+        double * result = productValuesByMonth(sgv, args[0], atoi(args[1]), atoi(args[2]));
+        end = clock();
+        printElapsedTime(ANSWER);
+
+        /*------------------------------------------------*/
+        start = clock();
+        g_free(result);
+        end = clock();
+        printElapsedTime(FREE);
+    }
     else
     {
-        puts("");
+        puts("--- Wrong Input ---\n  ./SGV 3 [Product Code] [Month] [Global/Branch]");
     }
 }
-*/
-/*
+
 void argsQuery4(StartValues sv, SGV sgv, int n, char *args[])
 {
-    /*
-    args[0]: 0 ou 1
-    
-    if ()
-    {}
+
+    /* args[0]: 0 ou 1 */
+
+    if (n == 1 && isdigit(args[0][0]) && args[0][1] == '\0')
+    {
+        start = clock();
+        argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        /*------------------------------------------------*/
+        start = clock();
+        char *** result = productsNotBought(sgv, atoi(args[0]));
+        end = clock();
+        printElapsedTime(ANSWER);
+
+        /*------------------------------------------------*/
+        start = clock();
+        freeStringMatrix(result);
+        end = clock();
+        printElapsedTime(FREE);
+    }
     else
     {
-        puts("");
+        puts("--- Wrong Input ---\n  ./SGV 4 [Global/Branch]");
     }
 }
 
-void argsQuery5(StartValues sv, SGV sgv, int n, char *args[])
+void argsQuery5(StartValues sv, SGV sgv, int n)
 {
-    /*
-    args[0]: nada
 
-    if ()
-    {}
+    /*args[0]: nada*/
+
+    if (n == 0)
+    {
+        start = clock();
+        argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        /*------------------------------------------------*/
+        start = clock();
+        char** result = query5(sgv);
+        end = clock();
+        printElapsedTime(ANSWER);
+
+        /*------------------------------------------------*/
+        start = clock();
+        freeStringList(result);
+        end = clock();
+        printElapsedTime(FREE);
+    }
     else
     {
-        puts("");
+        puts("--- Wrong Input ---\n  ./SGV 5");
     }
 }
 
-void argsQuery6(StartValues sv, SGV sgv, int n, char *args[])
+void argsQuery6(StartValues sv, SGV sgv, int n)
 {
-    /*
-    args[0]: nada
-    
-    if ()
-    {}
+
+    /*args[0]: nada*/
+
+    if (n == 0)
+    {
+        start = clock();
+        argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        /*------------------------------------------------*/
+        start = clock();
+        int * result = productsClientsNotUsed(sgv);
+        end = clock();
+        printElapsedTime(ANSWER);
+
+        /*------------------------------------------------*/
+        start = clock();
+        g_free(result);
+        end = clock();
+        printElapsedTime(FREE);
+    }
     else
     {
-        puts("");
+        puts("--- Wrong Input ---\n  ./SGV 6");
     }
 }
 
 void argsQuery7(StartValues sv, SGV sgv, int n, char *args[])
 {
-    /*
-    args[0]: cliente
-    
-    if ()
-    {}
+
+    /*args[0]: cliente*/
+
+    if (n == 1)
+    {
+        start = clock();
+        argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        /*------------------------------------------------*/
+        start = clock();
+        int ** result = clientShoppingLog(sgv, args[0]);
+        end = clock();
+        printElapsedTime(ANSWER);
+
+        /*------------------------------------------------*/
+        start = clock();
+        freeIntMatrix(result);
+        end = clock();
+        printElapsedTime(FREE);
+    }
     else
     {
-        puts("");
+        puts("--- Wrong Input ---\n  ./SGV 6");
     }
 }
-
+/*
 void argsQuery8(StartValues sv, SGV sgv, int n, char *args[])
 {
-    /*
+
     args[0]: mes
     args[1]: mes
-    
-    if ()
-    {}
+
+    if (n == 2 && isNumber(args[0]) && isNumber(args[1]))
+    {
+        start = clock();
+        argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        start = clock();
+        int = query8(sgv, int first, int second, int *totalUnits, int *totalSales, double *totalBilled);
+        int ** result = clientShoppingLog(sgv, args[0]);
+        end = clock();
+        printElapsedTime(ANSWER);
+
+        start = clock();
+        freeIntMatrix(result);
+        end = clock();
+        printElapsedTime(FREE);
+    }
     else
     {
-        puts("");
+        puts("--- Wrong Input ---\n  ./SGV 6");
     }
-}
-
+}*/
+/*
 void argsQuery9(StartValues sv, SGV sgv, int n, char *args[])
 {
-    /*
+
     args[0]: produto
     args[1]: filial
-    
-    if ()
-    {}
+
+    if (n == 2 && isNumber(args[1]))
+    {
+        start = clock();
+        argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        start = clock();
+        int ** result = clientShoppingLog(sgv, args[0]);
+        end = clock();
+        printElapsedTime(ANSWER);
+
+
+        start = clock();
+        freeIntMatrix(result);
+        end = clock();
+        printElapsedTime(FREE);
+    }
     else
     {
-        puts("");
+        puts("--- Wrong Input ---\n  ./SGV 6");
     }
-}
+}*/
 
 void argsQuery10(StartValues sv, SGV sgv, int n, char *args[])
 {
-    /*
+/*
     args[0]: cliente
-    args[1]: mes
-    
-    if ()
-    {}
+    args[1]: mes*/
+
+    if (n == 2 && isNumber(args[1]))
+    {
+        start = clock();
+        argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        start = clock();
+        Info * result = clientMostBoughtByMonth(sgv, args[0], atoi(args[1]));
+        end = clock();
+        printElapsedTime(ANSWER);
+
+
+        start = clock();
+        freeInfoList(result);
+        end = clock();
+        printElapsedTime(FREE);
+    }
     else
     {
-        puts("");
+        puts("--- Wrong Input ---\n  ./SGV 10 [Client Code] [Month]");
     }
 }
 
 void argsQuery11(StartValues sv, SGV sgv, int n, char *args[])
 {
-    /*
-    args[0]: ?
-    
-    if ()
-    {}
+
+    /*args[0]: numero de produtos*/
+
+    if (n == 1 && isNumber(args[0]))
+    {
+        start = clock();
+        argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        start = clock();
+        Aux * result = nMostBought(sgv, atoi(args[0]));
+        end = clock();
+        printElapsedTime(ANSWER);
+
+
+        start = clock();
+        freeAuxList(result);
+        end = clock();
+        printElapsedTime(FREE);
+    }
     else
     {
-        puts("");
+        puts("--- Wrong Input ---\n  ./SGV 10 [Client Code] [Month]");
     }
 }
 
 void argsQuery12(StartValues sv, SGV sgv, int n, char *args[])
 {
-    /*
-    args[0]: ?
-    
-    if ()
-    {}
+
+    /*args[0]: ?*/
+
+    if (n == 2 && isNumber(args[1]))
+    {
+        start = clock();
+        argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        start = clock();
+        Money * result = query12(sgv, args[0], atoi(args[1]));
+        end = clock();
+        printElapsedTime(ANSWER);
+
+
+        start = clock();
+        freeMoneyList(result);
+        end = clock();
+        printElapsedTime(FREE);
+    }
     else
     {
-        puts("");
+        puts("--- Wrong Input ---\n  ./SGV 10 [Client Code] [Month]");
     }
 }
-*/
+
 void input(SGV sgv, int n, char *args[], int query)
 {
     StartValues sv = NULL;
@@ -183,7 +378,6 @@ void input(SGV sgv, int n, char *args[], int query)
         case 2:
             argsQuery2(sv, sgv, n, args);
             break;
-        /*
         case 3:
             argsQuery3(sv, sgv, n, args);
             break;
@@ -191,20 +385,21 @@ void input(SGV sgv, int n, char *args[], int query)
             argsQuery4(sv, sgv, n, args);
             break;
         case 5:
-            argsQuery5(sv, sgv, n, args);
+            argsQuery5(sv, sgv, n);
             break;
         case 6:
-            argsQuery6(sv, sgv, n, args);
+            argsQuery6(sv, sgv, n);
             break;
         case 7:
             argsQuery7(sv, sgv, n, args);
             break;
+            /*
         case 8:
             argsQuery8(sv, sgv, n, args);
             break;
         case 9:
             argsQuery9(sv, sgv, n, args);
-            break;
+            break;*/
         case 10:
             argsQuery10(sv, sgv, n, args);
             break;
@@ -213,7 +408,7 @@ void input(SGV sgv, int n, char *args[], int query)
             break;
         case 12:
             argsQuery12(sv, sgv, n, args);
-            break;*/
+            break;
         default:
             break;
     }
@@ -240,4 +435,3 @@ void startInput(int n, char *args[])
         printf("%d\n", query);
     }
 }
-
