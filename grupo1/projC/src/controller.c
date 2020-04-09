@@ -11,10 +11,6 @@ void controllerQuerie1(StartValues sv, SGV sgv)
     char *products_path = g_malloc(sizeof(char) * 1024);
     char *sales_path = g_malloc(sizeof(char) * 1024);
     querie1View(clients_path, products_path, sales_path);
-    if(sgv != NULL){
-        destroySGV(sgv);
-        sgv = initSGV();
-    }
 
     setPathsSV(sv, clients_path, products_path, sales_path);
     sgv = startSGV(sgv, sv);
@@ -36,10 +32,14 @@ void controllerQuerie1(StartValues sv, SGV sgv)
 void controllerQuerie2(SGV sgv)
 {
     char letter = askProductLetter();
+    puts("x");
     char **result = getProductsStartedByLetter(sgv, letter);
+    puts("y");
     listView(result, listSize(result));
+    puts("z");
 
     freeStringList(result);
+    puts("coco");
 }
 
 void controllerQuerie3(SGV sgv)

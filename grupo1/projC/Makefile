@@ -1,6 +1,6 @@
  
 ############################# Makefile ##########################
-CFLAGS= -W -Wall -Iinclude -Wextra -lm -ansi -O2 -D_GNU_SOURCE `pkg-config --cflags --libs glib-2.0`
+CFLAGS= -W -Wall -Iinclude -Wextra -ansi -O2 -D_GNU_SOURCE `pkg-config --cflags --libs glib-2.0` -lm
 DEBUG= -g
 
 OBJECTS:=$(patsubst %.c,%.o,$(wildcard src/*.c))
@@ -17,4 +17,4 @@ clean:
 	rm -rf src/*.o $(EXECUTAVEL) $(DOC)
 
 debug:
-	cc -o $(EXECUTAVEL) -Iinclude -lm -g src/*.c `pkg-config --cflags --libs glib-2.0`
+	cc -o $(EXECUTAVEL) -Iinclude -g src/*.c `pkg-config --cflags --libs glib-2.0` -lm
