@@ -210,7 +210,7 @@ void controllerQuerie12(SGV sgv) {
 
 void menu(SGV sgv)
 {
-    int querie;
+    int querie = -1;
     int initial = 0;
     StartValues sv = initStartValues();
     cleanConsole();
