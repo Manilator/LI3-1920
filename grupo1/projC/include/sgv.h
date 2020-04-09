@@ -13,7 +13,9 @@ SGV startSGV(SGV, StartValues);
 
 SGV initSGV();
 
-StartValues initStartValues(char*, char*, char*);
+StartValues initStartValues();
+
+void setPathsSV(StartValues, char*, char*, char*);
 
 /*2*/
 char ** getProductsStartedByLetter(SGV, char);
@@ -69,6 +71,9 @@ int getReadSales (StartValues);
 
 int listSize(char**);
 
+void destroySGV(SGV);
+
+void destroyStartValues(StartValues);
 
 void freeStringList(char **);
 

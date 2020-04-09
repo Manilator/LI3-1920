@@ -301,7 +301,7 @@ void updateNMostBought(Branch b, GHashTable * _mostBought, int branch){
             }
             else{
                 Aux aux = (Aux)initAux((char*)key2, branch, (int*)((InfoProduct)value2)->quantities);
-                g_hash_table_insert(_mostBought, (char*)key2, (gpointer)aux);
+                g_hash_table_insert(_mostBought, strdup((char*)key2), (gpointer)aux);
             }
         }
     }

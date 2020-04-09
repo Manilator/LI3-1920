@@ -31,12 +31,12 @@ struct startValues{
     gint read_sales;
 };
 
-StartValues initStartValues(char* clients_path, char* products_path, char* sales_path){
+StartValues initStartValues(){
     StartValues startValues = g_malloc(sizeof(struct startValues));
 
-    startValues->path_clients = g_string_new(clients_path);
-    startValues->path_products = g_string_new(products_path);
-    startValues->path_sales = g_string_new(sales_path);
+    startValues->path_clients = NULL;
+    startValues->path_products = NULL;
+    startValues->path_sales = NULL;
     startValues->valid_clients = 0;
     startValues->read_clients = 0;
     startValues->valid_products = 0;
@@ -44,6 +44,12 @@ StartValues initStartValues(char* clients_path, char* products_path, char* sales
     startValues->valid_sales = 0;
     startValues->read_sales = 0;
     return startValues;
+}
+
+void setPathsSV(StartValues startValues, char* clients_path, char* products_path, char* sales_path){
+    startValues->path_clients = g_string_new(clients_path);
+    startValues->path_products = g_string_new(products_path);
+    startValues->path_sales = g_string_new(sales_path);
 }
 
 SGV initSGV(){
@@ -139,9 +145,12 @@ void destroySGV(SGV sgv){
 }
 
 void destroyStartValues(StartValues sv){
-    g_free(sv->path_clients);
-    g_free(sv->path_products);
-    g_free(sv->path_sales);
+    if(sv->path_clients != NULL)
+        g_string_free(sv->path_clients,TRUE);
+    if(sv->path_products != NULL)
+        g_string_free(sv->path_products,TRUE);
+    if(sv->path_sales != NULL)
+        g_string_free(sv->path_sales,TRUE);
     g_free(sv);
 }
 

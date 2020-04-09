@@ -38,7 +38,7 @@ char ** getProductsByLetter(Products products_catalog, char letter){
     while (g_hash_table_iter_next (&iter, &key, &value)) {
         if( ((char*)key)[0] == letter){
             result[i] = g_malloc(sizeof(char*));
-            result[i++] = (char*)key;
+            result[i++] = strdup((char*)key);
         }
     }
     sort((const char**)result, i);

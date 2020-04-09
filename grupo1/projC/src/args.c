@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <time.h>
+#include <string.h>
 
 #define LOAD "Load Files"
 #define ANSWER "Answer Query"
@@ -23,7 +24,13 @@ void printElapsedTime(char * action_name){
 
 void argsQuery1(StartValues sv, SGV sgv)
 {
-    sv = initStartValues(CLIENTS_PATH, PRODUCTS_PATH, SALES_PATH);
+    char *clients_path = g_malloc(sizeof(char) * 1024);
+    char *products_path = g_malloc(sizeof(char) * 1024);
+    char *sales_path = g_malloc(sizeof(char) * 1024);
+    strcpy(clients_path, CLIENTS_PATH);
+    strcpy(products_path, PRODUCTS_PATH);
+    strcpy(sales_path, SALES_PATH);
+    setPathsSV(sv, clients_path, products_path, sales_path);
     sgv = startSGV(sgv, sv);
 }
 
@@ -329,7 +336,7 @@ void argsQuery11(StartValues sv, SGV sgv, int n, char *args[])
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 11 [Numero de Produtos]");
+        puts("--- Wrong Input ---\n  ./SGV 11 [Number of Products]");
     }
 }
 
@@ -359,13 +366,13 @@ void argsQuery12(StartValues sv, SGV sgv, int n, char *args[])
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 12 [Client Code] [Month]");
+        puts("--- Wrong Input ---\n  ./SGV 12 [Client Code] [Number of Products]");
     }
 }
 
 void input(SGV sgv, int n, char *args[], int query)
 {
-    StartValues sv = NULL;
+    StartValues sv = initStartValues();
     switch (query)
     {
         case 2:
@@ -411,9 +418,23 @@ void startInput(int n, char *args[])
     int query = atoi(args[0]);
     if (query == 1)
     {
-        StartValues sv = NULL;
+        start = clock();
         SGV sgv = initSGV();
+        StartValues sv = initStartValues();
+        end = clock();
+        printElapsedTime(LOAD);
+
+        start = clock();
         argsQuery1(sv, sgv);
+        end = clock();
+        printElapsedTime(ANSWER);
+
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(FREE);
     }
     else if (query >= 2 && query <= 12)
     {

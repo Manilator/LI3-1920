@@ -11,7 +11,12 @@ void controllerQuerie1(StartValues sv, SGV sgv)
     char *products_path = g_malloc(sizeof(char) * 1024);
     char *sales_path = g_malloc(sizeof(char) * 1024);
     querie1View(clients_path, products_path, sales_path);
-    sv = initStartValues(clients_path, products_path, sales_path);
+    if(sgv != NULL){
+        destroySGV(sgv);
+        sgv = initSGV();
+    }
+
+    setPathsSV(sv, clients_path, products_path, sales_path);
     sgv = startSGV(sgv, sv);
     cleanConsole();
     viewPrintStartValues(clients_path,
@@ -33,7 +38,8 @@ void controllerQuerie2(SGV sgv)
     char letter = askProductLetter();
     char **result = getProductsStartedByLetter(sgv, letter);
     listView(result, listSize(result));
-    /*querie2View();*/
+
+    freeStringList(result);
 }
 
 void controllerQuerie3(SGV sgv)
@@ -54,6 +60,7 @@ void controllerQuerie3(SGV sgv)
         querie3View(result, choice, product);
     }
     g_free(product);
+    g_free(result);
 }
 
 void controllerQuerie4(SGV sgv)
@@ -83,6 +90,7 @@ void controllerQuerie4(SGV sgv)
             querie4View(products, choice, branch-1, listSize(products[branch-1]));
         }
     }
+    freeStringMatrix(products);
 }
 
 void controllerQuerie5(SGV sgv)
@@ -90,13 +98,15 @@ void controllerQuerie5(SGV sgv)
     char **clients = getClientsOfAllBranches(sgv);
 
     listView(clients, listSize(clients));
-    /*querie5View(clients);*/
+
+    freeStringList(clients);
 }
 
 void controllerQuerie6(SGV sgv)
 {
     int *list = getClientsAndProductsNeverBoughtCount(sgv);
     querie6View(list);
+    g_free(list);
 }
 
 void controllerQuerie7(SGV sgv)
@@ -107,8 +117,8 @@ void controllerQuerie7(SGV sgv)
     int **result = getProductsBoughtByClient(sgv, client);
 
     tableView(result, client);
-    /*querie7View(result);*/
 
+    freeIntMatrix(result);
     g_free(client);
 }
 
@@ -130,7 +140,7 @@ void controllerQuerie8(SGV sgv)
         printf("Intervalo de meses errado.\n");
         resetColor();
     }
-
+    freeQuerie8Aux(result);
 }
 
 void controllerQuerie9(SGV sgv)
@@ -151,6 +161,7 @@ void controllerQuerie9(SGV sgv)
     querie9View(result);
 
     g_free(product);
+    freeQuerie9Aux(result);
 }
 
 void controllerQuerie10(SGV sgv)
@@ -169,6 +180,7 @@ void controllerQuerie10(SGV sgv)
         querie10View(result, client);
     }
     g_free(client);
+    freeInfoList(result);
 }
 
 void controllerQuerie11(SGV sgv) {
@@ -176,6 +188,7 @@ void controllerQuerie11(SGV sgv) {
     Aux * result = getTopSoldProducts(sgv, n);
 
     querie11View(result, listSize((char**)result));
+    freeAuxList(result);
 }
 
 void controllerQuerie12(SGV sgv) {
@@ -192,19 +205,20 @@ void controllerQuerie12(SGV sgv) {
     } else {
         querie12View(result, listSize((char**)result), client);
     }
+    freeMoneyList(result);
 }
 
 void menu(SGV sgv)
 {
     int querie;
     int initial = 0;
-    StartValues sv = NULL;
+    StartValues sv = initStartValues();
     cleanConsole();
     while (querie != 0)
     {
         printMenu();
         scanf(" %d", &querie);
-        while (querie != 1 && initial != 1) {
+        while (querie != 1 && initial != 1 && querie != 0 && querie <= 12) {
             boldRed();
             printf("Faça a querie 1 primeiro para carregamento dos dados.\n");
             boldCyan();
@@ -251,10 +265,16 @@ void menu(SGV sgv)
             break;
         default:
             querie = 0;
+
             break;
         }
     }
-    /* Destroy memory */
+    if(sgv != NULL)
+        destroySGV(sgv);
+
+
+    if(sv != NULL)
+        destroyStartValues(sv);
 }
 
 void startController()

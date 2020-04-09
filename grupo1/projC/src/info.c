@@ -193,23 +193,29 @@ Info initInfo(char* key, int value){
 }
 
 void freeInfoList(Info* list){
-    int i = 0;
-    while(list[i] != NULL){
-        freeInfo(list[i++]);
+    if(list != NULL){
+        int i = 0;
+        while(list[i] != NULL){
+            freeInfo(list[i++]);
+        }
     }
 }
 
 void freeAuxList(Aux* list){
-    int i = 0;
-    while(list[i] != NULL){
-        freeAux(list[i++]);
+    if(list != NULL){
+        int i = 0;
+        while(list[i] != NULL){
+            freeAux(list[i++]);
+        }
     }
 }
 
 void freeMoneyList(Money* list){
-    int i = 0;
-    while(list[i] != NULL){
-        freeMoney(list[i++]);
+    if(list != NULL){
+        int i = 0;
+        while(list[i] != NULL){
+            freeMoney(list[i++]);
+        }
     }
 }
 
@@ -289,10 +295,12 @@ char * getQuerie9ClientP(Querie9Aux aux, int i){
 }
 
 void freeQuerie9Aux(Querie9Aux aux){
-    int i=0;
-    while(aux->clientsP[i] != NULL)
-        g_free(aux->clientsP[i++]);
-    i = 0;
-    while(aux->clientsN[i] != NULL)
-        g_free(aux->clientsN[i++]);
+    if(aux != NULL){
+        int i=0;
+        while(aux->clientsP[i] != NULL)
+            g_free(aux->clientsP[i++]);
+        i = 0;
+        while(aux->clientsN[i] != NULL)
+            g_free(aux->clientsN[i++]);
+    }
 }

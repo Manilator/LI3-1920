@@ -168,6 +168,9 @@ Info * getMostBought(Branches bs, char* client_code, int month){
 
 
 Aux * getNMostBoughtProducts(Branches bs, int n_products){
+    if(n_products == -1)
+        return NULL;
+
     GHashTable * _mostBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (gpointer)freeAux);
     int *i;
     GHashTableIter iter;
@@ -177,7 +180,6 @@ Aux * getNMostBoughtProducts(Branches bs, int n_products){
         i = ((int*)key);
         updateNMostBought((Branch)value, _mostBought, (*i)-1);
     }
-
     GList * _tmpList = g_hash_table_get_values(_mostBought);
     _tmpList = g_list_sort(_tmpList, compareAux);
 
@@ -190,7 +192,7 @@ Aux * getNMostBoughtProducts(Branches bs, int n_products){
         n_products--;
     }
     array[k] = NULL;
-
+    g_hash_table_destroy(_mostBought);
     return array;
 }
 
@@ -198,6 +200,8 @@ Aux * getNMostBoughtProducts(Branches bs, int n_products){
 
 Money * clientSpentMostOn(Branches bs, char *client_code, int n)
 {
+    if(n == -1)
+        return NULL;
     GHashTable* _maxSpent = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (gpointer)freeMoney);
 
     GHashTableIter iter;
@@ -209,6 +213,7 @@ Money * clientSpentMostOn(Branches bs, char *client_code, int n)
 
     GList * _tmpList = g_hash_table_get_values(_maxSpent);
     _tmpList = g_list_sort(_tmpList, compareMoney);
+
 
     int n_products = n;
     Money *array = g_malloc(sizeof(Money)*n_products);
