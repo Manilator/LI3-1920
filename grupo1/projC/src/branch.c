@@ -201,7 +201,9 @@ char** getClientCodes(Branch b, int *n) {
 char ** getProductsInBranch(Branch b) {
     guint * len = g_malloc(sizeof(guint));
     *len = g_hash_table_size(b->productsClients);
-    return (char**)g_hash_table_get_keys_as_array(b->productsClients, len);
+    char ** result = (char**)g_hash_table_get_keys_as_array(b->productsClients, len);
+    g_free(len);
+    return result;
 }
 
 Querie9Aux productBoughtBy(Branch b, char *product_code)
