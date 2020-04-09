@@ -11,6 +11,7 @@
 #define LOAD "Load Files"
 #define ANSWER "Answer Query"
 #define FREE "Free Structs"
+#define DB  "Free Database"
 
 clock_t start, end;
 double cpu_time_used;
@@ -32,6 +33,10 @@ void argsQuery1(StartValues sv, SGV sgv)
     strcpy(sales_path, SALES_PATH);
     setPathsSV(sv, clients_path, products_path, sales_path);
     sgv = startSGV(sgv, sv);
+
+    g_free(clients_path);
+    g_free(products_path);
+    g_free(sales_path);
 }
 
 void argsQuery2(StartValues sv, SGV sgv, int n, char *args[])
@@ -55,6 +60,12 @@ void argsQuery2(StartValues sv, SGV sgv, int n, char *args[])
         freeStringList(result);
         end = clock();
         printElapsedTime(FREE);
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
@@ -95,6 +106,12 @@ void argsQuery3(StartValues sv, SGV sgv, int n, char *args[])
         g_free(result);
         end = clock();
         printElapsedTime(FREE);
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
@@ -125,6 +142,12 @@ void argsQuery4(StartValues sv, SGV sgv, int n, char *args[])
         freeStringMatrix(result);
         end = clock();
         printElapsedTime(FREE);
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
@@ -155,6 +178,12 @@ void argsQuery5(StartValues sv, SGV sgv, int n)
         freeStringList(result);
         end = clock();
         printElapsedTime(FREE);
+        
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
@@ -185,6 +214,12 @@ void argsQuery6(StartValues sv, SGV sgv, int n)
         g_free(result);
         end = clock();
         printElapsedTime(FREE);
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
@@ -215,6 +250,12 @@ void argsQuery7(StartValues sv, SGV sgv, int n, char *args[])
         freeIntMatrix(result);
         end = clock();
         printElapsedTime(FREE);
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
@@ -244,6 +285,12 @@ void argsQuery8(StartValues sv, SGV sgv, int n, char *args[])
         freeQuerie8Aux(result);
         end = clock();
         printElapsedTime(FREE);
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
@@ -274,6 +321,12 @@ void argsQuery9(StartValues sv, SGV sgv, int n, char *args[])
         freeQuerie9Aux(result);
         end = clock();
         printElapsedTime(FREE);
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
@@ -304,6 +357,12 @@ void argsQuery10(StartValues sv, SGV sgv, int n, char *args[])
         freeInfoList(result);
         end = clock();
         printElapsedTime(FREE);
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
@@ -333,6 +392,12 @@ void argsQuery11(StartValues sv, SGV sgv, int n, char *args[])
         freeAuxList(result);
         end = clock();
         printElapsedTime(FREE);
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
@@ -358,11 +423,16 @@ void argsQuery12(StartValues sv, SGV sgv, int n, char *args[])
         end = clock();
         printElapsedTime(ANSWER);
 
-
         start = clock();
         freeMoneyList(result);
         end = clock();
         printElapsedTime(FREE);
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        end = clock();
+        printElapsedTime(DB);
     }
     else
     {
