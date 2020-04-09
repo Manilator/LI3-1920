@@ -178,7 +178,7 @@ void controllerQuerie11(SGV sgv) {
     int n = askQuerie11N();
     Aux * result = nMostBought(sgv, n);
 
-    querie11View(result, n);
+    querie11View(result, listSize((char**)result));
 }
 
 void controllerQuerie12(SGV sgv) {
@@ -193,19 +193,27 @@ void controllerQuerie12(SGV sgv) {
         printf("Cliente inválido.\n");
         resetColor();
     } else {
-        querie12View(result, n);
+        querie12View(result, listSize((char**)result), client);
     }
 }
 
 void menu(SGV sgv)
 {
     int querie;
+    int initial = 0;
     StartValues sv = NULL;
     cleanConsole();
     while (querie != 0)
     {
         printMenu();
         scanf(" %d", &querie);
+        while (querie != 1 && initial != 1) {
+            boldRed();
+            printf("Faça a querie 1 primeiro para carregamento dos dados.\n");
+            boldCyan();
+            scanf(" %d", &querie);
+        }
+        initial = 1;
         switch (querie)
         {
         case 1:

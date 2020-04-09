@@ -13,6 +13,8 @@ void resetColor();
 
 void boldRed();
 
+void boldCyan();
+
 void viewPrintStartValues(char *clients_path,
                           char *products_path,
                           char *sales_path,
@@ -67,6 +69,6 @@ void querie10View(Info *, char*);
 
 void querie11View(Aux * , int);
 
-void querie12View(Money *, int);
+void querie12View(Money *, int,  char*);
 
 #endif

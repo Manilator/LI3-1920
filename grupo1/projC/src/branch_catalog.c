@@ -185,7 +185,7 @@ Aux * getNMostBoughtProducts(Branches bs, int n_products){
 
     GList * l;
     int k=0;
-    for (l = _tmpList; n_products > 0; l = l->next){
+    for (l = _tmpList; n_products > 0 && l->next != NULL; l = l->next){
         array[k++] = cloneAux((Aux)l->data);
         n_products--;
     }
@@ -215,7 +215,7 @@ Money * clientSpentMostOn(Branches bs, char *client_code, int n)
 
     GList * l;
     int k = 0;
-    for (l = _tmpList; n_products > 0; l = l->next)
+    for (l = _tmpList; n_products > 0 && l->next != NULL; l = l->next)
     {
         array[k++] = cloneMoney((Money)l->data);
         n_products--;
