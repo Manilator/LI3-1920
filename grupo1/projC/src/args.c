@@ -270,7 +270,7 @@ void argsQuery9(StartValues sv, SGV sgv, int n, char *args[])
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 6");
+        puts("--- Wrong Input ---\n  ./SGV 9 [Código Produto] [Filial]");
     }
 }
 
