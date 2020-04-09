@@ -130,7 +130,7 @@ void controllerQuerie8(SGV sgv)
         printf("Intervalo de meses errado.\n");
         resetColor();
     }
-    
+
 }
 
 void controllerQuerie9(SGV sgv)
@@ -145,15 +145,12 @@ void controllerQuerie9(SGV sgv)
         resetColor();
         branch = askBranch();
     }
-    int *total_N = malloc(sizeof(int));
-    int *total_P = malloc(sizeof(int));
-    char ***result = query9(sgv, product, branch, total_N, total_P);
 
-    querie9View(result, total_N, total_P);
+    Querie9Aux result = query9(sgv, product, branch);
+
+    querie9View(result);
 
     g_free(product);
-    g_free(total_N);
-    g_free(total_P);
 }
 
 void controllerQuerie10(SGV sgv)

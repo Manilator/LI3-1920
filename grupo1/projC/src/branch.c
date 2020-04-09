@@ -204,20 +204,17 @@ char ** getProductsInBranch(Branch b) {
     return (char**)g_hash_table_get_keys_as_array(b->productsClients, len);
 }
 
-char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
+Querie9Aux productBoughtBy(Branch b, char *product_code)
 {
     RelationWithClient rcc = g_hash_table_lookup(b->productsClients, product_code);
     InfoClient ic;
+    int size = g_hash_table_size(rcc->infoClients);
+
+    Querie9Aux aux = initQuerie9Aux(size);
 
     GHashTableIter iter;
     gpointer key, value;
     int i = 0, j = 0;
-    int size = g_hash_table_size(rcc->infoClients);
-
-    char*** result;
-    result = g_malloc(sizeof(char**)*2);
-    result[ZERO] = g_malloc(sizeof(char*)*size);
-    result[ONE] = g_malloc(sizeof(char*)*size);
 
     g_hash_table_iter_init (&iter, rcc->infoClients);
     while (g_hash_table_iter_next (&iter, &key, &value)) {
@@ -226,23 +223,20 @@ char *** productBoughtBy(Branch b, char *product_code, int *totalN, int *totalP)
 
         if (ic->unitsN)
         {
-            (*totalN)++;
-            result[ZERO][i] = strdup((char*)key);
+            updateTotalN(aux);
+            updateClientsN(aux, i, key);
             i++;
         }
 
         if (ic->unitsP)
         {
-            (*totalP)++;
-            result[ONE][j] = strdup((char*)key);
+            updateTotalP(aux);
+            updateClientsP(aux, j, key);
             j++;
         }
     }
-
-    result[ZERO][i]=NULL;
-    result[ONE][j]=NULL;
-
-    return result;
+    updateClients(aux, i, j);
+    return aux;
 }
 
 int * getClientShopLog(Branch b, char* client_code){

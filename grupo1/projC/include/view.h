@@ -61,7 +61,7 @@ void querie7View(int**);
 
 void querie8View(Querie8Aux, int, int);
 
-void querie9View(char*** , int *, int*);
+void querie9View(Querie9Aux);
 
 void querie10View(Info *, char*);
 

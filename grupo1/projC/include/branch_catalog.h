@@ -21,7 +21,7 @@ char** clientsInCommon(Branches, int*);
 
 char ** getProductsBought(Branches, int);
 
-char *** clientsWhoBoughtProduct(Branches, char*, int, int*, int*);
+Querie9Aux clientsWhoBoughtProduct(Branches, char*, int);
 
 char ** getClientsUsed(Branches, int);
 
