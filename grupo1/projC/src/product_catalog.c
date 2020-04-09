@@ -31,7 +31,7 @@ char ** getProductsByLetter(Products products_catalog, char letter){
     GHashTableIter iter;
     gpointer key, value;
     int size = g_hash_table_size(products_catalog->products);
-    char** result = g_malloc(sizeof(char*)*size);
+    char** result = g_malloc(sizeof(char*)*(size+1));
     int i=0;
 
     g_hash_table_iter_init (&iter, products_catalog->products);
