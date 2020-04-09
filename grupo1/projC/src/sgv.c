@@ -191,14 +191,14 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
     GHashTable * _htProductsBought;
     if(isGlobal == 0){
         result = g_malloc(sizeof(char**)*2);
-        _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+        _htProductsBought = g_hash_table_new(g_str_hash, g_str_equal);
         for (branch = 1; branch <= N_BRANCHES; branch++) {
 
             _productsBought = getProductsBought(sgv->branches, branch);
 
             for(i=0;_productsBought[i] != NULL;i++){
                 if(!g_hash_table_contains(_htProductsBought, _productsBought[i]))
-                    g_hash_table_insert(_htProductsBought, strdup(_productsBought[i]),strdup(_productsBought[i]));
+                    g_hash_table_insert(_htProductsBought,_productsBought[i]),_productsBought[i]);
             }
 
             g_free(_productsBought);
@@ -211,13 +211,14 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
         int j=0;
         result = g_malloc(sizeof(char**)*(N_BRANCHES+1));
         for(branch = 1; branch <= N_BRANCHES; branch++){
-            _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+            _htProductsBought = g_hash_table_new(g_str_hash, g_str_equal);
             _productsBought = getProductsBought(sgv->branches, branch);
             for(i=0;_productsBought[i] != NULL;i++){
                 if(!g_hash_table_contains(_htProductsBought, _productsBought[i]))
                     g_hash_table_insert(_htProductsBought, _productsBought[i],_productsBought[i]);
             }
             result[j++] = getProductsNotArray(sgv->product_catalog, _htProductsBought);
+            g_hash_table_destroy(_htProductsBought);
         }
         result[j] = NULL;
     }
