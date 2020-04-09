@@ -32,14 +32,10 @@ void controllerQuerie1(StartValues sv, SGV sgv)
 void controllerQuerie2(SGV sgv)
 {
     char letter = askProductLetter();
-    puts("x");
     char **result = getProductsStartedByLetter(sgv, letter);
-    puts("y");
     listView(result, listSize(result));
-    puts("z");
 
     freeStringList(result);
-    puts("coco");
 }
 
 void controllerQuerie3(SGV sgv)
