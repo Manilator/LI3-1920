@@ -384,6 +384,7 @@ void freeStringList(char ** list){
     while(list[i] != NULL){
         g_free(list[i++]);
     }
+    g_free(list);
 }
 
 void freeStringMatrix(char *** matrix){
