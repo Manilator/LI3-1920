@@ -31,7 +31,7 @@ void controllerQuerie1(StartValues sv, SGV sgv)
 void controllerQuerie2(SGV sgv)
 {
     char letter = askProductLetter();
-    char **result = productsByLetter(sgv, letter);
+    char **result = getProductsStartedByLetter(sgv, letter);
     listView(result, listSize(result));
     /*querie2View();*/
 }
@@ -41,7 +41,7 @@ void controllerQuerie3(SGV sgv)
     char *product = askProduct();
     int month = askMonth();
     int choice = askQuerie3Choice();
-    double *result = productValuesByMonth(sgv, product, month, choice);
+    double *result = getProductSalesAndProfit(sgv, product, month, choice);
     if (result == NULL)
     {
         cleanConsole();
@@ -59,7 +59,7 @@ void controllerQuerie3(SGV sgv)
 void controllerQuerie4(SGV sgv)
 {
     int choice = askQuerie4Choice();
-    char ***products = productsNotBought(sgv, choice);
+    char ***products = getProductsNeverBought(sgv, choice);
     if (products == NULL)
     {
         printf("Informações não existentes.");
@@ -87,7 +87,7 @@ void controllerQuerie4(SGV sgv)
 
 void controllerQuerie5(SGV sgv)
 {
-    char **clients = query5(sgv);
+    char **clients = getClientsOfAllBranches(sgv);
 
     listView(clients, listSize(clients));
     /*querie5View(clients);*/
@@ -95,7 +95,7 @@ void controllerQuerie5(SGV sgv)
 
 void controllerQuerie6(SGV sgv)
 {
-    int *list = productsClientsNotUsed(sgv);
+    int *list = getClientsAndProductsNeverBoughtCount(sgv);
     querie6View(list);
 }
 
@@ -104,7 +104,7 @@ void controllerQuerie7(SGV sgv)
 
     char *client = askClient();
 
-    int **result = clientShoppingLog(sgv, client);
+    int **result = getProductsBoughtByClient(sgv, client);
 
     tableView(result, client);
     /*querie7View(result);*/
@@ -117,7 +117,7 @@ void controllerQuerie8(SGV sgv)
     int *month = g_malloc(sizeof(int) * 2);
     month = askMonthInterval();
 
-    Querie8Aux result = query8(sgv, month[0], month[1]);
+    Querie8Aux result = getSalesAndProfit(sgv, month[0], month[1]);
 
     if (result != NULL)
     {
@@ -146,7 +146,7 @@ void controllerQuerie9(SGV sgv)
         branch = askBranch();
     }
 
-    Querie9Aux result = query9(sgv, product, branch);
+    Querie9Aux result = getProductBuyers(sgv, product, branch);
 
     querie9View(result);
 
@@ -158,7 +158,7 @@ void controllerQuerie10(SGV sgv)
     char *client = askClient();
     int month = askMonth();
 
-    Info * result = clientMostBoughtByMonth(sgv, client, month);
+    Info * result = getClientsFavoriteProducts(sgv, client, month);
 
     if (result == NULL) {
         cleanConsole();
@@ -173,7 +173,7 @@ void controllerQuerie10(SGV sgv)
 
 void controllerQuerie11(SGV sgv) {
     int n = askQuerie11N();
-    Aux * result = nMostBought(sgv, n);
+    Aux * result = getTopSoldProducts(sgv, n);
 
     querie11View(result, listSize((char**)result));
 }
@@ -182,7 +182,7 @@ void controllerQuerie12(SGV sgv) {
     char* client = askClient();
     int n = askQuerie11N();
 
-    Money *result = query12(sgv, client, n);
+    Money *result = getClientTopProfitProducts(sgv, client, n);
 
     if (result == NULL) {
         cleanConsole();

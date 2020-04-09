@@ -15,19 +15,38 @@ SGV initSGV();
 
 StartValues initStartValues(char*, char*, char*);
 
-char ** productsByLetter(SGV, char);
+/*2*/
+char ** getProductsStartedByLetter(SGV, char);
 
-double * productValuesByMonth(SGV, char* , int, int);
+/*3*/
+double * getProductSalesAndProfit(SGV, char* , int, int);
 
-char *** productsNotBought(SGV, int);
+/*4*/
+char *** getProductsNeverBought(SGV, int);
 
-int * productsClientsNotUsed(SGV);
+/*5*/
+char** getClientsOfAllBranches(SGV);
 
-int ** clientShoppingLog(SGV, char*);
+/*6*/
+int * getClientsAndProductsNeverBoughtCount(SGV);
 
-Info * clientMostBoughtByMonth(SGV, char*, int);
+/*7*/
+int ** getProductsBoughtByClient(SGV, char*);
 
-Aux * nMostBought(SGV, int);
+/*8*/
+Querie8Aux getSalesAndProfit(SGV, int, int);
+
+/*9*/
+Querie9Aux getProductBuyers(SGV, char*, int);
+
+/*10*/
+Info * getClientsFavoriteProducts(SGV, char*, int);
+
+/*11*/
+Aux * getTopSoldProducts(SGV, int);
+
+/*12*/
+Money * getClientTopProfitProducts(SGV, char*, int);
 
 char* getClientsPath(StartValues);
 
@@ -47,16 +66,9 @@ int getReadProducts (StartValues);
 
 int getReadSales (StartValues);
 
-char** query5(SGV);
-
-Querie9Aux query9(SGV, char*, int);
-/*void query9(SGV);*/
-
-Querie8Aux query8(SGV, int, int);
 
 int listSize(char**);
 
-Money * query12(SGV, char*, int);
 
 void freeStringList(char **);
 

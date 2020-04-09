@@ -39,7 +39,7 @@ void argsQuery2(StartValues sv, SGV sgv, int n, char *args[])
 
         /*------------------------------------------------*/
         start = clock();
-        char** result = productsByLetter(sgv, args[0][0]);
+        char** result = getProductsStartedByLetter(sgv, args[0][0]);
         end = clock();
         printElapsedTime(ANSWER);
 
@@ -79,7 +79,7 @@ void argsQuery3(StartValues sv, SGV sgv, int n, char *args[])
 
         /*------------------------------------------------*/
         start = clock();
-        double * result = productValuesByMonth(sgv, args[0], atoi(args[1]), atoi(args[2]));
+        double * result = getProductSalesAndProfit(sgv, args[0], atoi(args[1]), atoi(args[2]));
         end = clock();
         printElapsedTime(ANSWER);
 
@@ -109,7 +109,7 @@ void argsQuery4(StartValues sv, SGV sgv, int n, char *args[])
 
         /*------------------------------------------------*/
         start = clock();
-        char *** result = productsNotBought(sgv, atoi(args[0]));
+        char *** result = getProductsNeverBought(sgv, atoi(args[0]));
         end = clock();
         printElapsedTime(ANSWER);
 
@@ -139,7 +139,7 @@ void argsQuery5(StartValues sv, SGV sgv, int n)
 
         /*------------------------------------------------*/
         start = clock();
-        char** result = query5(sgv);
+        char** result = getClientsOfAllBranches(sgv);
         end = clock();
         printElapsedTime(ANSWER);
 
@@ -169,7 +169,7 @@ void argsQuery6(StartValues sv, SGV sgv, int n)
 
         /*------------------------------------------------*/
         start = clock();
-        int * result = productsClientsNotUsed(sgv);
+        int * result = getClientsAndProductsNeverBoughtCount(sgv);
         end = clock();
         printElapsedTime(ANSWER);
 
@@ -199,7 +199,7 @@ void argsQuery7(StartValues sv, SGV sgv, int n, char *args[])
 
         /*------------------------------------------------*/
         start = clock();
-        int ** result = clientShoppingLog(sgv, args[0]);
+        int ** result = getProductsBoughtByClient(sgv, args[0]);
         end = clock();
         printElapsedTime(ANSWER);
 
@@ -229,7 +229,7 @@ void argsQuery8(StartValues sv, SGV sgv, int n, char *args[])
         printElapsedTime(LOAD);
 
         start = clock();
-        Querie8Aux result = query8(sgv, atoi(args[0]), atoi(args[1]));
+        Querie8Aux result = getSalesAndProfit(sgv, atoi(args[0]), atoi(args[1]));
         end = clock();
         printElapsedTime(ANSWER);
 
@@ -258,7 +258,7 @@ void argsQuery9(StartValues sv, SGV sgv, int n, char *args[])
         printElapsedTime(LOAD);
 
         start = clock();
-        Querie9Aux result = query9(sgv, args[0], atoi(args[1]));
+        Querie9Aux result = getProductBuyers(sgv, args[0], atoi(args[1]));
         end = clock();
         printElapsedTime(ANSWER);
 
@@ -288,7 +288,7 @@ void argsQuery10(StartValues sv, SGV sgv, int n, char *args[])
         printElapsedTime(LOAD);
 
         start = clock();
-        Info * result = clientMostBoughtByMonth(sgv, args[0], atoi(args[1]));
+        Info * result = getClientsFavoriteProducts(sgv, args[0], atoi(args[1]));
         end = clock();
         printElapsedTime(ANSWER);
 
@@ -317,7 +317,7 @@ void argsQuery11(StartValues sv, SGV sgv, int n, char *args[])
         printElapsedTime(LOAD);
 
         start = clock();
-        Aux * result = nMostBought(sgv, atoi(args[0]));
+        Aux * result = getTopSoldProducts(sgv, atoi(args[0]));
         end = clock();
         printElapsedTime(ANSWER);
 
@@ -347,7 +347,7 @@ void argsQuery12(StartValues sv, SGV sgv, int n, char *args[])
         printElapsedTime(LOAD);
 
         start = clock();
-        Money * result = query12(sgv, args[0], atoi(args[1]));
+        Money * result = getClientTopProfitProducts(sgv, args[0], atoi(args[1]));
         end = clock();
         printElapsedTime(ANSWER);
 
