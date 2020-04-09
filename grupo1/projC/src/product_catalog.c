@@ -31,17 +31,18 @@ char ** getProductsByLetter(Products products_catalog, char letter){
     GHashTableIter iter;
     gpointer key, value;
     int size = g_hash_table_size(products_catalog->products);
-    char** result = g_malloc(sizeof(char**)*size);
+    char** result = g_malloc(sizeof(char*)*size);
     int i=0;
 
     g_hash_table_iter_init (&iter, products_catalog->products);
     while (g_hash_table_iter_next (&iter, &key, &value)) {
         if( ((char*)key)[0] == letter){
-            result[i] = g_malloc(sizeof(char*));
+            /*result[i] = g_malloc(sizeof(char*));*/
             result[i++] = strdup((char*)key);
         }
     }
     sort((const char**)result, i);
+    result[i] = NULL;
     return result;
 }
 
@@ -80,16 +81,16 @@ int getSizeProducts(Products products) {
 }
 
 char ** getProductsNotArray(Products product_catalog, GHashTable * products_bought){
-    GHashTableIter iter;
-    gpointer key, value;
     int i=ZERO;
     int size = getSizeProducts(product_catalog) - g_hash_table_size(products_bought);
-    char** result = g_malloc(sizeof(char**)*size);
+    char** result = g_malloc(sizeof(char*)*size);
+
+    GHashTableIter iter;
+    gpointer key, value;
     g_hash_table_iter_init (&iter, product_catalog->products);
     while (g_hash_table_iter_next (&iter, &key, &value))
     {
         if(!g_hash_table_contains(products_bought, (char*)key)){
-            result[i] = g_malloc(sizeof(char*));
             result[i++] = (char*)key;
         }
     }

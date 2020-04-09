@@ -178,7 +178,7 @@ void argsQuery5(StartValues sv, SGV sgv, int n)
         freeStringList(result);
         end = clock();
         printElapsedTime(FREE);
-        
+
         start = clock();
         destroySGV(sgv);
         destroyStartValues(sv);
