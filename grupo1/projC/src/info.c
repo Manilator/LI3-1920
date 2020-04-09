@@ -52,6 +52,10 @@ void updateQuerie8(Querie8Aux aux, double billed, int units, int sales){
     aux->totalSales += sales;
 }
 
+void freeQuerie8Aux(Querie8Aux aux){
+    g_free(aux);
+}
+
 int compareMoney(gconstpointer a, gconstpointer b)
 {
     Money money1 = (const Money)a;

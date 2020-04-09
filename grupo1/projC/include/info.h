@@ -71,4 +71,6 @@ double getQuerie8AuxBilled(Querie8Aux);
 
 int getQuerie8AuxSales(Querie8Aux);
 
+void freeQuerie8Aux(Querie8Aux);
+
 #endif

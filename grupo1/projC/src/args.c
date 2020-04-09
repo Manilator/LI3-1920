@@ -214,12 +214,12 @@ void argsQuery7(StartValues sv, SGV sgv, int n, char *args[])
         puts("--- Wrong Input ---\n  ./SGV 7 [Código de Cliente]");
     }
 }
-/*
+
 void argsQuery8(StartValues sv, SGV sgv, int n, char *args[])
 {
-
+/*
     args[0]: mes
-    args[1]: mes
+    args[1]: mes*/
 
     if (n == 2 && isNumber(args[0]) && isNumber(args[1]))
     {
@@ -229,21 +229,20 @@ void argsQuery8(StartValues sv, SGV sgv, int n, char *args[])
         printElapsedTime(LOAD);
 
         start = clock();
-        int = query8(sgv, int first, int second, int *totalUnits, int *totalSales, double *totalBilled);
-        int ** result = clientShoppingLog(sgv, args[0]);
+        Querie8Aux result = query8(sgv, atoi(args[0]), atoi(args[1]));
         end = clock();
         printElapsedTime(ANSWER);
 
         start = clock();
-        freeIntMatrix(result);
+        freeQuerie8Aux(result);
         end = clock();
         printElapsedTime(FREE);
     }
     else
     {
-        puts("--- Wrong Input ---\n  ./SGV 6");
+        puts("--- Wrong Input ---\n  ./SGV 8 [Initial Month] [Final Month]");
     }
-}*/
+}
 /*
 void argsQuery9(StartValues sv, SGV sgv, int n, char *args[])
 {
@@ -387,10 +386,10 @@ void input(SGV sgv, int n, char *args[], int query)
         case 7:
             argsQuery7(sv, sgv, n, args);
             break;
-            /*
         case 8:
             argsQuery8(sv, sgv, n, args);
             break;
+            /*
         case 9:
             argsQuery9(sv, sgv, n, args);
             break;*/
