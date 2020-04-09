@@ -287,3 +287,12 @@ char * getQuerie9ClientN(Querie9Aux aux, int i){
 char * getQuerie9ClientP(Querie9Aux aux, int i){
     return aux->clientsP[i];
 }
+
+void freeQuerie9Aux(Querie9Aux aux){
+    int i=0;
+    while(aux->clientsP[i] != NULL)
+        g_free(aux->clientsP[i++]);
+    i = 0;
+    while(aux->clientsN[i] != NULL)
+        g_free(aux->clientsN[i++]);
+}

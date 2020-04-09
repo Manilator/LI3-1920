@@ -107,4 +107,6 @@ char * getQuerie9ClientN(Querie9Aux, int);
 
 char * getQuerie9ClientP(Querie9Aux, int);
 
+void freeQuerie9Aux(Querie9Aux);
+
 #endif
