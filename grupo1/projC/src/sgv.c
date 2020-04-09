@@ -339,14 +339,12 @@ Querie8Aux query8(SGV sgv, int monthI, int monthF)
 }
 
 /* [QUERY 9] */
-char *** query9(SGV sgv, char *product_code, int branch, int *totalN, int *totalP)
+Querie9Aux query9(SGV sgv, char *product_code, int branch)
 {
-    char *** result = NULL;
+    Querie9Aux result = NULL;
     if(existProductCode (sgv->product_catalog,product_code) && branch >= 1 && branch <=3)
     {
-        *totalN = 0;
-        *totalP = 0;
-        result = clientsWhoBoughtProduct(sgv->branches, product_code, branch, totalN, totalP);
+        result = clientsWhoBoughtProduct(sgv->branches, product_code, branch);
     }
     return result;
 }

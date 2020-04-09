@@ -49,7 +49,7 @@ int getReadSales (StartValues);
 
 char** query5(SGV);
 
-char *** query9(SGV, char*, int, int*, int*);
+Querie9Aux query9(SGV, char*, int);
 /*void query9(SGV);*/
 
 Querie8Aux query8(SGV, int, int);

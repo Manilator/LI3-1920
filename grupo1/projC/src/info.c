@@ -13,6 +13,13 @@ struct querie8Aux{
   double totalBilled;
 };
 
+struct querie9Aux{
+    char ** clientsN;
+    char ** clientsP;
+    int totalN;
+    int totalP;
+};
+
 struct aux{
   char * product_code;
   int * totalClients;
@@ -232,4 +239,51 @@ int getAuxUnitsSold(Aux aux, int i){
 
 int getAuxTotalClients(Aux aux, int i){
     return aux->totalClients[i];
+}
+
+void updateTotalN(Querie9Aux aux){
+    (aux->totalN)++;
+}
+
+void updateTotalP(Querie9Aux aux){
+    (aux->totalP)++;
+}
+
+int getQuerie9TotalN(Querie9Aux aux){
+    return aux->totalN;
+}
+
+int getQuerie9TotalP(Querie9Aux aux){
+    return aux->totalP;
+}
+
+Querie9Aux initQuerie9Aux(int size){
+    Querie9Aux aux = g_malloc(sizeof(struct querie9Aux));
+    aux->clientsN = g_malloc(sizeof(char*)*size);
+    aux->clientsP = g_malloc(sizeof(char*)*size);
+    aux->totalN  = 0;
+    aux->totalP = 0;
+
+    return aux;
+}
+
+void updateClientsN(Querie9Aux aux, int i, char* key){
+    aux->clientsN[i] = strdup(key);
+}
+
+void updateClientsP(Querie9Aux aux, int i, char* key){
+    aux->clientsP[i] = strdup(key);
+}
+
+void updateClients(Querie9Aux aux, int i, int j){
+    aux->clientsN[i] = NULL;
+    aux->clientsP[j] = NULL;
+}
+
+char * getQuerie9ClientN(Querie9Aux aux, int i){
+    return aux->clientsN[i];
+}
+
+char * getQuerie9ClientP(Querie9Aux aux, int i){
+    return aux->clientsP[i];
 }

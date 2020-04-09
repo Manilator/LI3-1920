@@ -562,11 +562,11 @@ void querie8View(Querie8Aux aux, int first, int second)
     printf("--------- Meses [%d-%d] ---------\n", first, second);
 }
 
-void querie9View(char ***array, int *total_N, int *total_P)
+void querie9View(Querie9Aux aux)
 {
     cleanConsole();
 
-    if (array == NULL)
+    if (aux == NULL)
     {
         boldRed();
         printf("Produto inválido\n");
@@ -574,27 +574,28 @@ void querie9View(char ***array, int *total_N, int *total_P)
     else
     {
         int i;
-
+        int totalN = getQuerie9TotalN(aux);
+        int totalP = getQuerie9TotalP(aux);
         resetColor();
         puts("--------- Clientes N: ---------");
         boldGreen();
-        for (i = 0; array[0][i] && i < *total_N; i++)
+        for (i = 0; getQuerie9ClientN(aux,i) && i < totalN; i++)
         {
-            printf("%s\n", array[0][i]);
+            printf("%s\n", getQuerie9ClientN(aux,i));
         }
 
         resetColor();
         puts("--------- Clientes P: ---------");
         boldGreen();
-        for (i = 0; array[1][i] && i < *total_P; i++)
+        for (i = 0; getQuerie9ClientP(aux,i) && i < totalP; i++)
         {
-            printf("%s\n", array[1][i]);
+            printf("%s\n", getQuerie9ClientP(aux,i));
         }
 
         resetColor();
         puts("--------- TOTAIS: ---------");
         boldGreen();
-        printf("N = %d\nP = %d\n", *total_N, *total_P);
+        printf("N = %d\nP = %d\n", totalN, totalP);
     }
     resetColor();
 }
