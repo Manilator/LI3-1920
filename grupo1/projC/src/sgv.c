@@ -198,7 +198,7 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
 
             for(i=0;_productsBought[i] != NULL;i++){
                 if(!g_hash_table_contains(_htProductsBought, _productsBought[i]))
-                    g_hash_table_insert(_htProductsBought,_productsBought[i]),_productsBought[i]);
+                    g_hash_table_insert(_htProductsBought,_productsBought[i],_productsBought[i]);
             }
 
             g_free(_productsBought);
