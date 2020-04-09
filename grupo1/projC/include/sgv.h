@@ -52,11 +52,11 @@ char** query5(SGV);
 char *** query9(SGV, char*, int, int*, int*);
 /*void query9(SGV);*/
 
-int query8(SGV sgv, int first, int second,int *totalUnits, int *totalSales, double *totalBilled);
+Querie8Aux query8(SGV, int, int);
 
 int listSize(char**);
 
-Money * query12(SGV sgv, char*, int);
+Money * query12(SGV, char*, int);
 
 void freeStringList(char **);
 

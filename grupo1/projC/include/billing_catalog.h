@@ -18,6 +18,6 @@ void insertBillingProduct(Billings, int, char*);
 
 void destroyBillings(Billings);
 
-int getTotalsFromBillingMonthInterval(Billings, int, int, int*, double*, int*);
+Querie8Aux getTotalsFromBillingMonthInterval(Billings, int, int);
 
 #endif

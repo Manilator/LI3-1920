@@ -117,15 +117,11 @@ void controllerQuerie8(SGV sgv)
     int *month = g_malloc(sizeof(int) * 2);
     month = askMonthInterval();
 
-    int *totalUnits = g_malloc(sizeof(int));
-    int *totalSales = g_malloc(sizeof(int));
-    double *totalBilled = g_malloc(sizeof(double));
+    Querie8Aux result = query8(sgv, month[0], month[1]);
 
-    int valid = query8(sgv, month[0], month[1], totalUnits, totalSales, totalBilled);
-
-    if (valid)
+    if (result != NULL)
     {
-        querie8View(*totalUnits, *totalSales, *totalBilled, month[0], month[1]);
+        querie8View(result, month[0], month[1]);
     }
     else
     {
@@ -134,10 +130,7 @@ void controllerQuerie8(SGV sgv)
         printf("Intervalo de meses errado.\n");
         resetColor();
     }
-
-    free(totalUnits);
-    free(totalBilled);
-    free(totalSales);
+    
 }
 
 void controllerQuerie9(SGV sgv)

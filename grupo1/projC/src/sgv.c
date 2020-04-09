@@ -320,7 +320,7 @@ int getReadSales (StartValues sv) {
     return sv->read_sales;
 }
 
-/* QUERY 5 */
+/* [QUERY 5] */
 char** query5(SGV sgv)
 {
     int *n = g_malloc(sizeof(int));
@@ -329,13 +329,16 @@ char** query5(SGV sgv)
     return codes;
 }
 
+/* [QUERY 8] */
+Querie8Aux query8(SGV sgv, int monthI, int monthF)
+{
+    if(monthI > 0 && monthF < 13 && monthF >= monthI)
+        return getTotalsFromBillingMonthInterval(sgv->billings, monthI, monthF);
+    else
+        return NULL;
+}
 
-/* QUERY 9 */
-
-/* Result[0]: codigos N, Result[1]: codigos P */
-/* Sugestao para a view: mostrar ambos os arrays na mesma pagina lado a lado */
-
-/*void query9(SGV sgv)*/
+/* [QUERY 9] */
 char *** query9(SGV sgv, char *product_code, int branch, int *totalN, int *totalP)
 {
     char *** result = NULL;
@@ -345,40 +348,7 @@ char *** query9(SGV sgv, char *product_code, int branch, int *totalN, int *total
         *totalP = 0;
         result = clientsWhoBoughtProduct(sgv->branches, product_code, branch, totalN, totalP);
     }
-
-    /*char ***teste = clientsWhoBoughtProduct(sgv->branches, "AF1184", 1, totalN, totalP);*/
-    /*
-    int i;
-
-    puts("--------- CODIGOS N: ---------");
-    for(i = 0; teste[0][i] && i < *totalN; i++)
-    {
-        printf("%s\n", teste[0][i]);
-    }
-
-    puts("--------- CODIGOS P: ---------");
-    for(i = 0; teste[1][i] && i < *totalP; i++)
-    {
-        printf("%s\n", teste[1][i]);
-    }
-
-    puts("--------- TOTAIS: ---------");
-    printf("N = %d\nP = %d\n", *totalN, *totalP);
-    */
-
-    /*g_free(totalN);
-    g_free(totalP);*/
-
     return result;
-}
-
-/* QUERY 8 */
-int query8(SGV sgv, int first, int second, int *totalUnits, int *totalSales, double *totalBilled)
-{
-    int valid = getTotalsFromBillingMonthInterval(sgv->billings, first, second, totalUnits, totalBilled, totalSales);
-    printf("valid: %d\nUnits: %d\nBilled: %f\nSales: %d\n", valid, *totalUnits, *totalBilled, *totalSales);
-
-    return valid;
 }
 
 int listSize(char** list) {

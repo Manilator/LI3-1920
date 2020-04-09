@@ -109,31 +109,22 @@ double * getProductValuesByMonthBillingCat(Billings bs, char* product_code, int 
 
 /* QUERY 8 */
 /* [I..F] */
-int getTotalsFromBillingMonthInterval(Billings bs, int monthI, int monthF, int *totalUnits, double *totalBilled, int *totalSales)
+Querie8Aux getTotalsFromBillingMonthInterval(Billings bs, int monthI, int monthF)
 {
-    int res = monthI > 0
-           && monthF < 13
-           && monthF >= monthI;
+    Querie8Aux aux = initQuerie8Aux();
 
-    if (res)
+    int i;
+    Billing b;
+    for (i = monthI; i <= monthF; i++)
     {
-        *totalUnits = 0;
-        *totalBilled = 0;
-        *totalSales = 0;
+        int *key = g_malloc(sizeof(int));
+        *key = i;
 
-        int i;
-        Billing b;
-        for (i = monthI; i <= monthF; i++)
-        {
-            int *key = g_malloc(sizeof(int));
-            *key = i;
+        b = (Billing)g_hash_table_lookup(bs->billings,key);
+        getTotalsFromBilling(b, aux);
 
-            b = (Billing)g_hash_table_lookup(bs->billings,key);
-            getTotalsFromBilling(b, totalUnits, totalBilled, totalSales);
-
-            g_free(key);
-        }
+        g_free(key);
     }
 
-    return res;
+    return aux;
 }

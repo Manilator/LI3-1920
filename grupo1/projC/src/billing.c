@@ -156,11 +156,12 @@ void freeBilling(Billing b) {
 }
 
 /* QUERY 8 */
-void getTotalsFromBilling(Billing b, int *totalUnits, double *totalBilled, int *totalSales)
+void getTotalsFromBilling(Billing b, Querie8Aux aux)
 {
-    *totalBilled += b->totalBilled;
-    *totalUnits  += b->branches[0]
+    updateQuerie8(aux,b->totalBilled,
+                    b->branches[0]
                   + b->branches[1]
-                  + b->branches[2];
-    *totalSales += b->n_sales;
+                  + b->branches[2],
+                  b->n_sales
+              );
 }

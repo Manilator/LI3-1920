@@ -2,6 +2,56 @@
 #include "constants.h"
 #include <string.h>
 
+struct info{
+  char * product_code;
+  int unitsSold;
+};
+
+struct querie8Aux{
+  int totalUnits;
+  int totalSales;
+  double totalBilled;
+};
+
+struct aux{
+  char * product_code;
+  int * totalClients;
+  int * unitsSold;
+};
+
+struct money{
+  char * product_code;
+  double moneySpent;
+};
+
+
+Querie8Aux initQuerie8Aux(){
+    Querie8Aux aux = g_malloc(sizeof(struct querie8Aux));
+    aux->totalBilled = 0.0f;
+    aux->totalUnits  = 0;
+    aux->totalSales = 0;
+
+    return aux;
+}
+
+int getQuerie8AuxUnits(Querie8Aux aux){
+    return aux->totalUnits;
+}
+
+double getQuerie8AuxBilled(Querie8Aux aux){
+    return aux->totalBilled;
+}
+
+int getQuerie8AuxSales(Querie8Aux aux){
+    return aux->totalSales;
+}
+
+void updateQuerie8(Querie8Aux aux, double billed, int units, int sales){
+    aux->totalBilled += billed;
+    aux->totalUnits  += units;
+    aux->totalSales += sales;
+}
+
 int compareMoney(gconstpointer a, gconstpointer b)
 {
     Money money1 = (const Money)a;
@@ -150,4 +200,32 @@ void freeMoneyList(Money* list){
     while(list[i] != NULL){
         freeMoney(list[i++]);
     }
+}
+
+char* getInfoProduct(Info info){
+    return info->product_code;
+}
+
+char* getAuxProduct(Aux aux){
+    return aux->product_code;
+}
+
+char* getMoneyProduct(Money money){
+    return money->product_code;
+}
+
+int getInfoUnitsSold(Info info){
+    return info->unitsSold;
+}
+
+double getMoneySpent(Money money){
+    return money->moneySpent;
+}
+
+int getAuxUnitsSold(Aux aux, int i){
+    return aux->unitsSold[i];
+}
+
+int getAuxTotalClients(Aux aux, int i){
+    return aux->totalClients[i];
 }

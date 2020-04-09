@@ -41,32 +41,32 @@ int askQuerie4Choice();
 
 int askQuerie11N();
 
-void listView(char **list, int size);
+void listView(char **, int);
 
-void tableView(int** list, char* client);
+void tableView(int**, char*);
 
-void querie1View(char* clients_path, char* products_path, char* sales_path);
+void querie1View(char*, char*, char*);
 
 void querie2View(char**);
 
-void querie3View(double * products, int choice, char* product);
+void querie3View(double *, int, char*);
 
-void querie4View(char ***products, int choice, int branch, int size);
+void querie4View(char ***, int, int, int);
 
-void querie5View(char** clients);
+void querie5View(char**);
 
-void querie6View(int* list);
+void querie6View(int*);
 
-void querie7View(int** totals);
+void querie7View(int**);
 
-void querie8View(int totalUnits, int totalSales, double totalBilled, int first, int second);
+void querie8View(Querie8Aux, int, int);
 
-void querie9View(char*** array, int *total_N, int* total_P);
+void querie9View(char*** , int *, int*);
 
-void querie10View(Info *info, char* client);
+void querie10View(Info *, char*);
 
-void querie11View(Aux * result, int n);
+void querie11View(Aux * , int);
 
-void querie12View(Money *result, int n);
+void querie12View(Money *, int);
 
 #endif

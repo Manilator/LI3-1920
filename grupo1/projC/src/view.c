@@ -549,15 +549,15 @@ void querie7View(int **totals)
     }
 }
 
-void querie8View(int totalUnits, int totalSales, double totalBilled, int first, int second)
+void querie8View(Querie8Aux aux, int first, int second)
 {
     cleanConsole();
     resetColor();
     printf("--------- Meses [%d-%d] ---------\n", first, second);
     boldGreen();
-    printf("Unidades vendidas: %d\n", totalUnits);
-    printf("Total faturado: %f\n", totalBilled);
-    printf("Registo de Vendas: %d\n", totalSales);
+    printf("Unidades vendidas: %d\n", getQuerie8AuxUnits(aux));
+    printf("Total faturado: %f\n", getQuerie8AuxBilled(aux));
+    printf("Registo de Vendas: %d\n", getQuerie8AuxSales(aux));
     resetColor();
     printf("--------- Meses [%d-%d] ---------\n", first, second);
 }
@@ -607,7 +607,7 @@ void querie10View(Info *info, char *client)
     boldGreen();
     for (i = 0; info[i] != NULL; i++)
     {
-        printf("Produto: %s | Unidades: %d\n", info[i]->product_code, info[i]->unitsSold);
+        printf("Produto: %s | Unidades: %d\n", getInfoProduct(info[i]), getInfoUnitsSold(info[i]));
     }
     resetColor();
 }
@@ -619,11 +619,11 @@ void querie11View(Aux *result, int n)
     for (k = 0; k < n; k++)
     {
         Aux aux = result[k];
-        printf("--------- Produto %s (%dº)\n", (char *)aux->product_code, k + 1);
+        printf("--------- Produto %s (%dº)\n", getAuxProduct(aux), k + 1);
         boldGreen();
         for (j = 0; j < N_BRANCHES; j++)
         {
-            printf("Filial: %d | Total de clientes diferentes: %d | Unidades vendidas: %d\n", (j + 1), aux->totalClients[j], aux->unitsSold[j]);
+            printf("Filial: %d | Total de clientes diferentes: %d | Unidades vendidas: %d\n", (j + 1), getAuxTotalClients(aux,j),getAuxUnitsSold(aux,j));
         }
         resetColor();
     }
@@ -637,7 +637,7 @@ void querie12View(Money *result, int n)
     for (k = 0; k < n; k++)
     {
         Money money = result[k];
-        printf("Produto: %s | Gastou: %f\n", (char *)money->product_code, (double)money->moneySpent);
+        printf("Produto: %s | Gastou: %f\n", getMoneyProduct(money), getMoneySpent(money));
     }
     resetColor();
 }

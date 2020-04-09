@@ -1,6 +1,8 @@
 #ifndef ___BILLING_H___
 #define ___BILLING_H___
 
+#include "info.h"
+
 typedef struct billing* Billing;
 
 typedef struct billingProduct* BillingProduct;
@@ -29,6 +31,6 @@ void freeBillingProduct(BillingProduct);
 
 void freeBilling(Billing);
 
-void getTotalsFromBilling(Billing, int*, double*, int*);
+void getTotalsFromBilling(Billing, Querie8Aux);
 
 #endif

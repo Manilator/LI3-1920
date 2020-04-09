@@ -3,23 +3,13 @@
 
 #include <glib.h>
 
-typedef struct info{
-  char * product_code;
-  int unitsSold;
-}*Info;
+typedef struct info* Info;
 
-typedef struct aux{
-  char * product_code;
-  int * totalClients;
-  int * unitsSold;
-}*Aux;
+typedef struct aux* Aux;
 
+typedef struct money* Money;
 
-typedef struct money{
-  char * product_code;
-  double moneySpent;
-}*Money;
-
+typedef struct querie8Aux* Querie8Aux;
 
 int compareMoney(gconstpointer, gconstpointer);
 
@@ -56,5 +46,29 @@ void freeInfoList(Info*);
 void freeAuxList(Aux*);
 
 void freeMoneyList(Money*);
+
+char* getInfoProduct(Info info);
+
+char* getAuxProduct(Aux aux);
+
+int getAuxUnitsSold(Aux aux, int);
+
+int getAuxTotalClients(Aux aux, int);
+
+char* getMoneyProduct(Money money);
+
+double getMoneySpent(Money money);
+
+int getInfoUnitsSold(Info info);
+
+void updateQuerie8(Querie8Aux, double, int, int);
+
+Querie8Aux initQuerie8Aux();
+
+int getQuerie8AuxUnits(Querie8Aux);
+
+double getQuerie8AuxBilled(Querie8Aux);
+
+int getQuerie8AuxSales(Querie8Aux);
 
 #endif
