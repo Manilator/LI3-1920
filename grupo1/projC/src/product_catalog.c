@@ -83,7 +83,7 @@ int getSizeProducts(Products products) {
 char ** getProductsNotArray(Products product_catalog, GHashTable * products_bought){
     int i=ZERO;
     int size = getSizeProducts(product_catalog) - g_hash_table_size(products_bought);
-    char** result = g_malloc(sizeof(char*)*size);
+    char** result = g_malloc(sizeof(char*)*(size+1));
 
     GHashTableIter iter;
     gpointer key, value;

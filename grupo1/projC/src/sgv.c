@@ -190,7 +190,7 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
     char ** _productsBought;
     GHashTable * _htProductsBought;
     if(isGlobal == 0){
-        result = g_malloc(sizeof(char**));
+        result = g_malloc(sizeof(char**)*2);
         _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
         for (branch = 1; branch <= N_BRANCHES; branch++) {
 
@@ -202,7 +202,6 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
             }
 
             g_free(_productsBought);
-
         }
         result[ZERO] = getProductsNotArray(sgv->product_catalog, _htProductsBought);
         result[ONE] = NULL;
@@ -210,7 +209,7 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
     }
     else{
         int j=0;
-        result = g_malloc(sizeof(char**)*N_BRANCHES);
+        result = g_malloc(sizeof(char**)*(N_BRANCHES+1));
         for(branch = 1; branch <= N_BRANCHES; branch++){
             _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
             _productsBought = getProductsBought(sgv->branches, branch);
@@ -246,7 +245,7 @@ int * getClientsAndProductsNeverBoughtCount(SGV sgv){
     char ** _clientsUsed;
     GHashTable * _htClientsUsed;
 
-    _htProductsBought = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+    _htProductsBought = g_hash_table_new(g_str_hash, g_str_equal);
     for (branch = 1; branch <= N_BRANCHES; branch++) {
         _productsBought = getProductsBought(sgv->branches, branch);
         for(i = 0; _productsBought[i] != NULL; i++){
@@ -257,7 +256,7 @@ int * getClientsAndProductsNeverBoughtCount(SGV sgv){
     }
     products_not_used = getNumberProductsNotUsed(sgv->product_catalog, _htProductsBought);
 
-    _htClientsUsed = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
+    _htClientsUsed = g_hash_table_new(g_str_hash, g_str_equal);
     for (branch = 1; branch <= N_BRANCHES; branch++) {
         _clientsUsed = getClientsUsed(sgv->branches, branch);
         for(i = 0; _clientsUsed[i] != NULL; i++){
@@ -267,7 +266,8 @@ int * getClientsAndProductsNeverBoughtCount(SGV sgv){
         g_free(_clientsUsed);
     }
     clients_not_used = getNumberClientsNotUsed(sgv->client_catalog, _htClientsUsed);
-
+    g_hash_table_destroy(_htProductsBought);
+    g_hash_table_destroy(_htClientsUsed);
     int * result = g_malloc(sizeof(int));
     result[ZERO] = products_not_used;
     result[ONE] = clients_not_used;
