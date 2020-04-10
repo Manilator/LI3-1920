@@ -495,6 +495,7 @@ void querie4View(char ***products, int global, int branch, int size)
         *choice = 0;
         scanf(" %s", choice);
         resetColor();
+        g_free(choice);
     }
     cleanConsole();
 }
