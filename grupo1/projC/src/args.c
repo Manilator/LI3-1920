@@ -30,11 +30,17 @@ void argsCustomQuery1(StartValues sv, SGV sgv, int n, char *args[]){
         char *clients_path = g_malloc(sizeof(char) * 1024);
         char *products_path = g_malloc(sizeof(char) * 1024);
         char *sales_path = g_malloc(sizeof(char) * 1024);
-        strcpy(clients_path, args[0]);
-        strcpy(products_path, args[1]);
-        strcpy(sales_path, args[2]);
-        if(n == 3)
-            setPathsSV(sv, clients_path, products_path, sales_path);
+        if(n==0){
+            strcpy(clients_path, CLIENTS_PATH);
+            strcpy(products_path, PRODUCTS_PATH);
+            strcpy(sales_path, SALES_PATH);
+        }
+        else{
+            strcpy(clients_path, args[0]);
+            strcpy(products_path, args[1]);
+            strcpy(sales_path, args[2]);
+        }
+        setPathsSV(sv, clients_path, products_path, sales_path);
         end = clock();
         printElapsedTime(LOAD);
 
