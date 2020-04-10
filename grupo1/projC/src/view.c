@@ -410,7 +410,7 @@ void querie4View(char ***products, int global, int branch, int size)
     }
     else
     {
-        printf("--------- Filial %d\n", branch+1);
+        printf("--------- Filial %d\n", branch + 1);
     }
     printf("--------- Página %d de %d ---------\n", page, max);
     boldGreen();
@@ -495,8 +495,8 @@ void querie4View(char ***products, int global, int branch, int size)
         *choice = 0;
         scanf(" %s", choice);
         resetColor();
-        g_free(choice);
     }
+    g_free(choice);
     cleanConsole();
 }
 
