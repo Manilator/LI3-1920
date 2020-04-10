@@ -154,7 +154,9 @@ void controllerQuerie9(SGV sgv)
 
     Querie9Aux result = getProductBuyers(sgv, product, branch);
 
-    querie9View(result);
+    char type = askPromotion();
+
+    querie9View(result,type);
 
     g_free(product);
     freeQuerie9Aux(result);
@@ -173,7 +175,7 @@ void controllerQuerie10(SGV sgv)
         printf("Cliente inválido.\n");
         resetColor();
     } else {
-        querie10View(result, client);
+        querie10View(result, listSize((char**)result), client);
     }
     g_free(client);
     freeInfoList(result);

@@ -27,6 +27,8 @@ void viewPrintStartValues(char *clients_path,
 
 char askProductLetter();
 
+char askPromotion();
+
 char *askProduct();
 
 int askMonth();
@@ -63,9 +65,9 @@ void querie7View(int**);
 
 void querie8View(Querie8Aux, int, int);
 
-void querie9View(Querie9Aux);
+void querie9View(Querie9Aux aux, char type);
 
-void querie10View(Info *, char*);
+void querie10View(Info *info, int n, char *client);
 
 void querie11View(Aux * , int);
 
