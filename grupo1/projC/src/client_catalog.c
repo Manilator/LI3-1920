@@ -16,6 +16,15 @@ Clients initClients() {
     return clients;
 }
 
+void fillClientsHT(Clients clients, GHashTable * clients_ht){
+    GHashTableIter iter;
+    gpointer key, value;
+    g_hash_table_iter_init (&iter, clients->clients);
+    while (g_hash_table_iter_next (&iter, &key, &value)){
+        g_hash_table_insert(clients_ht, (char*)key, (char*)key);
+    }
+}
+
 int addClient(Clients clients, char* client) {
     char* client_code = strdup(client);
     strtok(client_code, "\r\n");

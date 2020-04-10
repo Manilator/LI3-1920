@@ -68,4 +68,6 @@ void updateNMostBought(Branch, GHashTable *, int);
 
 void clientSpentMostOnBranch(Branch, char*, GHashTable *);
 
+void intersectClients(Branch, GHashTable *);
+
 #endif

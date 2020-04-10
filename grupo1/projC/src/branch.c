@@ -185,7 +185,7 @@ static int compare(const void* a, const void* b) {
     return strcmp(*(const char**)a, *(const char**)b);
 }
 
-void sort(const char* arr[], int n) {
+static void sort(const char* arr[], int n) {
     qsort(arr, n, sizeof(const char*), compare);
 }
 
@@ -286,6 +286,16 @@ void getMostBoughtByBranch(Branch b, char* client_code, int month, GHashTable * 
     }
 }
 
+void intersectClients(Branch b, GHashTable * _mostBought){
+    GHashTableIter iter;
+    gpointer key, value;
+    g_hash_table_iter_init (&iter, b->clientsProducts);
+    while (g_hash_table_iter_next (&iter, &key, &value)){
+        if(!g_hash_table_contains(_mostBought, (char*)key)){
+            g_hash_table_steal(_mostBought, (char*)key);
+        }
+    }
+}
 
 void updateNMostBought(Branch b, GHashTable * _mostBought, int branch){
 

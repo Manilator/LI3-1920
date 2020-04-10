@@ -21,4 +21,6 @@ void destroyClients(Clients);
 
 int getNumberClientsNotUsed(Clients, GHashTable *);
 
+void fillClientsHT(Clients, GHashTable *);
+
 #endif

@@ -95,7 +95,7 @@ void controllerQuerie5(SGV sgv)
 
     listView(clients, listSize(clients));
 
-    freeStringList(clients);
+    g_free(clients);
 }
 
 void controllerQuerie6(SGV sgv)

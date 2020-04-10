@@ -163,14 +163,14 @@ SGV startSGV(SGV sgv, StartValues sv)
 }
 
 /*
- * [QUERIE 2] - Returns all of the product codes started by "letter"
+ * [QUERY 2] - Returns all of the product codes started by "letter"
 */
 char ** getProductsStartedByLetter(SGV sgv, char letter){
     return getProductsByLetter(sgv->product_catalog, letter);
 }
 
 /*
- * [QUERIE 3]
+ * [QUERY 3]
 */
 double * getProductSalesAndProfit(SGV sgv, char* product_code, int month, int branches){
     double * result = NULL;
@@ -181,7 +181,7 @@ double * getProductSalesAndProfit(SGV sgv, char* product_code, int month, int br
 }
 
 /*
- * [QUERIE 4] - Determinar a lista ordenada dos códigos dos produtos(e o seu número total)que ninguém  comprou,
+ * [QUERY 4] - Determinar a lista ordenada dos códigos dos produtos(e o seu número total)que ninguém  comprou,
                 podendo  o  utilizador  decidir  igualmente  se  pretende valores totais ou divididos pelas filiais.
 */
 char *** getProductsNeverBought(SGV sgv, int isGlobal){
@@ -227,15 +227,12 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
 }
 
 /* [QUERY 5] */
-char** getClientsOfAllBranches(SGV sgv)
-{
-    int *n = g_malloc(sizeof(int));
-    char** codes = clientsInCommon(sgv->branches, n);
-    g_free(n);
+char** getClientsOfAllBranches(SGV sgv){
+    char** codes = clientsInCommon(sgv->branches, sgv->client_catalog);
     return codes;
 }
 
-/* [QUERIE 6] */
+/* [QUERY 6] */
 int * getClientsAndProductsNeverBoughtCount(SGV sgv){
     int i;
     int branch;
@@ -276,7 +273,7 @@ int * getClientsAndProductsNeverBoughtCount(SGV sgv){
     return result;
 }
 
-/* QUERIE 7 */
+/* QUERY 7 */
 int ** getProductsBoughtByClient(SGV sgv, char* client_code){
     int ** result = NULL;
     if(existClientCode (sgv->client_catalog,client_code)){
@@ -311,7 +308,7 @@ Querie9Aux getProductBuyers(SGV sgv, char *product_code, int branch)
     return result;
 }
 
-/* [QUERIE 10] */
+/* [QUERY 10] */
 Info * getClientsFavoriteProducts(SGV sgv, char* client_code, int month){
     Info * result = NULL;
     if(existClientCode (sgv->client_catalog,client_code) && month >= ZERO && month <= MONTHS){
@@ -320,12 +317,12 @@ Info * getClientsFavoriteProducts(SGV sgv, char* client_code, int month){
     return result;
 }
 
-/* [QUERIE 11] */
+/* [QUERY 11] */
 Aux * getTopSoldProducts(SGV sgv, int n_products){
     return getNMostBoughtProducts(sgv->branches, n_products);
 }
 
-/* [QUERIE 12] */
+/* [QUERY 12] */
 Money * getClientTopProfitProducts(SGV sgv, char *client_code, int n)
 {
     Money * result = NULL;

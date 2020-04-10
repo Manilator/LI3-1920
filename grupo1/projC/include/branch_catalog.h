@@ -17,7 +17,7 @@ void destroyBranches(Branches);
 
 char** intersect(char**, char**, char**, int, int, int, int*);
 
-char** clientsInCommon(Branches, int*);
+char ** clientsInCommon(Branches, Clients);
 
 char ** getProductsBought(Branches, int);
 
