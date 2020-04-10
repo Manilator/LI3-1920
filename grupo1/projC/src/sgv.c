@@ -301,7 +301,7 @@ Querie8Aux getSalesAndProfit(SGV sgv, int monthI, int monthF)
 Querie9Aux getProductBuyers(SGV sgv, char *product_code, int branch)
 {
     Querie9Aux result = NULL;
-    if(existProductCode (sgv->product_catalog,product_code) && branch >= 1 && branch <=3)
+    if(existProductCode (sgv->product_catalog,product_code) && branch >= 1 && branch <= N_BRANCHES)
     {
         result = clientsWhoBoughtProduct(sgv->branches, product_code, branch);
     }
