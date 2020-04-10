@@ -262,7 +262,9 @@ int * getClientShopLog(Branch b, char* client_code){
 char ** getClientsInBranch(Branch b){
     guint * len = g_malloc(sizeof(guint));
     *len = g_hash_table_size(b->clientsProducts);
-    return (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
+    char ** result = (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
+    g_free(len);
+    return result;
 }
 
 
@@ -279,7 +281,7 @@ void getMostBoughtByBranch(Branch b, char* client_code, int month, GHashTable * 
         }
         else if((int)((InfoProduct)value)->quantities[month] != 0){
             Info info = (Info)initInfo((char*)key, (int)((InfoProduct)value)->quantities[month]);
-            g_hash_table_insert(_mostBought, (char*)key, (gpointer)info);
+            g_hash_table_insert(_mostBought, strdup((char*)key), (gpointer)info);
         }
     }
 }
@@ -333,7 +335,7 @@ void clientSpentMostOnBranch(Branch b, char* client_code, GHashTable * _maxSpent
         else if(spent != 0)
         {
             Money money = (Money)initMoney((char*)key, spent);
-            g_hash_table_insert(_maxSpent, (char*)key, (gpointer)money);
+            g_hash_table_insert(_maxSpent, strdup((char*)key), (gpointer)money);
         }
     }
 }

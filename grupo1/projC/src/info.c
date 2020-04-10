@@ -83,6 +83,7 @@ Money cloneMoney(Money money)
 void freeMoney(Money money)
 {
     g_free(money->product_code);
+    g_free(money);
 }
 
 
@@ -104,6 +105,7 @@ void freeAux(Aux aux){
     g_free(aux->product_code);
     g_free(aux->totalClients);
     g_free(aux->unitsSold);
+    g_free(aux);
 }
 
 int compareAux(gconstpointer a, gconstpointer b){
@@ -126,7 +128,7 @@ int compareInfo(gconstpointer a, gconstpointer b){
 
 void freeInfo(Info info){
     g_free(info->product_code);
-
+    g_free(info);
 }
 
 Info cloneInfo(Info info){
@@ -198,6 +200,7 @@ void freeInfoList(Info* list){
         while(list[i] != NULL){
             freeInfo(list[i++]);
         }
+        g_free(list);
     }
 }
 
@@ -207,6 +210,7 @@ void freeAuxList(Aux* list){
         while(list[i] != NULL){
             freeAux(list[i++]);
         }
+        g_free(list);
     }
 }
 
@@ -216,6 +220,7 @@ void freeMoneyList(Money* list){
         while(list[i] != NULL){
             freeMoney(list[i++]);
         }
+        g_free(list);
     }
 }
 
@@ -302,5 +307,13 @@ void freeQuerie9Aux(Querie9Aux aux){
         i = 0;
         while(aux->clientsN[i] != NULL)
             g_free(aux->clientsN[i++]);
+
+        if(aux->clientsN != NULL)
+            g_free(aux->clientsN);
+        if(aux->clientsP != NULL)
+            g_free(aux->clientsP);
+        g_free(aux);
     }
+
+
 }

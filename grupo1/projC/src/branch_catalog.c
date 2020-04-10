@@ -54,8 +54,7 @@ char** intersect(char *ar1[], char *ar2[], char *ar3[], int n1, int n2, int n3, 
         n = n3;
     }
 
-    char **res;
-    res = g_malloc(n * sizeof(char *));
+    char **res = g_malloc((n+1) * sizeof(char *));
     int count = 0;
 
     while (i < n1 && j < n2 && k < n3) {
@@ -97,6 +96,8 @@ char** clientsInCommon(Branches bs, int *x) {
     *branch_number = 3;
     Branch b3 = (Branch)g_hash_table_lookup(bs->branches, branch_number);
 
+    g_free(branch_number);
+
     int n1, n2, n3;
 
     char** codes1 = getClientCodes(b1, &n1);
@@ -104,6 +105,10 @@ char** clientsInCommon(Branches bs, int *x) {
     char** codes3 = getClientCodes(b3, &n3);
 
     char** codes = intersect(codes1, codes2, codes3, n1, n2, n3, x);
+
+    g_free(codes1);
+    g_free(codes2);
+    g_free(codes3);
 
     return codes;
 }
@@ -153,7 +158,7 @@ Info * getMostBought(Branches bs, char* client_code, int month){
     _tmpList = g_list_sort(_tmpList, compareInfo);
 
     int n_products = g_hash_table_size(_mostBought);
-    Info * array = g_malloc(sizeof(Info)*n_products);
+    Info * array = g_malloc(sizeof(Info)*(n_products+1));
 
     GList * l;
     int k=0;
@@ -162,7 +167,8 @@ Info * getMostBought(Branches bs, char* client_code, int month){
         n_products--;
     }
     array[k] = NULL;
-    /*g_hash_table_destroy(_mostBought);*/
+    g_list_free(_tmpList);
+    g_hash_table_destroy(_mostBought);
     return array;
 }
 
@@ -183,7 +189,7 @@ Aux * getNMostBoughtProducts(Branches bs, int n_products){
     GList * _tmpList = g_hash_table_get_values(_mostBought);
     _tmpList = g_list_sort(_tmpList, compareAux);
 
-    Aux * array = g_malloc(sizeof(Aux)*n_products);
+    Aux * array = g_malloc(sizeof(Aux)*(n_products+1));
 
     GList * l;
     int k=0;
@@ -192,6 +198,7 @@ Aux * getNMostBoughtProducts(Branches bs, int n_products){
         n_products--;
     }
     array[k] = NULL;
+    g_list_free(_tmpList);
     g_hash_table_destroy(_mostBought);
     return array;
 }
@@ -216,7 +223,7 @@ Money * clientSpentMostOn(Branches bs, char *client_code, int n)
 
 
     int n_products = n;
-    Money *array = g_malloc(sizeof(Money)*n_products);
+    Money *array = g_malloc(sizeof(Money)*(1+n_products));
 
     GList * l;
     int k = 0;
@@ -227,8 +234,8 @@ Money * clientSpentMostOn(Branches bs, char *client_code, int n)
     }
 
     array[k] = NULL;
-
-    /*g_hash_table_destroy(_maxSpent);*/
+    g_list_free(_tmpList);
+    g_hash_table_destroy(_maxSpent);
 
     return array;
 }

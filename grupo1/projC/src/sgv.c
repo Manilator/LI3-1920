@@ -219,6 +219,7 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
             }
             result[j++] = getProductsNotArray(sgv->product_catalog, _htProductsBought);
             g_hash_table_destroy(_htProductsBought);
+            g_free(_productsBought);
         }
         result[j] = NULL;
     }
@@ -269,7 +270,7 @@ int * getClientsAndProductsNeverBoughtCount(SGV sgv){
     clients_not_used = getNumberClientsNotUsed(sgv->client_catalog, _htClientsUsed);
     g_hash_table_destroy(_htProductsBought);
     g_hash_table_destroy(_htClientsUsed);
-    int * result = g_malloc(sizeof(int));
+    int * result = g_malloc(sizeof(int)*2);
     result[ZERO] = products_not_used;
     result[ONE] = clients_not_used;
     return result;
@@ -280,7 +281,7 @@ int ** getProductsBoughtByClient(SGV sgv, char* client_code){
     int ** result = NULL;
     if(existClientCode (sgv->client_catalog,client_code)){
         int branch;
-        result = g_malloc(sizeof(int*)*N_BRANCHES);
+        result = g_malloc(sizeof(int*)*(N_BRANCHES+1));
 
         for (branch=ONE; branch <= N_BRANCHES; branch++) {
             result[branch-ONE] = clientBranchShopLog(sgv->branches, client_code, branch);
@@ -395,9 +396,10 @@ void freeStringMatrix(char *** matrix){
     g_free(matrix);
 }
 
-void freeIntMatrix(int ** list){
+void freeIntMatrix(int ** matrix){
     int i = 0;
-    while(list[i] != NULL){
-        g_free(list[i++]);
+    while(matrix[i] != NULL){
+        g_free(matrix[i++]);
     }
+    g_free(matrix);
 }
