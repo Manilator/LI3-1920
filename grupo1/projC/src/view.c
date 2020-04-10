@@ -178,13 +178,15 @@ void querie1View(char *clients_path, char *products_path, char *sales_path)
 char askProductLetter()
 {
     resetColor();
-    char letter;
-    printf("1 - Choose product first letter\n");
-    boldCyan();
-    scanf(" %c", &letter);
-    toupper(letter);
-    resetColor();
-    return letter;
+    char letter = 0;
+    while ((letter < 'A' || letter > 'Z') && (letter < 'a' || letter > 'z'))
+    {
+        printf("Qual a letra?\n");
+        boldCyan();
+        scanf(" %c", &letter);
+        resetColor();
+    }
+    return toupper(letter);
 }
 
 char askPromotion()
@@ -215,15 +217,18 @@ char *askProduct()
 
 int askMonth()
 {
+    char *choice = malloc(sizeof(char) * 32);
     int month = -1;
     while (month <= 0 || month > 12)
     {
         resetColor();
         printf("Qual mês?: \n");
         boldCyan();
-        scanf(" %d", &month);
+        scanf(" %s", choice);
+        month = atoi(choice);
         resetColor();
     }
+    g_free(choice);
     return month;
 }
 
@@ -240,70 +245,86 @@ char *askClient()
 
 int *askMonthInterval()
 {
+    char *choice = malloc(sizeof(char) * 32);
     int *interval = malloc(sizeof(int) * 2);
     resetColor();
     printf("Primeiro mês do intervalo?\n");
     boldCyan();
-    scanf(" %d", &interval[0]);
+    scanf(" %s", choice);
+    interval[0] = atoi(choice);
     resetColor();
     printf("Segundo mês do intervalo?\n");
     boldCyan();
-    scanf(" %d", &interval[1]);
+    scanf(" %s", choice);
+    interval[1] = atoi(choice);
     resetColor();
+    g_free(choice);
     return interval;
 }
 
 int askBranch()
 {
+    char *choice = malloc(sizeof(char) * 32);
     int branch = -1;
-    while (branch < 1 || branch > 3)
+    while (branch < ONE || branch > N_BRANCHES)
     {
         printf("Qual filial?\n");
         boldCyan();
-        scanf(" %d", &branch);
+        scanf(" %s", choice);
+        branch = atoi(choice);
         resetColor();
     }
+    g_free(choice);
     return branch;
 }
 
 int askQuerie3Choice()
 {
-    int choice = -1;
-    while (choice != 0 && choice != 1)
+    char *choice = malloc(sizeof(char) * 32);
+    int escolha = -1;
+    while (escolha != 0 && escolha != 1)
     {
         printf("0 - Filial a filial\n1 - Global: \n");
         boldCyan();
-        scanf(" %d", &choice);
+        scanf(" %s", choice);
+        escolha = atoi(choice);
         resetColor();
     }
-    return choice;
+    g_free(choice);
+    return escolha;
 }
 
 int askQuerie4Choice()
 {
-    int choice = -1;
-    while (choice != 0 && choice != 1)
+    char *choice = malloc(sizeof(char) * 32);
+    int escolha = -1;
+    while (escolha != 0 && escolha != 1)
     {
         resetColor();
         printf("0 - Global\n1 - Filial a Filial: \n");
         boldCyan();
-        scanf(" %d", &choice);
+        scanf(" %s", choice);
+        escolha = atoi(choice);
         resetColor();
     }
-    return choice;
+    g_free(choice);
+    return escolha;
 }
 
 int askQuerie11N()
 {
     int n = 0;
+    char *choice = malloc(sizeof(char) * 32);
     while (n <= 0)
     {
         resetColor();
         printf("Quantos produtos pretende ver?\n");
         boldCyan();
-        scanf(" %d", &n);
+        scanf(" %s", choice);
+        n = atoi(choice);
         resetColor();
     }
+    g_free(choice);
     return n;
 }
 
@@ -363,6 +384,113 @@ void listView(char **list, int size)
         resetColor();
         printf("--------- Página %d de %d ---------\n", page, max);
         printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
+        boldCyan();
+        *choice = 0;
+        scanf(" %s", choice);
+        resetColor();
+    }
+    cleanConsole();
+}
+
+void querie4View(char ***products, int global, int branch, int size)
+{
+    int page = 0;
+    int max = size / ELEMENTS_PER_PAGE;
+    int i;
+    int j = 0;
+    char *choice = malloc(sizeof(char) * 32);
+
+    /* Página inicial */
+    cleanConsole();
+    resetColor();
+    char **list = products[branch];
+    if (branch == 0 && global == 1)
+    {
+        printf("--------- Global\n");
+    }
+    else
+    {
+        printf("--------- Filial %d\n", branch+1);
+    }
+    printf("--------- Página %d de %d ---------\n", page, max);
+    boldGreen();
+    for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && list[i] != 0; i++, j++)
+    {
+        printf("%s\n", list[i]);
+    }
+    resetColor();
+    printf("--------- Página %d de %d ---------\n", page, max);
+    if (branch == 0 && global == 1)
+    {
+        printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
+    }
+    else
+    {
+        printf("n - Próxima página\np - Página anterior\nc - Escolher página\nt - Filial seguinte\n");
+    }
+    boldCyan();
+    /* Pagina inicial */
+
+    scanf(" %s", choice);
+    resetColor();
+    for (; page <= max && page >= 0 && choice[0] != '0';)
+    {
+        if (choice[0] == 'p' && page > 0)
+        {
+            page--;
+        }
+        else if (choice[0] == 'n' && page < max)
+        {
+            page++;
+        }
+        else if (choice[0] == 'c')
+        {
+            printf("Número da página:\n");
+            scanf(" %s", choice);
+            while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
+            {
+                printf("Página não existe. Insira novo número:\n");
+                scanf(" %s", choice);
+            }
+            page = atoi(choice);
+        }
+        else if (choice[0] == 't' && global == 0)
+        {
+            if (branch == 2)
+            {
+                branch = 0;
+            }
+            else
+            {
+                branch++;
+            }
+        }
+        cleanConsole();
+        char **list = products[branch];
+        if (branch == 0 && global == 1)
+        {
+            printf("--------- Global\n");
+        }
+        else
+        {
+            printf("--------- Filial %d\n", branch + 1);
+        }
+        printf("--------- Página %d de %d ---------\n", page, max);
+        boldGreen();
+        for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && list[i] != 0; i++, j++)
+        {
+            printf("%s\n", list[i]);
+        }
+        resetColor();
+        printf("--------- Página %d de %d ---------\n", page, max);
+        if (branch == 0 && global == 1)
+        {
+            printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
+        }
+        else
+        {
+            printf("n - Próxima página\np - Página anterior\nc - Escolher página\nt - Filial seguinte\n");
+        }
         boldCyan();
         *choice = 0;
         scanf(" %s", choice);
@@ -487,7 +615,7 @@ void querie3View(double *products, int choice, char *product)
     char *_text[4] = {"Total Vendas N: ", "Total Vendas P: ", "Total Faturado N: ", "Total Faturado P: "};
     if (choice == 1)
     {
-        length = 4;
+        length = N_BRANCHES + 1;
     }
     else
     {
@@ -514,7 +642,7 @@ void querie3View(double *products, int choice, char *product)
         }
     }
 }
-
+/*
 void querie4View(char ***products, int choice, int branch, int size)
 {
     if (choice == 0)
@@ -526,7 +654,7 @@ void querie4View(char ***products, int choice, int branch, int size)
         listView(products[branch], size);
     }
 }
-
+*/
 void querie5View(char **clients)
 {
     int i;
@@ -663,10 +791,14 @@ void querie9View(Querie9Aux aux, char type)
                 }
                 page = atoi(choice);
             }
-            else if (choice[0] == 't') {
-                if (type == 'N') {
+            else if (choice[0] == 't')
+            {
+                if (type == 'N')
+                {
                     type = 'P';
-                } else {
+                }
+                else
+                {
                     type = 'N';
                 }
             }
@@ -785,7 +917,6 @@ void querie10View(Info *info, int n, char *client)
         resetColor();
     }
     cleanConsole();
-
 }
 
 void querie11View(Aux *result, int n)

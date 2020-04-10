@@ -71,7 +71,7 @@ void controllerQuerie4(SGV sgv)
     {
         if (choice == 0)
         {
-            querie4View(products, choice, 0, listSize(products[0]));
+            querie4View(products, 1, 0, listSize(products[0]));
         }
         else
         {
@@ -83,7 +83,7 @@ void controllerQuerie4(SGV sgv)
                 resetColor();
                 branch = askBranch();
             }
-            querie4View(products, choice, branch-1, listSize(products[branch-1]));
+            querie4View(products, 0, branch-1, listSize(products[branch-1]));
         }
     }
     freeStringMatrix(products);
@@ -208,6 +208,7 @@ void controllerQuerie12(SGV sgv) {
 
 void menu(SGV sgv)
 {
+    char *choice = malloc(sizeof(char) * 32);
     int querie = -1;
     int initial = 0;
     StartValues sv = initStartValues();
@@ -215,12 +216,14 @@ void menu(SGV sgv)
     while (querie != 0)
     {
         printMenu();
-        scanf(" %d", &querie);
+        scanf(" %s", choice);
+        querie = atoi(choice);
         while (querie != 1 && initial != 1 && querie != 0 && querie <= 12) {
             boldRed();
             printf("Faça a querie 1 primeiro para carregamento dos dados.\n");
             boldCyan();
-            scanf(" %d", &querie);
+            scanf(" %s", choice);
+            querie = atoi(choice);
         }
         initial = 1;
         switch (querie)
@@ -263,10 +266,10 @@ void menu(SGV sgv)
             break;
         default:
             querie = 0;
-
             break;
         }
     }
+    g_free(choice);
     if(sgv != NULL)
         destroySGV(sgv);
 
