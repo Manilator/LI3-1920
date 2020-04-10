@@ -23,6 +23,43 @@ void printElapsedTime(char * action_name){
 
 /* Testar com argumentos */
 
+void argsCustomQuery1(StartValues sv, SGV sgv, int n, char *args[]){
+    if (n == 0 || n == 3)
+    {
+        start = clock();
+        char *clients_path = g_malloc(sizeof(char) * 1024);
+        char *products_path = g_malloc(sizeof(char) * 1024);
+        char *sales_path = g_malloc(sizeof(char) * 1024);
+        strcpy(clients_path, args[0]);
+        strcpy(products_path, args[1]);
+        strcpy(sales_path, args[2]);
+        if(n == 3)
+            setPathsSV(sv, clients_path, products_path, sales_path);
+        end = clock();
+        printElapsedTime(LOAD);
+
+        start = clock();
+        sgv = startSGV(sgv, sv);
+        end = clock();
+        printElapsedTime(ANSWER);
+
+
+        start = clock();
+        destroySGV(sgv);
+        destroyStartValues(sv);
+        g_free(clients_path);
+        g_free(products_path);
+        g_free(sales_path);
+        end = clock();
+        printElapsedTime(FREE);
+    }
+    else
+    {
+        puts("--- Wrong Input ---\n  ./SGV 1 (Path Clientes) (Path Produtos) (Path Vendas)");
+    }
+
+}
+
 void argsQuery1(StartValues sv, SGV sgv)
 {
     char *clients_path = g_malloc(sizeof(char) * 1024);
@@ -445,6 +482,9 @@ void input(SGV sgv, int n, char *args[], int query)
     StartValues sv = initStartValues();
     switch (query)
     {
+        case 1:
+            argsCustomQuery1(sv, sgv, n, args);
+            break;
         case 2:
             argsQuery2(sv, sgv, n, args);
             break;
@@ -483,30 +523,11 @@ void input(SGV sgv, int n, char *args[], int query)
     }
 }
 
+
 void startInput(int n, char *args[])
 {
     int query = atoi(args[0]);
-    if (query == 1)
-    {
-        start = clock();
-        SGV sgv = initSGV();
-        StartValues sv = initStartValues();
-        end = clock();
-        printElapsedTime(LOAD);
-
-        start = clock();
-        argsQuery1(sv, sgv);
-        end = clock();
-        printElapsedTime(ANSWER);
-
-
-        start = clock();
-        destroySGV(sgv);
-        destroyStartValues(sv);
-        end = clock();
-        printElapsedTime(FREE);
-    }
-    else if (query >= 2 && query <= 12)
+    if (query >= 1 && query <= 12)
     {
         SGV sgv = initSGV();
         input(sgv, n-1, args+1, query);
