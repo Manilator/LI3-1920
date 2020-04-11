@@ -82,12 +82,12 @@ InfoProduct initInfoProduct() {
     return new;
 }
 
-void addRelationWithClient(Branch b, char* product_code, RelationWithClient rcc) {
-    g_hash_table_insert(b->productsClients, product_code, rcc);
+void addRelationWithClient(Branch branch, char* product_code, RelationWithClient rcc) {
+    g_hash_table_insert(branch->productsClients, product_code, rcc);
 }
 
-void addRelationWithProduct(Branch b, char* client_code, RelationWithProduct rcp) {
-    g_hash_table_insert(b->clientsProducts, client_code, rcp);
+void addRelationWithProduct(Branch branch, char* client_code, RelationWithProduct rcp) {
+    g_hash_table_insert(branch->clientsProducts, client_code, rcp);
 }
 void addInfoClient(RelationWithClient rcc, char* client_code, InfoClient ic) {
     g_hash_table_insert(rcc->infoClients, client_code, ic);
@@ -157,10 +157,10 @@ void updateInfoProduct(InfoProduct ip, int quantity, double billed, int month) {
     ip->totalBilled[month-1] += billed;
 }
 
-void freeBranch(Branch b) {
-    g_hash_table_destroy(b->productsClients);
-    g_hash_table_destroy(b->clientsProducts);
-    g_free(b);
+void freeBranch(Branch branch) {
+    g_hash_table_destroy(branch->productsClients);
+    g_hash_table_destroy(branch->clientsProducts);
+    g_free(branch);
 }
 
 void freeRelationWithClient(RelationWithClient rc) {
@@ -189,9 +189,9 @@ static void sort(const char* arr[], int n) {
     qsort(arr, n, sizeof(const char*), compare);
 }
 
-char** getClientCodes(Branch b, int *n) {
+char** getClientCodes(Branch branch, int *n) {
     guint * len = g_malloc(sizeof(guint));
-    char** codes = (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
+    char** codes = (char**)g_hash_table_get_keys_as_array(branch->clientsProducts, len);
     sort((const char**)codes, *len);
     *n = *len;
     g_free(len);
@@ -259,10 +259,10 @@ int * getClientShopLog(Branch b, char* client_code){
     return quantities;
 }
 
-char ** getClientsInBranch(Branch b){
+char ** getClientsInBranch(Branch branch){
     guint * len = g_malloc(sizeof(guint));
-    *len = g_hash_table_size(b->clientsProducts);
-    char ** result = (char**)g_hash_table_get_keys_as_array(b->clientsProducts, len);
+    *len = g_hash_table_size(branch->clientsProducts);
+    char ** result = (char**)g_hash_table_get_keys_as_array(branch->clientsProducts, len);
     g_free(len);
     return result;
 }
