@@ -291,8 +291,8 @@ void controllerQuerie3(SGV sgv)
     {
         querie3View(result, choice, product);
     }
-    g_free(product);
-    g_free(result);
+    free(product);
+    free(result);
 }
 
 void controllerQuerie4(SGV sgv)
@@ -311,87 +311,58 @@ void controllerQuerie4(SGV sgv)
     }
     else
     {
+        int i = 0;
         if (escolha == 0)
         {
             global = 1;
-            /*querie4View(products, 1, 0, sizes);*/
             sizes[0] = listSize(products[0]);
-            max = sizes[0] / ELEMENTS_PER_PAGE;
-            for (; page >= 0 && choice[0] != '0';)
-            {
-                querie4View(products, global, branch, sizes, page);
-
-                scanf(" %s", choice);
-
-                if (choice[0] == 'p' && page > 0)
-                {
-                    page--;
-                }
-                else if (choice[0] == 'n' && page < max)
-                {
-                    page++;
-                }
-                else if (choice[0] == 'c')
-                {
-                    printf("Número da página:\n");
-                    scanf(" %s", choice);
-                    while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
-                    {
-                        printf("Página não existe. Insira novo número:\n");
-                        scanf(" %s", choice);
-                    }
-                    page = atoi(choice);
-                }
-            }
         }
         else
         {
             global = 0;
-            int i = 0;
             for (; i < N_BRANCHES; i++)
             {
                 sizes[i] = listSize(products[i]);
             }
-            /*querie4View(products, 0, branch - 1, sizes);*/
-            max = sizes[0] / ELEMENTS_PER_PAGE;
-            for (; page >= 0 && choice[0] != '0';)
-            {
-                querie4View(products, 0, branch, sizes, page);
-                scanf(" %s", choice);
+        }
+        max = sizes[0] / ELEMENTS_PER_PAGE;
+        for (; page >= 0 && choice[0] != '0';)
+        {
+            querie4View(products, global, branch, sizes, page);
+            scanf(" %s", choice);
 
-                if (choice[0] == 'p' && page > 0)
+            if (choice[0] == 'p' && page > 0)
+            {
+                page--;
+            }
+            else if (choice[0] == 'n' && page < max)
+            {
+                page++;
+            }
+            else if (choice[0] == 'c')
+            {
+                printf("Número da página:\n");
+                scanf(" %s", choice);
+                while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
                 {
-                    page--;
-                }
-                else if (choice[0] == 'n' && page < max)
-                {
-                    page++;
-                }
-                else if (choice[0] == 'c')
-                {
-                    printf("Número da página:\n");
+                    printf("Página não existe. Insira novo número:\n");
                     scanf(" %s", choice);
-                    while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
-                    {
-                        printf("Página não existe. Insira novo número:\n");
-                        scanf(" %s", choice);
-                    }
-                    page = atoi(choice);
                 }
-                else if (choice[0] == 't')
+                page = atoi(choice);
+            }
+            else if (choice[0] == 't')
+            {
+                if (branch == N_BRANCHES - 1)
                 {
-                    if (branch == N_BRANCHES - 1)
-                    {
-                        branch = 0;
-                        max = sizes[branch] / ELEMENTS_PER_PAGE;
-                        page = 0;
-                    }
-                    else
-                    {
-                        branch++;
-                        max = sizes[branch] / ELEMENTS_PER_PAGE;
-                        page = 0;
-                    }
+                    branch = 0;
+                    max = sizes[branch] / ELEMENTS_PER_PAGE;
+                    page = 0;
+                }
+                else
+                {
+                    branch++;
+                    max = sizes[branch] / ELEMENTS_PER_PAGE;
+                    page = 0;
                 }
             }
         }
@@ -438,15 +409,15 @@ void controllerQuerie5(SGV sgv)
     }
 
     cleanConsole();
-    g_free(choice);
-    g_free(clients);
+    free(choice);
+    free(clients);
 }
 
 void controllerQuerie6(SGV sgv)
 {
     int *list = getClientsAndProductsNeverBoughtCount(sgv);
     querie6View(list);
-    g_free(list);
+    free(list);
 }
 
 void controllerQuerie7(SGV sgv)
@@ -459,7 +430,7 @@ void controllerQuerie7(SGV sgv)
     tableView(result, client);
 
     freeIntMatrix(result);
-    g_free(client);
+    free(client);
 }
 
 void controllerQuerie8(SGV sgv)
@@ -480,29 +451,77 @@ void controllerQuerie8(SGV sgv)
         printMessage("Intervalo de meses errado.\n");
         resetColor();
     }
+    free(month);
     freeQuerie8Aux(result);
 }
 
 void controllerQuerie9(SGV sgv)
 {
-
+    char *choice = malloc(sizeof(char) * 32);
     char *product = askProduct();
     int branch = askBranch();
-    while (branch > 3 || branch <= 0)
-    {
-        boldRed();
-        printMessage("Essa filial não existe.\n");
-        resetColor();
-        branch = askBranch();
-    }
-
-    Querie9Aux result = getProductBuyers(sgv, product, branch);
-
     char type = askPromotion();
+    Querie9Aux result = getProductBuyers(sgv, product, branch);
+    int max;
+    int page = 0;
+    if (result == NULL)
+    {
+        printMessage("Informações não existentes.");
+    }
+    else
+    {
+        int size;
+        for (; page >= 0 && choice[0] != '0';)
+        {
+            int totalN = getQuerie9TotalN(result);
+            int totalP = getQuerie9TotalP(result);
+            if (type == 'N')
+            {
+                size = totalN;
+            }
+            else
+            {
+                size = totalP;
+            }
+            max = size / ELEMENTS_PER_PAGE;
+            querie9View(result, type, page);
+            scanf(" %s", choice);
 
-    querie9View(result, type);
-
-    g_free(product);
+            if (choice[0] == 'p' && page > 0)
+            {
+                page--;
+            }
+            else if (choice[0] == 'n' && page < max)
+            {
+                page++;
+            }
+            else if (choice[0] == 'c')
+            {
+                printf("Número da página:\n");
+                scanf(" %s", choice);
+                while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
+                {
+                    printf("Página não existe. Insira novo número:\n");
+                    scanf(" %s", choice);
+                }
+                page = atoi(choice);
+            }
+            else if (choice[0] == 't')
+            {
+                if (type == 'N')
+                {
+                    type = 'P';
+                }
+                else
+                {
+                    type = 'N';
+                }
+            }
+        }
+    }
+    cleanConsole();
+    free(choice);
+    free(product);
     freeQuerie9Aux(result);
 }
 
@@ -510,8 +529,11 @@ void controllerQuerie10(SGV sgv)
 {
     char *client = askClient();
     int month = askMonth();
-
     Info *result = getClientsFavoriteProducts(sgv, client, month);
+    char *choice = malloc(sizeof(char) * 32);
+    int max;
+    int page = 0;
+    int size;
 
     if (result == NULL)
     {
@@ -522,27 +544,93 @@ void controllerQuerie10(SGV sgv)
     }
     else
     {
-        querie10View(result, listSize((char **)result), client);
+        for (; page >= 0 && choice[0] != '0';)
+        {
+            size = listSize((char **)result);
+            querie10View(result, size, client, page);
+
+            max = size / ELEMENTS_PER_PAGE;
+            scanf(" %s", choice);
+
+            if (choice[0] == 'p' && page > 0)
+            {
+                page--;
+            }
+            else if (choice[0] == 'n' && page < max)
+            {
+                page++;
+            }
+            else if (choice[0] == 'c')
+            {
+                printf("Número da página:\n");
+                scanf(" %s", choice);
+                while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
+                {
+                    printf("Página não existe. Insira novo número:\n");
+                    scanf(" %s", choice);
+                }
+                page = atoi(choice);
+            }
+        }
     }
-    g_free(client);
+    cleanConsole();
+    free(client);
+    free(choice);
     freeInfoList(result);
 }
 
 void controllerQuerie11(SGV sgv)
 {
+
     int n = askQuerie11N();
     Aux *result = getTopSoldProducts(sgv, n);
+    char *choice = malloc(sizeof(char) * 32);
+    int max;
+    int page = 0;
+    int size;
+    size = listSize((char **)result);
 
-    querie11View(result, listSize((char **)result));
+    for (; page >= 0 && choice[0] != '0';)
+    {
+        querie11View(result, size, page);
+
+        max = size / ELEMENTS_PER_PAGE;
+        scanf(" %s", choice);
+
+        if (choice[0] == 'p' && page > 0)
+        {
+            page--;
+        }
+        else if (choice[0] == 'n' && page < max)
+        {
+            page++;
+        }
+        else if (choice[0] == 'c')
+        {
+            printf("Número da página:\n");
+            scanf(" %s", choice);
+            while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
+            {
+                printf("Página não existe. Insira novo número:\n");
+                scanf(" %s", choice);
+            }
+            page = atoi(choice);
+        }
+    }
+    free(choice);
     freeAuxList(result);
+    cleanConsole();
 }
 
 void controllerQuerie12(SGV sgv)
 {
     char *client = askClient();
     int n = askQuerie11N();
-
+    char *choice = malloc(sizeof(char) * 32);
     Money *result = getClientTopProfitProducts(sgv, client, n);
+    int max;
+    int page = 0;
+    int size;
 
     if (result == NULL)
     {
@@ -553,8 +641,41 @@ void controllerQuerie12(SGV sgv)
     }
     else
     {
-        querie12View(result, listSize((char **)result), client);
+
+        size = listSize((char **)result);
+
+        for (; page >= 0 && choice[0] != '0';)
+        {
+            querie12View(result, size, client, page);
+
+            max = size / ELEMENTS_PER_PAGE;
+            scanf(" %s", choice);
+
+            if (choice[0] == 'p' && page > 0)
+            {
+                page--;
+            }
+            else if (choice[0] == 'n' && page < max)
+            {
+                page++;
+            }
+            else if (choice[0] == 'c')
+            {
+                printf("Número da página:\n");
+                scanf(" %s", choice);
+                while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
+                {
+                    printf("Página não existe. Insira novo número:\n");
+                    scanf(" %s", choice);
+                }
+                page = atoi(choice);
+            }
+        }
+        cleanConsole();
+        resetColor();
     }
+    free(choice);
+    free(client);
     freeMoneyList(result);
 }
 

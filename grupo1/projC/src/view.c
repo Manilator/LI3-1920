@@ -160,42 +160,6 @@ void listView(char **list, int size, int page)
 
     /*scanf(" %s", choice);*/
     resetColor();
-    /*for (; page <= max && page >= 0 && choice[0] != '0';)
-    {
-        if (choice[0] == 'p' && page > 0)
-        {
-            page--;
-        }
-        else if (choice[0] == 'n' && page < max)
-        {
-            page++;
-        }
-        else if (choice[0] == 'c')
-        {
-            printf("Número da página:\n");
-            scanf(" %s", choice);
-            while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
-            {
-                printf("Página não existe. Insira novo número:\n");
-                scanf(" %s", choice);
-            }
-            page = atoi(choice);
-        }
-        cleanConsole();
-        printf("--------- Página %d de %d ---------\n", page, max);
-        boldGreen();
-        for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && list[i] != 0; i++, j++)
-        {
-            printf("%s\n", list[i]);
-        }
-        resetColor();
-        printf("--------- Página %d de %d ---------\n", page, max);
-        printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
-        boldCyan();
-        *choice = 0;
-        scanf(" %s", choice);
-        resetColor();
-    }*/
 }
 
 void querie4View(char ***products, int global, int branch, int *sizes, int page)
@@ -235,75 +199,8 @@ void querie4View(char ***products, int global, int branch, int *sizes, int page)
     }
     /*boldCyan();*/
     /* Pagina inicial */
-/*
-    scanf(" %s", choice);
-    resetColor();
-    for (; page <= max && page >= 0 && choice[0] != '0';)
-    {
-        if (choice[0] == 'p' && page > 0)
-        {
-            page--;
-        }
-        else if (choice[0] == 'n' && page < max)
-        {
-            page++;
-        }
-        else if (choice[0] == 'c')
-        {
-            printf("Número da página:\n");
-            scanf(" %s", choice);
-            while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
-            {
-                printf("Página não existe. Insira novo número:\n");
-                scanf(" %s", choice);
-            }
-            page = atoi(choice);
-        }
-        else if (choice[0] == 't' && global == 0)
-        {
-            if (branch == N_BRANCHES - 1)
-            {
-                branch = 0;
-                max = sizes[branch] / ELEMENTS_PER_PAGE;
-            }
-            else
-            {
-                branch++;
-                max = sizes[branch] / ELEMENTS_PER_PAGE;
-            }
-        }
-        cleanConsole();
-        char **list = products[branch];
-        if (branch == 0 && global == 1)
-        {
-            printf("--------- Global\n");
-        }
-        else
-        {
-            printf("--------- Filial %d\n", branch + 1);
-        }
-        printf("--------- Página %d de %d ---------\n", page, max);
-        boldGreen();
-        for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && list[i] != 0; i++, j++)
-        {
-            printf("%s\n", list[i]);
-        }
-        resetColor();
-        printf("--------- Página %d de %d ---------\n", page, max);
-        if (branch == 0 && global == 1)
-        {
-            printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
-        }
-        else
-        {
-            printf("n - Próxima página\np - Página anterior\nc - Escolher página\nt - Filial seguinte\n");
-        }
-        boldCyan();
-        *choice = 0;
-        scanf(" %s", choice);
-        resetColor();
-    }*/
     g_free(choice);
+    resetColor();
     /*cleanConsole();*/
 }
 
@@ -450,19 +347,7 @@ void querie3View(double *products, int choice, char *product)
         }
     }
 }
-/*
-void querie4View(char ***products, int choice, int branch, int size)
-{
-    if (choice == 0)
-    {
-        listView(products[0], size);
-    }
-    else
-    {
-        listView(products[branch], size);
-    }
-}
-*/
+
 void querie5View(char **clients)
 {
     int i;
@@ -513,7 +398,7 @@ void querie8View(Querie8Aux aux, int first, int second)
     printf("--------- Meses [%d-%d] ---------\n", first, second);
 }
 
-void querie9View(Querie9Aux aux, char type)
+void querie9View(Querie9Aux aux, char type, int page)
 {
     cleanConsole();
 
@@ -529,17 +414,15 @@ void querie9View(Querie9Aux aux, char type)
         int size = 0;
         if (type == 'N')
         {
-            size = getQuerie9TotalN(aux);
+            size = totalN;
         }
         else
         {
-            size = getQuerie9TotalP(aux);
+            size = totalP;
         }
-        int page = 0;
         int max = size / ELEMENTS_PER_PAGE;
         int i;
         int j = 0;
-        char *choice = malloc(sizeof(char) * 32);
 
         /* Página inicial */
         cleanConsole();
@@ -575,99 +458,16 @@ void querie9View(Querie9Aux aux, char type)
         printf("n - Próxima página\np - Página anterior\nc - Escolher página\nt - Mudar tipo\n");
         boldCyan();
         /* Pagina inicial */
-
-        scanf(" %s", choice);
-        resetColor();
-        for (; page <= max && page >= 0 && choice[0] != '0';)
-        {
-            if (choice[0] == 'p' && page > 0)
-            {
-                page--;
-            }
-            else if (choice[0] == 'n' && page < max)
-            {
-                page++;
-            }
-            else if (choice[0] == 'c')
-            {
-                printf("Número da página:\n");
-                scanf(" %s", choice);
-                while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
-                {
-                    printf("Página não existe. Insira novo número:\n");
-                    scanf(" %s", choice);
-                }
-                page = atoi(choice);
-            }
-            else if (choice[0] == 't')
-            {
-                if (type == 'N')
-                {
-                    type = 'P';
-                }
-                else
-                {
-                    type = 'N';
-                }
-            }
-            cleanConsole();
-            printf("--------- Produtos %c\n", type);
-            printf("--------- Página %d de %d ---------\n", page, max);
-            boldGreen();
-            for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && getQuerie9ClientN(aux, i) && i < size; i++, j++)
-            {
-                if (type == 'N')
-                {
-                    printf("%s\n", getQuerie9ClientN(aux, i));
-                }
-                else
-                {
-                    printf("%s\n", getQuerie9ClientP(aux, i));
-                }
-            }
-            resetColor();
-            printf("--------- Página %d de %d ---------\n", page, max);
-            printf("--------- TOTAL %c: ---------\n", type);
-            boldGreen();
-            if (type == 'N')
-            {
-                printf("Quantidade: %d\n", totalN);
-            }
-            else
-            {
-                printf("Quantidade: %d\n", totalP);
-            }
-            resetColor();
-            printf("--------- TOTAL %c: ---------\n", type);
-            printf("n - Próxima página\np - Página anterior\nc - Escolher página\nt - Mudar tipo\n");
-            boldCyan();
-            *choice = 0;
-            scanf(" %s", choice);
-            resetColor();
-        }
-        cleanConsole();
     }
+
     resetColor();
 }
 
-void querie10View(Info *info, int n, char *client)
+void querie10View(Info *info, int n, char *client, int page)
 {
-    /*
-    cleanConsole();
-    int i = 0;
-    printf("--------- Cliente %s\n", client);
-    boldGreen();
-    for (i = 0; info[i] != NULL; i++)
-    {
-        printf("Produto: %s | Unidades: %d\n", getInfoProduct(info[i]), getInfoUnitsSold(info[i]));
-    }
-    resetColor();
-    */
-    int page = 0;
     int max = n / ELEMENTS_PER_PAGE;
     int i;
     int j = 0;
-    char *choice = malloc(sizeof(char) * 32);
 
     /* Página inicial */
     cleanConsole();
@@ -684,52 +484,11 @@ void querie10View(Info *info, int n, char *client)
     printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
     boldCyan();
     /* Pagina inicial */
-
-    scanf(" %s", choice);
     resetColor();
-    for (; page <= max && page >= 0 && choice[0] != '0';)
-    {
-        if (choice[0] == 'p' && page > 0)
-        {
-            page--;
-        }
-        else if (choice[0] == 'n' && page < max)
-        {
-            page++;
-        }
-        else if (choice[0] == 'c')
-        {
-            printf("Número da página:\n");
-            scanf(" %s", choice);
-            while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
-            {
-                printf("Página não existe. Insira novo número:\n");
-                scanf(" %s", choice);
-            }
-            page = atoi(choice);
-        }
-        cleanConsole();
-        printf("--------- Cliente (%s)\n", client);
-        printf("--------- Página %d de %d ---------\n", page, max);
-        boldGreen();
-        for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && i < n; i++, j++)
-        {
-            printf("Produto: %s | Unidades: %d\n", getInfoProduct(info[i]), getInfoUnitsSold(info[i]));
-        }
-        resetColor();
-        printf("--------- Página %d de %d ---------\n", page, max);
-        printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
-        boldCyan();
-        *choice = 0;
-        scanf(" %s", choice);
-        resetColor();
-    }
-    cleanConsole();
 }
 
-void querie11View(Aux *result, int n)
+void querie11View(Aux *result, int n, int page)
 {
-    int page = 0;
     int max;
     if (n % 2 != 0)
     {
@@ -742,7 +501,6 @@ void querie11View(Aux *result, int n)
     int i = 0;
     int j = 0;
     int h = 0;
-    char *choice = malloc(sizeof(char) * 32);
 
     /* Página inicial */
     cleanConsole();
@@ -764,61 +522,14 @@ void querie11View(Aux *result, int n)
     printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
     boldCyan();
     /* Pagina inicial */
-
-    scanf(" %s", choice);
-    resetColor();
-    for (; page <= max && page >= 0 && choice[0] != '0';)
-    {
-        if (choice[0] == 'p' && page > 0)
-        {
-            page--;
-        }
-        else if (choice[0] == 'n' && page < max)
-        {
-            page++;
-        }
-        else if (choice[0] == 'c')
-        {
-            printf("Número da página:\n");
-            scanf(" %s", choice);
-            while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
-            {
-                printf("Página não existe. Insira novo número:\n");
-                scanf(" %s", choice);
-            }
-            page = atoi(choice);
-        }
-        cleanConsole();
-        printf("--------- Página %d de %d ---------\n", page, max);
-        boldGreen();
-        for (i = page * 2, j = 0; j < 2 && i < n; j++)
-        {
-            Aux aux = result[i];
-            printf("--------- Produto %s (%dº)\n", getAuxProduct(aux), i + 1);
-            for (h = 0; h < N_BRANCHES; h++)
-            {
-                printf("Filial: %d | Total de clientes diferentes: %d | Unidades vendidas: %d\n", (h + 1), getAuxTotalClients(aux, h), getAuxUnitsSold(aux, h));
-            }
-            aux = result[i++];
-        }
-        resetColor();
-        printf("--------- Página %d de %d ---------\n", page, max);
-        printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
-        boldCyan();
-        *choice = 0;
-        scanf(" %s", choice);
-        resetColor();
-    }
-    cleanConsole();
+   resetColor();
 }
 
-void querie12View(Money *list, int n, char *client)
+void querie12View(Money *list, int n, char *client, int page)
 {
-    int page = 0;
     int max = n / ELEMENTS_PER_PAGE;
     int i;
     int j = 0;
-    char *choice = malloc(sizeof(char) * 32);
 
     /* Página inicial */
     cleanConsole();
@@ -836,46 +547,4 @@ void querie12View(Money *list, int n, char *client)
     printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
     boldCyan();
     /* Pagina inicial */
-
-    scanf(" %s", choice);
-    resetColor();
-    for (; page <= max && page >= 0 && choice[0] != '0';)
-    {
-        if (choice[0] == 'p' && page > 0)
-        {
-            page--;
-        }
-        else if (choice[0] == 'n' && page < max)
-        {
-            page++;
-        }
-        else if (choice[0] == 'c')
-        {
-            printf("Número da página:\n");
-            scanf(" %s", choice);
-            while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
-            {
-                printf("Página não existe. Insira novo número:\n");
-                scanf(" %s", choice);
-            }
-            page = atoi(choice);
-        }
-        cleanConsole();
-        printf("--------- Cliente (%s)\n", client);
-        printf("--------- Página %d de %d ---------\n", page, max);
-        boldGreen();
-        for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && i < n; i++, j++)
-        {
-            Money money = list[i];
-            printf("Produto: %s | Gastou: %f\n", getMoneyProduct(money), getMoneySpent(money));
-        }
-        resetColor();
-        printf("--------- Página %d de %d ---------\n", page, max);
-        printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
-        boldCyan();
-        *choice = 0;
-        scanf(" %s", choice);
-        resetColor();
-    }
-    cleanConsole();
 }
