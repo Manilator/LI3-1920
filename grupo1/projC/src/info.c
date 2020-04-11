@@ -2,8 +2,11 @@
 #include "constants.h"
 #include <string.h>
 
+
+/* ----------------- */
 /* STRUCT DEFINITION */
 /* ----------------- */
+
 struct querie8Aux{
   int totalUnits;
   int totalSales;
@@ -32,10 +35,11 @@ struct money{
   char * product_code;
   double moneySpent;
 };
-/* ----------------- */
 
+/* --------------- */
 /* INIT DEFINITION */
 /* --------------- */
+
 Querie8Aux initQuerie8Aux(){
     Querie8Aux aux = g_malloc(sizeof(struct querie8Aux));
     aux->totalBilled = 0.0f;
@@ -89,10 +93,11 @@ Money initMoney(char* key, double value){
     money->moneySpent = value;
     return money;
 }
-/* --------------- */
 
+/* ------------------ */
 /* COMPARE DEFINITION */
 /* ------------------ */
+
 int compareInfo(gconstpointer a, gconstpointer b){
     Info info1 = (const Info)a;
     Info info2 = (const Info)b;
@@ -116,10 +121,11 @@ int compareMoney(gconstpointer a, gconstpointer b){
     Money money2 = (const Money)b;
     return (money2->moneySpent) - (money1->moneySpent);
 }
-/* ------------------ */
 
+/* ---------------- */
 /* CLONE DEFINITION */
 /* ---------------- */
+
 Info cloneInfo(Info info){
     Info clone = g_malloc(sizeof(struct info));
     clone->product_code = strdup(info->product_code);
@@ -150,10 +156,11 @@ Money cloneMoney(Money money){
 
     return clone;
 }
-/* ---------------- */
 
+/* --------------- */
 /* FREE DEFINITION */
 /* --------------- */
+
 void freeQuerie8Aux(Querie8Aux aux){
     g_free(aux);
 }
@@ -222,10 +229,11 @@ void freeMoneyList(Money* list){
         g_free(list);
     }
 }
-/* --------------- */
 
+/* ----------------- */
 /* UPDATE DEFINITION */
 /* ----------------- */
+
 void updateQuerie8(Querie8Aux aux, double billed, int units, int sales){
     aux->totalBilled += billed;
     aux->totalUnits  += units;
@@ -268,10 +276,11 @@ void updateMoney(Money money, double value)
 {
     (money->moneySpent) += value;
 }
-/* ----------------- */
 
+/* -------------- */
 /* GET DEFINITION */
 /* -------------- */
+
 int getQuerie8AuxUnits(Querie8Aux aux){
     return aux->totalUnits;
 }
@@ -327,4 +336,3 @@ char * getQuerie9ClientN(Querie9Aux aux, int i){
 char * getQuerie9ClientP(Querie9Aux aux, int i){
     return aux->clientsP[i];
 }
-/* -------------- */
