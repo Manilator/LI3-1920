@@ -56,16 +56,17 @@ int existClientCode (Clients, char*);
 void destroyClients(Clients);
 
 /**
-@brief xxx
-@param xxx
-@return xxx
+@brief Devolve o número de clientes não utilizados
+@param client_catalog Estrutura de clientes
+@param clients_used Hashtable com os códigos de clientes usados
+@return int Número de clientes não usados
 */
 int getNumberClientsNotUsed(Clients, GHashTable *);
 
 /**
-@brief xxx
-@param xxx
-@return xxx
+@brief Preencher a hashtable dada com todos os códigos de clientes
+@param clients Estrutura de clientes
+@param clients_ht Hashtable a ser preenchida
 */
 void fillClientsHT(Clients, GHashTable *);
 

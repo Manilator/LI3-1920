@@ -1,3 +1,8 @@
+/**
+@file controller.h
+\brief Módulo do controller
+*/
+
 #ifndef ___CONTROLLER_H___
 #define ___CONTROLLER_H___
 

@@ -1,3 +1,7 @@
+/**
+@file branch_catalog.h
+\brief Módulo de tratamentos do catálogo de filiais
+*/
 #ifndef ___BRANCH_CATALOG_H___
 #define ___BRANCH_CATALOG_H___
 
@@ -11,7 +15,7 @@ typedef struct branches* Branches;
 @brief De um array de inteiros, mostra ao utilizador o conteúdo numa tabela
 @param list Array de quantidades de produtos comprados nos meses
 @param client Código do cliente ao qual as quantidades estão relacionadas
-@return int devolve a escolha dada no input 
+@return int devolve a escolha dada no input
 */
 
 

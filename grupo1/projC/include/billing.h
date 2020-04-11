@@ -2,7 +2,6 @@
 @file billing.h
 \brief Módulo de tratamento de faturas.
 */
-
 #ifndef ___BILLING_H___
 #define ___BILLING_H___
 

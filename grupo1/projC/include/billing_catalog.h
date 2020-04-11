@@ -1,3 +1,7 @@
+/**
+@file billing_catalog.h
+\brief Módulo de tratamentos do catálogo de faturação
+*/
 #ifndef ___BILLING_CATALOG_H___
 #define ___BILLING_CATALOG_H___
 

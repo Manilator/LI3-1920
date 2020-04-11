@@ -1,3 +1,7 @@
+/**
+@file branch.h
+\brief Módulo de tratamento de filiais.
+*/
 #ifndef ___BRANCH_H___
 #define ___BRANCH_H___
 
@@ -45,7 +49,7 @@ InfoClient initInfoClient();
 InfoProduct initInfoProduct();
 
 /**
-@brief xxx
+@brief Adiciona a estrutura relationWithClient á hashtable presente na estrutura productsClients
 @param branch Estrutura Branch
 @param product_code Código do produto
 @param rcc Estrutura RelationWithClient
@@ -53,7 +57,7 @@ InfoProduct initInfoProduct();
 void addRelationWithClient(Branch, char*, RelationWithClient);
 
 /**
-@brief xxx
+@brief Adiciona a estrutura RelationWithProduct á hashtable presente na estrutura clientsProducts
 @param branch Estrutura Branch
 @param client_code Código do cliente
 @param rcp Estrutura RelationWithProduct
@@ -61,7 +65,7 @@ void addRelationWithClient(Branch, char*, RelationWithClient);
 void addRelationWithProduct(Branch, char*, RelationWithProduct);
 
 /**
-@brief xxx
+@brief Adiciona a estrutura InfoClient á hashtable presente na estrutura RelationWithClient
 @param rcc Estrutura RelationWithClient
 @param client_code Código do cliente
 @param ic Estrutura InfoClient
@@ -69,7 +73,7 @@ void addRelationWithProduct(Branch, char*, RelationWithProduct);
 void addInfoClient(RelationWithClient, char*, InfoClient);
 
 /**
-@brief xxx
+@brief Adiciona a estrutura InfoProduct á hashtable presente na estrutura RelationWithProduct
 @param rcp Estrutura RelationWithProduct
 @param product_code Código do produto
 @param ip Estrutura InfoProduct
@@ -155,22 +159,22 @@ void freeInfoClient(InfoClient);
 void freeInfoProduct(InfoProduct);
 
 /**
-@brief xxx
+@brief Devolve o array ordenado dos códigos de clientes que compraram numa certa filial
 @param branch Estrutura Branch
-@param n xxx
-@return char** xxx
+@param n Número easter egg
+@return char** Array ordenado dos códigos de clientes que compraram numa certa filial
 */
 char** getClientCodes(Branch, int*);
 
 /**
-@brief xxx
+@brief Devolve um array de códigos de produto vendidos numa certa filial
 @param b Estrutura Branch
-@return char** xxx
+@return char** Array de códigos de produto vendidos numa certa filial
 */
 char ** getProductsInBranch(Branch);
 
 /**
-@brief xxx
+@brief Deolve uma estrutura Querie9Aux com os valores especificos a um dado código de produto
 @param b Estrutura Branch
 @param product_code Código do produto
 @return Querie9Aux Estrutura auxiliar para devolver resultados da query 9
@@ -178,49 +182,49 @@ char ** getProductsInBranch(Branch);
 Querie9Aux productBoughtBy(Branch, char *);
 
 /**
-@brief xxx
+@brief Devolve um array com todos os códigos de cliente de uma certa filial
 @param branch Estrutura Branch
 @return char** Array de códigos de clientes
 */
 char ** getClientsInBranch(Branch);
 
 /**
-@brief xxx
+@brief Devolve um array com as quantidades de produtos comprados em cada mês
 @param b Estrutura Branch
 @param client_code Código do cliente
-@return char** xxx (?) Clientes que realizaram compras numa filial
+@return int* Array com quantidades de produtos comprados em cada mês
 */
 int * getClientShopLog(Branch, char*);
 
 /**
-@brief xxx
+@brief Atualiza Hashtable com key=código de produto e value=Estrutura Info
 @param b Estrutura Branch
 @param client_code Código do cliente
 @param month Mês a procurar
-@param _mostBought xxx
+@param _mostBought Hashtable com códigos de produto e quantidades compradas num mês especifico
 */
 void getMostBoughtByBranch(Branch, char*, int, GHashTable *);
 
 /**
-@brief xxx
+@brief Atualiza Hashtable com key=código de produto e value=Estrutura Aux
 @param b Estrutura Branch
-@param _mostBought xxx
+@param _mostBought Hashtable com códigos de produto e quantidades compradas o ano todo
 @param branch Número da filial escolhida
 */
 void updateNMostBought(Branch, GHashTable *, int);
 
 /**
-@brief xxx
+@brief Atualiza Hashtable com key=código de cliente e value=Estrutura Money
 @param b Estrutura Branch
 @param client_code Código do cliente
-@param _maxSpent xxx
+@param _maxSpent Hashtable com códigos de clientes e os valores gastos o ano todo
 */
 void clientSpentMostOnBranch(Branch, char*, GHashTable *);
 
 /**
-@brief xxx
+@brief Remove todos os códigos de cliente que estão compraram numa dada filial
 @param b Estrutura Branch
-@param _mostBought xxx
+@param _mostBought Hashtable com códigos de clientes
 */
 void intersectClients(Branch, GHashTable *);
 

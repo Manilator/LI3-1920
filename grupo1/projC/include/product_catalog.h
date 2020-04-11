@@ -50,21 +50,23 @@ int existProduct (Products, Product);
 
 /**
 @brief Destroi o catálogo de produtos
-@param clients Catálogo de produtos
+@param products Catálogo de produtos
 */
 void destroyProducts(Products);
 
 /**
-@brief xxx
-@param xxx
-@return xxx
+@brief Devolve os códigos de produtos que não foram comprados
+@param product_catalog Catálogo de produtos
+@param products_bought Hashtable com códigos de produto
+@return char** Array com códigos de produtos 
 */
 char ** getProductsNotArray(Products, GHashTable*);
 
 /**
-@brief xxx 
-@param xxx 
-@return xxx 
+@brief Devolve número de código de produtos não utilizados
+@param product_catalog Catálogo de produtos
+@param products_bought Hashtable com códigos de produto
+@return int Número de código de produtos não utilizados
 */
 int getNumberProductsNotUsed(Products, GHashTable *);
 
