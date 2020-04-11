@@ -36,9 +36,9 @@ void updateBranches(Branches branches, Sale sale) {
     g_free(branch_number);
 }
 
-void destroyBranches(Branches fs) {
-    g_hash_table_destroy(fs->branches);
-    g_free(fs);
+void destroyBranches(Branches branches) {
+    g_hash_table_destroy(branches->branches);
+    g_free(branches);
 }
 
 static int compare(const void* a, const void* b) {
@@ -49,7 +49,6 @@ static void sort(const char* arr[], int n) {
     qsort(arr, n, sizeof(const char*), compare);
 }
 
-/* Encontrar os clientes que compraram nas 3 filiais */
 char ** clientsInCommon(Branches bs, Clients clients) {
     GHashTable* _mostBought = g_hash_table_new(g_str_hash, g_str_equal);
     fillClientsHT(clients, _mostBought);
