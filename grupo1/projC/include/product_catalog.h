@@ -26,51 +26,53 @@ Products initProducts();
 char ** getProductsByLetter(Products, char);
 
 /**
-@brief 
-@param 
-@return 
+@brief Adiciona um produto ao catálogo de produto
+@param products Catálogo de produtos ao qual vai ser adicionado o novo produto
+@param product Cliente a ser adicionado ao catálogo de produtos
+@return int Verificação da inserção
 */
 int addProduct(Products, char*);
 
 /**
-@brief 
-@param 
-@return 
+@brief Calcula o número de produtos que existe no catálogo
+@param products Catálogo de produtos
+@return int Número de produtos existentes no catálogo
 */
 int getSizeProducts(Products);
 
 /**
-@brief 
-@param 
-@return 
+@brief Verifica se existe um produto no catálogo
+@param products Catálogo de produtos
+@param product Cliente a ser consultado
+@return int Verificação da procura
 */
 int existProduct (Products, Product);
 
 /**
-@brief 
-@param 
-@return 
+@brief Destroi o catálogo de produtos
+@param clients Catálogo de produtos
 */
 void destroyProducts(Products);
 
 /**
-@brief 
-@param 
-@return 
+@brief xxx
+@param xxx
+@return xxx
 */
 char ** getProductsNotArray(Products, GHashTable*);
 
 /**
-@brief 
-@param 
-@return 
+@brief xxx 
+@param xxx 
+@return xxx 
 */
 int getNumberProductsNotUsed(Products, GHashTable *);
 
 /**
-@brief 
-@param 
-@return 
+@brief Verifica se existe um código de produto no catálogo
+@param products Catálogo de produtos
+@param product_code Código de produto
+@return int Verificação da procura
 */
 int existProductCode (Products, char*);
 

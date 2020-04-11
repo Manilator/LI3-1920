@@ -44,6 +44,7 @@ int existClient (Clients, Client);
 /**
 @brief Verifica se existe um código de cliente no catálogo
 @param clients Catálogo de clientes
+@param client_code Código de cliente
 @return int Verificação da procura
 */
 int existClientCode (Clients, char*);
@@ -55,16 +56,16 @@ int existClientCode (Clients, char*);
 void destroyClients(Clients);
 
 /**
-@brief 
-@param
-@return
+@brief xxx
+@param xxx
+@return xxx
 */
 int getNumberClientsNotUsed(Clients, GHashTable *);
 
 /**
-@brief
-@param
-@return
+@brief xxx
+@param xxx
+@return xxx
 */
 void fillClientsHT(Clients, GHashTable *);
 
