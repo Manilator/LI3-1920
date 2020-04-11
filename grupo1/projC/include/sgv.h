@@ -1,3 +1,7 @@
+/**
+@file sgv.h
+\brief Módulo de sistema de gestão de vendas
+*/
 #ifndef ___SGV__H___
 #define ___SGV__H___
 

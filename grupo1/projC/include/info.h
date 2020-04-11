@@ -1,3 +1,7 @@
+/**
+@file info.h
+\brief Módulo de estruturas auxiliares
+*/
 #ifndef ___INFO_H___
 #define ___INFO_H___
 

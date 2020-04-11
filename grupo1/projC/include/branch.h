@@ -222,7 +222,7 @@ void updateNMostBought(Branch, GHashTable *, int);
 void clientSpentMostOnBranch(Branch, char*, GHashTable *);
 
 /**
-@brief Remove todos os códigos de cliente que estão compraram numa dada filial
+@brief Remove todos os códigos de cliente que não compraram numa dada filial
 @param b Estrutura Branch
 @param _mostBought Hashtable com códigos de clientes
 */

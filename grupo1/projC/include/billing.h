@@ -33,68 +33,68 @@ BillingProduct initBillingProduct();
 double * getProductValuesByMonthBilling(Billing, char*, int);
 
 /**
-@brief
-@param billing
-@param code
-@return int
+@brief Adiciona a estrutura BillingProduct á hashtable billingsProduct
+@param billing Estrutura Billing
+@param code Código de produto
+@return int Resultado binário para detetar erros
 */
 int addBillingProduct(Billing, char*);
 
 /**
-@brief
-@param billing
-@param code
-@param totalBilled
-@param unities
-@param promotion_type
-@param branch
+@brief Atualiza os valores da estrutura Billing
+@param billing Estrutura Billing
+@param code Código de produto
+@param totalBilled Valor faturado
+@param unities Unidades vendidas
+@param promotion_type Tipo de promoção
+@param branch Filial
 */
 void updateBilling(Billing, char*, double, int, char, int);
 
 /**
-@brief Inicialização da estrutura BillingProduct.
-@param billingProduct
-@param totalBilled
-@param unities
-@param promotion_type
-@param branch
-@return int
+@brief Atualiza os valores da estrutura BillingProduct.
+@param billingProduct Estrutura BillingProduct
+@param totalBilled Valor faturado
+@param unities Unidades vendidas
+@param promotion_type Tipo de promoção
+@param branch Filial
+@return int Resultado binário para detetar erros
 */
 int updateBillingProduct(BillingProduct , double, int, char, int);
 
 /**
-@brief
-@param billing
-@param product_code
-@return BillingProduct devolve um BillingProduct de um certo código de produto.
+@brief Devolve BillingProduct de um certo código de produto
+@param billing Estrutura Billing
+@param product_code Código de produto
+@return BillingProduct Estrutura BillingProduct
 */
 BillingProduct getBillingProduct(Billing, char*);
 
 /**
-@brief
-@param billing
-@return double
+@brief Devolve o total faturado no total
+@param billing Estrutura Billing
+@return double Valor faturado
 */
 double getTotalBilledBilling(Billing);
 
 /**
-@brief
-@param billingProduct estrutura BillingProduct
-@return double
+@brief Devolve o valor faturado com o Tipo P
+@param billingProduct Estrutura BillingProduct
+@return double Valor faturado
 */
 double getTotalBilledN_BP(BillingProduct);
 
 /**
-@brief
-@param billing
-@return char*
+@brief Devolve um código de produto
+@param billing Estrutura Billing
+@return char* Código de produto
 */
 char* getFirstKey(Billing);
 
 /**
-@brief
-@param billing
-@param aux
+@brief Atualiza a estrutura Querie8Aux com os valores de unidades de todas as filiais
+@param billing Estrutura Billing
+@param aux Estrutura Querie8Aux
 */
 void updateTotalsFromBilling(Billing, Querie8Aux);
 

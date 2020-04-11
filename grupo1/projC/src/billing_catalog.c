@@ -75,12 +75,7 @@ double * getProductValuesByMonthBillingCat(Billings bs, char* product_code, int 
                 _arrayFinal[i]+=_arrayResult[i];
             }
             g_free(_arrayResult);
-        }/*
-        i=0;
-        printf("N - Qnt: %.f\n", _arrayFinal[i++]);
-        printf("P - Qnt: %.f\n", _arrayFinal[i++]);
-        printf("N - Bil: %.2f\n", _arrayFinal[i++]);
-        printf("P - Bil: %.2f\n", _arrayFinal[i++]);*/
+        }
     }
     else{
         _arrayFinal = g_malloc(sizeof(double)*N_BRANCHES*elem_per_branch);
@@ -92,23 +87,9 @@ double * getProductValuesByMonthBillingCat(Billings bs, char* product_code, int 
         }
     }
     return _arrayFinal;
-        /*
-        _arrayFinal[N_BRANCHES*elem_per_branch] = -1.0;
-        printf("SEPARETED\n");
-        while(_arrayFinal[i] != -1.0)
-            printf("%f\n",_arrayFinal[i++]);
-        i = 0;
-        for (branch = 0; branch < N_BRANCHES; branch++) {
-            printf("N - Qnt: %.f\n", _arrayFinal[i++]);
-            printf("P - Qnt: %.f\n", _arrayFinal[i++]);
-            printf("N - Bil: %.2f\n", _arrayFinal[i++]);
-            printf("P - Bil: %.2f\n", _arrayFinal[i++]);
-            printf("---------------\n");
-        }*/
 }
 
 /* QUERY 8 */
-/* [I..F] */
 Querie8Aux getTotalsFromBillingMonthInterval(Billings bs, int monthI, int monthF)
 {
     Querie8Aux aux = initQuerie8Aux();

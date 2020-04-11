@@ -10,24 +10,15 @@
 
 typedef struct branches* Branches;
 
-
-/**
-@brief De um array de inteiros, mostra ao utilizador o conteúdo numa tabela
-@param list Array de quantidades de produtos comprados nos meses
-@param client Código do cliente ao qual as quantidades estão relacionadas
-@return int devolve a escolha dada no input
-*/
-
-
 /**
 @brief Inicialização da estrutura Branches
 @param branches Número de filiais a inicializar
-@return Branches xxx
+@return Branches Estrutura Branches inicializada
 */
 Branches initBranches(int);
 
 /**
-@brief xxx
+@brief Adicionar a estrutura Branch á hashtable branches
 @param branches Estrutura Branches
 @param branch Estrutura Branch a ser inserida
 @param number Número da filial que vai ser inserida
@@ -51,20 +42,20 @@ void destroyBranches(Branches);
 @brief Encontrar os clientes que compraram em todas as filiais
 @param bs Estrutura Branches
 @param clients Estrutura Clients
-@return char** xxx
+@return char** Array de clientes que compraram em todos as filiais
 */
 char ** clientsInCommon(Branches, Clients);
 
 /**
-@brief xxx
+@brief Devolve um array de códigos de produto vendidos numa certa filial
 @param bs Estrutura Branches
 @param branch Número da filial escolhida
-@return char** xxx
+@return char** Array de códigos de produto vendidos numa certa filial
 */
 char ** getProductsBought(Branches, int);
 
 /**
-@brief xxx
+@brief Deolve uma estrutura Querie9Aux com os valores especificos a um dado código de produto
 @param bs Estrutura Branches
 @param product_code Código do produto
 @param branch Número da filial escolhida
@@ -73,24 +64,24 @@ char ** getProductsBought(Branches, int);
 Querie9Aux clientsWhoBoughtProduct(Branches, char*, int);
 
 /**
-@brief xxx
+@brief Devolve um array com todos os códigos de cliente de uma certa filial
 @param bs Estrutura Branches
 @param branch Número da filial escolhida
-@return char** xxx
+@return char** Array de códigos de clientes
 */
 char ** getClientsUsed(Branches, int);
 
 /**
-@brief xxx
+@brief Devolve um array com as quantidades de produtos comprados em cada mês
 @param bs Estrutura Branches
 @param client_code Código do cliente
 @param branch Número da filial escolhida
-@return int* xxx
+@return int* Array com quantidades de produtos comprados em cada mês
 */
 int * clientBranchShopLog(Branches, char*, int);
 
 /**
-@brief xxx
+@brief Devolve um array por ordem descendente de por quantidade comprada com a estrutura Info
 @param bs Estrutura Branches
 @param client_code Código do cliente
 @param month Mês a procurar
@@ -99,7 +90,7 @@ int * clientBranchShopLog(Branches, char*, int);
 Info * getMostBought(Branches, char*, int);
 
 /**
-@brief xxx
+@brief Devolve um array com a estrutura auxiliar Aux com os N produtos mais comprados
 @param bs Estrutura Branches
 @param n_products
 @return Aux Estrutura auxiliar para devolver resultados da query xxx
@@ -107,11 +98,11 @@ Info * getMostBought(Branches, char*, int);
 Aux * getNMostBoughtProducts(Branches, int);
 
 /**
-@brief xxx
+@brief Devolve um array com a estrutura auxiliar Money com os N produtos em que um cliente gastou mais dinheiro
 @param bs Estrutura Branches
 @param client_code Código do cliente
-@param n xxx
-@return Money Estrutura auxiliar para devolver resultados da query 12
+@param n Número de produtos a adicionar ao array final
+@return Money* Array com estrutura auxiliar para devolver resultados da query 12
 */
 Money * clientSpentMostOn(Branches, char*, int);
 
