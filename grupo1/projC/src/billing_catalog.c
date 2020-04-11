@@ -121,7 +121,7 @@ Querie8Aux getTotalsFromBillingMonthInterval(Billings bs, int monthI, int monthF
         *key = i;
 
         b = (Billing)g_hash_table_lookup(bs->billings,key);
-        getTotalsFromBilling(b, aux);
+        updateTotalsFromBilling(b, aux);
 
         g_free(key);
     }
