@@ -1,16 +1,219 @@
 #include "controller.h"
+#include "constants.h"
 #include "view.h"
 #include "sgv.h"
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
+void askClientsPath(char *clients_path)
+{
+    resetColor();
+    printMessage("Clients's file path: ");
+    scanf("%s", clients_path);
+    boldCyan();
+}
+
+void askProductsPath(char *products_path)
+{
+    resetColor();
+    printMessage("Products's file path: ");
+    scanf("%s", products_path);
+    boldCyan();
+}
+
+void askSalesPath(char *sales_path)
+{
+    resetColor();
+    printMessage("Sales's file path: ");
+    scanf("%s", sales_path);
+    boldCyan();
+}
+
+char askProductLetter()
+{
+    resetColor();
+    char letter = 0;
+    while ((letter < 'A' || letter > 'Z') && (letter < 'a' || letter > 'z'))
+    {
+        printMessage("Qual a letra?\n");
+        boldCyan();
+        scanf(" %c", &letter);
+        resetColor();
+    }
+    return toupper(letter);
+}
+
+char askPromotion()
+{
+    char type = 'A';
+    while (type != 'N' && type != 'P')
+    {
+        resetColor();
+        printMessage("Qual tipo de produtos vendidos pretende ver? (N ou P)\n");
+        boldCyan();
+        scanf(" %c", &type);
+        toupper(type);
+        resetColor();
+    }
+    return type;
+}
+
+char *askProduct()
+{
+    char *product = malloc(sizeof(char) * PRODUCT_CODE_SIZE);
+    resetColor();
+    printMessage("Qual produto? \n");
+    boldCyan();
+    scanf(" %s", product);
+    resetColor();
+    return product;
+}
+
+int askMonth()
+{
+    char *choice = malloc(sizeof(char) * 32);
+    int month = -1;
+    while (month <= 0 || month > 12)
+    {
+        resetColor();
+        printMessage("Qual mês?: \n");
+        boldCyan();
+        scanf(" %s", choice);
+        month = atoi(choice);
+        resetColor();
+    }
+    g_free(choice);
+    return month;
+}
+
+char *askClient()
+{
+    char *client = malloc(sizeof(char) * CLIENT_CODE_SIZE);
+    resetColor();
+    printMessage("Qual cliente?\n");
+    boldCyan();
+    scanf(" %s", client);
+    resetColor();
+    return client;
+}
+
+int *askMonthInterval()
+{
+    char *choice = malloc(sizeof(char) * 32);
+    int *interval = malloc(sizeof(int) * 2);
+    resetColor();
+    printMessage("Primeiro mês do intervalo?\n");
+    boldCyan();
+    scanf(" %s", choice);
+    interval[0] = atoi(choice);
+    resetColor();
+    printMessage("Segundo mês do intervalo?\n");
+    boldCyan();
+    scanf(" %s", choice);
+    interval[1] = atoi(choice);
+    resetColor();
+    g_free(choice);
+    return interval;
+}
+
+int askBranch()
+{
+    char *choice = malloc(sizeof(char) * 32);
+    int branch = -1;
+    while (branch < ONE || branch > N_BRANCHES)
+    {
+        printMessage("Qual filial?\n");
+        boldCyan();
+        scanf(" %s", choice);
+        branch = atoi(choice);
+        resetColor();
+    }
+    g_free(choice);
+    return branch;
+}
+
+void askQuerie1Paths(char *clients_path, char *products_path, char *sales_path)
+{
+    resetColor();
+    char choice = '0';
+    printf("1 - Choose files path\nOther value - Default paths\n");
+    boldCyan();
+    scanf(" %c", &choice);
+    switch (choice)
+    {
+    case '1':
+        askClientsPath(clients_path);
+        askProductsPath(products_path);
+        askSalesPath(sales_path);
+        break;
+
+    default:
+        strcpy(clients_path, CLIENTS_PATH);
+        strcpy(products_path, PRODUCTS_PATH);
+        strcpy(sales_path, SALES_PATH);
+        break;
+    }
+    resetColor();
+}
+
+int askQuerie3Choice()
+{
+    char *choice = malloc(sizeof(char) * 32);
+    int escolha = -1;
+    while (escolha != 0 && escolha != 1)
+    {
+        printMessage("0 - Filial a filial\n1 - Global: \n");
+        boldCyan();
+        scanf(" %s", choice);
+        escolha = atoi(choice);
+        resetColor();
+    }
+    g_free(choice);
+    return escolha;
+}
+
+int askQuerie4Choice()
+{
+    char *choice = malloc(sizeof(char) * 32);
+    int escolha = -1;
+    while (escolha != 0 && escolha != 1)
+    {
+        resetColor();
+        printMessage("0 - Global\n1 - Filial a Filial: \n");
+        boldCyan();
+        scanf(" %s", choice);
+        escolha = atoi(choice);
+        resetColor();
+    }
+    g_free(choice);
+    return escolha;
+}
+
+int askQuerie11N()
+{
+    int n = 0;
+    char *choice = malloc(sizeof(char) * 32);
+    while (n <= 0)
+    {
+        resetColor();
+        printMessage("Quantos produtos pretende ver?\n");
+        boldCyan();
+        scanf(" %s", choice);
+        n = atoi(choice);
+        resetColor();
+    }
+    g_free(choice);
+    return n;
+}
 
 void controllerQuerie1(StartValues sv, SGV sgv)
 {
     char *clients_path = g_malloc(sizeof(char) * 1024);
     char *products_path = g_malloc(sizeof(char) * 1024);
     char *sales_path = g_malloc(sizeof(char) * 1024);
-    querie1View(clients_path, products_path, sales_path);
+    askQuerie1Paths(clients_path, products_path, sales_path);
 
     setPathsSV(sv, clients_path, products_path, sales_path);
     sgv = startSGV(sgv, sv);
@@ -31,11 +234,44 @@ void controllerQuerie1(StartValues sv, SGV sgv)
 
 void controllerQuerie2(SGV sgv)
 {
+    char *choice = malloc(sizeof(char) * 32);
     char letter = askProductLetter();
     char **result = getProductsStartedByLetter(sgv, letter);
-    listView(result, listSize(result));
+    int page = 0;
+    int max, size;
 
+    for (; page >= 0 && choice[0] != '0';)
+    {
+        size = listSize(result);
+        listView(result, size, page);
+
+        max = size / ELEMENTS_PER_PAGE;
+        scanf(" %s", choice);
+
+        if (choice[0] == 'p' && page > 0)
+        {
+            page--;
+        }
+        else if (choice[0] == 'n' && page < max)
+        {
+            page++;
+        }
+        else if (choice[0] == 'c')
+        {
+            printf("Número da página:\n");
+            scanf(" %s", choice);
+            while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
+            {
+                printf("Página não existe. Insira novo número:\n");
+                scanf(" %s", choice);
+            }
+            page = atoi(choice);
+        }
+    }
+
+    cleanConsole();
     freeStringList(result);
+    free(choice);
 }
 
 void controllerQuerie3(SGV sgv)
@@ -48,7 +284,7 @@ void controllerQuerie3(SGV sgv)
     {
         cleanConsole();
         boldRed();
-        printf("Produto inválido.\n");
+        printMessage("Produto inválido.\n");
         resetColor();
     }
     else
@@ -61,40 +297,148 @@ void controllerQuerie3(SGV sgv)
 
 void controllerQuerie4(SGV sgv)
 {
-    int choice = askQuerie4Choice();
-    char ***products = getProductsNeverBought(sgv, choice);
+    char *choice = malloc(sizeof(char) * 32);
+    int escolha = askQuerie4Choice();
+    char ***products = getProductsNeverBought(sgv, escolha);
+    int sizes[N_BRANCHES];
+    int max;
+    int page = 0;
+    int branch = 0;
+    int global;
     if (products == NULL)
     {
-        printf("Informações não existentes.");
+        printMessage("Informações não existentes.");
     }
     else
     {
-        if (choice == 0)
+        if (escolha == 0)
         {
-            querie4View(products, 1, 0, listSize(products[0]));
+            global = 1;
+            /*querie4View(products, 1, 0, sizes);*/
+            sizes[0] = listSize(products[0]);
+            max = sizes[0] / ELEMENTS_PER_PAGE;
+            for (; page >= 0 && choice[0] != '0';)
+            {
+                querie4View(products, global, branch, sizes, page);
+
+                scanf(" %s", choice);
+
+                if (choice[0] == 'p' && page > 0)
+                {
+                    page--;
+                }
+                else if (choice[0] == 'n' && page < max)
+                {
+                    page++;
+                }
+                else if (choice[0] == 'c')
+                {
+                    printf("Número da página:\n");
+                    scanf(" %s", choice);
+                    while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
+                    {
+                        printf("Página não existe. Insira novo número:\n");
+                        scanf(" %s", choice);
+                    }
+                    page = atoi(choice);
+                }
+            }
         }
         else
         {
-            int branch = askBranch();
-            while (branch > 3 || branch <= 0)
+            global = 0;
+            int i = 0;
+            for (; i < N_BRANCHES; i++)
             {
-                boldRed();
-                printf("Filial %d não existe.\n", branch);
-                resetColor();
-                branch = askBranch();
+                sizes[i] = listSize(products[i]);
             }
-            querie4View(products, 0, branch-1, listSize(products[branch-1]));
+            /*querie4View(products, 0, branch - 1, sizes);*/
+            max = sizes[0] / ELEMENTS_PER_PAGE;
+            for (; page >= 0 && choice[0] != '0';)
+            {
+                querie4View(products, 0, branch, sizes, page);
+                scanf(" %s", choice);
+
+                if (choice[0] == 'p' && page > 0)
+                {
+                    page--;
+                }
+                else if (choice[0] == 'n' && page < max)
+                {
+                    page++;
+                }
+                else if (choice[0] == 'c')
+                {
+                    printf("Número da página:\n");
+                    scanf(" %s", choice);
+                    while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
+                    {
+                        printf("Página não existe. Insira novo número:\n");
+                        scanf(" %s", choice);
+                    }
+                    page = atoi(choice);
+                }
+                else if (choice[0] == 't')
+                {
+                    if (branch == N_BRANCHES - 1)
+                    {
+                        branch = 0;
+                        max = sizes[branch] / ELEMENTS_PER_PAGE;
+                        page = 0;
+                    }
+                    else
+                    {
+                        branch++;
+                        max = sizes[branch] / ELEMENTS_PER_PAGE;
+                        page = 0;
+                    }
+                }
+            }
         }
     }
+    cleanConsole();
+    free(choice);
     freeStringMatrix(products);
 }
 
 void controllerQuerie5(SGV sgv)
 {
+    char *choice = malloc(sizeof(char) * 32);
     char **clients = getClientsOfAllBranches(sgv);
+    int page = 0;
+    int max, size;
 
-    listView(clients, listSize(clients));
+    for (; page >= 0 && choice[0] != '0';)
+    {
+        size = listSize(clients);
+        listView(clients, size, page);
 
+        max = size / ELEMENTS_PER_PAGE;
+        scanf(" %s", choice);
+
+        if (choice[0] == 'p' && page > 0)
+        {
+            page--;
+        }
+        else if (choice[0] == 'n' && page < max)
+        {
+            page++;
+        }
+        else if (choice[0] == 'c')
+        {
+            printf("Número da página:\n");
+            scanf(" %s", choice);
+            while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
+            {
+                printf("Página não existe. Insira novo número:\n");
+                scanf(" %s", choice);
+            }
+            page = atoi(choice);
+        }
+    }
+
+    cleanConsole();
+    g_free(choice);
     g_free(clients);
 }
 
@@ -133,7 +477,7 @@ void controllerQuerie8(SGV sgv)
     {
         cleanConsole();
         boldRed();
-        printf("Intervalo de meses errado.\n");
+        printMessage("Intervalo de meses errado.\n");
         resetColor();
     }
     freeQuerie8Aux(result);
@@ -147,7 +491,7 @@ void controllerQuerie9(SGV sgv)
     while (branch > 3 || branch <= 0)
     {
         boldRed();
-        printf("Filial %d não existe.\n", branch);
+        printMessage("Essa filial não existe.\n");
         resetColor();
         branch = askBranch();
     }
@@ -156,7 +500,7 @@ void controllerQuerie9(SGV sgv)
 
     char type = askPromotion();
 
-    querie9View(result,type);
+    querie9View(result, type);
 
     g_free(product);
     freeQuerie9Aux(result);
@@ -167,41 +511,49 @@ void controllerQuerie10(SGV sgv)
     char *client = askClient();
     int month = askMonth();
 
-    Info * result = getClientsFavoriteProducts(sgv, client, month);
+    Info *result = getClientsFavoriteProducts(sgv, client, month);
 
-    if (result == NULL) {
+    if (result == NULL)
+    {
         cleanConsole();
         boldRed();
-        printf("Cliente inválido.\n");
+        printMessage("Cliente inválido.\n");
         resetColor();
-    } else {
-        querie10View(result, listSize((char**)result), client);
+    }
+    else
+    {
+        querie10View(result, listSize((char **)result), client);
     }
     g_free(client);
     freeInfoList(result);
 }
 
-void controllerQuerie11(SGV sgv) {
+void controllerQuerie11(SGV sgv)
+{
     int n = askQuerie11N();
-    Aux * result = getTopSoldProducts(sgv, n);
+    Aux *result = getTopSoldProducts(sgv, n);
 
-    querie11View(result, listSize((char**)result));
+    querie11View(result, listSize((char **)result));
     freeAuxList(result);
 }
 
-void controllerQuerie12(SGV sgv) {
-    char* client = askClient();
+void controllerQuerie12(SGV sgv)
+{
+    char *client = askClient();
     int n = askQuerie11N();
 
     Money *result = getClientTopProfitProducts(sgv, client, n);
 
-    if (result == NULL) {
+    if (result == NULL)
+    {
         cleanConsole();
         boldRed();
-        printf("Cliente inválido.\n");
+        printMessage("Cliente inválido.\n");
         resetColor();
-    } else {
-        querie12View(result, listSize((char**)result), client);
+    }
+    else
+    {
+        querie12View(result, listSize((char **)result), client);
     }
     freeMoneyList(result);
 }
@@ -218,9 +570,10 @@ void menu(SGV sgv)
         printMenu();
         scanf(" %s", choice);
         querie = atoi(choice);
-        while (querie != 1 && initial != 1 && querie != 0 && querie <= 12) {
+        while (querie != 1 && initial != 1 && querie != 0 && querie <= 12)
+        {
             boldRed();
-            printf("Faça a querie 1 primeiro para carregamento dos dados.\n");
+            printMessage("Faça a querie 1 primeiro para carregamento dos dados.\n");
             boldCyan();
             scanf(" %s", choice);
             querie = atoi(choice);
@@ -270,11 +623,10 @@ void menu(SGV sgv)
         }
     }
     g_free(choice);
-    if(sgv != NULL)
+    if (sgv != NULL)
         destroySGV(sgv);
 
-
-    if(sv != NULL)
+    if (sv != NULL)
         destroyStartValues(sv);
 }
 
