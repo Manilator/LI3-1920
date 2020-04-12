@@ -693,6 +693,19 @@ void controllerQuerie12(SGV sgv)
     freeMoneyList(result);
 }
 
+void controllerQuerie13(StartValues sv) {
+    cleanConsole();
+    viewPrintStartValues(getClientsPath(sv),
+                         getProductsPath(sv),
+                         getSalesPath(sv),
+                         getValidClients(sv),
+                         getValidProducts(sv),
+                         getValidSales(sv),
+                         getReadClients(sv),
+                         getReadProducts(sv),
+                         getReadSales(sv));
+}
+
 void menu(SGV sgv)
 {
     char *choice = malloc(sizeof(char) * 32);
@@ -705,7 +718,7 @@ void menu(SGV sgv)
         printMenu();
         scanf(" %s", choice);
         querie = atoi(choice);
-        while (querie != 1 && initial != 1 && querie != 0 && querie <= 12)
+        while (querie != 1 && initial != 1 && querie != 0 && querie <= 13)
         {
             boldRed();
             printMessage("Faça a querie 1 primeiro para carregamento dos dados.\n");
@@ -713,11 +726,21 @@ void menu(SGV sgv)
             scanf(" %s", choice);
             querie = atoi(choice);
         }
-        initial = 1;
         switch (querie)
         {
         case 1:
+            if(initial == 1) {
+                boldRed();
+                printMessage("A libertar dados antigos...\n");
+                resetColor();
+                destroyStartValues(sv);
+                destroySGV(sgv);
+                sgv = initSGV();
+                sv = initStartValues();
+
+            }
             controllerQuerie1(sv, sgv);
+            initial = 1;
             break;
         case 2:
             controllerQuerie2(sgv);
@@ -752,14 +775,21 @@ void menu(SGV sgv)
         case 12:
             controllerQuerie12(sgv);
             break;
+        case 13:
+            controllerQuerie13(sv);
+            break;
         default:
             querie = 0;
             break;
         }
     }
     g_free(choice);
-    if (sgv != NULL)
+    if (sgv != NULL){
+        boldRed();
+        printMessage("A libertar dados antigos...\n");
+        resetColor();
         destroySGV(sgv);
+    }
 
     if (sv != NULL)
         destroyStartValues(sv);

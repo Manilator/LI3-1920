@@ -79,18 +79,19 @@ void boldCyan()
 void printMenu()
 {
     printf("! --------------- !\n");
-    printf("1  - Querie 1\n");
-    printf("2  - Querie 2\n");
-    printf("3  - Querie 3\n");
-    printf("4  - Querie 4\n");
-    printf("5  - Querie 5\n");
-    printf("6  - Querie 6\n");
-    printf("7  - Querie 7\n");
-    printf("8  - Querie 8\n");
-    printf("9  - Querie 9\n");
-    printf("10 - Querie 10\n");
-    printf("11 - Querie 11\n");
-    printf("12 - Querie 12\n");
+    printf("1  - Query 1\n");
+    printf("2  - Query 2\n");
+    printf("3  - Query 3\n");
+    printf("4  - Query 4\n");
+    printf("5  - Query 5\n");
+    printf("6  - Query 6\n");
+    printf("7  - Query 7\n");
+    printf("8  - Query 8\n");
+    printf("9  - Query 9\n");
+    printf("10 - Query 10\n");
+    printf("11 - Query 11\n");
+    printf("12 - Query 12\n");
+    printf("13 - Query 13\n");
     printf("*  - Exit\n");
     printf("! --------------- !\n");
     boldCyan();
@@ -111,6 +112,7 @@ void viewPrintStartValues(char *clients_path,
                           int products_read,
                           int sales_read)
 {
+    resetColor();
     printSeparator();
     boldGreen();
     printf("Path Clients:%s\n", clients_path);
