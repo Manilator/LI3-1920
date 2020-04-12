@@ -90,9 +90,9 @@ double * getProductValuesByMonthBillingCat(Billings bs, char* product_code, int 
 }
 
 /* QUERY 8 */
-Querie8Aux getTotalsFromBillingMonthInterval(Billings bs, int monthI, int monthF)
+Query8Aux getTotalsFromBillingMonthInterval(Billings bs, int monthI, int monthF)
 {
-    Querie8Aux aux = initQuerie8Aux();
+    Query8Aux aux = initQuery8Aux();
 
     int i;
     Billing b;

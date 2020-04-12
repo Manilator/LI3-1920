@@ -46,7 +46,7 @@ StartValues initStartValues(){
     return startValues;
 }
 
-void setPathsSV(StartValues startValues, char* clients_path, char* products_path, char* sales_path){
+void setPathsSV(StartValues startValues, char * clients_path, char * products_path, char * sales_path){
     startValues->path_clients = g_string_new(clients_path);
     startValues->path_products = g_string_new(products_path);
     startValues->path_sales = g_string_new(sales_path);
@@ -66,7 +66,7 @@ SGV initSGV(){
 int parseClients(Clients clients, StartValues startValues)
 {
     FILE* file_pointer = fopen((startValues->path_clients)->str,"r");
-    char* _fileline = g_malloc(sizeof(char)*1024); /*Variável onde é guardada cada linha lida*/
+    char * _fileline = g_malloc(sizeof(char)*1024); /*Variável onde é guardada cada linha lida*/
     while(fgets(_fileline, 1024, file_pointer) != NULL)
     {
         if(addClient(clients,_fileline))
@@ -87,7 +87,7 @@ int parseClients(Clients clients, StartValues startValues)
 int parseProducts(Products products, Billings bs, StartValues startValues)
 {
     FILE* file_pointer = fopen((startValues->path_products)->str,"r");
-    char* _fileline = g_malloc(sizeof(char)*1024); /*Variável onde é guardada cada linha lida*/
+    char * _fileline = g_malloc(sizeof(char)*1024); /*Variável onde é guardada cada linha lida*/
     while(fgets(_fileline, 1024, file_pointer) != NULL)
     {
         if(addProduct(products,_fileline))
@@ -111,7 +111,7 @@ int parseProducts(Products products, Billings bs, StartValues startValues)
 int parseSales(SGV sgv, StartValues startValues)
 {
     FILE* file_pointer = fopen((startValues->path_sales)->str,"r");
-    char* _fileline = g_malloc(sizeof(char)*1024); /*Variável onde é guardada cada linha lida*/
+    char * _fileline = g_malloc(sizeof(char)*1024); /*Variável onde é guardada cada linha lida*/
     while(fgets(_fileline, 1024, file_pointer) != NULL)
     {
         Sale _new;
@@ -172,7 +172,7 @@ char ** getProductsStartedByLetter(SGV sgv, char letter){
 /*
  * [QUERY 3]
 */
-double * getProductSalesAndProfit(SGV sgv, char* product_code, int month, int branches){
+double * getProductSalesAndProfit(SGV sgv, char * product_code, int month, int branches){
     double * result = NULL;
     if(existProductCode (sgv->product_catalog,product_code) && month >= 1 && month <= 12 && (branches == 0 || branches == 1)){
         result = getProductValuesByMonthBillingCat(sgv->billings, product_code, month, branches);
@@ -190,7 +190,7 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
     char ** _productsBought;
     GHashTable * _htProductsBought;
     if(isGlobal == 0){
-        result = g_malloc(sizeof(char**)*2);
+        result = g_malloc(sizeof(char **)*2);
         _htProductsBought = g_hash_table_new(g_str_hash, g_str_equal);
         for (branch = 1; branch <= N_BRANCHES; branch++) {
 
@@ -209,7 +209,7 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
     }
     else{
         int j=0;
-        result = g_malloc(sizeof(char**)*(N_BRANCHES+1));
+        result = g_malloc(sizeof(char **)*(N_BRANCHES+1));
         for(branch = 1; branch <= N_BRANCHES; branch++){
             _htProductsBought = g_hash_table_new(g_str_hash, g_str_equal);
             _productsBought = getProductsBought(sgv->branches, branch);
@@ -227,8 +227,8 @@ char *** getProductsNeverBought(SGV sgv, int isGlobal){
 }
 
 /* [QUERY 5] */
-char** getClientsOfAllBranches(SGV sgv){
-    char** codes = clientsInCommon(sgv->branches, sgv->client_catalog);
+char ** getClientsOfAllBranches(SGV sgv){
+    char ** codes = clientsInCommon(sgv->branches, sgv->client_catalog);
     return codes;
 }
 
@@ -274,7 +274,7 @@ int * getClientsAndProductsNeverBoughtCount(SGV sgv){
 }
 
 /* QUERY 7 */
-int ** getProductsBoughtByClient(SGV sgv, char* client_code){
+int ** getProductsBoughtByClient(SGV sgv, char * client_code){
     int ** result = NULL;
     if(existClientCode (sgv->client_catalog,client_code)){
         int branch;
@@ -289,7 +289,7 @@ int ** getProductsBoughtByClient(SGV sgv, char* client_code){
 }
 
 /* [QUERY 8] */
-Querie8Aux getSalesAndProfit(SGV sgv, int monthI, int monthF)
+Query8Aux getSalesAndProfit(SGV sgv, int monthI, int monthF)
 {
     if(monthI > 0 && monthF < 13 && monthF >= monthI)
         return getTotalsFromBillingMonthInterval(sgv->billings, monthI, monthF);
@@ -298,9 +298,9 @@ Querie8Aux getSalesAndProfit(SGV sgv, int monthI, int monthF)
 }
 
 /* [QUERY 9] */
-Querie9Aux getProductBuyers(SGV sgv, char *product_code, int branch)
+Query9Aux getProductBuyers(SGV sgv, char *product_code, int branch)
 {
-    Querie9Aux result = NULL;
+    Query9Aux result = NULL;
     if(existProductCode (sgv->product_catalog,product_code) && branch >= 1 && branch <= N_BRANCHES)
     {
         result = clientsWhoBoughtProduct(sgv->branches, product_code, branch);
@@ -309,7 +309,7 @@ Querie9Aux getProductBuyers(SGV sgv, char *product_code, int branch)
 }
 
 /* [QUERY 10] */
-Info * getClientsFavoriteProducts(SGV sgv, char* client_code, int month){
+Info * getClientsFavoriteProducts(SGV sgv, char * client_code, int month){
     Info * result = NULL;
     if(existClientCode (sgv->client_catalog,client_code) && month >= ZERO && month <= MONTHS){
         result = getMostBought(sgv->branches, client_code, month);
@@ -333,15 +333,15 @@ Money * getClientTopProfitProducts(SGV sgv, char *client_code, int n)
     return result;
 }
 
-char* getClientsPath(StartValues sv) {
+char * getClientsPath(StartValues sv) {
     return (sv->path_clients)->str;
 }
 
-char* getProductsPath(StartValues sv) {
+char * getProductsPath(StartValues sv) {
     return (sv->path_products)->str;
 }
 
-char* getSalesPath(StartValues sv) {
+char * getSalesPath(StartValues sv) {
     return (sv->path_sales)->str;
 }
 
@@ -370,7 +370,7 @@ int getReadSales (StartValues sv) {
 }
 
 
-int listSize(char** list) {
+int listSize(char ** list) {
     int i = 0;
     for(; list[i] != 0; i++);
     return i;

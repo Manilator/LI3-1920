@@ -143,7 +143,7 @@ void freeBilling(Billing billing) {
 }
 
 /* QUERY 8 */
-void updateTotalsFromBilling(Billing billing, Querie8Aux aux)
+void updateTotalsFromBilling(Billing billing, Query8Aux aux)
 {
     int branchesTotal=0,i;
     for (i = 0; i < N_BRANCHES; i++)

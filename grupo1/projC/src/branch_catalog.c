@@ -78,7 +78,7 @@ char ** getProductsBought(Branches bs, int branch){
     return getProductsInBranch(b);
 }
 
-Querie9Aux clientsWhoBoughtProduct(Branches bs, char *product_code, int branch){
+Query9Aux clientsWhoBoughtProduct(Branches bs, char *product_code, int branch){
     int *_tmp = g_malloc(sizeof(int));
     *_tmp = branch;
     Branch b = (Branch)g_hash_table_lookup(bs->branches, _tmp);

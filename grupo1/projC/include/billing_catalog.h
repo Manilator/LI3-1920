@@ -56,11 +56,11 @@ void insertBillingProduct(Billings, int, char*);
 void destroyBillings(Billings);
 
 /**
-@brief Devolve uma estrutura auxiliar Querie8Aux com os valores de entre dois meses dados
+@brief Devolve uma estrutura auxiliar Query8Aux com os valores de entre dois meses dados
 @param monthI Número de um mês
 @param monthF Número de um mês posterior ou igual a monthI
-@return Querie8Aux Uma estrutura Querie8Aux
+@return Query8Aux Uma estrutura Query8Aux
 */
-Querie8Aux getTotalsFromBillingMonthInterval(Billings, int, int);
+Query8Aux getTotalsFromBillingMonthInterval(Billings, int, int);
 
 #endif

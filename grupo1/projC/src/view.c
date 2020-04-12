@@ -385,20 +385,20 @@ void querie7View(int **totals)
     }
 }
 
-void querie8View(Querie8Aux aux, int first, int second)
+void querie8View(Query8Aux aux, int first, int second)
 {
     cleanConsole();
     resetColor();
     printf("--------- Meses [%d-%d] ---------\n", first, second);
     boldGreen();
-    printf("Unidades vendidas: %d\n", getQuerie8AuxUnits(aux));
-    printf("Total faturado: %f\n", getQuerie8AuxBilled(aux));
-    printf("Registo de Vendas: %d\n", getQuerie8AuxSales(aux));
+    printf("Unidades vendidas: %d\n", getQuery8AuxUnits(aux));
+    printf("Total faturado: %f\n", getQuery8AuxBilled(aux));
+    printf("Registo de Vendas: %d\n", getQuery8AuxSales(aux));
     resetColor();
     printf("--------- Meses [%d-%d] ---------\n", first, second);
 }
 
-void querie9View(Querie9Aux aux, char type, int page)
+void querie9View(Query9Aux aux, char type, int page)
 {
     cleanConsole();
 
