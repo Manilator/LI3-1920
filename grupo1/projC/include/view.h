@@ -51,6 +51,10 @@ void viewPrintStartValues(char *clients_path,
                           int   products_read,
                           int   sales_read);
 
+/**
+@brief Imprime a mensagem fornecida
+@param message Mensagem a ser impressa
+*/
 void printMessage(char*);
 
 /**

@@ -1,6 +1,14 @@
+/**
+@file main.c
+\brief Ficheiro principal.
+*/
+
 #include "args.h"
 #include "controller.h"
 
+/**
+  \brief Função principal.
+  */
 int main(int argc, char *argv[])
 {
     if (argc == 1)
