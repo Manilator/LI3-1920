@@ -7,13 +7,13 @@
 
 struct sale
 {
-    char*   product;
-    char*   client;
-    double   price;
-    int     units;
-    char    promotion; /*P ou N*/
-    int     month;
-    int     branch;
+    char *  product; /**< Código de produto */
+    char *  client; /**< Código de cliente */
+    double  price; /**< Preço do produto */
+    int     units; /**< Número de unidades vendidas */
+    char    promotion; /**< Tipo de promoção N ou P */
+    int     month; /**< Número do mês */
+    int     branch; /**< Número da filial */
 };
 
 

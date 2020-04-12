@@ -5,8 +5,8 @@
 
 struct client
 {
-    char letter; /**Letter**/
-    int number; /**Number**/
+    char letter; /**< Primeira letra no código de cliente */
+    int number; /**< Número presente no código de cliente */
 };
 
 char* getClientCode(Client client) {

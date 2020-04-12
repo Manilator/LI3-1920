@@ -9,7 +9,7 @@
 
 struct billings
 {
-    GHashTable* billings;
+    GHashTable* billings; /**< Número do mês e a sua estrutura atribuída Billing */
 };
 
 Billings initBillings() {

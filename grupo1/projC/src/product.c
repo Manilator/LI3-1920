@@ -5,9 +5,9 @@
 
 struct product
 {
-    char first_letter;
-    char second_letter;
-    int number;
+    char first_letter; /**< Primeira letra no código de produto */
+    char second_letter; /**< Segunda letra no código de produto */
+    int number; /**< Número presente no código de produto */
 };
 
 char* getProductCode(Product product) {

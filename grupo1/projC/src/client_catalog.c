@@ -6,7 +6,7 @@
 
 struct clients
 {
-    GHashTable* clients;
+    GHashTable* clients; /**< Códigos de clientes e a sua estrutura */
 };
 
 Clients initClients() {

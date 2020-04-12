@@ -135,7 +135,7 @@ int askBranch()
     return branch;
 }
 
-void askQuerie1Paths(char *clients_path, char *products_path, char *sales_path)
+void askQuery1Paths(char *clients_path, char *products_path, char *sales_path)
 {
     resetColor();
     char choice = '0';
@@ -159,7 +159,7 @@ void askQuerie1Paths(char *clients_path, char *products_path, char *sales_path)
     resetColor();
 }
 
-int askQuerie3Choice()
+int askQuery3Choice()
 {
     char *choice = malloc(sizeof(char) * 32);
     int escolha = -1;
@@ -175,7 +175,7 @@ int askQuerie3Choice()
     return escolha;
 }
 
-int askQuerie4Choice()
+int askQuery4Choice()
 {
     char *choice = malloc(sizeof(char) * 32);
     int escolha = -1;
@@ -192,7 +192,7 @@ int askQuerie4Choice()
     return escolha;
 }
 
-int askQuerie11N()
+int askQuery11N()
 {
     int n = 0;
     char *choice = malloc(sizeof(char) * 32);
@@ -209,12 +209,12 @@ int askQuerie11N()
     return n;
 }
 
-void controllerQuerie1(StartValues sv, SGV sgv)
+void controllerQuery1(StartValues sv, SGV sgv)
 {
     char *clients_path = g_malloc(sizeof(char) * 1024);
     char *products_path = g_malloc(sizeof(char) * 1024);
     char *sales_path = g_malloc(sizeof(char) * 1024);
-    askQuerie1Paths(clients_path, products_path, sales_path);
+    askQuery1Paths(clients_path, products_path, sales_path);
 
     setPathsSV(sv, clients_path, products_path, sales_path);
     sgv = startSGV(sgv, sv);
@@ -233,7 +233,7 @@ void controllerQuerie1(StartValues sv, SGV sgv)
     g_free(sales_path);
 }
 
-void controllerQuerie2(SGV sgv)
+void controllerQuery2(SGV sgv)
 {
     char *choice = malloc(sizeof(char) * 32);
     char letter = askProductLetter();
@@ -276,11 +276,11 @@ void controllerQuerie2(SGV sgv)
     free(choice);
 }
 
-void controllerQuerie3(SGV sgv)
+void controllerQuery3(SGV sgv)
 {
     char *product = askProduct();
     int month = askMonth();
-    int choice = askQuerie3Choice();
+    int choice = askQuery3Choice();
     double *result = getProductSalesAndProfit(sgv, product, month, choice);
     if (result == NULL)
     {
@@ -297,10 +297,10 @@ void controllerQuerie3(SGV sgv)
     free(result);
 }
 
-void controllerQuerie4(SGV sgv)
+void controllerQuery4(SGV sgv)
 {
     char *choice = malloc(sizeof(char) * 32);
-    int escolha = askQuerie4Choice();
+    int escolha = askQuery4Choice();
     char ***products = getProductsNeverBought(sgv, escolha);
     int sizes[N_BRANCHES];
     int max;
@@ -375,7 +375,7 @@ void controllerQuerie4(SGV sgv)
     freeStringMatrix(products);
 }
 
-void controllerQuerie5(SGV sgv)
+void controllerQuery5(SGV sgv)
 {
     char *choice = malloc(sizeof(char) * 32);
     char **clients = getClientsOfAllBranches(sgv);
@@ -417,14 +417,14 @@ void controllerQuerie5(SGV sgv)
     free(clients);
 }
 
-void controllerQuerie6(SGV sgv)
+void controllerQuery6(SGV sgv)
 {
     int *list = getClientsAndProductsNeverBoughtCount(sgv);
     querie6View(list);
     free(list);
 }
 
-void controllerQuerie7(SGV sgv)
+void controllerQuery7(SGV sgv)
 {
 
     char *client = askClient();
@@ -437,7 +437,7 @@ void controllerQuerie7(SGV sgv)
     free(client);
 }
 
-void controllerQuerie8(SGV sgv)
+void controllerQuery8(SGV sgv)
 {
     int *month = g_malloc(sizeof(int) * 2);
     month = askMonthInterval();
@@ -459,7 +459,7 @@ void controllerQuerie8(SGV sgv)
     freeQuery8Aux(result);
 }
 
-void controllerQuerie9(SGV sgv)
+void controllerQuery9(SGV sgv)
 {
     char *choice = malloc(sizeof(char) * 32);
     char *product = askProduct();
@@ -480,8 +480,8 @@ void controllerQuerie9(SGV sgv)
         int size;
         for (; page >= 0 && choice[0] != '0';)
         {
-            int totalN = getQuerie9TotalN(result);
-            int totalP = getQuerie9TotalP(result);
+            int totalN = getQuery9TotalN(result);
+            int totalP = getQuery9TotalP(result);
             if (type == 'N')
             {
                 size = totalN;
@@ -533,7 +533,7 @@ void controllerQuerie9(SGV sgv)
     freeQuery9Aux(result);
 }
 
-void controllerQuerie10(SGV sgv)
+void controllerQuery10(SGV sgv)
 {
     char *client = askClient();
     int month = askMonth();
@@ -588,10 +588,10 @@ void controllerQuerie10(SGV sgv)
     freeInfoList(result);
 }
 
-void controllerQuerie11(SGV sgv)
+void controllerQuery11(SGV sgv)
 {
 
-    int n = askQuerie11N();
+    int n = askQuery11N();
     Aux *result = getTopSoldProducts(sgv, n);
     char *choice = malloc(sizeof(char) * 32);
     int max;
@@ -636,10 +636,10 @@ void controllerQuerie11(SGV sgv)
     cleanConsole();
 }
 
-void controllerQuerie12(SGV sgv)
+void controllerQuery12(SGV sgv)
 {
     char *client = askClient();
-    int n = askQuerie11N();
+    int n = askQuery11N();
     char *choice = malloc(sizeof(char) * 32);
     Money *result = getClientTopProfitProducts(sgv, client, n);
     int max;
@@ -693,7 +693,7 @@ void controllerQuerie12(SGV sgv)
     freeMoneyList(result);
 }
 
-void controllerQuerie13(StartValues sv) {
+void controllerQuery13(StartValues sv) {
     cleanConsole();
     viewPrintStartValues(getClientsPath(sv),
                          getProductsPath(sv),
@@ -739,44 +739,44 @@ void menu(SGV sgv)
                 sv = initStartValues();
 
             }
-            controllerQuerie1(sv, sgv);
+            controllerQuery1(sv, sgv);
             initial = 1;
             break;
         case 2:
-            controllerQuerie2(sgv);
+            controllerQuery2(sgv);
             break;
         case 3:
-            controllerQuerie3(sgv);
+            controllerQuery3(sgv);
             break;
         case 4:
-            controllerQuerie4(sgv);
+            controllerQuery4(sgv);
             break;
         case 5:
-            controllerQuerie5(sgv);
+            controllerQuery5(sgv);
             break;
         case 6:
-            controllerQuerie6(sgv);
+            controllerQuery6(sgv);
             break;
         case 7:
-            controllerQuerie7(sgv);
+            controllerQuery7(sgv);
             break;
         case 8:
-            controllerQuerie8(sgv);
+            controllerQuery8(sgv);
             break;
         case 9:
-            controllerQuerie9(sgv);
+            controllerQuery9(sgv);
             break;
         case 10:
-            controllerQuerie10(sgv);
+            controllerQuery10(sgv);
             break;
         case 11:
-            controllerQuerie11(sgv);
+            controllerQuery11(sgv);
             break;
         case 12:
-            controllerQuerie12(sgv);
+            controllerQuery12(sgv);
             break;
         case 13:
-            controllerQuerie13(sv);
+            controllerQuery13(sv);
             break;
         default:
             querie = 0;

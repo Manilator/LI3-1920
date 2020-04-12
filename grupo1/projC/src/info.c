@@ -1,5 +1,6 @@
 #include "info.h"
 #include "constants.h"
+
 #include <string.h>
 
 
@@ -8,32 +9,32 @@
 /* ----------------- */
 
 struct querie8Aux{
-  int totalUnits;
-  int totalSales;
-  double totalBilled;
+  int totalUnits; /**< Número total de unidades */
+  int totalSales; /**< Número total de vendas */
+  double totalBilled; /**< Faturação total */
 };
 
 struct querie9Aux{
-    char ** clientsN;
-    char ** clientsP;
-    int totalN;
-    int totalP;
+    char ** clientsN; /**< Array de códigos de cliente com compras no tipo N */
+    char ** clientsP; /**< Array de códigos de cliente com compras no tipo P */
+    int totalN; /**< Número total de compras no tipo N */
+    int totalP; /**< Número total de compras no tipo P */
 };
 
 struct info{
-  char * product_code;
-  int unitsSold;
+  char * product_code; /**< Código de produto */
+  int unitsSold; /**< Número de unidades vendidas */
 };
 
 struct aux{
-  char * product_code;
-  int * totalClients;
-  int * unitsSold;
+  char * product_code; /**< Código de produto */
+  int * totalClients; /**< Array com total de clientes por mês */
+  int * unitsSold; /**< Array com total de unidades vendidas por mês */
 };
 
 struct money{
-  char * product_code;
-  double moneySpent;
+  char * product_code; /**< Código de produto */
+  double moneySpent; /**< Valor gasto */
 };
 
 /* --------------- */
@@ -321,18 +322,18 @@ int getAuxTotalClients(Aux aux, int i){
     return aux->totalClients[i];
 }
 
-int getQuerie9TotalN(Query9Aux aux){
+int getQuery9TotalN(Query9Aux aux){
     return aux->totalN;
 }
 
-int getQuerie9TotalP(Query9Aux aux){
+int getQuery9TotalP(Query9Aux aux){
     return aux->totalP;
 }
 
-char * getQuerie9ClientN(Query9Aux aux, int i){
+char * getQuery9ClientN(Query9Aux aux, int i){
     return aux->clientsN[i];
 }
 
-char * getQuerie9ClientP(Query9Aux aux, int i){
+char * getQuery9ClientP(Query9Aux aux, int i){
     return aux->clientsP[i];
 }

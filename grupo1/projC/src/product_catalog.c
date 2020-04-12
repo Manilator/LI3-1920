@@ -7,7 +7,7 @@
 
 struct products
 {
-    GHashTable* products;
+    GHashTable* products; /**< Códigos de produto e a sua estrutura */
 };
 
 Products initProducts() {

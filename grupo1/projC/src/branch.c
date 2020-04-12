@@ -8,34 +8,34 @@
 
 struct branch
 {
-    GHashTable* productsClients;
-    GHashTable* clientsProducts;
+    GHashTable* productsClients; /**< Códigos de produtos e a sua estrutura atribuída RelationWithClient */
+    GHashTable* clientsProducts; /**< Códigos de clientes e a sua estrutura atribuída RelationWithProduct */
 };
 
 
 struct relationWithClient
 {
-    GHashTable* infoClients;
-    int totalProductsSold; /* Quantity of products that a certain client bought */
+    GHashTable* infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
+    int totalProductsSold; /**< Quantidade de produtos que um certo cliente comprou */
 };
 
 
 struct relationWithProduct
 {
-    GHashTable* infoProducts;
-    double totalBilled[12];
+    GHashTable* infoProducts; /**< Códigos de produto e a sua estrutura atribuída InfoProduct */
+    double totalBilled[12]; /**< Faturação total por cada mês */
 };
 
 struct infoClient
 {
-    int unitsN;
-    int unitsP;
+    int unitsN; /**< Número de unidades do tipo N */
+    int unitsP; /**< Número de unidades do tipo P */
 };
 
 struct infoProduct
 {
-    int quantities[12];
-    double totalBilled[12];
+    int quantities[12]; /**< Quantidades por cada mês */
+    double totalBilled[12]; /**< Faturação total por cada mês */
 };
 
 Branch initBranch() {
