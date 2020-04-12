@@ -174,12 +174,12 @@ char** getClientCodes(Branch, int*);
 char ** getProductsInBranch(Branch);
 
 /**
-@brief Deolve uma estrutura Querie9Aux com os valores especificos a um dado código de produto
+@brief Deolve uma estrutura Query9Aux com os valores especificos a um dado código de produto
 @param b Estrutura Branch
 @param product_code Código do produto
-@return Querie9Aux Estrutura auxiliar para devolver resultados da query 9
+@return Query9Aux Estrutura auxiliar para devolver resultados da query 9
 */
-Querie9Aux productBoughtBy(Branch, char *);
+Query9Aux productBoughtBy(Branch, char *);
 
 /**
 @brief Devolve um array com todos os códigos de cliente de uma certa filial

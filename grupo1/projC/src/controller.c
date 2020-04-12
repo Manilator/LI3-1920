@@ -442,7 +442,7 @@ void controllerQuerie8(SGV sgv)
     int *month = g_malloc(sizeof(int) * 2);
     month = askMonthInterval();
 
-    Querie8Aux result = getSalesAndProfit(sgv, month[0], month[1]);
+    Query8Aux result = getSalesAndProfit(sgv, month[0], month[1]);
 
     if (result != NULL)
     {
@@ -456,7 +456,7 @@ void controllerQuerie8(SGV sgv)
         resetColor();
     }
     free(month);
-    freeQuerie8Aux(result);
+    freeQuery8Aux(result);
 }
 
 void controllerQuerie9(SGV sgv)
@@ -465,7 +465,7 @@ void controllerQuerie9(SGV sgv)
     char *product = askProduct();
     int branch = askBranch();
     char type = askPromotion();
-    Querie9Aux result = getProductBuyers(sgv, product, branch);
+    Query9Aux result = getProductBuyers(sgv, product, branch);
     int max;
     int page = 0;
     if (result == NULL)
@@ -530,7 +530,7 @@ void controllerQuerie9(SGV sgv)
     }
     free(choice);
     free(product);
-    freeQuerie9Aux(result);
+    freeQuery9Aux(result);
 }
 
 void controllerQuerie10(SGV sgv)

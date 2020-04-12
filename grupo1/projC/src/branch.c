@@ -206,13 +206,13 @@ char ** getProductsInBranch(Branch b) {
     return result;
 }
 
-Querie9Aux productBoughtBy(Branch b, char *product_code)
+Query9Aux productBoughtBy(Branch b, char *product_code)
 {
     RelationWithClient rcc = g_hash_table_lookup(b->productsClients, product_code);
     InfoClient ic;
     int size = g_hash_table_size(rcc->infoClients);
 
-    Querie9Aux aux = initQuerie9Aux(size);
+    Query9Aux aux = initQuery9Aux(size);
 
     GHashTableIter iter;
     gpointer key, value;

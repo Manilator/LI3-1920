@@ -14,9 +14,9 @@ typedef struct aux* Aux;
 
 typedef struct money* Money;
 
-typedef struct querie8Aux* Querie8Aux;
+typedef struct querie8Aux* Query8Aux;
 
-typedef struct querie9Aux* Querie9Aux;
+typedef struct querie9Aux* Query9Aux;
 
 /**
 @brief Compara duas variáveis das estruturas Money
@@ -198,124 +198,124 @@ double getMoneySpent(Money money);
 int getInfoUnitsSold(Info info);
 
 /**
-@brief Atualizar os dados dentro da estrutura Querie8Aux
-@param aux Estrutura Querie8Aux
+@brief Atualizar os dados dentro da estrutura Query8Aux
+@param aux Estrutura Query8Aux
 @param billed Montante faturado
 @param units Unidades vendidas
 @param sales Quantidade de vendas
 */
-void updateQuerie8(Querie8Aux, double, int, int);
+void updateQuerie8(Query8Aux, double, int, int);
 
 /**
-@brief Inicialização da estrutura Querie8Aux
-@return Querie8Aux Estrutura auxiliar para retornar resultados da query 8
+@brief Inicialização da estrutura Query8Aux
+@return Query8Aux Estrutura auxiliar para retornar resultados da query 8
 */
-Querie8Aux initQuerie8Aux();
+Query8Aux initQuery8Aux();
 
 /**
 @brief Devolve a quantidade de unidades vendidas da estrutura Aux
-@param aux Estrutura Querie8Aux
+@param aux Estrutura Query8Aux
 @return int Quantidade de unidades vendidas
 */
-int getQuerie8AuxUnits(Querie8Aux);
+int getQuery8AuxUnits(Query8Aux);
 
 /**
 @brief Devolve o total faturado da estrutura Aux
-@param aux Estrutura Querie8Aux
+@param aux Estrutura Query8Aux
 @return double Montante faturado
 */
-double getQuerie8AuxBilled(Querie8Aux);
+double getQuery8AuxBilled(Query8Aux);
 
 /**
 @brief Devolve a quantidade de vendas da estrutura Aux
-@param aux Estrutura Querie8Aux
+@param aux Estrutura Query8Aux
 @return int Quantidade de vendas
 */
-int getQuerie8AuxSales(Querie8Aux);
+int getQuery8AuxSales(Query8Aux);
 
 /**
-@brief Libertação da estrutura Querie8Aux
-@param aux Estrutura Querie8Aux
+@brief Libertação da estrutura Query8Aux
+@param aux Estrutura Query8Aux
 */
-void freeQuerie8Aux(Querie8Aux);
+void freeQuery8Aux(Query8Aux);
 
 /**
-@brief Incrementa o valor totalN dentro da estrutura Querie9Aux
-@param aux Estrutura Querie9Aux
+@brief Incrementa o valor totalN dentro da estrutura Query9Aux
+@param aux Estrutura Query9Aux
 */
-void updateTotalN(Querie9Aux);
+void updateTotalN(Query9Aux);
 
 /**
 @brief Incrementa o valor totalP dentro da estrutura Queries9Aux
-@param aux Estrutura Querie9Aux
+@param aux Estrutura Query9Aux
 */
-void updateTotalP(Querie9Aux);
+void updateTotalP(Query9Aux);
 
 /**
-@brief Devolve o valor de totalN da estrutura Querie9Aux
-@param aux Estrutura Querie9Aux
+@brief Devolve o valor de totalN da estrutura Query9Aux
+@param aux Estrutura Query9Aux
 @return int Número total de clientes que compraram em tipo N (normal)
 */
-int getQuerie9TotalN(Querie9Aux aux);
+int getQuerie9TotalN(Query9Aux aux);
 
 /**
-@brief Devolve o valor de totalP da estrutura Querie9Aux
-@param aux Estrutura Querie9Aux
+@brief Devolve o valor de totalP da estrutura Query9Aux
+@param aux Estrutura Query9Aux
 @return int Número total de clientes que compraram em tipo P (promoção)
 */
-int getQuerie9TotalP(Querie9Aux aux);
+int getQuerie9TotalP(Query9Aux aux);
 
 /**
-@brief Inicialização da estrutura Querie9Aux
+@brief Inicialização da estrutura Query9Aux
 @param size Número de clientes que compraram um certo produto numa dada filial
-@return Querie9Aux Estrutura auxiliar para retornar resultados da query 9
+@return Query9Aux Estrutura auxiliar para retornar resultados da query 9
 */
-Querie9Aux initQuerie9Aux(int);
+Query9Aux initQuery9Aux(int);
 
 /**
-@brief Atualizar o valor clientsN de um certo índice na estrutura Querie9Aux
-@param aux Estrutura Querie9Aux
+@brief Atualizar o valor clientsN de um certo índice na estrutura Query9Aux
+@param aux Estrutura Query9Aux
 @param i Índice onde será adicionada a key
 @param key Código de cliente que comprou o produto no tipo N (normal)
 */
-void updateClientsN(Querie9Aux, int, char*);
+void updateClientsN(Query9Aux, int, char*);
 
 /**
-@brief Atualizar o valor clientsP de um certo índice na estrutura Querie9Aux
-@param aux Estrutura Querie9Aux
+@brief Atualizar o valor clientsP de um certo índice na estrutura Query9Aux
+@param aux Estrutura Query9Aux
 @param i Índice onde será adicionada a key
 @param key Código de cliente que comprou o produto no tipo P (promoção)
 */
-void updateClientsP(Querie9Aux, int, char*);
+void updateClientsP(Query9Aux, int, char*);
 
 /**
-@brief Atualizar clientsN e clientsP para NULL na estrutura Querie9Aux
-@param aux Estrutura Querie9Aux
+@brief Atualizar clientsN e clientsP para NULL na estrutura Query9Aux
+@param aux Estrutura Query9Aux
 @param i Posição final do array de códigos de cliente
 @param j Posição final do array de códigos de cliente
 */
-void updateClients(Querie9Aux, int, int);
+void updateClients(Query9Aux, int, int);
 
 /**
-@brief Devolve o valor de clientsP num certo índice na estrutura Querie9Aux
-@param aux Estrutura Querie9Aux
+@brief Devolve o valor de clientsP num certo índice na estrutura Query9Aux
+@param aux Estrutura Query9Aux
 @param i Posição do array de códigos de cliente que compraram o produto no tipo N (normal)
 @return char* Código de Cliente
 */
-char * getQuerie9ClientN(Querie9Aux, int);
+char * getQuerie9ClientN(Query9Aux, int);
 
 /**
-@brief Devolve o valor de clientsP num certo índice na estrutura Querie9Aux
-@param aux Estrutura Querie9Aux
+@brief Devolve o valor de clientsP num certo índice na estrutura Query9Aux
+@param aux Estrutura Query9Aux
 @param i Posição do array de códigos de cliente que compraram o produto no tipo P (promoção)
 @return char* Código de Cliente
 */
-char * getQuerie9ClientP(Querie9Aux, int);
+char * getQuerie9ClientP(Query9Aux, int);
 
 /**
-@brief Libertação da estrutura Querie9Aux
-@param aux Estrutura Querie9Aux
+@brief Libertação da estrutura Query9Aux
+@param aux Estrutura Query9Aux
 */
-void freeQuerie9Aux(Querie9Aux);
+void freeQuery9Aux(Query9Aux);
 
 #endif

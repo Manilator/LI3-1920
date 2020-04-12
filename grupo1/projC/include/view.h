@@ -122,7 +122,7 @@ void querie7View(int**);
 @param first Primeiro mês do intervalo
 @param second Ultimo mês do intervalo
 */
-void querie8View(Querie8Aux, int, int);
+void querie8View(Query8Aux, int, int);
 
 /**
 @brief Função responsável por mostrar o resultado da query 9 ao utilizador
@@ -130,7 +130,7 @@ void querie8View(Querie8Aux, int, int);
 @param type Tipo de vendas
 @param page Página da lista que é para ser mostrada
 */
-void querie9View(Querie9Aux aux, char type, int);
+void querie9View(Query9Aux aux, char type, int);
 
 /**
 @brief Função responsável por mostrar o resultado da query 10 ao utilizador

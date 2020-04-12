@@ -92,11 +92,11 @@ double getTotalBilledN_BP(BillingProduct);
 char* getFirstKey(Billing);
 
 /**
-@brief Atualiza a estrutura Querie8Aux com os valores de unidades de todas as filiais
+@brief Atualiza a estrutura Query8Aux com os valores de unidades de todas as filiais
 @param billing Estrutura Billing
-@param aux Estrutura Querie8Aux
+@param aux Estrutura Query8Aux
 */
-void updateTotalsFromBilling(Billing, Querie8Aux);
+void updateTotalsFromBilling(Billing, Query8Aux);
 
 /**
 @brief Libertação da estrutura BillingProduct.

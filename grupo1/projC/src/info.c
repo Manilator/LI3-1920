@@ -40,8 +40,8 @@ struct money{
 /* INIT DEFINITION */
 /* --------------- */
 
-Querie8Aux initQuerie8Aux(){
-    Querie8Aux aux = g_malloc(sizeof(struct querie8Aux));
+Query8Aux initQuery8Aux(){
+    Query8Aux aux = g_malloc(sizeof(struct querie8Aux));
     aux->totalBilled = 0.0f;
     aux->totalUnits  = 0;
     aux->totalSales = 0;
@@ -49,8 +49,8 @@ Querie8Aux initQuerie8Aux(){
     return aux;
 }
 
-Querie9Aux initQuerie9Aux(int size){
-    Querie9Aux aux = g_malloc(sizeof(struct querie9Aux));
+Query9Aux initQuery9Aux(int size){
+    Query9Aux aux = g_malloc(sizeof(struct querie9Aux));
     aux->clientsN = g_malloc(sizeof(char*)*size);
     aux->clientsP = g_malloc(sizeof(char*)*size);
     aux->totalN  = 0;
@@ -161,11 +161,11 @@ Money cloneMoney(Money money){
 /* FREE DEFINITION */
 /* --------------- */
 
-void freeQuerie8Aux(Querie8Aux aux){
+void freeQuery8Aux(Query8Aux aux){
     g_free(aux);
 }
 
-void freeQuerie9Aux(Querie9Aux aux){
+void freeQuery9Aux(Query9Aux aux){
     if(aux != NULL){
         int i=0;
         while(aux->clientsP[i] != NULL)
@@ -234,29 +234,29 @@ void freeMoneyList(Money* list){
 /* UPDATE DEFINITION */
 /* ----------------- */
 
-void updateQuerie8(Querie8Aux aux, double billed, int units, int sales){
+void updateQuerie8(Query8Aux aux, double billed, int units, int sales){
     aux->totalBilled += billed;
     aux->totalUnits  += units;
     aux->totalSales += sales;
 }
 
-void updateTotalN(Querie9Aux aux){
+void updateTotalN(Query9Aux aux){
     (aux->totalN)++;
 }
 
-void updateTotalP(Querie9Aux aux){
+void updateTotalP(Query9Aux aux){
     (aux->totalP)++;
 }
 
-void updateClientsN(Querie9Aux aux, int i, char* key){
+void updateClientsN(Query9Aux aux, int i, char* key){
     aux->clientsN[i] = strdup(key);
 }
 
-void updateClientsP(Querie9Aux aux, int i, char* key){
+void updateClientsP(Query9Aux aux, int i, char* key){
     aux->clientsP[i] = strdup(key);
 }
 
-void updateClients(Querie9Aux aux, int i, int j){
+void updateClients(Query9Aux aux, int i, int j){
     aux->clientsN[i] = NULL;
     aux->clientsP[j] = NULL;
 }
@@ -281,15 +281,15 @@ void updateMoney(Money money, double value)
 /* GET DEFINITION */
 /* -------------- */
 
-int getQuerie8AuxUnits(Querie8Aux aux){
+int getQuery8AuxUnits(Query8Aux aux){
     return aux->totalUnits;
 }
 
-double getQuerie8AuxBilled(Querie8Aux aux){
+double getQuery8AuxBilled(Query8Aux aux){
     return aux->totalBilled;
 }
 
-int getQuerie8AuxSales(Querie8Aux aux){
+int getQuery8AuxSales(Query8Aux aux){
     return aux->totalSales;
 }
 
@@ -321,18 +321,18 @@ int getAuxTotalClients(Aux aux, int i){
     return aux->totalClients[i];
 }
 
-int getQuerie9TotalN(Querie9Aux aux){
+int getQuerie9TotalN(Query9Aux aux){
     return aux->totalN;
 }
 
-int getQuerie9TotalP(Querie9Aux aux){
+int getQuerie9TotalP(Query9Aux aux){
     return aux->totalP;
 }
 
-char * getQuerie9ClientN(Querie9Aux aux, int i){
+char * getQuerie9ClientN(Query9Aux aux, int i){
     return aux->clientsN[i];
 }
 
-char * getQuerie9ClientP(Querie9Aux aux, int i){
+char * getQuerie9ClientP(Query9Aux aux, int i){
     return aux->clientsP[i];
 }

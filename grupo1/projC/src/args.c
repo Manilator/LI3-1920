@@ -320,12 +320,12 @@ void argsQuery8(StartValues sv, SGV sgv, int n, char *args[])
         printElapsedTime(LOAD);
 
         start = clock();
-        Querie8Aux result = getSalesAndProfit(sgv, atoi(args[0]), atoi(args[1]));
+        Query8Aux result = getSalesAndProfit(sgv, atoi(args[0]), atoi(args[1]));
         end = clock();
         printElapsedTime(ANSWER);
 
         start = clock();
-        freeQuerie8Aux(result);
+        freeQuery8Aux(result);
         end = clock();
         printElapsedTime(FREE);
 
@@ -355,13 +355,13 @@ void argsQuery9(StartValues sv, SGV sgv, int n, char *args[])
         printElapsedTime(LOAD);
 
         start = clock();
-        Querie9Aux result = getProductBuyers(sgv, args[0], atoi(args[1]));
+        Query9Aux result = getProductBuyers(sgv, args[0], atoi(args[1]));
         end = clock();
         printElapsedTime(ANSWER);
 
 
         start = clock();
-        freeQuerie9Aux(result);
+        freeQuery9Aux(result);
         end = clock();
         printElapsedTime(FREE);
 
