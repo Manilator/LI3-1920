@@ -267,6 +267,7 @@ void controllerQuerie2(SGV sgv)
                 scanf(" %s", choice);
             }
             page = atoi(choice);
+            choice[0] = 0;
         }
     }
 
@@ -350,6 +351,7 @@ void controllerQuerie4(SGV sgv)
                     scanf(" %s", choice);
                 }
                 page = atoi(choice);
+                choice[0] = 0;
             }
             else if (choice[0] == 't')
             {
@@ -406,6 +408,7 @@ void controllerQuerie5(SGV sgv)
                 scanf(" %s", choice);
             }
             page = atoi(choice);
+            choice[0] = 0;
         }
     }
 
@@ -467,7 +470,10 @@ void controllerQuerie9(SGV sgv)
     int page = 0;
     if (result == NULL)
     {
-        printMessage("Informações não existentes.");
+        cleanConsole();
+        boldRed();
+        printMessage("Informações não existentes.\n");
+        resetColor();
     }
     else
     {
@@ -506,6 +512,7 @@ void controllerQuerie9(SGV sgv)
                     scanf(" %s", choice);
                 }
                 page = atoi(choice);
+                choice[0] = 0;
             }
             else if (choice[0] == 't')
             {
@@ -519,8 +526,8 @@ void controllerQuerie9(SGV sgv)
                 }
             }
         }
+        cleanConsole();
     }
-    cleanConsole();
     free(choice);
     free(product);
     freeQuerie9Aux(result);
@@ -571,10 +578,11 @@ void controllerQuerie10(SGV sgv)
                     scanf(" %s", choice);
                 }
                 page = atoi(choice);
+                choice[0] = 0;
             }
         }
+        cleanConsole();
     }
-    cleanConsole();
     free(client);
     free(choice);
     freeInfoList(result);
@@ -595,7 +603,11 @@ void controllerQuerie11(SGV sgv)
     {
         querie11View(result, size, page);
 
-        max = size / ELEMENTS_PER_PAGE;
+        if (size % 2 != 0) {
+            max = size / 2;
+        } else {
+             max = n / 2 - 1;
+        }
         scanf(" %s", choice);
 
         if (choice[0] == 'p' && page > 0)
@@ -616,6 +628,7 @@ void controllerQuerie11(SGV sgv)
                 scanf(" %s", choice);
             }
             page = atoi(choice);
+            choice[0] = 0;
         }
     }
     free(choice);

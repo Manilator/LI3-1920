@@ -189,6 +189,9 @@ void querie4View(char ***products, int global, int branch, int *sizes, int page)
     }
     resetColor();
     printf("--------- Página %d de %d ---------\n", page, max);
+    printf("--------- TOTAL ---------\n");
+    printf("%d\n", sizes[branch]);
+    printf("--------- TOTAL ---------\n");
     if (branch == 0 && global == 1)
     {
         printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
@@ -430,7 +433,7 @@ void querie9View(Querie9Aux aux, char type, int page)
         printf("--------- Produtos %c\n", type);
         printf("--------- Página %d de %d ---------\n", page, max);
         boldGreen();
-        for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && getQuerie9ClientN(aux, i) && i < size; i++, j++)
+        for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && i < size; i++, j++)
         {
             if (type == 'N')
             {
