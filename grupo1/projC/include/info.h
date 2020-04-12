@@ -256,14 +256,14 @@ void updateTotalP(Query9Aux);
 @param aux Estrutura Query9Aux
 @return int Número total de clientes que compraram em tipo N (normal)
 */
-int getQuerie9TotalN(Query9Aux aux);
+int getQuery9TotalN(Query9Aux aux);
 
 /**
 @brief Devolve o valor de totalP da estrutura Query9Aux
 @param aux Estrutura Query9Aux
 @return int Número total de clientes que compraram em tipo P (promoção)
 */
-int getQuerie9TotalP(Query9Aux aux);
+int getQuery9TotalP(Query9Aux aux);
 
 /**
 @brief Inicialização da estrutura Query9Aux
@@ -302,7 +302,7 @@ void updateClients(Query9Aux, int, int);
 @param i Posição do array de códigos de cliente que compraram o produto no tipo N (normal)
 @return char* Código de Cliente
 */
-char * getQuerie9ClientN(Query9Aux, int);
+char * getQuery9ClientN(Query9Aux, int);
 
 /**
 @brief Devolve o valor de clientsP num certo índice na estrutura Query9Aux
@@ -310,7 +310,7 @@ char * getQuerie9ClientN(Query9Aux, int);
 @param i Posição do array de códigos de cliente que compraram o produto no tipo P (promoção)
 @return char* Código de Cliente
 */
-char * getQuerie9ClientP(Query9Aux, int);
+char * getQuery9ClientP(Query9Aux, int);
 
 /**
 @brief Libertação da estrutura Query9Aux

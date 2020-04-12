@@ -414,8 +414,8 @@ void querie9View(Query9Aux aux, char type, int page)
     }
     else
     {
-        int totalN = getQuerie9TotalN(aux);
-        int totalP = getQuerie9TotalP(aux);
+        int totalN = getQuery9TotalN(aux);
+        int totalP = getQuery9TotalP(aux);
         int size = 0;
         if (type == 'N')
         {
@@ -439,11 +439,11 @@ void querie9View(Query9Aux aux, char type, int page)
         {
             if (type == 'N')
             {
-                printf("%s\n", getQuerie9ClientN(aux, i));
+                printf("%s\n", getQuery9ClientN(aux, i));
             }
             else
             {
-                printf("%s\n", getQuerie9ClientP(aux, i));
+                printf("%s\n", getQuery9ClientP(aux, i));
             }
         }
         resetColor();

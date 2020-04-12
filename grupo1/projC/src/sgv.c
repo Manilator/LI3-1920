@@ -1,7 +1,5 @@
 #include "branch_catalog.h"
 #include "billing_catalog.h"
-#include "client_catalog.h"
-#include "product_catalog.h"
 #include "sgv.h"
 #include "sale.h"
 #include "utils.h"
@@ -9,26 +7,25 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <glib.h>
 #include <string.h>
 
 struct sgv{
-    Clients client_catalog;
-    Products product_catalog;
-    Billings billings;
-    Branches branches;
+    Clients client_catalog; /**< Cátalogo de clientes */
+    Products product_catalog; /**< Cátalogo de produto */
+    Billings billings; /**< Cátalogo de faturação */
+    Branches branches; /**< Cátalogo de filiais */
 };
 
 struct startValues{
-    GString * path_clients;
-    GString * path_products;
-    GString * path_sales;
-    gint valid_clients;
-    gint read_clients;
-    gint valid_products;
-    gint read_products;
-    gint valid_sales;
-    gint read_sales;
+    GString * path_clients; /**< Path de ficheiro de clientes */
+    GString * path_products; /**< Path de ficheiro de clientes */
+    GString * path_sales; /**< Path de ficheiro de clientes */
+    gint valid_clients; /**< Número de clientes válidos */
+    gint read_clients; /**< Número de clientes lidos */
+    gint valid_products; /**< Número de produtos válidos */
+    gint read_products; /**< Número de produtos lidos */
+    gint valid_sales; /**< Número de vendas válidas */
+    gint read_sales; /**< Número de vendas lidas */
 };
 
 StartValues initStartValues(){

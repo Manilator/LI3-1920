@@ -8,7 +8,7 @@
 
 struct branches
 {
-    GHashTable* branches;
+    GHashTable* branches; /**< Número de filial e a sua estrutura atribuída Branch */
 };
 
 Branches initBranches(int branches) {

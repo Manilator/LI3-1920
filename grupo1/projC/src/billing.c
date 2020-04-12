@@ -18,12 +18,12 @@ struct billing
 
 struct billingProduct
 {
-    double totalBilledN;
-    double totalBilledP;
-    int unitiesP;
-    int unitiesN;
-    int branchesQnt[N_BRANCHES][N_TYPES];
-    double brachesBilled[N_BRANCHES][N_TYPES];
+    double totalBilledN; /**< Total faturado no tipo N*/
+    double totalBilledP; /**< Total faturado no tipo P*/
+    int unitiesP; /**< Unidades P vendidas */
+    int unitiesN; /**< Unidades N vendidas */
+    int branchesQnt[N_BRANCHES][N_TYPES]; /**< Quantdade dividida por filiais e tipo de promoção */
+    double brachesBilled[N_BRANCHES][N_TYPES]; /**< Faturação dividida por filiais e tipo de promoção */
 };
 
 Billing initBilling() {
