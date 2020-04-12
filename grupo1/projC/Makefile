@@ -18,3 +18,6 @@ clean:
 
 debug:
 	cc -o $(EXECUTAVEL) -Iinclude -g src/*.c `pkg-config --cflags --libs glib-2.0` -lm
+
+doc:
+	doxygen src/Doxygen

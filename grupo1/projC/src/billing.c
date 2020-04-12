@@ -8,12 +8,12 @@
 
 struct billing
 {
-    int n_sales;
-    double totalBilled;
-    int unitiesP;
-    int unitiesN;
-    int branches[N_BRANCHES];
-    GHashTable* billingsProduct;
+    int n_sales; /**< Número de Vendas */
+    double totalBilled; /**< Total faturado */
+    int unitiesP; /**< Unidades P vendidas */
+    int unitiesN; /**< Unidades N vendidas */
+    int branches[N_BRANCHES]; /**< Faturação dividida por filiais */
+    GHashTable* billingsProduct; /**< Faturação dividida por produtos */
 };
 
 struct billingProduct
