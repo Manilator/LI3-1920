@@ -1,0 +1,310 @@
+\hypertarget{billing_8h}{}\section{Referência ao ficheiro include/billing.h}
+\label{billing_8h}\index{include/billing.\+h@{include/billing.\+h}}
+
+
+Módulo de tratamento de faturas.  
+
+
+{\ttfamily \#include \char`\"{}info.\+h\char`\"{}}\newline
+Diagrama de dependências de inclusão para billing.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{billing_8h__incl}
+\end{center}
+\end{figure}
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{billing_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{billing_8h_a40a581a33119b706e868e644e95e567c}\label{billing_8h_a40a581a33119b706e868e644e95e567c}} 
+typedef struct \hyperlink{structbilling}{billing} $\ast$ {\bfseries Billing}
+\item 
+\mbox{\Hypertarget{billing_8h_a4a58018f639722d94776206880037321}\label{billing_8h_a4a58018f639722d94776206880037321}} 
+typedef struct \hyperlink{structbillingProduct}{billing\+Product} $\ast$ {\bfseries Billing\+Product}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structbilling}{Billing} \hyperlink{billing_8h_a2299512ec0acc1a36ba7a8e03552cd1a}{init\+Billing} ()
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Billing. \end{DoxyCompactList}\item 
+\hyperlink{structbillingProduct}{Billing\+Product} \hyperlink{billing_8h_a929099ac8403e2f7f7f45d72e0c13c10}{init\+Billing\+Product} ()
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Billing\+Product. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{billing_8h_a80d7864adbd1c9772c9c45da2610f1ed}{get\+Product\+Values\+By\+Month\+Billing} (\hyperlink{structbilling}{Billing}, char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em De um array de inteiros, mostra ao utilizador o conteúdo numa tabela. \end{DoxyCompactList}\item 
+int \hyperlink{billing_8h_a5516a70b8e4955173fb2d7e28b8b9403}{add\+Billing\+Product} (\hyperlink{structbilling}{Billing}, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Adiciona a estrutura Billing\+Product á hashtable billings\+Product. \end{DoxyCompactList}\item 
+void \hyperlink{billing_8h_a0c67b429c7c3a636c91404797e2c5629}{update\+Billing} (\hyperlink{structbilling}{Billing}, char $\ast$, double, int, char, int)
+\begin{DoxyCompactList}\small\item\em Atualiza os valores da estrutura Billing. \end{DoxyCompactList}\item 
+int \hyperlink{billing_8h_a0864ada4fdc9399365a85de541a3c35f}{update\+Billing\+Product} (\hyperlink{structbillingProduct}{Billing\+Product}, double, int, char, int)
+\begin{DoxyCompactList}\small\item\em Atualiza os valores da estrutura Billing\+Product. \end{DoxyCompactList}\item 
+\hyperlink{structbillingProduct}{Billing\+Product} \hyperlink{billing_8h_ab9103789660d34fc3ce5a08522a100f5}{get\+Billing\+Product} (\hyperlink{structbilling}{Billing}, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Devolve Billing\+Product de um certo código de produto. \end{DoxyCompactList}\item 
+double \hyperlink{billing_8h_a4a322fb422a93e1309e7683186a6a27a}{get\+Total\+Billed\+Billing} (\hyperlink{structbilling}{Billing})
+\begin{DoxyCompactList}\small\item\em Devolve o total faturado no total. \end{DoxyCompactList}\item 
+double \hyperlink{billing_8h_a6d408d0ee145fdc3704e95d48cc42b08}{get\+Total\+Billed\+N\+\_\+\+BP} (\hyperlink{structbillingProduct}{Billing\+Product})
+\begin{DoxyCompactList}\small\item\em Devolve o valor faturado com o Tipo P. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{billing_8h_a4c650db3bc0b19c8aaefc046ef20280c}{get\+First\+Key} (\hyperlink{structbilling}{Billing})
+\begin{DoxyCompactList}\small\item\em Devolve um código de produto. \end{DoxyCompactList}\item 
+void \hyperlink{billing_8h_a2784c0282918ec01686e354c7afaa291}{update\+Totals\+From\+Billing} (\hyperlink{structbilling}{Billing}, \hyperlink{structquerie8Aux}{Query8\+Aux})
+\begin{DoxyCompactList}\small\item\em Atualiza a estrutura Query8\+Aux com os valores de unidades de todas as filiais. \end{DoxyCompactList}\item 
+void \hyperlink{billing_8h_aa10404871dc9c3a37b1d9fa8cd274bae}{free\+Billing\+Product} (\hyperlink{structbillingProduct}{Billing\+Product})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Billing\+Product. \end{DoxyCompactList}\item 
+void \hyperlink{billing_8h_a401e050ba2fff2745debc4009d593de4}{free\+Billing} (\hyperlink{structbilling}{Billing})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Billing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Módulo de tratamento de faturas. 
+
+
+
+\subsection{Documentação das funções}
+\mbox{\Hypertarget{billing_8h_a5516a70b8e4955173fb2d7e28b8b9403}\label{billing_8h_a5516a70b8e4955173fb2d7e28b8b9403}} 
+\index{billing.\+h@{billing.\+h}!add\+Billing\+Product@{add\+Billing\+Product}}
+\index{add\+Billing\+Product@{add\+Billing\+Product}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{add\+Billing\+Product()}{addBillingProduct()}}
+{\footnotesize\ttfamily int add\+Billing\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structbilling}{Billing}}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Adiciona a estrutura Billing\+Product á hashtable billings\+Product. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em billing} & Estrutura Billing \\
+\hline
+{\em code} & Código de produto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Resultado binário para detetar erros 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing_8h_a401e050ba2fff2745debc4009d593de4}\label{billing_8h_a401e050ba2fff2745debc4009d593de4}} 
+\index{billing.\+h@{billing.\+h}!free\+Billing@{free\+Billing}}
+\index{free\+Billing@{free\+Billing}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{free\+Billing()}{freeBilling()}}
+{\footnotesize\ttfamily void free\+Billing (\begin{DoxyParamCaption}\item[{\hyperlink{structbilling}{Billing}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Billing. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em billing} & estrutura Billing. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{billing_8h_aa10404871dc9c3a37b1d9fa8cd274bae}\label{billing_8h_aa10404871dc9c3a37b1d9fa8cd274bae}} 
+\index{billing.\+h@{billing.\+h}!free\+Billing\+Product@{free\+Billing\+Product}}
+\index{free\+Billing\+Product@{free\+Billing\+Product}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{free\+Billing\+Product()}{freeBillingProduct()}}
+{\footnotesize\ttfamily void free\+Billing\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structbillingProduct}{Billing\+Product}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Billing\+Product. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em \hyperlink{structbillingProduct}{billing\+Product}} & estrutura Billing\+Product. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{billing_8h_ab9103789660d34fc3ce5a08522a100f5}\label{billing_8h_ab9103789660d34fc3ce5a08522a100f5}} 
+\index{billing.\+h@{billing.\+h}!get\+Billing\+Product@{get\+Billing\+Product}}
+\index{get\+Billing\+Product@{get\+Billing\+Product}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{get\+Billing\+Product()}{getBillingProduct()}}
+{\footnotesize\ttfamily \hyperlink{structbillingProduct}{Billing\+Product} get\+Billing\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structbilling}{Billing}}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve Billing\+Product de um certo código de produto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em billing} & Estrutura Billing \\
+\hline
+{\em product\+\_\+code} & Código de produto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Billing\+Product Estrutura Billing\+Product 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing_8h_a4c650db3bc0b19c8aaefc046ef20280c}\label{billing_8h_a4c650db3bc0b19c8aaefc046ef20280c}} 
+\index{billing.\+h@{billing.\+h}!get\+First\+Key@{get\+First\+Key}}
+\index{get\+First\+Key@{get\+First\+Key}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{get\+First\+Key()}{getFirstKey()}}
+{\footnotesize\ttfamily char$\ast$ get\+First\+Key (\begin{DoxyParamCaption}\item[{\hyperlink{structbilling}{Billing}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um código de produto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em billing} & Estrutura Billing \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Código de produto 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing_8h_a80d7864adbd1c9772c9c45da2610f1ed}\label{billing_8h_a80d7864adbd1c9772c9c45da2610f1ed}} 
+\index{billing.\+h@{billing.\+h}!get\+Product\+Values\+By\+Month\+Billing@{get\+Product\+Values\+By\+Month\+Billing}}
+\index{get\+Product\+Values\+By\+Month\+Billing@{get\+Product\+Values\+By\+Month\+Billing}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{get\+Product\+Values\+By\+Month\+Billing()}{getProductValuesByMonthBilling()}}
+{\footnotesize\ttfamily double$\ast$ get\+Product\+Values\+By\+Month\+Billing (\begin{DoxyParamCaption}\item[{\hyperlink{structbilling}{Billing}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+De um array de inteiros, mostra ao utilizador o conteúdo numa tabela. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em billing} & estrutura Billing \\
+\hline
+{\em product\+\_\+code} & Código do produto ao qual as faturas estão relacionadas \\
+\hline
+{\em branch} & numero da filial escolhida \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+double$\ast$ devolve uma lista de valores com quantidades e faturação numa dada filial 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing_8h_a4a322fb422a93e1309e7683186a6a27a}\label{billing_8h_a4a322fb422a93e1309e7683186a6a27a}} 
+\index{billing.\+h@{billing.\+h}!get\+Total\+Billed\+Billing@{get\+Total\+Billed\+Billing}}
+\index{get\+Total\+Billed\+Billing@{get\+Total\+Billed\+Billing}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{get\+Total\+Billed\+Billing()}{getTotalBilledBilling()}}
+{\footnotesize\ttfamily double get\+Total\+Billed\+Billing (\begin{DoxyParamCaption}\item[{\hyperlink{structbilling}{Billing}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o total faturado no total. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em billing} & Estrutura Billing \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+double Valor faturado 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing_8h_a6d408d0ee145fdc3704e95d48cc42b08}\label{billing_8h_a6d408d0ee145fdc3704e95d48cc42b08}} 
+\index{billing.\+h@{billing.\+h}!get\+Total\+Billed\+N\+\_\+\+BP@{get\+Total\+Billed\+N\+\_\+\+BP}}
+\index{get\+Total\+Billed\+N\+\_\+\+BP@{get\+Total\+Billed\+N\+\_\+\+BP}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{get\+Total\+Billed\+N\+\_\+\+B\+P()}{getTotalBilledN\_BP()}}
+{\footnotesize\ttfamily double get\+Total\+Billed\+N\+\_\+\+BP (\begin{DoxyParamCaption}\item[{\hyperlink{structbillingProduct}{Billing\+Product}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o valor faturado com o Tipo P. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em \hyperlink{structbillingProduct}{billing\+Product}} & Estrutura Billing\+Product \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+double Valor faturado 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing_8h_a2299512ec0acc1a36ba7a8e03552cd1a}\label{billing_8h_a2299512ec0acc1a36ba7a8e03552cd1a}} 
+\index{billing.\+h@{billing.\+h}!init\+Billing@{init\+Billing}}
+\index{init\+Billing@{init\+Billing}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{init\+Billing()}{initBilling()}}
+{\footnotesize\ttfamily \hyperlink{structbilling}{Billing} init\+Billing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Billing. 
+
+\begin{DoxyReturn}{Retorna}
+Billing devolve um Billing inicializado. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing_8h_a929099ac8403e2f7f7f45d72e0c13c10}\label{billing_8h_a929099ac8403e2f7f7f45d72e0c13c10}} 
+\index{billing.\+h@{billing.\+h}!init\+Billing\+Product@{init\+Billing\+Product}}
+\index{init\+Billing\+Product@{init\+Billing\+Product}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{init\+Billing\+Product()}{initBillingProduct()}}
+{\footnotesize\ttfamily \hyperlink{structbillingProduct}{Billing\+Product} init\+Billing\+Product (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Billing\+Product. 
+
+\begin{DoxyReturn}{Retorna}
+Billing\+Product devolve um Billing\+Product inicializado. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing_8h_a0c67b429c7c3a636c91404797e2c5629}\label{billing_8h_a0c67b429c7c3a636c91404797e2c5629}} 
+\index{billing.\+h@{billing.\+h}!update\+Billing@{update\+Billing}}
+\index{update\+Billing@{update\+Billing}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{update\+Billing()}{updateBilling()}}
+{\footnotesize\ttfamily void update\+Billing (\begin{DoxyParamCaption}\item[{\hyperlink{structbilling}{Billing}}]{,  }\item[{char $\ast$}]{,  }\item[{double}]{,  }\item[{int}]{,  }\item[{char}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualiza os valores da estrutura Billing. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em billing} & Estrutura Billing \\
+\hline
+{\em code} & Código de produto \\
+\hline
+{\em total\+Billed} & Valor faturado \\
+\hline
+{\em unities} & Unidades vendidas \\
+\hline
+{\em promotion\+\_\+type} & Tipo de promoção \\
+\hline
+{\em branch} & Filial \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{billing_8h_a0864ada4fdc9399365a85de541a3c35f}\label{billing_8h_a0864ada4fdc9399365a85de541a3c35f}} 
+\index{billing.\+h@{billing.\+h}!update\+Billing\+Product@{update\+Billing\+Product}}
+\index{update\+Billing\+Product@{update\+Billing\+Product}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{update\+Billing\+Product()}{updateBillingProduct()}}
+{\footnotesize\ttfamily int update\+Billing\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structbillingProduct}{Billing\+Product}}]{,  }\item[{double}]{,  }\item[{int}]{,  }\item[{char}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualiza os valores da estrutura Billing\+Product. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em \hyperlink{structbillingProduct}{billing\+Product}} & Estrutura Billing\+Product \\
+\hline
+{\em total\+Billed} & Valor faturado \\
+\hline
+{\em unities} & Unidades vendidas \\
+\hline
+{\em promotion\+\_\+type} & Tipo de promoção \\
+\hline
+{\em branch} & Filial \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Resultado binário para detetar erros 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing_8h_a2784c0282918ec01686e354c7afaa291}\label{billing_8h_a2784c0282918ec01686e354c7afaa291}} 
+\index{billing.\+h@{billing.\+h}!update\+Totals\+From\+Billing@{update\+Totals\+From\+Billing}}
+\index{update\+Totals\+From\+Billing@{update\+Totals\+From\+Billing}!billing.\+h@{billing.\+h}}
+\subsubsection{\texorpdfstring{update\+Totals\+From\+Billing()}{updateTotalsFromBilling()}}
+{\footnotesize\ttfamily void update\+Totals\+From\+Billing (\begin{DoxyParamCaption}\item[{\hyperlink{structbilling}{Billing}}]{,  }\item[{\hyperlink{structquerie8Aux}{Query8\+Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualiza a estrutura Query8\+Aux com os valores de unidades de todas as filiais. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em billing} & Estrutura Billing \\
+\hline
+{\em aux} & Estrutura Query8\+Aux \\
+\hline
+\end{DoxyParams}

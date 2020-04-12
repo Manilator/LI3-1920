@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['updateaux',['updateAux',['../info_8h.html#a09807876a097ecacaa4a11e33c163912',1,'info.c']]],
+  ['updatebilling',['updateBilling',['../billing_8h.html#a0c67b429c7c3a636c91404797e2c5629',1,'billing.c']]],
+  ['updatebillingproduct',['updateBillingProduct',['../billing_8h.html#a0864ada4fdc9399365a85de541a3c35f',1,'billing.c']]],
+  ['updatebillings',['updateBillings',['../billing__catalog_8h.html#ac6d45af13bb32ef0a7296271ad6405ec',1,'billing_catalog.c']]],
+  ['updatebranch',['updateBranch',['../branch_8h.html#a931f0f0cff34b0fe29ae78f1b68906ea',1,'branch.c']]],
+  ['updatebranches',['updateBranches',['../branch__catalog_8h.html#a144cb6e992514c3e1059c066f12e3057',1,'branch_catalog.c']]],
+  ['updateclients',['updateClients',['../info_8h.html#a07ef3e30aadd27d5c2ec8527b6d3f007',1,'info.c']]],
+  ['updateclientsn',['updateClientsN',['../info_8h.html#a9f4fc43ae49040fb52aad9e1b5617b87',1,'info.c']]],
+  ['updateclientsp',['updateClientsP',['../info_8h.html#a134b3e65ffa192be4fe79cd820701e69',1,'info.c']]],
+  ['updateinfo',['updateInfo',['../info_8h.html#a2a6c333c5b65eb17a09aa84264883fee',1,'info.c']]],
+  ['updateinfoclient',['updateInfoClient',['../branch_8h.html#a05f090e58ed0ca388aaf715e21ac3f5b',1,'branch.c']]],
+  ['updateinfoproduct',['updateInfoProduct',['../branch_8h.html#a2d8b0277fb339acbe31447d2b5770b74',1,'branch.c']]],
+  ['updatemoney',['updateMoney',['../info_8h.html#a8dcbb1118baaf5c859856ad253a2fc19',1,'info.c']]],
+  ['updatenmostbought',['updateNMostBought',['../branch_8h.html#a75893dd876fe70c79f95a9b0e60038d9',1,'branch.c']]],
+  ['updatequerie8',['updateQuerie8',['../info_8h.html#a5e2a7d6ef4d5c08feeef9b223c5c7523',1,'info.c']]],
+  ['updaterelationwithclient',['updateRelationWithClient',['../branch_8h.html#ac99a467c7cd0a0b057cca65322c263ba',1,'branch.c']]],
+  ['updaterelationwithproduct',['updateRelationWithProduct',['../branch_8h.html#a64799b8adf1a03548a638b0ebf21a2a1',1,'branch.c']]],
+  ['updatetotaln',['updateTotalN',['../info_8h.html#affe2daef7c78e1f350333228f4fd4de9',1,'info.c']]],
+  ['updatetotalp',['updateTotalP',['../info_8h.html#a61d62b83860d662dad2c66726492ac80',1,'info.c']]],
+  ['updatetotalsfrombilling',['updateTotalsFromBilling',['../billing_8h.html#a2784c0282918ec01686e354c7afaa291',1,'billing.c']]]
+];

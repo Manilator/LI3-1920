@@ -1,0 +1,223 @@
+\hypertarget{sale_8h}{}\section{Referência ao ficheiro include/sale.h}
+\label{sale_8h}\index{include/sale.\+h@{include/sale.\+h}}
+
+
+Módulo de tratamentos de vendas.  
+
+
+{\ttfamily \#include \char`\"{}product\+\_\+catalog.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+catalog.\+h\char`\"{}}\newline
+Diagrama de dependências de inclusão para sale.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{sale_8h__incl}
+\end{center}
+\end{figure}
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{sale_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sale_8h_a5e3050d728070caf3b846252d4da1806}\label{sale_8h_a5e3050d728070caf3b846252d4da1806}} 
+typedef struct \hyperlink{structsale}{sale} $\ast$ {\bfseries Sale}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structsale}{Sale} \hyperlink{sale_8h_a05f5d59b645d37902e0ba7e419e42eae}{is\+Valid\+Sale} (char $\ast$, \hyperlink{structclients}{Clients}, \hyperlink{structproducts}{Products})
+\begin{DoxyCompactList}\small\item\em Devolve uma Sale ou N\+U\+LL consoante a validade da venda. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{sale_8h_a194c79d8ccb4a6a49ced0fe5ae123f08}{get\+Product} (\hyperlink{structsale}{Sale})
+\begin{DoxyCompactList}\small\item\em Devolve o código de produto que foi vendido. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{sale_8h_a4affad72516432816029136307b4541d}{get\+Client} (\hyperlink{structsale}{Sale})
+\begin{DoxyCompactList}\small\item\em Devolve o código de cliente que efetuou a compra. \end{DoxyCompactList}\item 
+double \hyperlink{sale_8h_a889c5c0a188d0734575e7214e9b7d7f7}{get\+Price} (\hyperlink{structsale}{Sale})
+\begin{DoxyCompactList}\small\item\em Devolve o valor atribuido ao produto na compra. \end{DoxyCompactList}\item 
+int \hyperlink{sale_8h_a7ed30b560b4a72819ca298b7ed5d61c0}{get\+Units} (\hyperlink{structsale}{Sale})
+\begin{DoxyCompactList}\small\item\em Devolve o número de unidades compradas/vendidas. \end{DoxyCompactList}\item 
+char \hyperlink{sale_8h_acb010f4dea79f13390a23ec41efaa0e5}{get\+Promotion} (\hyperlink{structsale}{Sale})
+\begin{DoxyCompactList}\small\item\em Devolve o tipo de promoção da compra. \end{DoxyCompactList}\item 
+int \hyperlink{sale_8h_ae410306ce25488634136ffecd7a3d46f}{get\+Month} (\hyperlink{structsale}{Sale})
+\begin{DoxyCompactList}\small\item\em Devolve o número do mês da compra. \end{DoxyCompactList}\item 
+int \hyperlink{sale_8h_ac2f0d82f69847ddeae83fe587c3f28ec}{get\+Branch} (\hyperlink{structsale}{Sale})
+\begin{DoxyCompactList}\small\item\em Devolve o número da filial. \end{DoxyCompactList}\item 
+void \hyperlink{sale_8h_a9283c6c8006e0781e28c71e57974f7a4}{destroy\+Sale} (\hyperlink{structsale}{Sale})
+\begin{DoxyCompactList}\small\item\em Libertar memória na estrutura Sale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Módulo de tratamentos de vendas. 
+
+
+
+\subsection{Documentação das funções}
+\mbox{\Hypertarget{sale_8h_a9283c6c8006e0781e28c71e57974f7a4}\label{sale_8h_a9283c6c8006e0781e28c71e57974f7a4}} 
+\index{sale.\+h@{sale.\+h}!destroy\+Sale@{destroy\+Sale}}
+\index{destroy\+Sale@{destroy\+Sale}!sale.\+h@{sale.\+h}}
+\subsubsection{\texorpdfstring{destroy\+Sale()}{destroySale()}}
+{\footnotesize\ttfamily void destroy\+Sale (\begin{DoxyParamCaption}\item[{\hyperlink{structsale}{Sale}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertar memória na estrutura Sale. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sale} & Estrutura Sale \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sale_8h_ac2f0d82f69847ddeae83fe587c3f28ec}\label{sale_8h_ac2f0d82f69847ddeae83fe587c3f28ec}} 
+\index{sale.\+h@{sale.\+h}!get\+Branch@{get\+Branch}}
+\index{get\+Branch@{get\+Branch}!sale.\+h@{sale.\+h}}
+\subsubsection{\texorpdfstring{get\+Branch()}{getBranch()}}
+{\footnotesize\ttfamily int get\+Branch (\begin{DoxyParamCaption}\item[{\hyperlink{structsale}{Sale}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o número da filial. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sale} & Estrutura Sale \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número da filial 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sale_8h_a4affad72516432816029136307b4541d}\label{sale_8h_a4affad72516432816029136307b4541d}} 
+\index{sale.\+h@{sale.\+h}!get\+Client@{get\+Client}}
+\index{get\+Client@{get\+Client}!sale.\+h@{sale.\+h}}
+\subsubsection{\texorpdfstring{get\+Client()}{getClient()}}
+{\footnotesize\ttfamily char$\ast$ get\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{structsale}{Sale}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o código de cliente que efetuou a compra. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sale} & Estrutura Sale \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Código de cliente 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sale_8h_ae410306ce25488634136ffecd7a3d46f}\label{sale_8h_ae410306ce25488634136ffecd7a3d46f}} 
+\index{sale.\+h@{sale.\+h}!get\+Month@{get\+Month}}
+\index{get\+Month@{get\+Month}!sale.\+h@{sale.\+h}}
+\subsubsection{\texorpdfstring{get\+Month()}{getMonth()}}
+{\footnotesize\ttfamily int get\+Month (\begin{DoxyParamCaption}\item[{\hyperlink{structsale}{Sale}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o número do mês da compra. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sale} & Estrutura Sale \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número do mês da compra 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sale_8h_a889c5c0a188d0734575e7214e9b7d7f7}\label{sale_8h_a889c5c0a188d0734575e7214e9b7d7f7}} 
+\index{sale.\+h@{sale.\+h}!get\+Price@{get\+Price}}
+\index{get\+Price@{get\+Price}!sale.\+h@{sale.\+h}}
+\subsubsection{\texorpdfstring{get\+Price()}{getPrice()}}
+{\footnotesize\ttfamily double get\+Price (\begin{DoxyParamCaption}\item[{\hyperlink{structsale}{Sale}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o valor atribuido ao produto na compra. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sale} & Estrutura Sale \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+double Valor atribuido ao produto na compra 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sale_8h_a194c79d8ccb4a6a49ced0fe5ae123f08}\label{sale_8h_a194c79d8ccb4a6a49ced0fe5ae123f08}} 
+\index{sale.\+h@{sale.\+h}!get\+Product@{get\+Product}}
+\index{get\+Product@{get\+Product}!sale.\+h@{sale.\+h}}
+\subsubsection{\texorpdfstring{get\+Product()}{getProduct()}}
+{\footnotesize\ttfamily char$\ast$ get\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structsale}{Sale}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o código de produto que foi vendido. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sale} & Estrutura Sale \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Código de produto 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sale_8h_acb010f4dea79f13390a23ec41efaa0e5}\label{sale_8h_acb010f4dea79f13390a23ec41efaa0e5}} 
+\index{sale.\+h@{sale.\+h}!get\+Promotion@{get\+Promotion}}
+\index{get\+Promotion@{get\+Promotion}!sale.\+h@{sale.\+h}}
+\subsubsection{\texorpdfstring{get\+Promotion()}{getPromotion()}}
+{\footnotesize\ttfamily char get\+Promotion (\begin{DoxyParamCaption}\item[{\hyperlink{structsale}{Sale}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o tipo de promoção da compra. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sale} & Estrutura Sale \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char Tipo de promoção da compra N ou P 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sale_8h_a7ed30b560b4a72819ca298b7ed5d61c0}\label{sale_8h_a7ed30b560b4a72819ca298b7ed5d61c0}} 
+\index{sale.\+h@{sale.\+h}!get\+Units@{get\+Units}}
+\index{get\+Units@{get\+Units}!sale.\+h@{sale.\+h}}
+\subsubsection{\texorpdfstring{get\+Units()}{getUnits()}}
+{\footnotesize\ttfamily int get\+Units (\begin{DoxyParamCaption}\item[{\hyperlink{structsale}{Sale}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o número de unidades compradas/vendidas. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sale} & Estrutura Sale \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número de unidades compradas/vendidas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sale_8h_a05f5d59b645d37902e0ba7e419e42eae}\label{sale_8h_a05f5d59b645d37902e0ba7e419e42eae}} 
+\index{sale.\+h@{sale.\+h}!is\+Valid\+Sale@{is\+Valid\+Sale}}
+\index{is\+Valid\+Sale@{is\+Valid\+Sale}!sale.\+h@{sale.\+h}}
+\subsubsection{\texorpdfstring{is\+Valid\+Sale()}{isValidSale()}}
+{\footnotesize\ttfamily \hyperlink{structsale}{Sale} is\+Valid\+Sale (\begin{DoxyParamCaption}\item[{char $\ast$}]{,  }\item[{\hyperlink{structclients}{Clients}}]{,  }\item[{\hyperlink{structproducts}{Products}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve uma Sale ou N\+U\+LL consoante a validade da venda. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sale} & Código de venda \\
+\hline
+{\em client\+\_\+catalogue} & Estrutura Clients \\
+\hline
+{\em product\+\_\+catalogue} & Products \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Sale Estrutura Sale 
+\end{DoxyReturn}

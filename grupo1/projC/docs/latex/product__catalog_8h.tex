@@ -1,0 +1,226 @@
+\hypertarget{product__catalog_8h}{}\section{Referência ao ficheiro include/product\+\_\+catalog.h}
+\label{product__catalog_8h}\index{include/product\+\_\+catalog.\+h@{include/product\+\_\+catalog.\+h}}
+
+
+Módulo de tratamentos do catálogo de produtos.  
+
+
+{\ttfamily \#include \char`\"{}product.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$glib.\+h$>$}\newline
+Diagrama de dependências de inclusão para product\+\_\+catalog.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{product__catalog_8h__incl}
+\end{center}
+\end{figure}
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{product__catalog_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{product__catalog_8h_acc8e68b899b3425203f431ccc419238f}\label{product__catalog_8h_acc8e68b899b3425203f431ccc419238f}} 
+typedef struct \hyperlink{structproducts}{products} $\ast$ {\bfseries Products}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structproducts}{Products} \hyperlink{product__catalog_8h_a3f6f8e309529e35d9fca74ca39cd0e8f}{init\+Products} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura de catálogo de produtos. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{product__catalog_8h_a15eb00397da09786f9779814487ae7cb}{get\+Products\+By\+Letter} (\hyperlink{structproducts}{Products}, char)
+\begin{DoxyCompactList}\small\item\em Recolhe todos os produtos que comecem por uma certa letra. \end{DoxyCompactList}\item 
+int \hyperlink{product__catalog_8h_ac192082cc23bb95ae1e7abbb8c146d7c}{add\+Product} (\hyperlink{structproducts}{Products}, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Adiciona um produto ao catálogo de produto. \end{DoxyCompactList}\item 
+int \hyperlink{product__catalog_8h_aeb07b072a6891d1f0a12418a9e0fb632}{get\+Size\+Products} (\hyperlink{structproducts}{Products})
+\begin{DoxyCompactList}\small\item\em Calcula o número de produtos que existe no catálogo. \end{DoxyCompactList}\item 
+int \hyperlink{product__catalog_8h_a7d67f2f61cb69fd0bf2f6cb9f9433a9a}{exist\+Product} (\hyperlink{structproducts}{Products}, \hyperlink{structproduct}{Product})
+\begin{DoxyCompactList}\small\item\em Verifica se existe um produto no catálogo. \end{DoxyCompactList}\item 
+void \hyperlink{product__catalog_8h_a4ec8fb7694a4c76fd081c114b824b19c}{destroy\+Products} (\hyperlink{structproducts}{Products})
+\begin{DoxyCompactList}\small\item\em Destroi o catálogo de produtos. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{product__catalog_8h_aa5affa0f66b47af6bddead73f8b5b195}{get\+Products\+Not\+Array} (\hyperlink{structproducts}{Products}, G\+Hash\+Table $\ast$)
+\begin{DoxyCompactList}\small\item\em Devolve os códigos de produtos que não foram comprados. \end{DoxyCompactList}\item 
+int \hyperlink{product__catalog_8h_aa22aba315462d15b96326a981c2d59fc}{get\+Number\+Products\+Not\+Used} (\hyperlink{structproducts}{Products}, G\+Hash\+Table $\ast$)
+\begin{DoxyCompactList}\small\item\em Devolve número de código de produtos não utilizados. \end{DoxyCompactList}\item 
+int \hyperlink{product__catalog_8h_ad083ec91c88f1db1a9d0a453f9a2adbd}{exist\+Product\+Code} (\hyperlink{structproducts}{Products}, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Verifica se existe um código de produto no catálogo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Módulo de tratamentos do catálogo de produtos. 
+
+
+
+\subsection{Documentação das funções}
+\mbox{\Hypertarget{product__catalog_8h_ac192082cc23bb95ae1e7abbb8c146d7c}\label{product__catalog_8h_ac192082cc23bb95ae1e7abbb8c146d7c}} 
+\index{product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}!add\+Product@{add\+Product}}
+\index{add\+Product@{add\+Product}!product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{add\+Product()}{addProduct()}}
+{\footnotesize\ttfamily int add\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structproducts}{Products}}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Adiciona um produto ao catálogo de produto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em products} & Catálogo de produtos ao qual vai ser adicionado o novo produto \\
+\hline
+{\em product} & Cliente a ser adicionado ao catálogo de produtos \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Verificação da inserção 
+\end{DoxyReturn}
+\mbox{\Hypertarget{product__catalog_8h_a4ec8fb7694a4c76fd081c114b824b19c}\label{product__catalog_8h_a4ec8fb7694a4c76fd081c114b824b19c}} 
+\index{product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}!destroy\+Products@{destroy\+Products}}
+\index{destroy\+Products@{destroy\+Products}!product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{destroy\+Products()}{destroyProducts()}}
+{\footnotesize\ttfamily void destroy\+Products (\begin{DoxyParamCaption}\item[{\hyperlink{structproducts}{Products}}]{ }\end{DoxyParamCaption})}
+
+
+
+Destroi o catálogo de produtos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em products} & Catálogo de produtos \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{product__catalog_8h_a7d67f2f61cb69fd0bf2f6cb9f9433a9a}\label{product__catalog_8h_a7d67f2f61cb69fd0bf2f6cb9f9433a9a}} 
+\index{product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}!exist\+Product@{exist\+Product}}
+\index{exist\+Product@{exist\+Product}!product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{exist\+Product()}{existProduct()}}
+{\footnotesize\ttfamily int exist\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structproducts}{Products}}]{,  }\item[{\hyperlink{structproduct}{Product}}]{ }\end{DoxyParamCaption})}
+
+
+
+Verifica se existe um produto no catálogo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em products} & Catálogo de produtos \\
+\hline
+{\em product} & Cliente a ser consultado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Verificação da procura 
+\end{DoxyReturn}
+\mbox{\Hypertarget{product__catalog_8h_ad083ec91c88f1db1a9d0a453f9a2adbd}\label{product__catalog_8h_ad083ec91c88f1db1a9d0a453f9a2adbd}} 
+\index{product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}!exist\+Product\+Code@{exist\+Product\+Code}}
+\index{exist\+Product\+Code@{exist\+Product\+Code}!product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{exist\+Product\+Code()}{existProductCode()}}
+{\footnotesize\ttfamily int exist\+Product\+Code (\begin{DoxyParamCaption}\item[{\hyperlink{structproducts}{Products}}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Verifica se existe um código de produto no catálogo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em products} & Catálogo de produtos \\
+\hline
+{\em product\+\_\+code} & Código de produto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Verificação da procura 
+\end{DoxyReturn}
+\mbox{\Hypertarget{product__catalog_8h_aa22aba315462d15b96326a981c2d59fc}\label{product__catalog_8h_aa22aba315462d15b96326a981c2d59fc}} 
+\index{product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}!get\+Number\+Products\+Not\+Used@{get\+Number\+Products\+Not\+Used}}
+\index{get\+Number\+Products\+Not\+Used@{get\+Number\+Products\+Not\+Used}!product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{get\+Number\+Products\+Not\+Used()}{getNumberProductsNotUsed()}}
+{\footnotesize\ttfamily int get\+Number\+Products\+Not\+Used (\begin{DoxyParamCaption}\item[{\hyperlink{structproducts}{Products}}]{,  }\item[{G\+Hash\+Table $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve número de código de produtos não utilizados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em product\+\_\+catalog} & Catálogo de produtos \\
+\hline
+{\em products\+\_\+bought} & Hashtable com códigos de produto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número de código de produtos não utilizados 
+\end{DoxyReturn}
+\mbox{\Hypertarget{product__catalog_8h_a15eb00397da09786f9779814487ae7cb}\label{product__catalog_8h_a15eb00397da09786f9779814487ae7cb}} 
+\index{product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}!get\+Products\+By\+Letter@{get\+Products\+By\+Letter}}
+\index{get\+Products\+By\+Letter@{get\+Products\+By\+Letter}!product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{get\+Products\+By\+Letter()}{getProductsByLetter()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Products\+By\+Letter (\begin{DoxyParamCaption}\item[{\hyperlink{structproducts}{Products}}]{,  }\item[{char}]{ }\end{DoxyParamCaption})}
+
+
+
+Recolhe todos os produtos que comecem por uma certa letra. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em products\+\_\+catalog} & Catálogo de produtos \\
+\hline
+{\em letter} & Letra pelo qual os produtos começam \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$ Array com todos os códigos de produtos começados pela letra dada 
+\end{DoxyReturn}
+\mbox{\Hypertarget{product__catalog_8h_aa5affa0f66b47af6bddead73f8b5b195}\label{product__catalog_8h_aa5affa0f66b47af6bddead73f8b5b195}} 
+\index{product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}!get\+Products\+Not\+Array@{get\+Products\+Not\+Array}}
+\index{get\+Products\+Not\+Array@{get\+Products\+Not\+Array}!product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{get\+Products\+Not\+Array()}{getProductsNotArray()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Products\+Not\+Array (\begin{DoxyParamCaption}\item[{\hyperlink{structproducts}{Products}}]{,  }\item[{G\+Hash\+Table $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve os códigos de produtos que não foram comprados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em product\+\_\+catalog} & Catálogo de produtos \\
+\hline
+{\em products\+\_\+bought} & Hashtable com códigos de produto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$ Array com códigos de produtos 
+\end{DoxyReturn}
+\mbox{\Hypertarget{product__catalog_8h_aeb07b072a6891d1f0a12418a9e0fb632}\label{product__catalog_8h_aeb07b072a6891d1f0a12418a9e0fb632}} 
+\index{product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}!get\+Size\+Products@{get\+Size\+Products}}
+\index{get\+Size\+Products@{get\+Size\+Products}!product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{get\+Size\+Products()}{getSizeProducts()}}
+{\footnotesize\ttfamily int get\+Size\+Products (\begin{DoxyParamCaption}\item[{\hyperlink{structproducts}{Products}}]{ }\end{DoxyParamCaption})}
+
+
+
+Calcula o número de produtos que existe no catálogo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em products} & Catálogo de produtos \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número de produtos existentes no catálogo 
+\end{DoxyReturn}
+\mbox{\Hypertarget{product__catalog_8h_a3f6f8e309529e35d9fca74ca39cd0e8f}\label{product__catalog_8h_a3f6f8e309529e35d9fca74ca39cd0e8f}} 
+\index{product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}!init\+Products@{init\+Products}}
+\index{init\+Products@{init\+Products}!product\+\_\+catalog.\+h@{product\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{init\+Products()}{initProducts()}}
+{\footnotesize\ttfamily \hyperlink{structproducts}{Products} init\+Products (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicia a estrutura de catálogo de produtos. 
+
+\begin{DoxyReturn}{Retorna}
+Products estrutura inicializada 
+\end{DoxyReturn}

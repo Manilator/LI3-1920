@@ -1,0 +1,140 @@
+\hypertarget{client_8h}{}\section{Referência ao ficheiro include/client.h}
+\label{client_8h}\index{include/client.\+h@{include/client.\+h}}
+
+
+Módulo de tratamentos de clientes.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Diagrama de dependências de inclusão para client.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{client_8h__incl}
+\end{center}
+\end{figure}
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{client_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{client_8h_a281c2f88dc512deea4afd92a01c223da}\label{client_8h_a281c2f88dc512deea4afd92a01c223da}} 
+typedef struct \hyperlink{structclient}{client} $\ast$ {\bfseries Client}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{client_8h_afacce3cde85997aa7b7db2ecd8a1f131}{verify\+Client} (char $\ast$)
+\begin{DoxyCompactList}\small\item\em Verifica se um código de cliente é válido. \end{DoxyCompactList}\item 
+\hyperlink{structclient}{Client} \hyperlink{client_8h_ad3c48884dd494df3ceda8c679adaa58c}{new\+Client} (char $\ast$)
+\begin{DoxyCompactList}\small\item\em Cria um novo Client. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{client_8h_a42e5defadf41cd4f69dd8978497ec40a}{get\+Client\+Code} (\hyperlink{structclient}{Client})
+\begin{DoxyCompactList}\small\item\em Extrai o código de cliente a partir de um Client. \end{DoxyCompactList}\item 
+int \hyperlink{client_8h_a417d199a77155f7011ee0c9563b47f60}{equals\+Client} (\hyperlink{structclient}{Client}, \hyperlink{structclient}{Client})
+\begin{DoxyCompactList}\small\item\em Compara dois Client. \end{DoxyCompactList}\item 
+void \hyperlink{client_8h_a210b336ce5340a6cae03aaf9e7b9e48e}{destroy\+Client} (\hyperlink{structclient}{Client})
+\begin{DoxyCompactList}\small\item\em Destroi um Client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Módulo de tratamentos de clientes. 
+
+
+
+\subsection{Documentação das funções}
+\mbox{\Hypertarget{client_8h_a210b336ce5340a6cae03aaf9e7b9e48e}\label{client_8h_a210b336ce5340a6cae03aaf9e7b9e48e}} 
+\index{client.\+h@{client.\+h}!destroy\+Client@{destroy\+Client}}
+\index{destroy\+Client@{destroy\+Client}!client.\+h@{client.\+h}}
+\subsubsection{\texorpdfstring{destroy\+Client()}{destroyClient()}}
+{\footnotesize\ttfamily void destroy\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{structclient}{Client}}]{ }\end{DoxyParamCaption})}
+
+
+
+Destroi um Client. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em client} & Cliente a ser destruido \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{client_8h_a417d199a77155f7011ee0c9563b47f60}\label{client_8h_a417d199a77155f7011ee0c9563b47f60}} 
+\index{client.\+h@{client.\+h}!equals\+Client@{equals\+Client}}
+\index{equals\+Client@{equals\+Client}!client.\+h@{client.\+h}}
+\subsubsection{\texorpdfstring{equals\+Client()}{equalsClient()}}
+{\footnotesize\ttfamily int equals\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{structclient}{Client}}]{,  }\item[{\hyperlink{structclient}{Client}}]{ }\end{DoxyParamCaption})}
+
+
+
+Compara dois Client. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em a} & Primeiro cliente \\
+\hline
+{\em b} & Segundo cliente \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Resultado da comparação 
+\end{DoxyReturn}
+\mbox{\Hypertarget{client_8h_a42e5defadf41cd4f69dd8978497ec40a}\label{client_8h_a42e5defadf41cd4f69dd8978497ec40a}} 
+\index{client.\+h@{client.\+h}!get\+Client\+Code@{get\+Client\+Code}}
+\index{get\+Client\+Code@{get\+Client\+Code}!client.\+h@{client.\+h}}
+\subsubsection{\texorpdfstring{get\+Client\+Code()}{getClientCode()}}
+{\footnotesize\ttfamily char$\ast$ get\+Client\+Code (\begin{DoxyParamCaption}\item[{\hyperlink{structclient}{Client}}]{ }\end{DoxyParamCaption})}
+
+
+
+Extrai o código de cliente a partir de um Client. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em client} & Client que contém as informações do cliente \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Código de cliente 
+\end{DoxyReturn}
+\mbox{\Hypertarget{client_8h_ad3c48884dd494df3ceda8c679adaa58c}\label{client_8h_ad3c48884dd494df3ceda8c679adaa58c}} 
+\index{client.\+h@{client.\+h}!new\+Client@{new\+Client}}
+\index{new\+Client@{new\+Client}!client.\+h@{client.\+h}}
+\subsubsection{\texorpdfstring{new\+Client()}{newClient()}}
+{\footnotesize\ttfamily \hyperlink{structclient}{Client} new\+Client (\begin{DoxyParamCaption}\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Cria um novo Client. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em client} & Código de cliente \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Client Client criado a partir do código 
+\end{DoxyReturn}
+\mbox{\Hypertarget{client_8h_afacce3cde85997aa7b7db2ecd8a1f131}\label{client_8h_afacce3cde85997aa7b7db2ecd8a1f131}} 
+\index{client.\+h@{client.\+h}!verify\+Client@{verify\+Client}}
+\index{verify\+Client@{verify\+Client}!client.\+h@{client.\+h}}
+\subsubsection{\texorpdfstring{verify\+Client()}{verifyClient()}}
+{\footnotesize\ttfamily bool verify\+Client (\begin{DoxyParamCaption}\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Verifica se um código de cliente é válido. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em client} & Código de cliente \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+bool Verificação se o código de cliente é válido ou não 
+\end{DoxyReturn}

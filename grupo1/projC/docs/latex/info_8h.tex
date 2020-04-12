@@ -1,0 +1,885 @@
+\hypertarget{info_8h}{}\section{Referência ao ficheiro include/info.h}
+\label{info_8h}\index{include/info.\+h@{include/info.\+h}}
+
+
+Módulo de estruturas auxiliares.  
+
+
+{\ttfamily \#include $<$glib.\+h$>$}\newline
+Diagrama de dependências de inclusão para info.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{info_8h__incl}
+\end{center}
+\end{figure}
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{info_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{info_8h_ace3735d4dbcdbbfd41af7e66c2109f66}\label{info_8h_ace3735d4dbcdbbfd41af7e66c2109f66}} 
+typedef struct \hyperlink{structinfo}{info} $\ast$ {\bfseries Info}
+\item 
+\mbox{\Hypertarget{info_8h_a8cb5bb662bdd321685bbea94850b6d93}\label{info_8h_a8cb5bb662bdd321685bbea94850b6d93}} 
+typedef struct \hyperlink{structaux}{aux} $\ast$ {\bfseries Aux}
+\item 
+\mbox{\Hypertarget{info_8h_a5be42c2aa391342562cfb37cca5adf2d}\label{info_8h_a5be42c2aa391342562cfb37cca5adf2d}} 
+typedef struct \hyperlink{structmoney}{money} $\ast$ {\bfseries Money}
+\item 
+\mbox{\Hypertarget{info_8h_a5b12898a31f33f8a1c50649159917f5a}\label{info_8h_a5b12898a31f33f8a1c50649159917f5a}} 
+typedef struct \hyperlink{structquerie8Aux}{querie8\+Aux} $\ast$ {\bfseries Query8\+Aux}
+\item 
+\mbox{\Hypertarget{info_8h_afc46fe447d765ea30120d60561f534d7}\label{info_8h_afc46fe447d765ea30120d60561f534d7}} 
+typedef struct \hyperlink{structquerie9Aux}{querie9\+Aux} $\ast$ {\bfseries Query9\+Aux}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{info_8h_ae6a87f3d83667e1bf1c790f10a859c75}{compare\+Money} (gconstpointer, gconstpointer)
+\begin{DoxyCompactList}\small\item\em Compara duas variáveis das estruturas Money. \end{DoxyCompactList}\item 
+\hyperlink{structmoney}{Money} \hyperlink{info_8h_a9897ebca004309ef0519361767d65d73}{clone\+Money} (\hyperlink{structmoney}{Money})
+\begin{DoxyCompactList}\small\item\em Copia as informações para uma nova estrutura Money. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a5bcb355ab224d310644f929d6ff81d74}{free\+Money} (\hyperlink{structmoney}{Money})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Money. \end{DoxyCompactList}\item 
+\hyperlink{structaux}{Aux} \hyperlink{info_8h_a0d19488de5aa32654560272982370eec}{clone\+Aux} (\hyperlink{structaux}{Aux})
+\begin{DoxyCompactList}\small\item\em Copia as informações para uma nova estrutura Aux. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_aa8e191d81b99db54f59d7af7855c4543}{free\+Aux} (\hyperlink{structaux}{Aux})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Aux. \end{DoxyCompactList}\item 
+int \hyperlink{info_8h_a7c4636f23d9c07e3b0d7388f278732e8}{compare\+Aux} (gconstpointer, gconstpointer)
+\begin{DoxyCompactList}\small\item\em Compara duas variáveis das estruturas Aux. \end{DoxyCompactList}\item 
+int \hyperlink{info_8h_a2b5b09e1cd11423a2c95a8bf3110db75}{compare\+Info} (gconstpointer, gconstpointer)
+\begin{DoxyCompactList}\small\item\em Compara duas variáveis das estruturas Info. \end{DoxyCompactList}\item 
+\hyperlink{structinfo}{Info} \hyperlink{info_8h_af1a12e5c8b8198f71c4142a1ea0e2f47}{clone\+Info} (\hyperlink{structinfo}{Info})
+\begin{DoxyCompactList}\small\item\em Copia as informações para uma nova estrutura Info. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a02f55228347268f56c75ffee9d391f75}{free\+Info} (\hyperlink{structinfo}{Info})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Info. \end{DoxyCompactList}\item 
+\hyperlink{structmoney}{Money} \hyperlink{info_8h_a3e93b1821285cb2d28ab911eef26c042}{init\+Money} (char $\ast$, double)
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Money. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a8dcbb1118baaf5c859856ad253a2fc19}{update\+Money} (\hyperlink{structmoney}{Money}, double)
+\begin{DoxyCompactList}\small\item\em Atualizar os dados dentro da estrutura Money. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a09807876a097ecacaa4a11e33c163912}{update\+Aux} (\hyperlink{structaux}{Aux}, int, int $\ast$)
+\begin{DoxyCompactList}\small\item\em Atualizar os dados dentro da estrutura Aux. \end{DoxyCompactList}\item 
+\hyperlink{structaux}{Aux} \hyperlink{info_8h_a4ffac6ae942e26044175ed3685a9ee06}{init\+Aux} (char $\ast$, int, int $\ast$)
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Aux. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a2a6c333c5b65eb17a09aa84264883fee}{update\+Info} (\hyperlink{structinfo}{Info}, int)
+\begin{DoxyCompactList}\small\item\em Atualizar os dados dentro da estrutura Info. \end{DoxyCompactList}\item 
+\hyperlink{structinfo}{Info} \hyperlink{info_8h_aaa28f2db07c8646493aa26a239fc84e2}{init\+Info} (char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Info. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a91c45adcbadb92117ef75f5ae03ed9b3}{free\+Info\+List} (\hyperlink{structinfo}{Info} $\ast$)
+\begin{DoxyCompactList}\small\item\em Libertação de um array de estruturas Info. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a3cfad62e6dd3e5e4a3e6420ceb76b07f}{free\+Aux\+List} (\hyperlink{structaux}{Aux} $\ast$)
+\begin{DoxyCompactList}\small\item\em Libertação de um array de estruturas Aux. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a38f2c11521b19fe8e511538fa93895e2}{free\+Money\+List} (\hyperlink{structmoney}{Money} $\ast$)
+\begin{DoxyCompactList}\small\item\em Libertação de um array de estruturas Money. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{info_8h_a86117d019d643bf4cf2f77adb54d6424}{get\+Info\+Product} (\hyperlink{structinfo}{Info})
+\begin{DoxyCompactList}\small\item\em Devolve o código de produto da estrutura Info. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{info_8h_ae50a03e328a6219dcafffdeed6612e03}{get\+Aux\+Product} (\hyperlink{structaux}{Aux})
+\begin{DoxyCompactList}\small\item\em Devolve o código de produto da estrutura Aux. \end{DoxyCompactList}\item 
+int \hyperlink{info_8h_aa86691fb5fd4dfadcb448ebf08f88bf0}{get\+Aux\+Units\+Sold} (\hyperlink{structaux}{Aux}, int)
+\begin{DoxyCompactList}\small\item\em Devolve as unidades vendidas num certo mês presente na estrutura Aux. \end{DoxyCompactList}\item 
+int \hyperlink{info_8h_aceb4ce880195ac25ef9ae7c098540769}{get\+Aux\+Total\+Clients} (\hyperlink{structaux}{Aux}, int)
+\begin{DoxyCompactList}\small\item\em Devolve o número de clientes num certo mês presente na estrutura Aux. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{info_8h_a138aa8cf2154669ef15e84ce74e06d45}{get\+Money\+Product} (\hyperlink{structmoney}{Money})
+\begin{DoxyCompactList}\small\item\em Devolve o código de produto da estrutura Money. \end{DoxyCompactList}\item 
+double \hyperlink{info_8h_aa5fdab4904f6904db621cfc72c2e1396}{get\+Money\+Spent} (\hyperlink{structmoney}{Money} \hyperlink{structmoney}{money})
+\begin{DoxyCompactList}\small\item\em Devolve o montante gasto da estrutura Money. \end{DoxyCompactList}\item 
+int \hyperlink{info_8h_a32f82a70c5c768ad53d9ee949e923978}{get\+Info\+Units\+Sold} (\hyperlink{structinfo}{Info} \hyperlink{structinfo}{info})
+\begin{DoxyCompactList}\small\item\em Devolve a quantidade de unidades vendidas da estrutura Info. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a5e2a7d6ef4d5c08feeef9b223c5c7523}{update\+Querie8} (\hyperlink{structquerie8Aux}{Query8\+Aux}, double, int, int)
+\begin{DoxyCompactList}\small\item\em Atualizar os dados dentro da estrutura Query8\+Aux. \end{DoxyCompactList}\item 
+\hyperlink{structquerie8Aux}{Query8\+Aux} \hyperlink{info_8h_acbb9ebb2e64172f022495d4315a62b5f}{init\+Query8\+Aux} ()
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Query8\+Aux. \end{DoxyCompactList}\item 
+int \hyperlink{info_8h_aee9b579abe8647c7277bbdf8f1659a78}{get\+Query8\+Aux\+Units} (\hyperlink{structquerie8Aux}{Query8\+Aux})
+\begin{DoxyCompactList}\small\item\em Devolve a quantidade de unidades vendidas da estrutura Aux. \end{DoxyCompactList}\item 
+double \hyperlink{info_8h_ad8a318effd5a52c4c17eec7a93bc414b}{get\+Query8\+Aux\+Billed} (\hyperlink{structquerie8Aux}{Query8\+Aux})
+\begin{DoxyCompactList}\small\item\em Devolve o total faturado da estrutura Aux. \end{DoxyCompactList}\item 
+int \hyperlink{info_8h_a586f4db6ee04b0812b97c24d2ec35179}{get\+Query8\+Aux\+Sales} (\hyperlink{structquerie8Aux}{Query8\+Aux})
+\begin{DoxyCompactList}\small\item\em Devolve a quantidade de vendas da estrutura Aux. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a0db65b71e143a903ca2224ed70f479fe}{free\+Query8\+Aux} (\hyperlink{structquerie8Aux}{Query8\+Aux})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Query8\+Aux. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_affe2daef7c78e1f350333228f4fd4de9}{update\+TotalN} (\hyperlink{structquerie9Aux}{Query9\+Aux})
+\begin{DoxyCompactList}\small\item\em Incrementa o valor totalN dentro da estrutura Query9\+Aux. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a61d62b83860d662dad2c66726492ac80}{update\+TotalP} (\hyperlink{structquerie9Aux}{Query9\+Aux})
+\begin{DoxyCompactList}\small\item\em Incrementa o valor totalP dentro da estrutura Queries9\+Aux. \end{DoxyCompactList}\item 
+int \hyperlink{info_8h_abdbe946638abb7ee3fd23e8a1a086978}{get\+Query9\+TotalN} (\hyperlink{structquerie9Aux}{Query9\+Aux} \hyperlink{structaux}{aux})
+\begin{DoxyCompactList}\small\item\em Devolve o valor de totalN da estrutura Query9\+Aux. \end{DoxyCompactList}\item 
+int \hyperlink{info_8h_a2f31b1f7ceeae58539b1bf0c9e0c58b9}{get\+Query9\+TotalP} (\hyperlink{structquerie9Aux}{Query9\+Aux} \hyperlink{structaux}{aux})
+\begin{DoxyCompactList}\small\item\em Devolve o valor de totalP da estrutura Query9\+Aux. \end{DoxyCompactList}\item 
+\hyperlink{structquerie9Aux}{Query9\+Aux} \hyperlink{info_8h_aea18480202920b30bcd9d16900a23c85}{init\+Query9\+Aux} (int)
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Query9\+Aux. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a9f4fc43ae49040fb52aad9e1b5617b87}{update\+ClientsN} (\hyperlink{structquerie9Aux}{Query9\+Aux}, int, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Atualizar o valor clientsN de um certo índice na estrutura Query9\+Aux. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a134b3e65ffa192be4fe79cd820701e69}{update\+ClientsP} (\hyperlink{structquerie9Aux}{Query9\+Aux}, int, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Atualizar o valor clientsP de um certo índice na estrutura Query9\+Aux. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a07ef3e30aadd27d5c2ec8527b6d3f007}{update\+Clients} (\hyperlink{structquerie9Aux}{Query9\+Aux}, int, int)
+\begin{DoxyCompactList}\small\item\em Atualizar clientsN e clientsP para N\+U\+LL na estrutura Query9\+Aux. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{info_8h_a7fafe157e70e30ae9bcab9dda4744ec4}{get\+Query9\+ClientN} (\hyperlink{structquerie9Aux}{Query9\+Aux}, int)
+\begin{DoxyCompactList}\small\item\em Devolve o valor de clientsP num certo índice na estrutura Query9\+Aux. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{info_8h_a08a42c6b7ac0fcbd63a91a2a66d19658}{get\+Query9\+ClientP} (\hyperlink{structquerie9Aux}{Query9\+Aux}, int)
+\begin{DoxyCompactList}\small\item\em Devolve o valor de clientsP num certo índice na estrutura Query9\+Aux. \end{DoxyCompactList}\item 
+void \hyperlink{info_8h_a9c51a5d7dadae013175c912063f7f06c}{free\+Query9\+Aux} (\hyperlink{structquerie9Aux}{Query9\+Aux})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Query9\+Aux. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Módulo de estruturas auxiliares. 
+
+
+
+\subsection{Documentação das funções}
+\mbox{\Hypertarget{info_8h_a0d19488de5aa32654560272982370eec}\label{info_8h_a0d19488de5aa32654560272982370eec}} 
+\index{info.\+h@{info.\+h}!clone\+Aux@{clone\+Aux}}
+\index{clone\+Aux@{clone\+Aux}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{clone\+Aux()}{cloneAux()}}
+{\footnotesize\ttfamily \hyperlink{structaux}{Aux} clone\+Aux (\begin{DoxyParamCaption}\item[{\hyperlink{structaux}{Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Copia as informações para uma nova estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Aux \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Aux Estrutura auxiliar para retornar resultados da query xxx 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_af1a12e5c8b8198f71c4142a1ea0e2f47}\label{info_8h_af1a12e5c8b8198f71c4142a1ea0e2f47}} 
+\index{info.\+h@{info.\+h}!clone\+Info@{clone\+Info}}
+\index{clone\+Info@{clone\+Info}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{clone\+Info()}{cloneInfo()}}
+{\footnotesize\ttfamily \hyperlink{structinfo}{Info} clone\+Info (\begin{DoxyParamCaption}\item[{\hyperlink{structinfo}{Info}}]{ }\end{DoxyParamCaption})}
+
+
+
+Copia as informações para uma nova estrutura Info. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Estrutura Info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Info Estrutura auxiliar para retornar resultados da query xxx 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a9897ebca004309ef0519361767d65d73}\label{info_8h_a9897ebca004309ef0519361767d65d73}} 
+\index{info.\+h@{info.\+h}!clone\+Money@{clone\+Money}}
+\index{clone\+Money@{clone\+Money}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{clone\+Money()}{cloneMoney()}}
+{\footnotesize\ttfamily \hyperlink{structmoney}{Money} clone\+Money (\begin{DoxyParamCaption}\item[{\hyperlink{structmoney}{Money}}]{ }\end{DoxyParamCaption})}
+
+
+
+Copia as informações para uma nova estrutura Money. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em money} & Estrutura Money \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Money Estrutura auxiliar para retornar resultados da query 12 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a7c4636f23d9c07e3b0d7388f278732e8}\label{info_8h_a7c4636f23d9c07e3b0d7388f278732e8}} 
+\index{info.\+h@{info.\+h}!compare\+Aux@{compare\+Aux}}
+\index{compare\+Aux@{compare\+Aux}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{compare\+Aux()}{compareAux()}}
+{\footnotesize\ttfamily int compare\+Aux (\begin{DoxyParamCaption}\item[{gconstpointer}]{,  }\item[{gconstpointer}]{ }\end{DoxyParamCaption})}
+
+
+
+Compara duas variáveis das estruturas Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em a} & Gconstpointer que representa a estrutura Aux \\
+\hline
+{\em b} & Gconstpointer que representa a estrutura Aux \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Diferença entre o total de unidades vendidas na estrutura a e na b 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a2b5b09e1cd11423a2c95a8bf3110db75}\label{info_8h_a2b5b09e1cd11423a2c95a8bf3110db75}} 
+\index{info.\+h@{info.\+h}!compare\+Info@{compare\+Info}}
+\index{compare\+Info@{compare\+Info}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{compare\+Info()}{compareInfo()}}
+{\footnotesize\ttfamily int compare\+Info (\begin{DoxyParamCaption}\item[{gconstpointer}]{,  }\item[{gconstpointer}]{ }\end{DoxyParamCaption})}
+
+
+
+Compara duas variáveis das estruturas Info. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em a} & Gconstpointer que representa a estrutura Info \\
+\hline
+{\em b} & Gconstpointer que representa a estrutura Info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Diferença entre as unidades vendidas na estrutura a e na b 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_ae6a87f3d83667e1bf1c790f10a859c75}\label{info_8h_ae6a87f3d83667e1bf1c790f10a859c75}} 
+\index{info.\+h@{info.\+h}!compare\+Money@{compare\+Money}}
+\index{compare\+Money@{compare\+Money}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{compare\+Money()}{compareMoney()}}
+{\footnotesize\ttfamily int compare\+Money (\begin{DoxyParamCaption}\item[{gconstpointer}]{,  }\item[{gconstpointer}]{ }\end{DoxyParamCaption})}
+
+
+
+Compara duas variáveis das estruturas Money. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em a} & Gconstpointer que representa a estrutura Money \\
+\hline
+{\em b} & Gconstpointer que representa a estrutura Money \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Diferença entre o montante na estrutura a e na b 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_aa8e191d81b99db54f59d7af7855c4543}\label{info_8h_aa8e191d81b99db54f59d7af7855c4543}} 
+\index{info.\+h@{info.\+h}!free\+Aux@{free\+Aux}}
+\index{free\+Aux@{free\+Aux}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{free\+Aux()}{freeAux()}}
+{\footnotesize\ttfamily void free\+Aux (\begin{DoxyParamCaption}\item[{\hyperlink{structaux}{Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Aux \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a3cfad62e6dd3e5e4a3e6420ceb76b07f}\label{info_8h_a3cfad62e6dd3e5e4a3e6420ceb76b07f}} 
+\index{info.\+h@{info.\+h}!free\+Aux\+List@{free\+Aux\+List}}
+\index{free\+Aux\+List@{free\+Aux\+List}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{free\+Aux\+List()}{freeAuxList()}}
+{\footnotesize\ttfamily void free\+Aux\+List (\begin{DoxyParamCaption}\item[{\hyperlink{structaux}{Aux} $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação de um array de estruturas Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em list} & Array de estruturas Aux \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a02f55228347268f56c75ffee9d391f75}\label{info_8h_a02f55228347268f56c75ffee9d391f75}} 
+\index{info.\+h@{info.\+h}!free\+Info@{free\+Info}}
+\index{free\+Info@{free\+Info}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{free\+Info()}{freeInfo()}}
+{\footnotesize\ttfamily void free\+Info (\begin{DoxyParamCaption}\item[{\hyperlink{structinfo}{Info}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Info. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Estrutura Info \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a91c45adcbadb92117ef75f5ae03ed9b3}\label{info_8h_a91c45adcbadb92117ef75f5ae03ed9b3}} 
+\index{info.\+h@{info.\+h}!free\+Info\+List@{free\+Info\+List}}
+\index{free\+Info\+List@{free\+Info\+List}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{free\+Info\+List()}{freeInfoList()}}
+{\footnotesize\ttfamily void free\+Info\+List (\begin{DoxyParamCaption}\item[{\hyperlink{structinfo}{Info} $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação de um array de estruturas Info. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em list} & Array de estruturas Info \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a5bcb355ab224d310644f929d6ff81d74}\label{info_8h_a5bcb355ab224d310644f929d6ff81d74}} 
+\index{info.\+h@{info.\+h}!free\+Money@{free\+Money}}
+\index{free\+Money@{free\+Money}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{free\+Money()}{freeMoney()}}
+{\footnotesize\ttfamily void free\+Money (\begin{DoxyParamCaption}\item[{\hyperlink{structmoney}{Money}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Money. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em money} & Estrutura Money \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a38f2c11521b19fe8e511538fa93895e2}\label{info_8h_a38f2c11521b19fe8e511538fa93895e2}} 
+\index{info.\+h@{info.\+h}!free\+Money\+List@{free\+Money\+List}}
+\index{free\+Money\+List@{free\+Money\+List}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{free\+Money\+List()}{freeMoneyList()}}
+{\footnotesize\ttfamily void free\+Money\+List (\begin{DoxyParamCaption}\item[{\hyperlink{structmoney}{Money} $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação de um array de estruturas Money. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em list} & Array de estruturas Money \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a0db65b71e143a903ca2224ed70f479fe}\label{info_8h_a0db65b71e143a903ca2224ed70f479fe}} 
+\index{info.\+h@{info.\+h}!free\+Query8\+Aux@{free\+Query8\+Aux}}
+\index{free\+Query8\+Aux@{free\+Query8\+Aux}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{free\+Query8\+Aux()}{freeQuery8Aux()}}
+{\footnotesize\ttfamily void free\+Query8\+Aux (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie8Aux}{Query8\+Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Query8\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query8\+Aux \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a9c51a5d7dadae013175c912063f7f06c}\label{info_8h_a9c51a5d7dadae013175c912063f7f06c}} 
+\index{info.\+h@{info.\+h}!free\+Query9\+Aux@{free\+Query9\+Aux}}
+\index{free\+Query9\+Aux@{free\+Query9\+Aux}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{free\+Query9\+Aux()}{freeQuery9Aux()}}
+{\footnotesize\ttfamily void free\+Query9\+Aux (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie9Aux}{Query9\+Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Query9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query9\+Aux \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_ae50a03e328a6219dcafffdeed6612e03}\label{info_8h_ae50a03e328a6219dcafffdeed6612e03}} 
+\index{info.\+h@{info.\+h}!get\+Aux\+Product@{get\+Aux\+Product}}
+\index{get\+Aux\+Product@{get\+Aux\+Product}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Aux\+Product()}{getAuxProduct()}}
+{\footnotesize\ttfamily char$\ast$ get\+Aux\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structaux}{Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o código de produto da estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Aux \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Código de Produto 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_aceb4ce880195ac25ef9ae7c098540769}\label{info_8h_aceb4ce880195ac25ef9ae7c098540769}} 
+\index{info.\+h@{info.\+h}!get\+Aux\+Total\+Clients@{get\+Aux\+Total\+Clients}}
+\index{get\+Aux\+Total\+Clients@{get\+Aux\+Total\+Clients}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Aux\+Total\+Clients()}{getAuxTotalClients()}}
+{\footnotesize\ttfamily int get\+Aux\+Total\+Clients (\begin{DoxyParamCaption}\item[{\hyperlink{structaux}{Aux}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o número de clientes num certo mês presente na estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Aux \\
+\hline
+{\em i} & Numero do mês escolhido \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número total de clientes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_aa86691fb5fd4dfadcb448ebf08f88bf0}\label{info_8h_aa86691fb5fd4dfadcb448ebf08f88bf0}} 
+\index{info.\+h@{info.\+h}!get\+Aux\+Units\+Sold@{get\+Aux\+Units\+Sold}}
+\index{get\+Aux\+Units\+Sold@{get\+Aux\+Units\+Sold}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Aux\+Units\+Sold()}{getAuxUnitsSold()}}
+{\footnotesize\ttfamily int get\+Aux\+Units\+Sold (\begin{DoxyParamCaption}\item[{\hyperlink{structaux}{Aux}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve as unidades vendidas num certo mês presente na estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Aux \\
+\hline
+{\em i} & Numero do mês escolhido \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Unidades vendidas num dado mês 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a86117d019d643bf4cf2f77adb54d6424}\label{info_8h_a86117d019d643bf4cf2f77adb54d6424}} 
+\index{info.\+h@{info.\+h}!get\+Info\+Product@{get\+Info\+Product}}
+\index{get\+Info\+Product@{get\+Info\+Product}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Info\+Product()}{getInfoProduct()}}
+{\footnotesize\ttfamily char$\ast$ get\+Info\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structinfo}{Info}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o código de produto da estrutura Info. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Estrutura Info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Código de Produto 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a32f82a70c5c768ad53d9ee949e923978}\label{info_8h_a32f82a70c5c768ad53d9ee949e923978}} 
+\index{info.\+h@{info.\+h}!get\+Info\+Units\+Sold@{get\+Info\+Units\+Sold}}
+\index{get\+Info\+Units\+Sold@{get\+Info\+Units\+Sold}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Info\+Units\+Sold()}{getInfoUnitsSold()}}
+{\footnotesize\ttfamily int get\+Info\+Units\+Sold (\begin{DoxyParamCaption}\item[{\hyperlink{structinfo}{Info}}]{info }\end{DoxyParamCaption})}
+
+
+
+Devolve a quantidade de unidades vendidas da estrutura Info. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Estrutura Info \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Quantidade de unidades vendidas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a138aa8cf2154669ef15e84ce74e06d45}\label{info_8h_a138aa8cf2154669ef15e84ce74e06d45}} 
+\index{info.\+h@{info.\+h}!get\+Money\+Product@{get\+Money\+Product}}
+\index{get\+Money\+Product@{get\+Money\+Product}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Money\+Product()}{getMoneyProduct()}}
+{\footnotesize\ttfamily char$\ast$ get\+Money\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structmoney}{Money}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o código de produto da estrutura Money. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Aux \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Código de Produto 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_aa5fdab4904f6904db621cfc72c2e1396}\label{info_8h_aa5fdab4904f6904db621cfc72c2e1396}} 
+\index{info.\+h@{info.\+h}!get\+Money\+Spent@{get\+Money\+Spent}}
+\index{get\+Money\+Spent@{get\+Money\+Spent}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Money\+Spent()}{getMoneySpent()}}
+{\footnotesize\ttfamily double get\+Money\+Spent (\begin{DoxyParamCaption}\item[{\hyperlink{structmoney}{Money}}]{money }\end{DoxyParamCaption})}
+
+
+
+Devolve o montante gasto da estrutura Money. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em money} & Estrutura Money \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+double Montante gasto 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_ad8a318effd5a52c4c17eec7a93bc414b}\label{info_8h_ad8a318effd5a52c4c17eec7a93bc414b}} 
+\index{info.\+h@{info.\+h}!get\+Query8\+Aux\+Billed@{get\+Query8\+Aux\+Billed}}
+\index{get\+Query8\+Aux\+Billed@{get\+Query8\+Aux\+Billed}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Query8\+Aux\+Billed()}{getQuery8AuxBilled()}}
+{\footnotesize\ttfamily double get\+Query8\+Aux\+Billed (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie8Aux}{Query8\+Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o total faturado da estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query8\+Aux \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+double Montante faturado 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a586f4db6ee04b0812b97c24d2ec35179}\label{info_8h_a586f4db6ee04b0812b97c24d2ec35179}} 
+\index{info.\+h@{info.\+h}!get\+Query8\+Aux\+Sales@{get\+Query8\+Aux\+Sales}}
+\index{get\+Query8\+Aux\+Sales@{get\+Query8\+Aux\+Sales}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Query8\+Aux\+Sales()}{getQuery8AuxSales()}}
+{\footnotesize\ttfamily int get\+Query8\+Aux\+Sales (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie8Aux}{Query8\+Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve a quantidade de vendas da estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query8\+Aux \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Quantidade de vendas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_aee9b579abe8647c7277bbdf8f1659a78}\label{info_8h_aee9b579abe8647c7277bbdf8f1659a78}} 
+\index{info.\+h@{info.\+h}!get\+Query8\+Aux\+Units@{get\+Query8\+Aux\+Units}}
+\index{get\+Query8\+Aux\+Units@{get\+Query8\+Aux\+Units}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Query8\+Aux\+Units()}{getQuery8AuxUnits()}}
+{\footnotesize\ttfamily int get\+Query8\+Aux\+Units (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie8Aux}{Query8\+Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve a quantidade de unidades vendidas da estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query8\+Aux \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Quantidade de unidades vendidas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a7fafe157e70e30ae9bcab9dda4744ec4}\label{info_8h_a7fafe157e70e30ae9bcab9dda4744ec4}} 
+\index{info.\+h@{info.\+h}!get\+Query9\+ClientN@{get\+Query9\+ClientN}}
+\index{get\+Query9\+ClientN@{get\+Query9\+ClientN}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Query9\+Client\+N()}{getQuery9ClientN()}}
+{\footnotesize\ttfamily char$\ast$ get\+Query9\+ClientN (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie9Aux}{Query9\+Aux}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o valor de clientsP num certo índice na estrutura Query9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query9\+Aux \\
+\hline
+{\em i} & Posição do array de códigos de cliente que compraram o produto no tipo N (normal) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Código de Cliente 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a08a42c6b7ac0fcbd63a91a2a66d19658}\label{info_8h_a08a42c6b7ac0fcbd63a91a2a66d19658}} 
+\index{info.\+h@{info.\+h}!get\+Query9\+ClientP@{get\+Query9\+ClientP}}
+\index{get\+Query9\+ClientP@{get\+Query9\+ClientP}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Query9\+Client\+P()}{getQuery9ClientP()}}
+{\footnotesize\ttfamily char$\ast$ get\+Query9\+ClientP (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie9Aux}{Query9\+Aux}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o valor de clientsP num certo índice na estrutura Query9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query9\+Aux \\
+\hline
+{\em i} & Posição do array de códigos de cliente que compraram o produto no tipo P (promoção) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Código de Cliente 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_abdbe946638abb7ee3fd23e8a1a086978}\label{info_8h_abdbe946638abb7ee3fd23e8a1a086978}} 
+\index{info.\+h@{info.\+h}!get\+Query9\+TotalN@{get\+Query9\+TotalN}}
+\index{get\+Query9\+TotalN@{get\+Query9\+TotalN}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Query9\+Total\+N()}{getQuery9TotalN()}}
+{\footnotesize\ttfamily int get\+Query9\+TotalN (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie9Aux}{Query9\+Aux}}]{aux }\end{DoxyParamCaption})}
+
+
+
+Devolve o valor de totalN da estrutura Query9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query9\+Aux \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número total de clientes que compraram em tipo N (normal) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a2f31b1f7ceeae58539b1bf0c9e0c58b9}\label{info_8h_a2f31b1f7ceeae58539b1bf0c9e0c58b9}} 
+\index{info.\+h@{info.\+h}!get\+Query9\+TotalP@{get\+Query9\+TotalP}}
+\index{get\+Query9\+TotalP@{get\+Query9\+TotalP}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{get\+Query9\+Total\+P()}{getQuery9TotalP()}}
+{\footnotesize\ttfamily int get\+Query9\+TotalP (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie9Aux}{Query9\+Aux}}]{aux }\end{DoxyParamCaption})}
+
+
+
+Devolve o valor de totalP da estrutura Query9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query9\+Aux \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número total de clientes que compraram em tipo P (promoção) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a4ffac6ae942e26044175ed3685a9ee06}\label{info_8h_a4ffac6ae942e26044175ed3685a9ee06}} 
+\index{info.\+h@{info.\+h}!init\+Aux@{init\+Aux}}
+\index{init\+Aux@{init\+Aux}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{init\+Aux()}{initAux()}}
+{\footnotesize\ttfamily \hyperlink{structaux}{Aux} init\+Aux (\begin{DoxyParamCaption}\item[{char $\ast$}]{,  }\item[{int}]{,  }\item[{int $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em key} & Código de produto \\
+\hline
+{\em branch} & O valor da filial escolhida \\
+\hline
+{\em value} & Array com os quantidades de unidades vendidas em cada mês \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Aux Estrutura auxiliar para retornar resultados da query 11 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_aaa28f2db07c8646493aa26a239fc84e2}\label{info_8h_aaa28f2db07c8646493aa26a239fc84e2}} 
+\index{info.\+h@{info.\+h}!init\+Info@{init\+Info}}
+\index{init\+Info@{init\+Info}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{init\+Info()}{initInfo()}}
+{\footnotesize\ttfamily \hyperlink{structinfo}{Info} init\+Info (\begin{DoxyParamCaption}\item[{char $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Info. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em key} & Código de produto \\
+\hline
+{\em value} & Numero de unidades vendidas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Info Estrutura auxiliar para retornar resultados da query 10 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a3e93b1821285cb2d28ab911eef26c042}\label{info_8h_a3e93b1821285cb2d28ab911eef26c042}} 
+\index{info.\+h@{info.\+h}!init\+Money@{init\+Money}}
+\index{init\+Money@{init\+Money}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{init\+Money()}{initMoney()}}
+{\footnotesize\ttfamily \hyperlink{structmoney}{Money} init\+Money (\begin{DoxyParamCaption}\item[{char $\ast$}]{,  }\item[{double}]{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Money. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em key} & Código de produto \\
+\hline
+{\em value} & valor gasto numa certa compra \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Money Estrutura auxiliar para retornar resultados da query 12 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_acbb9ebb2e64172f022495d4315a62b5f}\label{info_8h_acbb9ebb2e64172f022495d4315a62b5f}} 
+\index{info.\+h@{info.\+h}!init\+Query8\+Aux@{init\+Query8\+Aux}}
+\index{init\+Query8\+Aux@{init\+Query8\+Aux}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{init\+Query8\+Aux()}{initQuery8Aux()}}
+{\footnotesize\ttfamily \hyperlink{structquerie8Aux}{Query8\+Aux} init\+Query8\+Aux (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Query8\+Aux. 
+
+\begin{DoxyReturn}{Retorna}
+Query8\+Aux Estrutura auxiliar para retornar resultados da query 8 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_aea18480202920b30bcd9d16900a23c85}\label{info_8h_aea18480202920b30bcd9d16900a23c85}} 
+\index{info.\+h@{info.\+h}!init\+Query9\+Aux@{init\+Query9\+Aux}}
+\index{init\+Query9\+Aux@{init\+Query9\+Aux}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{init\+Query9\+Aux()}{initQuery9Aux()}}
+{\footnotesize\ttfamily \hyperlink{structquerie9Aux}{Query9\+Aux} init\+Query9\+Aux (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Query9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em size} & Número de clientes que compraram um certo produto numa dada filial \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Query9\+Aux Estrutura auxiliar para retornar resultados da query 9 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info_8h_a09807876a097ecacaa4a11e33c163912}\label{info_8h_a09807876a097ecacaa4a11e33c163912}} 
+\index{info.\+h@{info.\+h}!update\+Aux@{update\+Aux}}
+\index{update\+Aux@{update\+Aux}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{update\+Aux()}{updateAux()}}
+{\footnotesize\ttfamily void update\+Aux (\begin{DoxyParamCaption}\item[{\hyperlink{structaux}{Aux}}]{,  }\item[{int}]{,  }\item[{int $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar os dados dentro da estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Aux \\
+\hline
+{\em branch} & O valor da filial escolhida \\
+\hline
+{\em value} & Array com os quantidades de unidades vendidas em cada mês \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a07ef3e30aadd27d5c2ec8527b6d3f007}\label{info_8h_a07ef3e30aadd27d5c2ec8527b6d3f007}} 
+\index{info.\+h@{info.\+h}!update\+Clients@{update\+Clients}}
+\index{update\+Clients@{update\+Clients}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{update\+Clients()}{updateClients()}}
+{\footnotesize\ttfamily void update\+Clients (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie9Aux}{Query9\+Aux}}]{,  }\item[{int}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar clientsN e clientsP para N\+U\+LL na estrutura Query9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query9\+Aux \\
+\hline
+{\em i} & Posição final do array de códigos de cliente \\
+\hline
+{\em j} & Posição final do array de códigos de cliente \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a9f4fc43ae49040fb52aad9e1b5617b87}\label{info_8h_a9f4fc43ae49040fb52aad9e1b5617b87}} 
+\index{info.\+h@{info.\+h}!update\+ClientsN@{update\+ClientsN}}
+\index{update\+ClientsN@{update\+ClientsN}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{update\+Clients\+N()}{updateClientsN()}}
+{\footnotesize\ttfamily void update\+ClientsN (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie9Aux}{Query9\+Aux}}]{,  }\item[{int}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar o valor clientsN de um certo índice na estrutura Query9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query9\+Aux \\
+\hline
+{\em i} & Índice onde será adicionada a key \\
+\hline
+{\em key} & Código de cliente que comprou o produto no tipo N (normal) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a134b3e65ffa192be4fe79cd820701e69}\label{info_8h_a134b3e65ffa192be4fe79cd820701e69}} 
+\index{info.\+h@{info.\+h}!update\+ClientsP@{update\+ClientsP}}
+\index{update\+ClientsP@{update\+ClientsP}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{update\+Clients\+P()}{updateClientsP()}}
+{\footnotesize\ttfamily void update\+ClientsP (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie9Aux}{Query9\+Aux}}]{,  }\item[{int}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar o valor clientsP de um certo índice na estrutura Query9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query9\+Aux \\
+\hline
+{\em i} & Índice onde será adicionada a key \\
+\hline
+{\em key} & Código de cliente que comprou o produto no tipo P (promoção) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a2a6c333c5b65eb17a09aa84264883fee}\label{info_8h_a2a6c333c5b65eb17a09aa84264883fee}} 
+\index{info.\+h@{info.\+h}!update\+Info@{update\+Info}}
+\index{update\+Info@{update\+Info}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{update\+Info()}{updateInfo()}}
+{\footnotesize\ttfamily void update\+Info (\begin{DoxyParamCaption}\item[{\hyperlink{structinfo}{Info}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar os dados dentro da estrutura Info. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em info} & Estrutura Info \\
+\hline
+{\em value} & Unidades vendidas que serão adicionadas \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a8dcbb1118baaf5c859856ad253a2fc19}\label{info_8h_a8dcbb1118baaf5c859856ad253a2fc19}} 
+\index{info.\+h@{info.\+h}!update\+Money@{update\+Money}}
+\index{update\+Money@{update\+Money}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{update\+Money()}{updateMoney()}}
+{\footnotesize\ttfamily void update\+Money (\begin{DoxyParamCaption}\item[{\hyperlink{structmoney}{Money}}]{,  }\item[{double}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar os dados dentro da estrutura Money. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em money} & Estrutura Money \\
+\hline
+{\em value} & Montante gasto a ser adicionado \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a5e2a7d6ef4d5c08feeef9b223c5c7523}\label{info_8h_a5e2a7d6ef4d5c08feeef9b223c5c7523}} 
+\index{info.\+h@{info.\+h}!update\+Querie8@{update\+Querie8}}
+\index{update\+Querie8@{update\+Querie8}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{update\+Querie8()}{updateQuerie8()}}
+{\footnotesize\ttfamily void update\+Querie8 (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie8Aux}{Query8\+Aux}}]{,  }\item[{double}]{,  }\item[{int}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar os dados dentro da estrutura Query8\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query8\+Aux \\
+\hline
+{\em billed} & Montante faturado \\
+\hline
+{\em units} & Unidades vendidas \\
+\hline
+{\em sales} & Quantidade de vendas \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_affe2daef7c78e1f350333228f4fd4de9}\label{info_8h_affe2daef7c78e1f350333228f4fd4de9}} 
+\index{info.\+h@{info.\+h}!update\+TotalN@{update\+TotalN}}
+\index{update\+TotalN@{update\+TotalN}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{update\+Total\+N()}{updateTotalN()}}
+{\footnotesize\ttfamily void update\+TotalN (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie9Aux}{Query9\+Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Incrementa o valor totalN dentro da estrutura Query9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query9\+Aux \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info_8h_a61d62b83860d662dad2c66726492ac80}\label{info_8h_a61d62b83860d662dad2c66726492ac80}} 
+\index{info.\+h@{info.\+h}!update\+TotalP@{update\+TotalP}}
+\index{update\+TotalP@{update\+TotalP}!info.\+h@{info.\+h}}
+\subsubsection{\texorpdfstring{update\+Total\+P()}{updateTotalP()}}
+{\footnotesize\ttfamily void update\+TotalP (\begin{DoxyParamCaption}\item[{\hyperlink{structquerie9Aux}{Query9\+Aux}}]{ }\end{DoxyParamCaption})}
+
+
+
+Incrementa o valor totalP dentro da estrutura Queries9\+Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em aux} & Estrutura Query9\+Aux \\
+\hline
+\end{DoxyParams}

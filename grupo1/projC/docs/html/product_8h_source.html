@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LI3: Código-Fonte de include/product.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">LI3
+   </div>
+   <div id="projectbrief">Projeto de LI3 2019/2020</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">product.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="product_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef ___PRODUCT_H___</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define ___PRODUCT_H___</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structproduct.html">product</a>* <a class="code" href="structproduct.html">Product</a>;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="product_8h.html#afb94ce2608ae38ca44324a11f93734f4">verifyProduct</a>(<span class="keywordtype">char</span>*);</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;Product <a class="code" href="product_8h.html#adf0011bb7a7d0fd9aac70887fb4193d2">newProduct</a>(<span class="keywordtype">char</span>*);</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="product_8h.html#a8493a07b192b6c1711a731e9ecefe341">getProductCode</a>(Product);</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">int</span> <a class="code" href="product_8h.html#a5466f54272944cdfff0c61259d054e8f">equalsProduct</a>(Product, Product);</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span> <a class="code" href="product_8h.html#abd335e2d660bb3232576d6e14e81a8a3">destroyProduct</a>(Product);</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="product_8h_html_afb94ce2608ae38ca44324a11f93734f4"><div class="ttname"><a href="product_8h.html#afb94ce2608ae38ca44324a11f93734f4">verifyProduct</a></div><div class="ttdeci">bool verifyProduct(char *)</div><div class="ttdoc">Devolve um bool consoante o código de produto ser válido ou não. </div><div class="ttdef"><b>Definition:</b> product.c:19</div></div>
+<div class="ttc" id="product_8h_html_a8493a07b192b6c1711a731e9ecefe341"><div class="ttname"><a href="product_8h.html#a8493a07b192b6c1711a731e9ecefe341">getProductCode</a></div><div class="ttdeci">char * getProductCode(Product)</div><div class="ttdoc">Devolve o código de produto presente na estrutura product. </div><div class="ttdef"><b>Definition:</b> product.c:13</div></div>
+<div class="ttc" id="structproduct_html"><div class="ttname"><a href="structproduct.html">product</a></div><div class="ttdef"><b>Definition:</b> product.c:6</div></div>
+<div class="ttc" id="product_8h_html_adf0011bb7a7d0fd9aac70887fb4193d2"><div class="ttname"><a href="product_8h.html#adf0011bb7a7d0fd9aac70887fb4193d2">newProduct</a></div><div class="ttdeci">Product newProduct(char *)</div><div class="ttdoc">Devolve um estrutura Product inicializada com um código de produto. </div><div class="ttdef"><b>Definition:</b> product.c:31</div></div>
+<div class="ttc" id="product_8h_html_a5466f54272944cdfff0c61259d054e8f"><div class="ttname"><a href="product_8h.html#a5466f54272944cdfff0c61259d054e8f">equalsProduct</a></div><div class="ttdeci">int equalsProduct(Product, Product)</div><div class="ttdoc">Verifica a igualdade entre duas estruturas Product dadas. </div><div class="ttdef"><b>Definition:</b> product.c:39</div></div>
+<div class="ttc" id="product_8h_html_abd335e2d660bb3232576d6e14e81a8a3"><div class="ttname"><a href="product_8h.html#abd335e2d660bb3232576d6e14e81a8a3">destroyProduct</a></div><div class="ttdeci">void destroyProduct(Product)</div><div class="ttdoc">Libertar a memória na estrutura Product dada. </div><div class="ttdef"><b>Definition:</b> product.c:45</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

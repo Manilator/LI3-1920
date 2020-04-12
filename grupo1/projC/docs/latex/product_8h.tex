@@ -1,0 +1,140 @@
+\hypertarget{product_8h}{}\section{Referência ao ficheiro include/product.h}
+\label{product_8h}\index{include/product.\+h@{include/product.\+h}}
+
+
+Módulo de tratamentos de produto.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Diagrama de dependências de inclusão para product.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{product_8h__incl}
+\end{center}
+\end{figure}
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{product_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{product_8h_a60148a4519d9dd89ced968ddd3d00889}\label{product_8h_a60148a4519d9dd89ced968ddd3d00889}} 
+typedef struct \hyperlink{structproduct}{product} $\ast$ {\bfseries Product}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{product_8h_afb94ce2608ae38ca44324a11f93734f4}{verify\+Product} (char $\ast$)
+\begin{DoxyCompactList}\small\item\em Devolve um bool consoante o código de produto ser válido ou não. \end{DoxyCompactList}\item 
+\hyperlink{structproduct}{Product} \hyperlink{product_8h_adf0011bb7a7d0fd9aac70887fb4193d2}{new\+Product} (char $\ast$)
+\begin{DoxyCompactList}\small\item\em Devolve um estrutura Product inicializada com um código de produto. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{product_8h_a8493a07b192b6c1711a731e9ecefe341}{get\+Product\+Code} (\hyperlink{structproduct}{Product})
+\begin{DoxyCompactList}\small\item\em Devolve o código de produto presente na estrutura product. \end{DoxyCompactList}\item 
+int \hyperlink{product_8h_a5466f54272944cdfff0c61259d054e8f}{equals\+Product} (\hyperlink{structproduct}{Product}, \hyperlink{structproduct}{Product})
+\begin{DoxyCompactList}\small\item\em Verifica a igualdade entre duas estruturas Product dadas. \end{DoxyCompactList}\item 
+void \hyperlink{product_8h_abd335e2d660bb3232576d6e14e81a8a3}{destroy\+Product} (\hyperlink{structproduct}{Product})
+\begin{DoxyCompactList}\small\item\em Libertar a memória na estrutura Product dada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Módulo de tratamentos de produto. 
+
+
+
+\subsection{Documentação das funções}
+\mbox{\Hypertarget{product_8h_abd335e2d660bb3232576d6e14e81a8a3}\label{product_8h_abd335e2d660bb3232576d6e14e81a8a3}} 
+\index{product.\+h@{product.\+h}!destroy\+Product@{destroy\+Product}}
+\index{destroy\+Product@{destroy\+Product}!product.\+h@{product.\+h}}
+\subsubsection{\texorpdfstring{destroy\+Product()}{destroyProduct()}}
+{\footnotesize\ttfamily void destroy\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structproduct}{Product}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertar a memória na estrutura Product dada. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em product} & Estrutura Product \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{product_8h_a5466f54272944cdfff0c61259d054e8f}\label{product_8h_a5466f54272944cdfff0c61259d054e8f}} 
+\index{product.\+h@{product.\+h}!equals\+Product@{equals\+Product}}
+\index{equals\+Product@{equals\+Product}!product.\+h@{product.\+h}}
+\subsubsection{\texorpdfstring{equals\+Product()}{equalsProduct()}}
+{\footnotesize\ttfamily int equals\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structproduct}{Product}}]{,  }\item[{\hyperlink{structproduct}{Product}}]{ }\end{DoxyParamCaption})}
+
+
+
+Verifica a igualdade entre duas estruturas Product dadas. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em a} & Estrutura Product \\
+\hline
+{\em b} & Estrutura Product \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número 0 ou 1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{product_8h_a8493a07b192b6c1711a731e9ecefe341}\label{product_8h_a8493a07b192b6c1711a731e9ecefe341}} 
+\index{product.\+h@{product.\+h}!get\+Product\+Code@{get\+Product\+Code}}
+\index{get\+Product\+Code@{get\+Product\+Code}!product.\+h@{product.\+h}}
+\subsubsection{\texorpdfstring{get\+Product\+Code()}{getProductCode()}}
+{\footnotesize\ttfamily char$\ast$ get\+Product\+Code (\begin{DoxyParamCaption}\item[{\hyperlink{structproduct}{Product}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o código de produto presente na estrutura product. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em Estrutura} & Product \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Código de produto 
+\end{DoxyReturn}
+\mbox{\Hypertarget{product_8h_adf0011bb7a7d0fd9aac70887fb4193d2}\label{product_8h_adf0011bb7a7d0fd9aac70887fb4193d2}} 
+\index{product.\+h@{product.\+h}!new\+Product@{new\+Product}}
+\index{new\+Product@{new\+Product}!product.\+h@{product.\+h}}
+\subsubsection{\texorpdfstring{new\+Product()}{newProduct()}}
+{\footnotesize\ttfamily \hyperlink{structproduct}{Product} new\+Product (\begin{DoxyParamCaption}\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um estrutura Product inicializada com um código de produto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em product} & Código de produto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Product Estrutura Product 
+\end{DoxyReturn}
+\mbox{\Hypertarget{product_8h_afb94ce2608ae38ca44324a11f93734f4}\label{product_8h_afb94ce2608ae38ca44324a11f93734f4}} 
+\index{product.\+h@{product.\+h}!verify\+Product@{verify\+Product}}
+\index{verify\+Product@{verify\+Product}!product.\+h@{product.\+h}}
+\subsubsection{\texorpdfstring{verify\+Product()}{verifyProduct()}}
+{\footnotesize\ttfamily bool verify\+Product (\begin{DoxyParamCaption}\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um bool consoante o código de produto ser válido ou não. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em product} & Código de produto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+bool Resultado da verificação 
+\end{DoxyReturn}

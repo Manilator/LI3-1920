@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LI3: Código-Fonte de include/product_catalog.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">LI3
+   </div>
+   <div id="projectbrief">Projeto de LI3 2019/2020</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">product_catalog.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="product__catalog_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef ___PRODUCT_CATALOG_H___</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define ___PRODUCT_CATALOG_H___</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="product_8h.html">product.h</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;glib.h&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structproducts.html">products</a>* <a class="code" href="structproducts.html">Products</a>;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;Products <a class="code" href="product__catalog_8h.html#a3f6f8e309529e35d9fca74ca39cd0e8f">initProducts</a>();</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">char</span> ** <a class="code" href="product__catalog_8h.html#a15eb00397da09786f9779814487ae7cb">getProductsByLetter</a>(Products, <span class="keywordtype">char</span>);</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">int</span> <a class="code" href="product__catalog_8h.html#ac192082cc23bb95ae1e7abbb8c146d7c">addProduct</a>(Products, <span class="keywordtype">char</span>*);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">int</span> <a class="code" href="product__catalog_8h.html#aeb07b072a6891d1f0a12418a9e0fb632">getSizeProducts</a>(Products);</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">int</span> <a class="code" href="product__catalog_8h.html#a7d67f2f61cb69fd0bf2f6cb9f9433a9a">existProduct</a> (Products, <a class="code" href="structproduct.html">Product</a>);</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> <a class="code" href="product__catalog_8h.html#a4ec8fb7694a4c76fd081c114b824b19c">destroyProducts</a>(Products);</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">char</span> ** <a class="code" href="product__catalog_8h.html#aa5affa0f66b47af6bddead73f8b5b195">getProductsNotArray</a>(Products, GHashTable*);</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">int</span> <a class="code" href="product__catalog_8h.html#aa22aba315462d15b96326a981c2d59fc">getNumberProductsNotUsed</a>(Products, GHashTable *);</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">int</span> <a class="code" href="product__catalog_8h.html#ad083ec91c88f1db1a9d0a453f9a2adbd">existProductCode</a> (Products, <span class="keywordtype">char</span>*);</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="product__catalog_8h_html_a3f6f8e309529e35d9fca74ca39cd0e8f"><div class="ttname"><a href="product__catalog_8h.html#a3f6f8e309529e35d9fca74ca39cd0e8f">initProducts</a></div><div class="ttdeci">Products initProducts()</div><div class="ttdoc">Inicia a estrutura de catálogo de produtos. </div><div class="ttdef"><b>Definition:</b> product_catalog.c:13</div></div>
+<div class="ttc" id="product__catalog_8h_html_a4ec8fb7694a4c76fd081c114b824b19c"><div class="ttname"><a href="product__catalog_8h.html#a4ec8fb7694a4c76fd081c114b824b19c">destroyProducts</a></div><div class="ttdeci">void destroyProducts(Products)</div><div class="ttdoc">Destroi o catálogo de produtos. </div><div class="ttdef"><b>Definition:</b> product_catalog.c:106</div></div>
+<div class="ttc" id="product__catalog_8h_html_aeb07b072a6891d1f0a12418a9e0fb632"><div class="ttname"><a href="product__catalog_8h.html#aeb07b072a6891d1f0a12418a9e0fb632">getSizeProducts</a></div><div class="ttdeci">int getSizeProducts(Products)</div><div class="ttdoc">Calcula o número de produtos que existe no catálogo. </div><div class="ttdef"><b>Definition:</b> product_catalog.c:79</div></div>
+<div class="ttc" id="product_8h_html"><div class="ttname"><a href="product_8h.html">product.h</a></div><div class="ttdoc">Módulo de tratamentos de produto. </div></div>
+<div class="ttc" id="product__catalog_8h_html_a7d67f2f61cb69fd0bf2f6cb9f9433a9a"><div class="ttname"><a href="product__catalog_8h.html#a7d67f2f61cb69fd0bf2f6cb9f9433a9a">existProduct</a></div><div class="ttdeci">int existProduct(Products, Product)</div><div class="ttdoc">Verifica se existe um produto no catálogo. </div><div class="ttdef"><b>Definition:</b> product_catalog.c:61</div></div>
+<div class="ttc" id="structproduct_html"><div class="ttname"><a href="structproduct.html">product</a></div><div class="ttdef"><b>Definition:</b> product.c:6</div></div>
+<div class="ttc" id="product__catalog_8h_html_ac192082cc23bb95ae1e7abbb8c146d7c"><div class="ttname"><a href="product__catalog_8h.html#ac192082cc23bb95ae1e7abbb8c146d7c">addProduct</a></div><div class="ttdeci">int addProduct(Products, char *)</div><div class="ttdoc">Adiciona um produto ao catálogo de produto. </div><div class="ttdef"><b>Definition:</b> product_catalog.c:49</div></div>
+<div class="ttc" id="product__catalog_8h_html_a15eb00397da09786f9779814487ae7cb"><div class="ttname"><a href="product__catalog_8h.html#a15eb00397da09786f9779814487ae7cb">getProductsByLetter</a></div><div class="ttdeci">char ** getProductsByLetter(Products, char)</div><div class="ttdoc">Recolhe todos os produtos que comecem por uma certa letra. </div><div class="ttdef"><b>Definition:</b> product_catalog.c:30</div></div>
+<div class="ttc" id="product__catalog_8h_html_aa22aba315462d15b96326a981c2d59fc"><div class="ttname"><a href="product__catalog_8h.html#aa22aba315462d15b96326a981c2d59fc">getNumberProductsNotUsed</a></div><div class="ttdeci">int getNumberProductsNotUsed(Products, GHashTable *)</div><div class="ttdoc">Devolve número de código de produtos não utilizados. </div><div class="ttdef"><b>Definition:</b> product_catalog.c:102</div></div>
+<div class="ttc" id="product__catalog_8h_html_ad083ec91c88f1db1a9d0a453f9a2adbd"><div class="ttname"><a href="product__catalog_8h.html#ad083ec91c88f1db1a9d0a453f9a2adbd">existProductCode</a></div><div class="ttdeci">int existProductCode(Products, char *)</div><div class="ttdoc">Verifica se existe um código de produto no catálogo. </div><div class="ttdef"><b>Definition:</b> product_catalog.c:72</div></div>
+<div class="ttc" id="structproducts_html"><div class="ttname"><a href="structproducts.html">products</a></div><div class="ttdef"><b>Definition:</b> product_catalog.c:8</div></div>
+<div class="ttc" id="product__catalog_8h_html_aa5affa0f66b47af6bddead73f8b5b195"><div class="ttname"><a href="product__catalog_8h.html#aa5affa0f66b47af6bddead73f8b5b195">getProductsNotArray</a></div><div class="ttdeci">char ** getProductsNotArray(Products, GHashTable *)</div><div class="ttdoc">Devolve os códigos de produtos que não foram comprados. </div><div class="ttdef"><b>Definition:</b> product_catalog.c:83</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

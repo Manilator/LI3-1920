@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LI3: Código-Fonte de include/billing_catalog.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">LI3
+   </div>
+   <div id="projectbrief">Projeto de LI3 2019/2020</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">billing_catalog.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="billing__catalog_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef ___BILLING_CATALOG_H___</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define ___BILLING_CATALOG_H___</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="billing_8h.html">billing.h</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sale_8h.html">sale.h</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structbillings.html">billings</a>* <a class="code" href="structbillings.html">Billings</a>;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;Billings <a class="code" href="billing__catalog_8h.html#a2462ff818495f6bd29a200f50454548d">initBillings</a>();</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">double</span> * <a class="code" href="billing__catalog_8h.html#a8f4c79c0806140d6111a7e3a0960e52c">getProductValuesByMonthBillingCat</a>(Billings, <span class="keywordtype">char</span>*, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> <a class="code" href="billing__catalog_8h.html#a363a12fd71930d8571251fd1727f80c9">addBilling</a>(Billings, <a class="code" href="structbilling.html">Billing</a>, <span class="keywordtype">int</span>);</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="billing__catalog_8h.html#ac6d45af13bb32ef0a7296271ad6405ec">updateBillings</a>(Billings, <a class="code" href="structsale.html">Sale</a>);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="billing__catalog_8h.html#ad48fe031347c627b634eb885e291f261">insertBillingProduct</a>(Billings, <span class="keywordtype">int</span>, <span class="keywordtype">char</span>*);</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="billing__catalog_8h.html#ac8160221943077610518c4f1e940509f">destroyBillings</a>(Billings);</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="structquerie8Aux.html">Query8Aux</a> <a class="code" href="billing__catalog_8h.html#a136ebf0fd03ffba060034029cc0f5ebc">getTotalsFromBillingMonthInterval</a>(Billings, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="billing__catalog_8h_html_a8f4c79c0806140d6111a7e3a0960e52c"><div class="ttname"><a href="billing__catalog_8h.html#a8f4c79c0806140d6111a7e3a0960e52c">getProductValuesByMonthBillingCat</a></div><div class="ttdeci">double * getProductValuesByMonthBillingCat(Billings, char *, int, int)</div><div class="ttdoc">Devolve um array de valores. </div><div class="ttdef"><b>Definition:</b> billing_catalog.c:57</div></div>
+<div class="ttc" id="structbilling_html"><div class="ttname"><a href="structbilling.html">billing</a></div><div class="ttdef"><b>Definition:</b> billing.c:9</div></div>
+<div class="ttc" id="billing_8h_html"><div class="ttname"><a href="billing_8h.html">billing.h</a></div><div class="ttdoc">Módulo de tratamento de faturas. </div></div>
+<div class="ttc" id="structbillings_html"><div class="ttname"><a href="structbillings.html">billings</a></div><div class="ttdef"><b>Definition:</b> billing_catalog.c:10</div></div>
+<div class="ttc" id="structsale_html"><div class="ttname"><a href="structsale.html">sale</a></div><div class="ttdef"><b>Definition:</b> sale.c:8</div></div>
+<div class="ttc" id="structquerie8Aux_html"><div class="ttname"><a href="structquerie8Aux.html">querie8Aux</a></div><div class="ttdef"><b>Definition:</b> info.c:11</div></div>
+<div class="ttc" id="sale_8h_html"><div class="ttname"><a href="sale_8h.html">sale.h</a></div><div class="ttdoc">Módulo de tratamentos de vendas. </div></div>
+<div class="ttc" id="billing__catalog_8h_html_ad48fe031347c627b634eb885e291f261"><div class="ttname"><a href="billing__catalog_8h.html#ad48fe031347c627b634eb885e291f261">insertBillingProduct</a></div><div class="ttdeci">void insertBillingProduct(Billings, int, char *)</div><div class="ttdoc">Insere uma estrutura BillingProduct dentro de uma estrutura Billing. </div><div class="ttdef"><b>Definition:</b> billing_catalog.c:42</div></div>
+<div class="ttc" id="billing__catalog_8h_html_a136ebf0fd03ffba060034029cc0f5ebc"><div class="ttname"><a href="billing__catalog_8h.html#a136ebf0fd03ffba060034029cc0f5ebc">getTotalsFromBillingMonthInterval</a></div><div class="ttdeci">Query8Aux getTotalsFromBillingMonthInterval(Billings, int, int)</div><div class="ttdoc">Devolve uma estrutura auxiliar Query8Aux com os valores de entre dois meses dados. </div><div class="ttdef"><b>Definition:</b> billing_catalog.c:93</div></div>
+<div class="ttc" id="billing__catalog_8h_html_a2462ff818495f6bd29a200f50454548d"><div class="ttname"><a href="billing__catalog_8h.html#a2462ff818495f6bd29a200f50454548d">initBillings</a></div><div class="ttdeci">Billings initBillings()</div><div class="ttdoc">Inicialização da estrutura BillingProduct. </div><div class="ttdef"><b>Definition:</b> billing_catalog.c:15</div></div>
+<div class="ttc" id="billing__catalog_8h_html_a363a12fd71930d8571251fd1727f80c9"><div class="ttname"><a href="billing__catalog_8h.html#a363a12fd71930d8571251fd1727f80c9">addBilling</a></div><div class="ttdeci">void addBilling(Billings, Billing, int)</div><div class="ttdoc">Adiciona uma estrutura Billing á hashtable da estrutura Billings num certo mês. </div><div class="ttdef"><b>Definition:</b> billing_catalog.c:27</div></div>
+<div class="ttc" id="billing__catalog_8h_html_ac8160221943077610518c4f1e940509f"><div class="ttname"><a href="billing__catalog_8h.html#ac8160221943077610518c4f1e940509f">destroyBillings</a></div><div class="ttdeci">void destroyBillings(Billings)</div><div class="ttdoc">Liberta memória da estrutura Billings dada. </div><div class="ttdef"><b>Definition:</b> billing_catalog.c:51</div></div>
+<div class="ttc" id="billing__catalog_8h_html_ac6d45af13bb32ef0a7296271ad6405ec"><div class="ttname"><a href="billing__catalog_8h.html#ac6d45af13bb32ef0a7296271ad6405ec">updateBillings</a></div><div class="ttdeci">void updateBillings(Billings, Sale)</div><div class="ttdoc">Atualização dos valores da estrutura Billings. </div><div class="ttdef"><b>Definition:</b> billing_catalog.c:33</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

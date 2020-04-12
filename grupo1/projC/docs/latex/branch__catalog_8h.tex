@@ -1,0 +1,295 @@
+\hypertarget{branch__catalog_8h}{}\section{Referência ao ficheiro include/branch\+\_\+catalog.h}
+\label{branch__catalog_8h}\index{include/branch\+\_\+catalog.\+h@{include/branch\+\_\+catalog.\+h}}
+
+
+Módulo de tratamentos do catálogo de filiais.  
+
+
+{\ttfamily \#include \char`\"{}branch.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sale.\+h\char`\"{}}\newline
+Diagrama de dependências de inclusão para branch\+\_\+catalog.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{branch__catalog_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{branch__catalog_8h_ae69a7625e825eda4ee52d1f1302f68c7}\label{branch__catalog_8h_ae69a7625e825eda4ee52d1f1302f68c7}} 
+typedef struct \hyperlink{structbranches}{branches} $\ast$ {\bfseries Branches}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structbranches}{Branches} \hyperlink{branch__catalog_8h_a5957cf45168a4c49f0b27592b804f003}{init\+Branches} (int)
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Branches. \end{DoxyCompactList}\item 
+void \hyperlink{branch__catalog_8h_a177c98989c65ec4494a1a01db463efd3}{add\+Branch} (\hyperlink{structbranches}{Branches}, \hyperlink{structbranch}{Branch}, int)
+\begin{DoxyCompactList}\small\item\em Adicionar a estrutura Branch á hashtable branches. \end{DoxyCompactList}\item 
+void \hyperlink{branch__catalog_8h_a144cb6e992514c3e1059c066f12e3057}{update\+Branches} (\hyperlink{structbranches}{Branches}, \hyperlink{structsale}{Sale})
+\begin{DoxyCompactList}\small\item\em Atualizar os dados dentro da estrutura Branches. \end{DoxyCompactList}\item 
+void \hyperlink{branch__catalog_8h_a33916718accf07cdbbacf54b4da3afe9}{destroy\+Branches} (\hyperlink{structbranches}{Branches})
+\begin{DoxyCompactList}\small\item\em Libertar memória alocada da estrutura Branches. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{branch__catalog_8h_a295f14bacc6ca7e87355e11ac7666701}{clients\+In\+Common} (\hyperlink{structbranches}{Branches}, \hyperlink{structclients}{Clients})
+\begin{DoxyCompactList}\small\item\em Encontrar os clientes que compraram em todas as filiais. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{branch__catalog_8h_a3ea8c471feb07ad3ef7b47a61fa65a2b}{get\+Products\+Bought} (\hyperlink{structbranches}{Branches}, int)
+\begin{DoxyCompactList}\small\item\em Devolve um array de códigos de produto vendidos numa certa filial. \end{DoxyCompactList}\item 
+\hyperlink{structquerie9Aux}{Query9\+Aux} \hyperlink{branch__catalog_8h_a6cbc2ae1db709f8f15375aa2664a3f1f}{clients\+Who\+Bought\+Product} (\hyperlink{structbranches}{Branches}, char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Deolve uma estrutura Query9\+Aux com os valores especificos a um dado código de produto. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{branch__catalog_8h_a54fdf5b5875b1dee2ab8318629d9513a}{get\+Clients\+Used} (\hyperlink{structbranches}{Branches}, int)
+\begin{DoxyCompactList}\small\item\em Devolve um array com todos os códigos de cliente de uma certa filial. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{branch__catalog_8h_aa1dbf339c77602aa2b444dfdc0df22c6}{client\+Branch\+Shop\+Log} (\hyperlink{structbranches}{Branches}, char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Devolve um array com as quantidades de produtos comprados em cada mês. \end{DoxyCompactList}\item 
+\hyperlink{structinfo}{Info} $\ast$ \hyperlink{branch__catalog_8h_a095927b2ea100613eb19acca69383ac2}{get\+Most\+Bought} (\hyperlink{structbranches}{Branches}, char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Devolve um array por ordem descendente de por quantidade comprada com a estrutura Info. \end{DoxyCompactList}\item 
+\hyperlink{structaux}{Aux} $\ast$ \hyperlink{branch__catalog_8h_ade10d8864b24a178a47892b5f88dae3a}{get\+N\+Most\+Bought\+Products} (\hyperlink{structbranches}{Branches}, int)
+\begin{DoxyCompactList}\small\item\em Devolve um array com a estrutura auxiliar Aux com os N produtos mais comprados. \end{DoxyCompactList}\item 
+\hyperlink{structmoney}{Money} $\ast$ \hyperlink{branch__catalog_8h_ad4131741611cec37057581c7db43088e}{client\+Spent\+Most\+On} (\hyperlink{structbranches}{Branches}, char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Devolve um array com a estrutura auxiliar Money com os N produtos em que um cliente gastou mais dinheiro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Módulo de tratamentos do catálogo de filiais. 
+
+
+
+\subsection{Documentação das funções}
+\mbox{\Hypertarget{branch__catalog_8h_a177c98989c65ec4494a1a01db463efd3}\label{branch__catalog_8h_a177c98989c65ec4494a1a01db463efd3}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!add\+Branch@{add\+Branch}}
+\index{add\+Branch@{add\+Branch}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{add\+Branch()}{addBranch()}}
+{\footnotesize\ttfamily void add\+Branch (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{,  }\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Adicionar a estrutura Branch á hashtable branches. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em branches} & Estrutura Branches \\
+\hline
+{\em branch} & Estrutura Branch a ser inserida \\
+\hline
+{\em number} & Número da filial que vai ser inserida \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch__catalog_8h_aa1dbf339c77602aa2b444dfdc0df22c6}\label{branch__catalog_8h_aa1dbf339c77602aa2b444dfdc0df22c6}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!client\+Branch\+Shop\+Log@{client\+Branch\+Shop\+Log}}
+\index{client\+Branch\+Shop\+Log@{client\+Branch\+Shop\+Log}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{client\+Branch\+Shop\+Log()}{clientBranchShopLog()}}
+{\footnotesize\ttfamily int$\ast$ client\+Branch\+Shop\+Log (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um array com as quantidades de produtos comprados em cada mês. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Branches \\
+\hline
+{\em client\+\_\+code} & Código do cliente \\
+\hline
+{\em branch} & Número da filial escolhida \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int$\ast$ Array com quantidades de produtos comprados em cada mês 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch__catalog_8h_a295f14bacc6ca7e87355e11ac7666701}\label{branch__catalog_8h_a295f14bacc6ca7e87355e11ac7666701}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!clients\+In\+Common@{clients\+In\+Common}}
+\index{clients\+In\+Common@{clients\+In\+Common}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{clients\+In\+Common()}{clientsInCommon()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ clients\+In\+Common (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{,  }\item[{\hyperlink{structclients}{Clients}}]{ }\end{DoxyParamCaption})}
+
+
+
+Encontrar os clientes que compraram em todas as filiais. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Branches \\
+\hline
+{\em clients} & Estrutura Clients \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$ Array de clientes que compraram em todos as filiais 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch__catalog_8h_ad4131741611cec37057581c7db43088e}\label{branch__catalog_8h_ad4131741611cec37057581c7db43088e}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!client\+Spent\+Most\+On@{client\+Spent\+Most\+On}}
+\index{client\+Spent\+Most\+On@{client\+Spent\+Most\+On}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{client\+Spent\+Most\+On()}{clientSpentMostOn()}}
+{\footnotesize\ttfamily \hyperlink{structmoney}{Money}$\ast$ client\+Spent\+Most\+On (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um array com a estrutura auxiliar Money com os N produtos em que um cliente gastou mais dinheiro. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Branches \\
+\hline
+{\em client\+\_\+code} & Código do cliente \\
+\hline
+{\em n} & Número de produtos a adicionar ao array final \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Money$\ast$ Array com estrutura auxiliar para devolver resultados da query 12 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch__catalog_8h_a6cbc2ae1db709f8f15375aa2664a3f1f}\label{branch__catalog_8h_a6cbc2ae1db709f8f15375aa2664a3f1f}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!clients\+Who\+Bought\+Product@{clients\+Who\+Bought\+Product}}
+\index{clients\+Who\+Bought\+Product@{clients\+Who\+Bought\+Product}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{clients\+Who\+Bought\+Product()}{clientsWhoBoughtProduct()}}
+{\footnotesize\ttfamily \hyperlink{structquerie9Aux}{Query9\+Aux} clients\+Who\+Bought\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Deolve uma estrutura Query9\+Aux com os valores especificos a um dado código de produto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Branches \\
+\hline
+{\em product\+\_\+code} & Código do produto \\
+\hline
+{\em branch} & Número da filial escolhida \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Query9\+Aux Estrutura auxiliar para devolver resultados da query 9 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch__catalog_8h_a33916718accf07cdbbacf54b4da3afe9}\label{branch__catalog_8h_a33916718accf07cdbbacf54b4da3afe9}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!destroy\+Branches@{destroy\+Branches}}
+\index{destroy\+Branches@{destroy\+Branches}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{destroy\+Branches()}{destroyBranches()}}
+{\footnotesize\ttfamily void destroy\+Branches (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertar memória alocada da estrutura Branches. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em branches} & Estrutura Branches a ser libertada \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch__catalog_8h_a54fdf5b5875b1dee2ab8318629d9513a}\label{branch__catalog_8h_a54fdf5b5875b1dee2ab8318629d9513a}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!get\+Clients\+Used@{get\+Clients\+Used}}
+\index{get\+Clients\+Used@{get\+Clients\+Used}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{get\+Clients\+Used()}{getClientsUsed()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Clients\+Used (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um array com todos os códigos de cliente de uma certa filial. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Branches \\
+\hline
+{\em branch} & Número da filial escolhida \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$ Array de códigos de clientes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch__catalog_8h_a095927b2ea100613eb19acca69383ac2}\label{branch__catalog_8h_a095927b2ea100613eb19acca69383ac2}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!get\+Most\+Bought@{get\+Most\+Bought}}
+\index{get\+Most\+Bought@{get\+Most\+Bought}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{get\+Most\+Bought()}{getMostBought()}}
+{\footnotesize\ttfamily \hyperlink{structinfo}{Info}$\ast$ get\+Most\+Bought (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um array por ordem descendente de por quantidade comprada com a estrutura Info. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Branches \\
+\hline
+{\em client\+\_\+code} & Código do cliente \\
+\hline
+{\em month} & Mês a procurar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Info Estrutura auxiliar para devolver resultados da query xxx 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch__catalog_8h_ade10d8864b24a178a47892b5f88dae3a}\label{branch__catalog_8h_ade10d8864b24a178a47892b5f88dae3a}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!get\+N\+Most\+Bought\+Products@{get\+N\+Most\+Bought\+Products}}
+\index{get\+N\+Most\+Bought\+Products@{get\+N\+Most\+Bought\+Products}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{get\+N\+Most\+Bought\+Products()}{getNMostBoughtProducts()}}
+{\footnotesize\ttfamily \hyperlink{structaux}{Aux}$\ast$ get\+N\+Most\+Bought\+Products (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um array com a estrutura auxiliar Aux com os N produtos mais comprados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Branches \\
+\hline
+{\em n\+\_\+products} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Aux Estrutura auxiliar para devolver resultados da query xxx 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch__catalog_8h_a3ea8c471feb07ad3ef7b47a61fa65a2b}\label{branch__catalog_8h_a3ea8c471feb07ad3ef7b47a61fa65a2b}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!get\+Products\+Bought@{get\+Products\+Bought}}
+\index{get\+Products\+Bought@{get\+Products\+Bought}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{get\+Products\+Bought()}{getProductsBought()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Products\+Bought (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um array de códigos de produto vendidos numa certa filial. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Branches \\
+\hline
+{\em branch} & Número da filial escolhida \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$ Array de códigos de produto vendidos numa certa filial 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch__catalog_8h_a5957cf45168a4c49f0b27592b804f003}\label{branch__catalog_8h_a5957cf45168a4c49f0b27592b804f003}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!init\+Branches@{init\+Branches}}
+\index{init\+Branches@{init\+Branches}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{init\+Branches()}{initBranches()}}
+{\footnotesize\ttfamily \hyperlink{structbranches}{Branches} init\+Branches (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Branches. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em branches} & Número de filiais a inicializar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Branches Estrutura Branches inicializada 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch__catalog_8h_a144cb6e992514c3e1059c066f12e3057}\label{branch__catalog_8h_a144cb6e992514c3e1059c066f12e3057}} 
+\index{branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}!update\+Branches@{update\+Branches}}
+\index{update\+Branches@{update\+Branches}!branch\+\_\+catalog.\+h@{branch\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{update\+Branches()}{updateBranches()}}
+{\footnotesize\ttfamily void update\+Branches (\begin{DoxyParamCaption}\item[{\hyperlink{structbranches}{Branches}}]{,  }\item[{\hyperlink{structsale}{Sale}}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar os dados dentro da estrutura Branches. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em branches} & Estrutura Branches \\
+\hline
+{\em sale} & Estrutura Sale \\
+\hline
+\end{DoxyParams}

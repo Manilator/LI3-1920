@@ -1,0 +1,647 @@
+\hypertarget{sgv_8h}{}\section{Referência ao ficheiro include/sgv.h}
+\label{sgv_8h}\index{include/sgv.\+h@{include/sgv.\+h}}
+
+
+Módulo de sistema de gestão de vendas.  
+
+
+{\ttfamily \#include \char`\"{}info.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$glib.\+h$>$}\newline
+Diagrama de dependências de inclusão para sgv.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{sgv_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sgv_8h_a22f90d0d3126acbfb367c7d5dedbd6b7}\label{sgv_8h_a22f90d0d3126acbfb367c7d5dedbd6b7}} 
+typedef struct \hyperlink{structsgv}{sgv} $\ast$ {\bfseries S\+GV}
+\item 
+\mbox{\Hypertarget{sgv_8h_ad6502ae4eed974fb9646904546f6f02c}\label{sgv_8h_ad6502ae4eed974fb9646904546f6f02c}} 
+typedef struct \hyperlink{structstartValues}{start\+Values} $\ast$ {\bfseries Start\+Values}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structsgv}{S\+GV} \hyperlink{sgv_8h_a9efc223dce291c384b94e9fd8674d319}{start\+S\+GV} (\hyperlink{structsgv}{S\+GV}, \hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Devolve a estrutura S\+GV com o conteúdo dos ficheiros dados. \end{DoxyCompactList}\item 
+\hyperlink{structsgv}{S\+GV} \hyperlink{sgv_8h_a14c3840c38c574667ca887b40c5250bb}{init\+S\+GV} ()
+\begin{DoxyCompactList}\small\item\em Devolve a estrutura S\+GV inicializada. \end{DoxyCompactList}\item 
+\hyperlink{structstartValues}{Start\+Values} \hyperlink{sgv_8h_ab8599dd4fc511628421653597fede4d3}{init\+Start\+Values} ()
+\begin{DoxyCompactList}\small\item\em Devolve a estrutura Start\+Values inicializada. \end{DoxyCompactList}\item 
+void \hyperlink{sgv_8h_ac13cac74a32f7c3032bd0cc5cde2c049}{set\+Paths\+SV} (\hyperlink{structstartValues}{Start\+Values}, char $\ast$, char $\ast$, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Devolve a estrutura S\+GV com o conteúdo dos ficheiros dados. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{sgv_8h_ac0c7868d4a31bbae5ffa9b30dad3f9ce}{get\+Products\+Started\+By\+Letter} (\hyperlink{structsgv}{S\+GV}, char)
+\begin{DoxyCompactList}\small\item\em Devolve o número total de vendas e o total facturado com esse produto em tal mês, distinguindo os totais em modo N e os totais em modo P. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{sgv_8h_a9d13c6476f5db5c398ffed5b21d25333}{get\+Product\+Sales\+And\+Profit} (\hyperlink{structsgv}{S\+GV}, char $\ast$, int, int)
+\begin{DoxyCompactList}\small\item\em Devolve todos os códigos de produto que começam com uma certa letra. \end{DoxyCompactList}\item 
+char $\ast$$\ast$$\ast$ \hyperlink{sgv_8h_a338dc1702caf4ff8af1f20e9eff96256}{get\+Products\+Never\+Bought} (\hyperlink{structsgv}{S\+GV}, int)
+\begin{DoxyCompactList}\small\item\em Devolve a lista ordenada dos códigos dos produtos(e o seu número total)que ninguém comprou, podendo o utilizador decidir igualmente se pretende valores totais ou divididos pelas filiais. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{sgv_8h_a8fc177229f098ba892b1267635d31e13}{get\+Clients\+Of\+All\+Branches} (\hyperlink{structsgv}{S\+GV})
+\begin{DoxyCompactList}\small\item\em Devolve a lista ordenada de códigos de clientes que realizaram compras em todas as filiais. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{sgv_8h_a2057daf05b0769167711e6f85205bba6}{get\+Clients\+And\+Products\+Never\+Bought\+Count} (\hyperlink{structsgv}{S\+GV})
+\begin{DoxyCompactList}\small\item\em Devolve o número de clientes registados que não realizaram compras bem como o número de produtos que ninguém comprou. \end{DoxyCompactList}\item 
+int $\ast$$\ast$ \hyperlink{sgv_8h_aecbd0f7b01ba462926af9ab06ca57565}{get\+Products\+Bought\+By\+Client} (\hyperlink{structsgv}{S\+GV}, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Devolve o número total de produtos comprados por um certos cliente mês a mês organizado por filial. \end{DoxyCompactList}\item 
+\hyperlink{structquerie8Aux}{Query8\+Aux} \hyperlink{sgv_8h_a52ce4c6daa90f4c9dfcbd167be408993}{get\+Sales\+And\+Profit} (\hyperlink{structsgv}{S\+GV}, int, int)
+\begin{DoxyCompactList}\small\item\em Devolve o total de vendas(nº de registos de venda) registado num intervalo de meses e o total faturado. \end{DoxyCompactList}\item 
+\hyperlink{structquerie9Aux}{Query9\+Aux} \hyperlink{sgv_8h_ad98774690dfae0b44935208e6e7b6e3f}{get\+Product\+Buyers} (\hyperlink{structsgv}{S\+GV}, char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Devolve os códigos (e número total) dos clientes que o compraram, distinguindo entre compra N e compra P. \end{DoxyCompactList}\item 
+\hyperlink{structinfo}{Info} $\ast$ \hyperlink{sgv_8h_a5232d7ae7a7ef5601cf264ff55e3648a}{get\+Clients\+Favorite\+Products} (\hyperlink{structsgv}{S\+GV}, char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Devolve uma lista por ordem descendente de códigos de produtos que um dado cliente mais comprou num mês, por quantidade e não por faturação. \end{DoxyCompactList}\item 
+\hyperlink{structaux}{Aux} $\ast$ \hyperlink{sgv_8h_a352401261457e19136f0ba66240bdd8b}{get\+Top\+Sold\+Products} (\hyperlink{structsgv}{S\+GV}, int)
+\begin{DoxyCompactList}\small\item\em Devolve uma lista dos N produtos mais vendidos em todo o ano, indicando o número total de clientes eo número de unidades vendidas, filial a filial. \end{DoxyCompactList}\item 
+\hyperlink{structmoney}{Money} $\ast$ \hyperlink{sgv_8h_a336905bf5814c04523d5611cc57b8c8a}{get\+Client\+Top\+Profit\+Products} (\hyperlink{structsgv}{S\+GV}, char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Devolve os códigos dos N produtos em que um dado cliente mais gastou(dinheiro) durante o ano. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{sgv_8h_ae53b11a41fe660b4890199213a0ca0f3}{get\+Clients\+Path} (\hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Devolver o path do ficheiro de clientes. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{sgv_8h_a02575af4cacc490db462d85617a1b385}{get\+Products\+Path} (\hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Devolver o path do ficheiro de produtos. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{sgv_8h_a4056766d419e42860012a2207f2b7e0a}{get\+Sales\+Path} (\hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Devolver o path do ficheiro de vendas. \end{DoxyCompactList}\item 
+int \hyperlink{sgv_8h_a100e8d9788b8f6d202398c0f43a93221}{get\+Valid\+Clients} (\hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Devolver o número de clientes válidos no ficheiro de clientes. \end{DoxyCompactList}\item 
+int \hyperlink{sgv_8h_acee7a37d1a1f48711fda3f11ea51f437}{get\+Valid\+Products} (\hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Devolver o número de clientes válidos no ficheiro de produtos. \end{DoxyCompactList}\item 
+int \hyperlink{sgv_8h_ad84fb04ca88251beaee348c20754e69a}{get\+Valid\+Sales} (\hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Devolver o número de clientes válidos no ficheiro de vendas. \end{DoxyCompactList}\item 
+int \hyperlink{sgv_8h_a22de448d77ae7e07453a78393243e286}{get\+Read\+Clients} (\hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Devolver o número de clientes lidos no ficheiro de clientes. \end{DoxyCompactList}\item 
+int \hyperlink{sgv_8h_a88b6aab95c077c921ba483d33e006706}{get\+Read\+Products} (\hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Devolver o número de produtos lidos no ficheiro de produtos. \end{DoxyCompactList}\item 
+int \hyperlink{sgv_8h_ad68bbdec54a428df9f32bd82733a8a56}{get\+Read\+Sales} (\hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Devolver o número de vendas lidos no ficheiro de vendas. \end{DoxyCompactList}\item 
+int \hyperlink{sgv_8h_a83d57b21fdf3420e131d6572414649ff}{list\+Size} (char $\ast$$\ast$)
+\begin{DoxyCompactList}\small\item\em Devolver o tamanho de um Array de strings(char$\ast$) \end{DoxyCompactList}\item 
+void \hyperlink{sgv_8h_aea864ae993f31c9a0ce9242ff9e6e045}{destroy\+S\+GV} (\hyperlink{structsgv}{S\+GV})
+\begin{DoxyCompactList}\small\item\em Libertar memória na estrutura S\+GV. \end{DoxyCompactList}\item 
+void \hyperlink{sgv_8h_a1e8bd065f8893f145b91182e4c595f66}{destroy\+Start\+Values} (\hyperlink{structstartValues}{Start\+Values})
+\begin{DoxyCompactList}\small\item\em Libertar memória na estrutura Start\+Values. \end{DoxyCompactList}\item 
+void \hyperlink{sgv_8h_a4883e13e3eff8496e29a5e4b80ee21c5}{free\+String\+List} (char $\ast$$\ast$)
+\begin{DoxyCompactList}\small\item\em Libertar memória alocada no array. \end{DoxyCompactList}\item 
+void \hyperlink{sgv_8h_aab218747277284f303800dbb826c2d65}{free\+String\+Matrix} (char $\ast$$\ast$$\ast$)
+\begin{DoxyCompactList}\small\item\em Libertar memória alocada na matriz. \end{DoxyCompactList}\item 
+void \hyperlink{sgv_8h_a082869997a6c7f8668f8261754640a87}{free\+Int\+Matrix} (int $\ast$$\ast$)
+\begin{DoxyCompactList}\small\item\em Libertar memória alocada na matriz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Módulo de sistema de gestão de vendas. 
+
+
+
+\subsection{Documentação das funções}
+\mbox{\Hypertarget{sgv_8h_aea864ae993f31c9a0ce9242ff9e6e045}\label{sgv_8h_aea864ae993f31c9a0ce9242ff9e6e045}} 
+\index{sgv.\+h@{sgv.\+h}!destroy\+S\+GV@{destroy\+S\+GV}}
+\index{destroy\+S\+GV@{destroy\+S\+GV}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{destroy\+S\+G\+V()}{destroySGV()}}
+{\footnotesize\ttfamily void destroy\+S\+GV (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertar memória na estrutura S\+GV. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sgv_8h_a1e8bd065f8893f145b91182e4c595f66}\label{sgv_8h_a1e8bd065f8893f145b91182e4c595f66}} 
+\index{sgv.\+h@{sgv.\+h}!destroy\+Start\+Values@{destroy\+Start\+Values}}
+\index{destroy\+Start\+Values@{destroy\+Start\+Values}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{destroy\+Start\+Values()}{destroyStartValues()}}
+{\footnotesize\ttfamily void destroy\+Start\+Values (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertar memória na estrutura Start\+Values. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sgv_8h_a082869997a6c7f8668f8261754640a87}\label{sgv_8h_a082869997a6c7f8668f8261754640a87}} 
+\index{sgv.\+h@{sgv.\+h}!free\+Int\+Matrix@{free\+Int\+Matrix}}
+\index{free\+Int\+Matrix@{free\+Int\+Matrix}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{free\+Int\+Matrix()}{freeIntMatrix()}}
+{\footnotesize\ttfamily void free\+Int\+Matrix (\begin{DoxyParamCaption}\item[{int $\ast$$\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertar memória alocada na matriz. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em matrix} & Array com arrays de int \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sgv_8h_a4883e13e3eff8496e29a5e4b80ee21c5}\label{sgv_8h_a4883e13e3eff8496e29a5e4b80ee21c5}} 
+\index{sgv.\+h@{sgv.\+h}!free\+String\+List@{free\+String\+List}}
+\index{free\+String\+List@{free\+String\+List}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{free\+String\+List()}{freeStringList()}}
+{\footnotesize\ttfamily void free\+String\+List (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertar memória alocada no array. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em list} & Array de strings(char$\ast$) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sgv_8h_aab218747277284f303800dbb826c2d65}\label{sgv_8h_aab218747277284f303800dbb826c2d65}} 
+\index{sgv.\+h@{sgv.\+h}!free\+String\+Matrix@{free\+String\+Matrix}}
+\index{free\+String\+Matrix@{free\+String\+Matrix}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{free\+String\+Matrix()}{freeStringMatrix()}}
+{\footnotesize\ttfamily void free\+String\+Matrix (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$$\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertar memória alocada na matriz. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em matrix} & Array com arrays de strings(char$\ast$) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sgv_8h_a2057daf05b0769167711e6f85205bba6}\label{sgv_8h_a2057daf05b0769167711e6f85205bba6}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Clients\+And\+Products\+Never\+Bought\+Count@{get\+Clients\+And\+Products\+Never\+Bought\+Count}}
+\index{get\+Clients\+And\+Products\+Never\+Bought\+Count@{get\+Clients\+And\+Products\+Never\+Bought\+Count}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Clients\+And\+Products\+Never\+Bought\+Count()}{getClientsAndProductsNeverBoughtCount()}}
+{\footnotesize\ttfamily int$\ast$ get\+Clients\+And\+Products\+Never\+Bought\+Count (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o número de clientes registados que não realizaram compras bem como o número de produtos que ninguém comprou. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int$\ast$ Array de ints 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a5232d7ae7a7ef5601cf264ff55e3648a}\label{sgv_8h_a5232d7ae7a7ef5601cf264ff55e3648a}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Clients\+Favorite\+Products@{get\+Clients\+Favorite\+Products}}
+\index{get\+Clients\+Favorite\+Products@{get\+Clients\+Favorite\+Products}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Clients\+Favorite\+Products()}{getClientsFavoriteProducts()}}
+{\footnotesize\ttfamily \hyperlink{structinfo}{Info}$\ast$ get\+Clients\+Favorite\+Products (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve uma lista por ordem descendente de códigos de produtos que um dado cliente mais comprou num mês, por quantidade e não por faturação. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+{\em client\+\_\+code} & Código de cliente \\
+\hline
+{\em month} & Número da mês \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Info$\ast$ Array de estruturas Info 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a8fc177229f098ba892b1267635d31e13}\label{sgv_8h_a8fc177229f098ba892b1267635d31e13}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Clients\+Of\+All\+Branches@{get\+Clients\+Of\+All\+Branches}}
+\index{get\+Clients\+Of\+All\+Branches@{get\+Clients\+Of\+All\+Branches}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Clients\+Of\+All\+Branches()}{getClientsOfAllBranches()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Clients\+Of\+All\+Branches (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve a lista ordenada de códigos de clientes que realizaram compras em todas as filiais. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$ Array com códigos de clientes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_ae53b11a41fe660b4890199213a0ca0f3}\label{sgv_8h_ae53b11a41fe660b4890199213a0ca0f3}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Clients\+Path@{get\+Clients\+Path}}
+\index{get\+Clients\+Path@{get\+Clients\+Path}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Clients\+Path()}{getClientsPath()}}
+{\footnotesize\ttfamily char$\ast$ get\+Clients\+Path (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolver o path do ficheiro de clientes. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Path do ficheiro de clientes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a336905bf5814c04523d5611cc57b8c8a}\label{sgv_8h_a336905bf5814c04523d5611cc57b8c8a}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Client\+Top\+Profit\+Products@{get\+Client\+Top\+Profit\+Products}}
+\index{get\+Client\+Top\+Profit\+Products@{get\+Client\+Top\+Profit\+Products}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Client\+Top\+Profit\+Products()}{getClientTopProfitProducts()}}
+{\footnotesize\ttfamily \hyperlink{structmoney}{Money}$\ast$ get\+Client\+Top\+Profit\+Products (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve os códigos dos N produtos em que um dado cliente mais gastou(dinheiro) durante o ano. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+{\em client\+\_\+code} & Código de cliente \\
+\hline
+{\em n} & Número de produtos \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Money$\ast$ Array de estruturas Money 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_ad98774690dfae0b44935208e6e7b6e3f}\label{sgv_8h_ad98774690dfae0b44935208e6e7b6e3f}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Product\+Buyers@{get\+Product\+Buyers}}
+\index{get\+Product\+Buyers@{get\+Product\+Buyers}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Product\+Buyers()}{getProductBuyers()}}
+{\footnotesize\ttfamily \hyperlink{structquerie9Aux}{Query9\+Aux} get\+Product\+Buyers (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve os códigos (e número total) dos clientes que o compraram, distinguindo entre compra N e compra P. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+{\em product\+\_\+code} & Código de produto \\
+\hline
+{\em branch} & Número da filial \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Query9\+Aux Estrutura Query9\+Aux 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a9d13c6476f5db5c398ffed5b21d25333}\label{sgv_8h_a9d13c6476f5db5c398ffed5b21d25333}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Product\+Sales\+And\+Profit@{get\+Product\+Sales\+And\+Profit}}
+\index{get\+Product\+Sales\+And\+Profit@{get\+Product\+Sales\+And\+Profit}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Product\+Sales\+And\+Profit()}{getProductSalesAndProfit()}}
+{\footnotesize\ttfamily double$\ast$ get\+Product\+Sales\+And\+Profit (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve todos os códigos de produto que começam com uma certa letra. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+{\em product\+\_\+code} & Código de produto \\
+\hline
+{\em month} & Número do mês \\
+\hline
+{\em branches} & Filial \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+double$\ast$ Path do ficheiro de vendas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_aecbd0f7b01ba462926af9ab06ca57565}\label{sgv_8h_aecbd0f7b01ba462926af9ab06ca57565}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Products\+Bought\+By\+Client@{get\+Products\+Bought\+By\+Client}}
+\index{get\+Products\+Bought\+By\+Client@{get\+Products\+Bought\+By\+Client}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Products\+Bought\+By\+Client()}{getProductsBoughtByClient()}}
+{\footnotesize\ttfamily int$\ast$$\ast$ get\+Products\+Bought\+By\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o número total de produtos comprados por um certos cliente mês a mês organizado por filial. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+{\em client\+\_\+code} & Código de cliente \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int$\ast$$\ast$ Array de ints 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a338dc1702caf4ff8af1f20e9eff96256}\label{sgv_8h_a338dc1702caf4ff8af1f20e9eff96256}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Products\+Never\+Bought@{get\+Products\+Never\+Bought}}
+\index{get\+Products\+Never\+Bought@{get\+Products\+Never\+Bought}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Products\+Never\+Bought()}{getProductsNeverBought()}}
+{\footnotesize\ttfamily char$\ast$$\ast$$\ast$ get\+Products\+Never\+Bought (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve a lista ordenada dos códigos dos produtos(e o seu número total)que ninguém comprou, podendo o utilizador decidir igualmente se pretende valores totais ou divididos pelas filiais. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+{\em is\+Global} & Número que representa modo global ou uma filial \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$$\ast$ Array com Arrays de códigos de produtos 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a02575af4cacc490db462d85617a1b385}\label{sgv_8h_a02575af4cacc490db462d85617a1b385}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Products\+Path@{get\+Products\+Path}}
+\index{get\+Products\+Path@{get\+Products\+Path}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Products\+Path()}{getProductsPath()}}
+{\footnotesize\ttfamily char$\ast$ get\+Products\+Path (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolver o path do ficheiro de produtos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Path do ficheiro de produtos 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_ac0c7868d4a31bbae5ffa9b30dad3f9ce}\label{sgv_8h_ac0c7868d4a31bbae5ffa9b30dad3f9ce}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Products\+Started\+By\+Letter@{get\+Products\+Started\+By\+Letter}}
+\index{get\+Products\+Started\+By\+Letter@{get\+Products\+Started\+By\+Letter}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Products\+Started\+By\+Letter()}{getProductsStartedByLetter()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Products\+Started\+By\+Letter (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{,  }\item[{char}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o número total de vendas e o total facturado com esse produto em tal mês, distinguindo os totais em modo N e os totais em modo P. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+{\em letter} & Letra entre A a Z \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$ Path do ficheiro de vendas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a22de448d77ae7e07453a78393243e286}\label{sgv_8h_a22de448d77ae7e07453a78393243e286}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Read\+Clients@{get\+Read\+Clients}}
+\index{get\+Read\+Clients@{get\+Read\+Clients}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Read\+Clients()}{getReadClients()}}
+{\footnotesize\ttfamily int get\+Read\+Clients (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolver o número de clientes lidos no ficheiro de clientes. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número de clientes lidos 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a88b6aab95c077c921ba483d33e006706}\label{sgv_8h_a88b6aab95c077c921ba483d33e006706}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Read\+Products@{get\+Read\+Products}}
+\index{get\+Read\+Products@{get\+Read\+Products}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Read\+Products()}{getReadProducts()}}
+{\footnotesize\ttfamily int get\+Read\+Products (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolver o número de produtos lidos no ficheiro de produtos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número de produtos lidos 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_ad68bbdec54a428df9f32bd82733a8a56}\label{sgv_8h_ad68bbdec54a428df9f32bd82733a8a56}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Read\+Sales@{get\+Read\+Sales}}
+\index{get\+Read\+Sales@{get\+Read\+Sales}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Read\+Sales()}{getReadSales()}}
+{\footnotesize\ttfamily int get\+Read\+Sales (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolver o número de vendas lidos no ficheiro de vendas. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número de vendas lidos 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a52ce4c6daa90f4c9dfcbd167be408993}\label{sgv_8h_a52ce4c6daa90f4c9dfcbd167be408993}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Sales\+And\+Profit@{get\+Sales\+And\+Profit}}
+\index{get\+Sales\+And\+Profit@{get\+Sales\+And\+Profit}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Sales\+And\+Profit()}{getSalesAndProfit()}}
+{\footnotesize\ttfamily \hyperlink{structquerie8Aux}{Query8\+Aux} get\+Sales\+And\+Profit (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{,  }\item[{int}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o total de vendas(nº de registos de venda) registado num intervalo de meses e o total faturado. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+{\em monthI} & Número do mês inicial \\
+\hline
+{\em monthF} & Número do mês final \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Query8\+Aux Estrutura Query8\+Aux 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a4056766d419e42860012a2207f2b7e0a}\label{sgv_8h_a4056766d419e42860012a2207f2b7e0a}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Sales\+Path@{get\+Sales\+Path}}
+\index{get\+Sales\+Path@{get\+Sales\+Path}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Sales\+Path()}{getSalesPath()}}
+{\footnotesize\ttfamily char$\ast$ get\+Sales\+Path (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolver o path do ficheiro de vendas. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$ Path do ficheiro de vendas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a352401261457e19136f0ba66240bdd8b}\label{sgv_8h_a352401261457e19136f0ba66240bdd8b}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Top\+Sold\+Products@{get\+Top\+Sold\+Products}}
+\index{get\+Top\+Sold\+Products@{get\+Top\+Sold\+Products}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Top\+Sold\+Products()}{getTopSoldProducts()}}
+{\footnotesize\ttfamily \hyperlink{structaux}{Aux}$\ast$ get\+Top\+Sold\+Products (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve uma lista dos N produtos mais vendidos em todo o ano, indicando o número total de clientes eo número de unidades vendidas, filial a filial. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+{\em n\+\_\+products} & Número de produtos \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Aux$\ast$ Array de estruturas Aux 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a100e8d9788b8f6d202398c0f43a93221}\label{sgv_8h_a100e8d9788b8f6d202398c0f43a93221}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Valid\+Clients@{get\+Valid\+Clients}}
+\index{get\+Valid\+Clients@{get\+Valid\+Clients}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Valid\+Clients()}{getValidClients()}}
+{\footnotesize\ttfamily int get\+Valid\+Clients (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolver o número de clientes válidos no ficheiro de clientes. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número de clientes válidos 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_acee7a37d1a1f48711fda3f11ea51f437}\label{sgv_8h_acee7a37d1a1f48711fda3f11ea51f437}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Valid\+Products@{get\+Valid\+Products}}
+\index{get\+Valid\+Products@{get\+Valid\+Products}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Valid\+Products()}{getValidProducts()}}
+{\footnotesize\ttfamily int get\+Valid\+Products (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolver o número de clientes válidos no ficheiro de produtos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número de produtos válidos 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_ad84fb04ca88251beaee348c20754e69a}\label{sgv_8h_ad84fb04ca88251beaee348c20754e69a}} 
+\index{sgv.\+h@{sgv.\+h}!get\+Valid\+Sales@{get\+Valid\+Sales}}
+\index{get\+Valid\+Sales@{get\+Valid\+Sales}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{get\+Valid\+Sales()}{getValidSales()}}
+{\footnotesize\ttfamily int get\+Valid\+Sales (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolver o número de clientes válidos no ficheiro de vendas. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Número de vendas válidos 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a14c3840c38c574667ca887b40c5250bb}\label{sgv_8h_a14c3840c38c574667ca887b40c5250bb}} 
+\index{sgv.\+h@{sgv.\+h}!init\+S\+GV@{init\+S\+GV}}
+\index{init\+S\+GV@{init\+S\+GV}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{init\+S\+G\+V()}{initSGV()}}
+{\footnotesize\ttfamily \hyperlink{structsgv}{S\+GV} init\+S\+GV (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Devolve a estrutura S\+GV inicializada. 
+
+\begin{DoxyReturn}{Retorna}
+S\+GV Estrutura S\+GV 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_ab8599dd4fc511628421653597fede4d3}\label{sgv_8h_ab8599dd4fc511628421653597fede4d3}} 
+\index{sgv.\+h@{sgv.\+h}!init\+Start\+Values@{init\+Start\+Values}}
+\index{init\+Start\+Values@{init\+Start\+Values}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{init\+Start\+Values()}{initStartValues()}}
+{\footnotesize\ttfamily \hyperlink{structstartValues}{Start\+Values} init\+Start\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Devolve a estrutura Start\+Values inicializada. 
+
+\begin{DoxyReturn}{Retorna}
+Start\+Values Estrutura Start\+Values 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_a83d57b21fdf3420e131d6572414649ff}\label{sgv_8h_a83d57b21fdf3420e131d6572414649ff}} 
+\index{sgv.\+h@{sgv.\+h}!list\+Size@{list\+Size}}
+\index{list\+Size@{list\+Size}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{list\+Size()}{listSize()}}
+{\footnotesize\ttfamily int list\+Size (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolver o tamanho de um Array de strings(char$\ast$) 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em list} & Array de strings(char$\ast$) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int Tamanho de um Array de strings(char$\ast$) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sgv_8h_ac13cac74a32f7c3032bd0cc5cde2c049}\label{sgv_8h_ac13cac74a32f7c3032bd0cc5cde2c049}} 
+\index{sgv.\+h@{sgv.\+h}!set\+Paths\+SV@{set\+Paths\+SV}}
+\index{set\+Paths\+SV@{set\+Paths\+SV}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{set\+Paths\+S\+V()}{setPathsSV()}}
+{\footnotesize\ttfamily void set\+Paths\+SV (\begin{DoxyParamCaption}\item[{\hyperlink{structstartValues}{Start\+Values}}]{,  }\item[{char $\ast$}]{,  }\item[{char $\ast$}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve a estrutura S\+GV com o conteúdo dos ficheiros dados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em \hyperlink{structstartValues}{start\+Values}} & Estrutura Start\+Values \\
+\hline
+{\em clients\+\_\+path} & Path do ficheiro de clientes \\
+\hline
+{\em products\+\_\+path} & Path do ficheiro de produtos \\
+\hline
+{\em sales\+\_\+path} & Path do ficheiro de vendas \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sgv_8h_a9efc223dce291c384b94e9fd8674d319}\label{sgv_8h_a9efc223dce291c384b94e9fd8674d319}} 
+\index{sgv.\+h@{sgv.\+h}!start\+S\+GV@{start\+S\+GV}}
+\index{start\+S\+GV@{start\+S\+GV}!sgv.\+h@{sgv.\+h}}
+\subsubsection{\texorpdfstring{start\+S\+G\+V()}{startSGV()}}
+{\footnotesize\ttfamily \hyperlink{structsgv}{S\+GV} start\+S\+GV (\begin{DoxyParamCaption}\item[{\hyperlink{structsgv}{S\+GV}}]{,  }\item[{\hyperlink{structstartValues}{Start\+Values}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve a estrutura S\+GV com o conteúdo dos ficheiros dados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sgv} & Estrutura S\+GV \\
+\hline
+{\em sv} & Estrutura Start\+Values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+S\+GV Estrutura S\+GV 
+\end{DoxyReturn}

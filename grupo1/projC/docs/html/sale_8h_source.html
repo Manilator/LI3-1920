@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LI3: Código-Fonte de include/sale.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">LI3
+   </div>
+   <div id="projectbrief">Projeto de LI3 2019/2020</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">sale.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="sale_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef ___SALE_H___</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define ___SALE_H___</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="product__catalog_8h.html">product_catalog.h</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="client__catalog_8h.html">client_catalog.h</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structsale.html">sale</a>* <a class="code" href="structsale.html">Sale</a>;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;Sale <a class="code" href="sale_8h.html#a05f5d59b645d37902e0ba7e419e42eae">isValidSale</a>(<span class="keywordtype">char</span>*, <a class="code" href="structclients.html">Clients</a>, <a class="code" href="structproducts.html">Products</a>);</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="sale_8h.html#a194c79d8ccb4a6a49ced0fe5ae123f08">getProduct</a>(Sale);</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="sale_8h.html#a4affad72516432816029136307b4541d">getClient</a>(Sale);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">double</span> <a class="code" href="sale_8h.html#a889c5c0a188d0734575e7214e9b7d7f7">getPrice</a>(Sale);</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">int</span> <a class="code" href="sale_8h.html#a7ed30b560b4a72819ca298b7ed5d61c0">getUnits</a>(Sale);</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">char</span> <a class="code" href="sale_8h.html#acb010f4dea79f13390a23ec41efaa0e5">getPromotion</a>(Sale);</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">int</span> <a class="code" href="sale_8h.html#ae410306ce25488634136ffecd7a3d46f">getMonth</a>(Sale);</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">int</span> <a class="code" href="sale_8h.html#ac2f0d82f69847ddeae83fe587c3f28ec">getBranch</a>(Sale);</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span> <a class="code" href="sale_8h.html#a9283c6c8006e0781e28c71e57974f7a4">destroySale</a>(Sale);</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="structclients_html"><div class="ttname"><a href="structclients.html">clients</a></div><div class="ttdef"><b>Definition:</b> client_catalog.c:7</div></div>
+<div class="ttc" id="sale_8h_html_a194c79d8ccb4a6a49ced0fe5ae123f08"><div class="ttname"><a href="sale_8h.html#a194c79d8ccb4a6a49ced0fe5ae123f08">getProduct</a></div><div class="ttdeci">char * getProduct(Sale)</div><div class="ttdoc">Devolve o código de produto que foi vendido. </div><div class="ttdef"><b>Definition:</b> sale.c:71</div></div>
+<div class="ttc" id="sale_8h_html_ac2f0d82f69847ddeae83fe587c3f28ec"><div class="ttname"><a href="sale_8h.html#ac2f0d82f69847ddeae83fe587c3f28ec">getBranch</a></div><div class="ttdeci">int getBranch(Sale)</div><div class="ttdoc">Devolve o número da filial. </div><div class="ttdef"><b>Definition:</b> sale.c:95</div></div>
+<div class="ttc" id="client__catalog_8h_html"><div class="ttname"><a href="client__catalog_8h.html">client_catalog.h</a></div><div class="ttdoc">Módulo de tratamentos do catálogo de clientes. </div></div>
+<div class="ttc" id="structsale_html"><div class="ttname"><a href="structsale.html">sale</a></div><div class="ttdef"><b>Definition:</b> sale.c:8</div></div>
+<div class="ttc" id="sale_8h_html_a05f5d59b645d37902e0ba7e419e42eae"><div class="ttname"><a href="sale_8h.html#a05f5d59b645d37902e0ba7e419e42eae">isValidSale</a></div><div class="ttdeci">Sale isValidSale(char *, Clients, Products)</div><div class="ttdoc">Devolve uma Sale ou NULL consoante a validade da venda. </div><div class="ttdef"><b>Definition:</b> sale.c:20</div></div>
+<div class="ttc" id="product__catalog_8h_html"><div class="ttname"><a href="product__catalog_8h.html">product_catalog.h</a></div><div class="ttdoc">Módulo de tratamentos do catálogo de produtos. </div></div>
+<div class="ttc" id="sale_8h_html_a4affad72516432816029136307b4541d"><div class="ttname"><a href="sale_8h.html#a4affad72516432816029136307b4541d">getClient</a></div><div class="ttdeci">char * getClient(Sale)</div><div class="ttdoc">Devolve o código de cliente que efetuou a compra. </div><div class="ttdef"><b>Definition:</b> sale.c:75</div></div>
+<div class="ttc" id="sale_8h_html_acb010f4dea79f13390a23ec41efaa0e5"><div class="ttname"><a href="sale_8h.html#acb010f4dea79f13390a23ec41efaa0e5">getPromotion</a></div><div class="ttdeci">char getPromotion(Sale)</div><div class="ttdoc">Devolve o tipo de promoção da compra. </div><div class="ttdef"><b>Definition:</b> sale.c:87</div></div>
+<div class="ttc" id="sale_8h_html_ae410306ce25488634136ffecd7a3d46f"><div class="ttname"><a href="sale_8h.html#ae410306ce25488634136ffecd7a3d46f">getMonth</a></div><div class="ttdeci">int getMonth(Sale)</div><div class="ttdoc">Devolve o número do mês da compra. </div><div class="ttdef"><b>Definition:</b> sale.c:91</div></div>
+<div class="ttc" id="sale_8h_html_a9283c6c8006e0781e28c71e57974f7a4"><div class="ttname"><a href="sale_8h.html#a9283c6c8006e0781e28c71e57974f7a4">destroySale</a></div><div class="ttdeci">void destroySale(Sale)</div><div class="ttdoc">Libertar memória na estrutura Sale. </div><div class="ttdef"><b>Definition:</b> sale.c:100</div></div>
+<div class="ttc" id="structproducts_html"><div class="ttname"><a href="structproducts.html">products</a></div><div class="ttdef"><b>Definition:</b> product_catalog.c:8</div></div>
+<div class="ttc" id="sale_8h_html_a7ed30b560b4a72819ca298b7ed5d61c0"><div class="ttname"><a href="sale_8h.html#a7ed30b560b4a72819ca298b7ed5d61c0">getUnits</a></div><div class="ttdeci">int getUnits(Sale)</div><div class="ttdoc">Devolve o número de unidades compradas/vendidas. </div><div class="ttdef"><b>Definition:</b> sale.c:83</div></div>
+<div class="ttc" id="sale_8h_html_a889c5c0a188d0734575e7214e9b7d7f7"><div class="ttname"><a href="sale_8h.html#a889c5c0a188d0734575e7214e9b7d7f7">getPrice</a></div><div class="ttdeci">double getPrice(Sale)</div><div class="ttdoc">Devolve o valor atribuido ao produto na compra. </div><div class="ttdef"><b>Definition:</b> sale.c:79</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

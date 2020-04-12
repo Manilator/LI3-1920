@@ -1,0 +1,609 @@
+\hypertarget{branch_8h}{}\section{Referência ao ficheiro include/branch.h}
+\label{branch_8h}\index{include/branch.\+h@{include/branch.\+h}}
+
+
+Módulo de tratamento de filiais.  
+
+
+{\ttfamily \#include $<$glib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}info.\+h\char`\"{}}\newline
+Diagrama de dependências de inclusão para branch.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{branch_8h__incl}
+\end{center}
+\end{figure}
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{branch_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{branch_8h_af8c19b0912e34d02318367931d7181b2}\label{branch_8h_af8c19b0912e34d02318367931d7181b2}} 
+typedef struct \hyperlink{structbranch}{branch} $\ast$ {\bfseries Branch}
+\item 
+\mbox{\Hypertarget{branch_8h_ac97db6a6a68c37bf5f22477bb3afeb0f}\label{branch_8h_ac97db6a6a68c37bf5f22477bb3afeb0f}} 
+typedef struct \hyperlink{structrelationWithClient}{relation\+With\+Client} $\ast$ {\bfseries Relation\+With\+Client}
+\item 
+\mbox{\Hypertarget{branch_8h_afeeb28940432c103763ff8a47cc3ffba}\label{branch_8h_afeeb28940432c103763ff8a47cc3ffba}} 
+typedef struct \hyperlink{structrelationWithProduct}{relation\+With\+Product} $\ast$ {\bfseries Relation\+With\+Product}
+\item 
+\mbox{\Hypertarget{branch_8h_a6735cef113d089d30f0c4a58c7c12b48}\label{branch_8h_a6735cef113d089d30f0c4a58c7c12b48}} 
+typedef struct \hyperlink{structinfoClient}{info\+Client} $\ast$ {\bfseries Info\+Client}
+\item 
+\mbox{\Hypertarget{branch_8h_a319fc1cc2ddf310d9d244be9f229b619}\label{branch_8h_a319fc1cc2ddf310d9d244be9f229b619}} 
+typedef struct \hyperlink{structinfoProduct}{info\+Product} $\ast$ {\bfseries Info\+Product}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structbranch}{Branch} \hyperlink{branch_8h_ab78dddaa4a96b4011d6f415746225189}{init\+Branch} ()
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Branch. \end{DoxyCompactList}\item 
+\hyperlink{structrelationWithClient}{Relation\+With\+Client} \hyperlink{branch_8h_ac5fa333061542fca1ce1686355abd297}{init\+Relation\+With\+Client} ()
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Relation\+With\+Client. \end{DoxyCompactList}\item 
+\hyperlink{structrelationWithProduct}{Relation\+With\+Product} \hyperlink{branch_8h_ab557c0d331a056c473fb8795966f004c}{init\+Relation\+With\+Product} ()
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Relation\+With\+Product. \end{DoxyCompactList}\item 
+\hyperlink{structinfoClient}{Info\+Client} \hyperlink{branch_8h_a29943b5d792ca02c20695f79322d3566}{init\+Info\+Client} ()
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Info\+Client. \end{DoxyCompactList}\item 
+\hyperlink{structinfoProduct}{Info\+Product} \hyperlink{branch_8h_a6c25b0d0a9c6725f789053fe39ebcbe6}{init\+Info\+Product} ()
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Info\+Product. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_ac744aa1cfc60436a485fc8dfa969baa6}{add\+Relation\+With\+Client} (\hyperlink{structbranch}{Branch}, char $\ast$, \hyperlink{structrelationWithClient}{Relation\+With\+Client})
+\begin{DoxyCompactList}\small\item\em Adiciona a estrutura \hyperlink{structrelationWithClient}{relation\+With\+Client} á hashtable presente na estrutura products\+Clients. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_ad2143c449df4aed38b1287a8ca3f401e}{add\+Relation\+With\+Product} (\hyperlink{structbranch}{Branch}, char $\ast$, \hyperlink{structrelationWithProduct}{Relation\+With\+Product})
+\begin{DoxyCompactList}\small\item\em Adiciona a estrutura Relation\+With\+Product á hashtable presente na estrutura clients\+Products. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a90038017270a7e2a6173b622d85e4fca}{add\+Info\+Client} (\hyperlink{structrelationWithClient}{Relation\+With\+Client}, char $\ast$, \hyperlink{structinfoClient}{Info\+Client})
+\begin{DoxyCompactList}\small\item\em Adiciona a estrutura Info\+Client á hashtable presente na estrutura Relation\+With\+Client. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a912757336621d994b8d67f30f664f9c6}{add\+Info\+Product} (\hyperlink{structrelationWithProduct}{Relation\+With\+Product}, char $\ast$, \hyperlink{structinfoProduct}{Info\+Product})
+\begin{DoxyCompactList}\small\item\em Adiciona a estrutura Info\+Product á hashtable presente na estrutura Relation\+With\+Product. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a931f0f0cff34b0fe29ae78f1b68906ea}{update\+Branch} (\hyperlink{structbranch}{Branch}, char $\ast$, char $\ast$, int, char, double, int)
+\begin{DoxyCompactList}\small\item\em Atualizar os dados dentro da estrutura Branch. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a64799b8adf1a03548a638b0ebf21a2a1}{update\+Relation\+With\+Product} (\hyperlink{structrelationWithProduct}{Relation\+With\+Product}, char $\ast$, int, double, int)
+\begin{DoxyCompactList}\small\item\em Atualizar os dados dentro da estrutura Relation\+With\+Product. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_ac99a467c7cd0a0b057cca65322c263ba}{update\+Relation\+With\+Client} (\hyperlink{structrelationWithClient}{Relation\+With\+Client}, char $\ast$, int, char)
+\begin{DoxyCompactList}\small\item\em Atualizar os dados dentro da estrutura Relation\+With\+Client. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a05f090e58ed0ca388aaf715e21ac3f5b}{update\+Info\+Client} (\hyperlink{structinfoClient}{Info\+Client}, int, char)
+\begin{DoxyCompactList}\small\item\em Atualizar os dados dentro da estrutura Info\+Client. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a2d8b0277fb339acbe31447d2b5770b74}{update\+Info\+Product} (\hyperlink{structinfoProduct}{Info\+Product}, int, double, int)
+\begin{DoxyCompactList}\small\item\em Atualizar os dados dentro da estrutura Info\+Product. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a86840dde7a0d8f7b4810d4c60b736225}{free\+Branch} (\hyperlink{structbranch}{Branch})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Branch. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_aa01c84a5100588ff38385992e073d49b}{free\+Relation\+With\+Client} (\hyperlink{structrelationWithClient}{Relation\+With\+Client})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Relation\+With\+Client. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a54776cb56477089cbf5471fb68d9a107}{free\+Relation\+With\+Product} (\hyperlink{structrelationWithProduct}{Relation\+With\+Product})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Relation\+With\+Product. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_ac6e5b41df3a4dbed7989c4284d1ce29b}{free\+Info\+Client} (\hyperlink{structinfoClient}{Info\+Client})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Info\+Client. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a967e37aa236e84b2f0bca6ed6e07bf53}{free\+Info\+Product} (\hyperlink{structinfoProduct}{Info\+Product})
+\begin{DoxyCompactList}\small\item\em Libertação da estrutura Info\+Product. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{branch_8h_a9f46f1927c8d62fd2d12a65299fd3664}{get\+Client\+Codes} (\hyperlink{structbranch}{Branch}, int $\ast$)
+\begin{DoxyCompactList}\small\item\em Devolve o array ordenado dos códigos de clientes que compraram numa certa filial. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{branch_8h_af4d05aa5caebf392603ac1c1992caf64}{get\+Products\+In\+Branch} (\hyperlink{structbranch}{Branch})
+\begin{DoxyCompactList}\small\item\em Devolve um array de códigos de produto vendidos numa certa filial. \end{DoxyCompactList}\item 
+\hyperlink{structquerie9Aux}{Query9\+Aux} \hyperlink{branch_8h_aa7f2c2d5142aea9c5e721f2e6359b016}{product\+Bought\+By} (\hyperlink{structbranch}{Branch}, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Deolve uma estrutura Query9\+Aux com os valores especificos a um dado código de produto. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{branch_8h_aad93869b82bee7ca2b7664b23249abad}{get\+Clients\+In\+Branch} (\hyperlink{structbranch}{Branch})
+\begin{DoxyCompactList}\small\item\em Devolve um array com todos os códigos de cliente de uma certa filial. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{branch_8h_a5e77de75f66e6a972c118f99421f41e7}{get\+Client\+Shop\+Log} (\hyperlink{structbranch}{Branch}, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Devolve um array com as quantidades de produtos comprados em cada mês. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_ac74f0e45a7997a7e50c0dd431f1ed0c8}{get\+Most\+Bought\+By\+Branch} (\hyperlink{structbranch}{Branch}, char $\ast$, int, G\+Hash\+Table $\ast$)
+\begin{DoxyCompactList}\small\item\em Atualiza Hashtable com key=código de produto e value=Estrutura Info. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a75893dd876fe70c79f95a9b0e60038d9}{update\+N\+Most\+Bought} (\hyperlink{structbranch}{Branch}, G\+Hash\+Table $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Atualiza Hashtable com key=código de produto e value=Estrutura Aux. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_abe83a433aab46b449846fa0543efa2ba}{client\+Spent\+Most\+On\+Branch} (\hyperlink{structbranch}{Branch}, char $\ast$, G\+Hash\+Table $\ast$)
+\begin{DoxyCompactList}\small\item\em Atualiza Hashtable com key=código de cliente e value=Estrutura Money. \end{DoxyCompactList}\item 
+void \hyperlink{branch_8h_a6034e30ef92871c3f6e6c84690965620}{intersect\+Clients} (\hyperlink{structbranch}{Branch}, G\+Hash\+Table $\ast$)
+\begin{DoxyCompactList}\small\item\em Remove todos os códigos de cliente que não compraram numa dada filial. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Módulo de tratamento de filiais. 
+
+
+
+\subsection{Documentação das funções}
+\mbox{\Hypertarget{branch_8h_a90038017270a7e2a6173b622d85e4fca}\label{branch_8h_a90038017270a7e2a6173b622d85e4fca}} 
+\index{branch.\+h@{branch.\+h}!add\+Info\+Client@{add\+Info\+Client}}
+\index{add\+Info\+Client@{add\+Info\+Client}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{add\+Info\+Client()}{addInfoClient()}}
+{\footnotesize\ttfamily void add\+Info\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{structrelationWithClient}{Relation\+With\+Client}}]{,  }\item[{char $\ast$}]{,  }\item[{\hyperlink{structinfoClient}{Info\+Client}}]{ }\end{DoxyParamCaption})}
+
+
+
+Adiciona a estrutura Info\+Client á hashtable presente na estrutura Relation\+With\+Client. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em rcc} & Estrutura Relation\+With\+Client \\
+\hline
+{\em client\+\_\+code} & Código do cliente \\
+\hline
+{\em ic} & Estrutura Info\+Client \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_a912757336621d994b8d67f30f664f9c6}\label{branch_8h_a912757336621d994b8d67f30f664f9c6}} 
+\index{branch.\+h@{branch.\+h}!add\+Info\+Product@{add\+Info\+Product}}
+\index{add\+Info\+Product@{add\+Info\+Product}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{add\+Info\+Product()}{addInfoProduct()}}
+{\footnotesize\ttfamily void add\+Info\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structrelationWithProduct}{Relation\+With\+Product}}]{,  }\item[{char $\ast$}]{,  }\item[{\hyperlink{structinfoProduct}{Info\+Product}}]{ }\end{DoxyParamCaption})}
+
+
+
+Adiciona a estrutura Info\+Product á hashtable presente na estrutura Relation\+With\+Product. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em rcp} & Estrutura Relation\+With\+Product \\
+\hline
+{\em product\+\_\+code} & Código do produto \\
+\hline
+{\em ip} & Estrutura Info\+Product \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_ac744aa1cfc60436a485fc8dfa969baa6}\label{branch_8h_ac744aa1cfc60436a485fc8dfa969baa6}} 
+\index{branch.\+h@{branch.\+h}!add\+Relation\+With\+Client@{add\+Relation\+With\+Client}}
+\index{add\+Relation\+With\+Client@{add\+Relation\+With\+Client}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{add\+Relation\+With\+Client()}{addRelationWithClient()}}
+{\footnotesize\ttfamily void add\+Relation\+With\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{char $\ast$}]{,  }\item[{\hyperlink{structrelationWithClient}{Relation\+With\+Client}}]{ }\end{DoxyParamCaption})}
+
+
+
+Adiciona a estrutura \hyperlink{structrelationWithClient}{relation\+With\+Client} á hashtable presente na estrutura products\+Clients. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em branch} & Estrutura Branch \\
+\hline
+{\em product\+\_\+code} & Código do produto \\
+\hline
+{\em rcc} & Estrutura Relation\+With\+Client \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_ad2143c449df4aed38b1287a8ca3f401e}\label{branch_8h_ad2143c449df4aed38b1287a8ca3f401e}} 
+\index{branch.\+h@{branch.\+h}!add\+Relation\+With\+Product@{add\+Relation\+With\+Product}}
+\index{add\+Relation\+With\+Product@{add\+Relation\+With\+Product}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{add\+Relation\+With\+Product()}{addRelationWithProduct()}}
+{\footnotesize\ttfamily void add\+Relation\+With\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{char $\ast$}]{,  }\item[{\hyperlink{structrelationWithProduct}{Relation\+With\+Product}}]{ }\end{DoxyParamCaption})}
+
+
+
+Adiciona a estrutura Relation\+With\+Product á hashtable presente na estrutura clients\+Products. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em branch} & Estrutura Branch \\
+\hline
+{\em client\+\_\+code} & Código do cliente \\
+\hline
+{\em rcp} & Estrutura Relation\+With\+Product \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_abe83a433aab46b449846fa0543efa2ba}\label{branch_8h_abe83a433aab46b449846fa0543efa2ba}} 
+\index{branch.\+h@{branch.\+h}!client\+Spent\+Most\+On\+Branch@{client\+Spent\+Most\+On\+Branch}}
+\index{client\+Spent\+Most\+On\+Branch@{client\+Spent\+Most\+On\+Branch}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{client\+Spent\+Most\+On\+Branch()}{clientSpentMostOnBranch()}}
+{\footnotesize\ttfamily void client\+Spent\+Most\+On\+Branch (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{char $\ast$}]{,  }\item[{G\+Hash\+Table $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualiza Hashtable com key=código de cliente e value=Estrutura Money. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em b} & Estrutura Branch \\
+\hline
+{\em client\+\_\+code} & Código do cliente \\
+\hline
+{\em \+\_\+max\+Spent} & Hashtable com códigos de clientes e os valores gastos o ano todo \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_a86840dde7a0d8f7b4810d4c60b736225}\label{branch_8h_a86840dde7a0d8f7b4810d4c60b736225}} 
+\index{branch.\+h@{branch.\+h}!free\+Branch@{free\+Branch}}
+\index{free\+Branch@{free\+Branch}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{free\+Branch()}{freeBranch()}}
+{\footnotesize\ttfamily void free\+Branch (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Branch. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em branch} & Estrutura Branch a ser libertada \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_ac6e5b41df3a4dbed7989c4284d1ce29b}\label{branch_8h_ac6e5b41df3a4dbed7989c4284d1ce29b}} 
+\index{branch.\+h@{branch.\+h}!free\+Info\+Client@{free\+Info\+Client}}
+\index{free\+Info\+Client@{free\+Info\+Client}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{free\+Info\+Client()}{freeInfoClient()}}
+{\footnotesize\ttfamily void free\+Info\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{structinfoClient}{Info\+Client}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Info\+Client. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ic} & Estrutura Info\+Client a ser libertada \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_a967e37aa236e84b2f0bca6ed6e07bf53}\label{branch_8h_a967e37aa236e84b2f0bca6ed6e07bf53}} 
+\index{branch.\+h@{branch.\+h}!free\+Info\+Product@{free\+Info\+Product}}
+\index{free\+Info\+Product@{free\+Info\+Product}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{free\+Info\+Product()}{freeInfoProduct()}}
+{\footnotesize\ttfamily void free\+Info\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structinfoProduct}{Info\+Product}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Info\+Product. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ip} & Estrutura Info\+Product a ser libertada \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_aa01c84a5100588ff38385992e073d49b}\label{branch_8h_aa01c84a5100588ff38385992e073d49b}} 
+\index{branch.\+h@{branch.\+h}!free\+Relation\+With\+Client@{free\+Relation\+With\+Client}}
+\index{free\+Relation\+With\+Client@{free\+Relation\+With\+Client}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{free\+Relation\+With\+Client()}{freeRelationWithClient()}}
+{\footnotesize\ttfamily void free\+Relation\+With\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{structrelationWithClient}{Relation\+With\+Client}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Relation\+With\+Client. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em rc} & Estrutura Relation\+With\+Client a ser libertada \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_a54776cb56477089cbf5471fb68d9a107}\label{branch_8h_a54776cb56477089cbf5471fb68d9a107}} 
+\index{branch.\+h@{branch.\+h}!free\+Relation\+With\+Product@{free\+Relation\+With\+Product}}
+\index{free\+Relation\+With\+Product@{free\+Relation\+With\+Product}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{free\+Relation\+With\+Product()}{freeRelationWithProduct()}}
+{\footnotesize\ttfamily void free\+Relation\+With\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structrelationWithProduct}{Relation\+With\+Product}}]{ }\end{DoxyParamCaption})}
+
+
+
+Libertação da estrutura Relation\+With\+Product. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em rp} & Estrutura Relation\+With\+Product a ser libertada \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_a9f46f1927c8d62fd2d12a65299fd3664}\label{branch_8h_a9f46f1927c8d62fd2d12a65299fd3664}} 
+\index{branch.\+h@{branch.\+h}!get\+Client\+Codes@{get\+Client\+Codes}}
+\index{get\+Client\+Codes@{get\+Client\+Codes}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{get\+Client\+Codes()}{getClientCodes()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Client\+Codes (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{int $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve o array ordenado dos códigos de clientes que compraram numa certa filial. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em branch} & Estrutura Branch \\
+\hline
+{\em n} & Número easter egg \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$ Array ordenado dos códigos de clientes que compraram numa certa filial 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch_8h_a5e77de75f66e6a972c118f99421f41e7}\label{branch_8h_a5e77de75f66e6a972c118f99421f41e7}} 
+\index{branch.\+h@{branch.\+h}!get\+Client\+Shop\+Log@{get\+Client\+Shop\+Log}}
+\index{get\+Client\+Shop\+Log@{get\+Client\+Shop\+Log}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{get\+Client\+Shop\+Log()}{getClientShopLog()}}
+{\footnotesize\ttfamily int$\ast$ get\+Client\+Shop\+Log (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um array com as quantidades de produtos comprados em cada mês. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em b} & Estrutura Branch \\
+\hline
+{\em client\+\_\+code} & Código do cliente \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+int$\ast$ Array com quantidades de produtos comprados em cada mês 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch_8h_aad93869b82bee7ca2b7664b23249abad}\label{branch_8h_aad93869b82bee7ca2b7664b23249abad}} 
+\index{branch.\+h@{branch.\+h}!get\+Clients\+In\+Branch@{get\+Clients\+In\+Branch}}
+\index{get\+Clients\+In\+Branch@{get\+Clients\+In\+Branch}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{get\+Clients\+In\+Branch()}{getClientsInBranch()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Clients\+In\+Branch (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um array com todos os códigos de cliente de uma certa filial. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em branch} & Estrutura Branch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$ Array de códigos de clientes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch_8h_ac74f0e45a7997a7e50c0dd431f1ed0c8}\label{branch_8h_ac74f0e45a7997a7e50c0dd431f1ed0c8}} 
+\index{branch.\+h@{branch.\+h}!get\+Most\+Bought\+By\+Branch@{get\+Most\+Bought\+By\+Branch}}
+\index{get\+Most\+Bought\+By\+Branch@{get\+Most\+Bought\+By\+Branch}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{get\+Most\+Bought\+By\+Branch()}{getMostBoughtByBranch()}}
+{\footnotesize\ttfamily void get\+Most\+Bought\+By\+Branch (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{,  }\item[{G\+Hash\+Table $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualiza Hashtable com key=código de produto e value=Estrutura Info. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em b} & Estrutura Branch \\
+\hline
+{\em client\+\_\+code} & Código do cliente \\
+\hline
+{\em month} & Mês a procurar \\
+\hline
+{\em \+\_\+most\+Bought} & Hashtable com códigos de produto e quantidades compradas num mês especifico \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_af4d05aa5caebf392603ac1c1992caf64}\label{branch_8h_af4d05aa5caebf392603ac1c1992caf64}} 
+\index{branch.\+h@{branch.\+h}!get\+Products\+In\+Branch@{get\+Products\+In\+Branch}}
+\index{get\+Products\+In\+Branch@{get\+Products\+In\+Branch}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{get\+Products\+In\+Branch()}{getProductsInBranch()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Products\+In\+Branch (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um array de códigos de produto vendidos numa certa filial. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em b} & Estrutura Branch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+char$\ast$$\ast$ Array de códigos de produto vendidos numa certa filial 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch_8h_ab78dddaa4a96b4011d6f415746225189}\label{branch_8h_ab78dddaa4a96b4011d6f415746225189}} 
+\index{branch.\+h@{branch.\+h}!init\+Branch@{init\+Branch}}
+\index{init\+Branch@{init\+Branch}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{init\+Branch()}{initBranch()}}
+{\footnotesize\ttfamily \hyperlink{structbranch}{Branch} init\+Branch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Branch. 
+
+\begin{DoxyReturn}{Retorna}
+Branch Devolve um Branch com valores iniciais 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch_8h_a29943b5d792ca02c20695f79322d3566}\label{branch_8h_a29943b5d792ca02c20695f79322d3566}} 
+\index{branch.\+h@{branch.\+h}!init\+Info\+Client@{init\+Info\+Client}}
+\index{init\+Info\+Client@{init\+Info\+Client}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{init\+Info\+Client()}{initInfoClient()}}
+{\footnotesize\ttfamily \hyperlink{structinfoClient}{Info\+Client} init\+Info\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Info\+Client. 
+
+\begin{DoxyReturn}{Retorna}
+Info\+Client Devolve um Info\+Client com valores iniciais 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch_8h_a6c25b0d0a9c6725f789053fe39ebcbe6}\label{branch_8h_a6c25b0d0a9c6725f789053fe39ebcbe6}} 
+\index{branch.\+h@{branch.\+h}!init\+Info\+Product@{init\+Info\+Product}}
+\index{init\+Info\+Product@{init\+Info\+Product}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{init\+Info\+Product()}{initInfoProduct()}}
+{\footnotesize\ttfamily \hyperlink{structinfoProduct}{Info\+Product} init\+Info\+Product (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Info\+Product. 
+
+\begin{DoxyReturn}{Retorna}
+Info\+Product Devolve um Info\+Product com valores iniciais 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch_8h_ac5fa333061542fca1ce1686355abd297}\label{branch_8h_ac5fa333061542fca1ce1686355abd297}} 
+\index{branch.\+h@{branch.\+h}!init\+Relation\+With\+Client@{init\+Relation\+With\+Client}}
+\index{init\+Relation\+With\+Client@{init\+Relation\+With\+Client}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{init\+Relation\+With\+Client()}{initRelationWithClient()}}
+{\footnotesize\ttfamily \hyperlink{structrelationWithClient}{Relation\+With\+Client} init\+Relation\+With\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Relation\+With\+Client. 
+
+\begin{DoxyReturn}{Retorna}
+Relation\+With\+Client Devolve um Relation\+With\+Client com valores iniciais 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch_8h_ab557c0d331a056c473fb8795966f004c}\label{branch_8h_ab557c0d331a056c473fb8795966f004c}} 
+\index{branch.\+h@{branch.\+h}!init\+Relation\+With\+Product@{init\+Relation\+With\+Product}}
+\index{init\+Relation\+With\+Product@{init\+Relation\+With\+Product}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{init\+Relation\+With\+Product()}{initRelationWithProduct()}}
+{\footnotesize\ttfamily \hyperlink{structrelationWithProduct}{Relation\+With\+Product} init\+Relation\+With\+Product (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Relation\+With\+Product. 
+
+\begin{DoxyReturn}{Retorna}
+Relation\+With\+Product Devolve um Relation\+With\+Product com valores iniciais 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch_8h_a6034e30ef92871c3f6e6c84690965620}\label{branch_8h_a6034e30ef92871c3f6e6c84690965620}} 
+\index{branch.\+h@{branch.\+h}!intersect\+Clients@{intersect\+Clients}}
+\index{intersect\+Clients@{intersect\+Clients}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{intersect\+Clients()}{intersectClients()}}
+{\footnotesize\ttfamily void intersect\+Clients (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{G\+Hash\+Table $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Remove todos os códigos de cliente que não compraram numa dada filial. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em b} & Estrutura Branch \\
+\hline
+{\em \+\_\+most\+Bought} & Hashtable com códigos de clientes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_aa7f2c2d5142aea9c5e721f2e6359b016}\label{branch_8h_aa7f2c2d5142aea9c5e721f2e6359b016}} 
+\index{branch.\+h@{branch.\+h}!product\+Bought\+By@{product\+Bought\+By}}
+\index{product\+Bought\+By@{product\+Bought\+By}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{product\+Bought\+By()}{productBoughtBy()}}
+{\footnotesize\ttfamily \hyperlink{structquerie9Aux}{Query9\+Aux} product\+Bought\+By (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Deolve uma estrutura Query9\+Aux com os valores especificos a um dado código de produto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em b} & Estrutura Branch \\
+\hline
+{\em product\+\_\+code} & Código do produto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Query9\+Aux Estrutura auxiliar para devolver resultados da query 9 
+\end{DoxyReturn}
+\mbox{\Hypertarget{branch_8h_a931f0f0cff34b0fe29ae78f1b68906ea}\label{branch_8h_a931f0f0cff34b0fe29ae78f1b68906ea}} 
+\index{branch.\+h@{branch.\+h}!update\+Branch@{update\+Branch}}
+\index{update\+Branch@{update\+Branch}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{update\+Branch()}{updateBranch()}}
+{\footnotesize\ttfamily void update\+Branch (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{char $\ast$}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{,  }\item[{char}]{,  }\item[{double}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar os dados dentro da estrutura Branch. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em b} & Estrutura Branch \\
+\hline
+{\em client\+\_\+code} & Código do cliente \\
+\hline
+{\em product\+\_\+code} & Código do produto \\
+\hline
+{\em units} & Unidades a adicionar \\
+\hline
+{\em promotion\+\_\+type} & Tipo de promoção \\
+\hline
+{\em billed} & Valor faturado \\
+\hline
+{\em month} & Mês em que xxx \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_a05f090e58ed0ca388aaf715e21ac3f5b}\label{branch_8h_a05f090e58ed0ca388aaf715e21ac3f5b}} 
+\index{branch.\+h@{branch.\+h}!update\+Info\+Client@{update\+Info\+Client}}
+\index{update\+Info\+Client@{update\+Info\+Client}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{update\+Info\+Client()}{updateInfoClient()}}
+{\footnotesize\ttfamily void update\+Info\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{structinfoClient}{Info\+Client}}]{,  }\item[{int}]{,  }\item[{char}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar os dados dentro da estrutura Info\+Client. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ic} & Estrutura Info\+Client \\
+\hline
+{\em units} & Unidades (xxx vendidas/compradas) \\
+\hline
+{\em promotion\+\_\+type} & Tipo de promoção \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_a2d8b0277fb339acbe31447d2b5770b74}\label{branch_8h_a2d8b0277fb339acbe31447d2b5770b74}} 
+\index{branch.\+h@{branch.\+h}!update\+Info\+Product@{update\+Info\+Product}}
+\index{update\+Info\+Product@{update\+Info\+Product}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{update\+Info\+Product()}{updateInfoProduct()}}
+{\footnotesize\ttfamily void update\+Info\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structinfoProduct}{Info\+Product}}]{,  }\item[{int}]{,  }\item[{double}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar os dados dentro da estrutura Info\+Product. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ip} & Estrutura Info\+Product \\
+\hline
+{\em quantity} & Quantidade de itens vendidos \\
+\hline
+{\em billed} & Valor faturado \\
+\hline
+{\em month} & Mês em que xxx \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_a75893dd876fe70c79f95a9b0e60038d9}\label{branch_8h_a75893dd876fe70c79f95a9b0e60038d9}} 
+\index{branch.\+h@{branch.\+h}!update\+N\+Most\+Bought@{update\+N\+Most\+Bought}}
+\index{update\+N\+Most\+Bought@{update\+N\+Most\+Bought}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{update\+N\+Most\+Bought()}{updateNMostBought()}}
+{\footnotesize\ttfamily void update\+N\+Most\+Bought (\begin{DoxyParamCaption}\item[{\hyperlink{structbranch}{Branch}}]{,  }\item[{G\+Hash\+Table $\ast$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualiza Hashtable com key=código de produto e value=Estrutura Aux. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em b} & Estrutura Branch \\
+\hline
+{\em \+\_\+most\+Bought} & Hashtable com códigos de produto e quantidades compradas o ano todo \\
+\hline
+{\em branch} & Número da filial escolhida \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_ac99a467c7cd0a0b057cca65322c263ba}\label{branch_8h_ac99a467c7cd0a0b057cca65322c263ba}} 
+\index{branch.\+h@{branch.\+h}!update\+Relation\+With\+Client@{update\+Relation\+With\+Client}}
+\index{update\+Relation\+With\+Client@{update\+Relation\+With\+Client}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{update\+Relation\+With\+Client()}{updateRelationWithClient()}}
+{\footnotesize\ttfamily void update\+Relation\+With\+Client (\begin{DoxyParamCaption}\item[{\hyperlink{structrelationWithClient}{Relation\+With\+Client}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{,  }\item[{char}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar os dados dentro da estrutura Relation\+With\+Client. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em rcc} & Estrutura Relation\+With\+Client \\
+\hline
+{\em client\+\_\+code} & Código do cliente \\
+\hline
+{\em units} & Unidades (xxx vendidas/compradas) \\
+\hline
+{\em promotion\+\_\+type} & Tipo de promoção \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{branch_8h_a64799b8adf1a03548a638b0ebf21a2a1}\label{branch_8h_a64799b8adf1a03548a638b0ebf21a2a1}} 
+\index{branch.\+h@{branch.\+h}!update\+Relation\+With\+Product@{update\+Relation\+With\+Product}}
+\index{update\+Relation\+With\+Product@{update\+Relation\+With\+Product}!branch.\+h@{branch.\+h}}
+\subsubsection{\texorpdfstring{update\+Relation\+With\+Product()}{updateRelationWithProduct()}}
+{\footnotesize\ttfamily void update\+Relation\+With\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structrelationWithProduct}{Relation\+With\+Product}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{,  }\item[{double}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualizar os dados dentro da estrutura Relation\+With\+Product. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em rcp} & Estrutura Relation\+With\+Product \\
+\hline
+{\em product\+\_\+code} & Código do produto \\
+\hline
+{\em quantity} & Quantidade de itens vendidos \\
+\hline
+{\em billed} & Valor faturado \\
+\hline
+{\em month} & Mês em que xxx \\
+\hline
+\end{DoxyParams}

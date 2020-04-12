@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LI3: Código-Fonte de include/client_catalog.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">LI3
+   </div>
+   <div id="projectbrief">Projeto de LI3 2019/2020</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">client_catalog.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="client__catalog_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef ___CLIENT_CATALOG_H___</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define ___CLIENT_CATALOG_H___</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="client_8h.html">client.h</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;glib.h&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structclients.html">clients</a>* <a class="code" href="structclients.html">Clients</a>;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;Clients <a class="code" href="client__catalog_8h.html#a7031e24c518cc5e26729c2badb53947a">initClients</a>();</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> <a class="code" href="client__catalog_8h.html#a66fdcc00fe6adc95ab8402bb32b9ea7e">addClient</a>(Clients, <span class="keywordtype">char</span>*);</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">int</span> <a class="code" href="client__catalog_8h.html#ab2dda1e1d6b3dd21bf6605a94b6ea4c8">getSizeClients</a>(Clients);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">int</span> <a class="code" href="client__catalog_8h.html#aeb90992c20b0a666f7e098ac98265a37">existClient</a> (Clients, <a class="code" href="structclient.html">Client</a>);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">int</span> <a class="code" href="client__catalog_8h.html#a33694f5c5e1bfb22ca890b5b3f93de01">existClientCode</a> (Clients, <span class="keywordtype">char</span>*);</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="client__catalog_8h.html#a9ef396154e90aeb16a8bc483d43934e8">destroyClients</a>(Clients);</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">int</span> <a class="code" href="client__catalog_8h.html#ad7634a72484814b664df73c2d113f67a">getNumberClientsNotUsed</a>(Clients, GHashTable *);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">void</span> <a class="code" href="client__catalog_8h.html#a64e9647162e8138dcefd16b8eb6ef802">fillClientsHT</a>(Clients, GHashTable *);</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="structclients_html"><div class="ttname"><a href="structclients.html">clients</a></div><div class="ttdef"><b>Definition:</b> client_catalog.c:7</div></div>
+<div class="ttc" id="client__catalog_8h_html_ab2dda1e1d6b3dd21bf6605a94b6ea4c8"><div class="ttname"><a href="client__catalog_8h.html#ab2dda1e1d6b3dd21bf6605a94b6ea4c8">getSizeClients</a></div><div class="ttdeci">int getSizeClients(Clients)</div><div class="ttdoc">Calcula o número de clientes que existe no catálogo. </div><div class="ttdef"><b>Definition:</b> client_catalog.c:59</div></div>
+<div class="ttc" id="client__catalog_8h_html_ad7634a72484814b664df73c2d113f67a"><div class="ttname"><a href="client__catalog_8h.html#ad7634a72484814b664df73c2d113f67a">getNumberClientsNotUsed</a></div><div class="ttdeci">int getNumberClientsNotUsed(Clients, GHashTable *)</div><div class="ttdoc">Devolve o número de clientes não utilizados. </div><div class="ttdef"><b>Definition:</b> client_catalog.c:63</div></div>
+<div class="ttc" id="client__catalog_8h_html_a7031e24c518cc5e26729c2badb53947a"><div class="ttname"><a href="client__catalog_8h.html#a7031e24c518cc5e26729c2badb53947a">initClients</a></div><div class="ttdeci">Clients initClients()</div><div class="ttdoc">Inicia a estrutura de catálogo de clientes. </div><div class="ttdef"><b>Definition:</b> client_catalog.c:12</div></div>
+<div class="ttc" id="structclient_html"><div class="ttname"><a href="structclient.html">client</a></div><div class="ttdef"><b>Definition:</b> client.c:6</div></div>
+<div class="ttc" id="client__catalog_8h_html_a9ef396154e90aeb16a8bc483d43934e8"><div class="ttname"><a href="client__catalog_8h.html#a9ef396154e90aeb16a8bc483d43934e8">destroyClients</a></div><div class="ttdeci">void destroyClients(Clients)</div><div class="ttdoc">Destroi o catálogo de clientes. </div><div class="ttdef"><b>Definition:</b> client_catalog.c:67</div></div>
+<div class="ttc" id="client__catalog_8h_html_a64e9647162e8138dcefd16b8eb6ef802"><div class="ttname"><a href="client__catalog_8h.html#a64e9647162e8138dcefd16b8eb6ef802">fillClientsHT</a></div><div class="ttdeci">void fillClientsHT(Clients, GHashTable *)</div><div class="ttdoc">Preencher a hashtable dada com todos os códigos de clientes. </div><div class="ttdef"><b>Definition:</b> client_catalog.c:19</div></div>
+<div class="ttc" id="client__catalog_8h_html_a66fdcc00fe6adc95ab8402bb32b9ea7e"><div class="ttname"><a href="client__catalog_8h.html#a66fdcc00fe6adc95ab8402bb32b9ea7e">addClient</a></div><div class="ttdeci">int addClient(Clients, char *)</div><div class="ttdoc">Adiciona um cliente ao catálogo de clientes. </div><div class="ttdef"><b>Definition:</b> client_catalog.c:28</div></div>
+<div class="ttc" id="client__catalog_8h_html_a33694f5c5e1bfb22ca890b5b3f93de01"><div class="ttname"><a href="client__catalog_8h.html#a33694f5c5e1bfb22ca890b5b3f93de01">existClientCode</a></div><div class="ttdeci">int existClientCode(Clients, char *)</div><div class="ttdoc">Verifica se existe um código de cliente no catálogo. </div><div class="ttdef"><b>Definition:</b> client_catalog.c:51</div></div>
+<div class="ttc" id="client__catalog_8h_html_aeb90992c20b0a666f7e098ac98265a37"><div class="ttname"><a href="client__catalog_8h.html#aeb90992c20b0a666f7e098ac98265a37">existClient</a></div><div class="ttdeci">int existClient(Clients, Client)</div><div class="ttdoc">Verifica se existe um cliente no catálogo. </div><div class="ttdef"><b>Definition:</b> client_catalog.c:40</div></div>
+<div class="ttc" id="client_8h_html"><div class="ttname"><a href="client_8h.html">client.h</a></div><div class="ttdoc">Módulo de tratamentos de clientes. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

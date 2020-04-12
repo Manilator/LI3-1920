@@ -1,0 +1,175 @@
+\hypertarget{billing__catalog_8h}{}\section{Referência ao ficheiro include/billing\+\_\+catalog.h}
+\label{billing__catalog_8h}\index{include/billing\+\_\+catalog.\+h@{include/billing\+\_\+catalog.\+h}}
+
+
+Módulo de tratamentos do catálogo de faturação.  
+
+
+{\ttfamily \#include \char`\"{}billing.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sale.\+h\char`\"{}}\newline
+Diagrama de dependências de inclusão para billing\+\_\+catalog.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{billing__catalog_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{billing__catalog_8h_aade9caed6d9b1b71171b58c7e12b5c59}\label{billing__catalog_8h_aade9caed6d9b1b71171b58c7e12b5c59}} 
+typedef struct \hyperlink{structbillings}{billings} $\ast$ {\bfseries Billings}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structbillings}{Billings} \hyperlink{billing__catalog_8h_a2462ff818495f6bd29a200f50454548d}{init\+Billings} ()
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura Billing\+Product. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{billing__catalog_8h_a8f4c79c0806140d6111a7e3a0960e52c}{get\+Product\+Values\+By\+Month\+Billing\+Cat} (\hyperlink{structbillings}{Billings}, char $\ast$, int, int)
+\begin{DoxyCompactList}\small\item\em Devolve um array de valores. \end{DoxyCompactList}\item 
+void \hyperlink{billing__catalog_8h_a363a12fd71930d8571251fd1727f80c9}{add\+Billing} (\hyperlink{structbillings}{Billings}, \hyperlink{structbilling}{Billing}, int)
+\begin{DoxyCompactList}\small\item\em Adiciona uma estrutura Billing á hashtable da estrutura Billings num certo mês. \end{DoxyCompactList}\item 
+void \hyperlink{billing__catalog_8h_ac6d45af13bb32ef0a7296271ad6405ec}{update\+Billings} (\hyperlink{structbillings}{Billings}, \hyperlink{structsale}{Sale})
+\begin{DoxyCompactList}\small\item\em Atualização dos valores da estrutura Billings. \end{DoxyCompactList}\item 
+void \hyperlink{billing__catalog_8h_ad48fe031347c627b634eb885e291f261}{insert\+Billing\+Product} (\hyperlink{structbillings}{Billings}, int, char $\ast$)
+\begin{DoxyCompactList}\small\item\em Insere uma estrutura Billing\+Product dentro de uma estrutura Billing. \end{DoxyCompactList}\item 
+void \hyperlink{billing__catalog_8h_ac8160221943077610518c4f1e940509f}{destroy\+Billings} (\hyperlink{structbillings}{Billings})
+\begin{DoxyCompactList}\small\item\em Liberta memória da estrutura Billings dada. \end{DoxyCompactList}\item 
+\hyperlink{structquerie8Aux}{Query8\+Aux} \hyperlink{billing__catalog_8h_a136ebf0fd03ffba060034029cc0f5ebc}{get\+Totals\+From\+Billing\+Month\+Interval} (\hyperlink{structbillings}{Billings}, int, int)
+\begin{DoxyCompactList}\small\item\em Devolve uma estrutura auxiliar Query8\+Aux com os valores de entre dois meses dados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Módulo de tratamentos do catálogo de faturação. 
+
+
+
+\subsection{Documentação das funções}
+\mbox{\Hypertarget{billing__catalog_8h_a363a12fd71930d8571251fd1727f80c9}\label{billing__catalog_8h_a363a12fd71930d8571251fd1727f80c9}} 
+\index{billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}!add\+Billing@{add\+Billing}}
+\index{add\+Billing@{add\+Billing}!billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{add\+Billing()}{addBilling()}}
+{\footnotesize\ttfamily void add\+Billing (\begin{DoxyParamCaption}\item[{\hyperlink{structbillings}{Billings}}]{,  }\item[{\hyperlink{structbilling}{Billing}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Adiciona uma estrutura Billing á hashtable da estrutura Billings num certo mês. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em billings} & Estrutura Billings \\
+\hline
+{\em billing} & Estrutura Billing \\
+\hline
+{\em month} & Número do mês \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{billing__catalog_8h_ac8160221943077610518c4f1e940509f}\label{billing__catalog_8h_ac8160221943077610518c4f1e940509f}} 
+\index{billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}!destroy\+Billings@{destroy\+Billings}}
+\index{destroy\+Billings@{destroy\+Billings}!billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{destroy\+Billings()}{destroyBillings()}}
+{\footnotesize\ttfamily void destroy\+Billings (\begin{DoxyParamCaption}\item[{\hyperlink{structbillings}{Billings}}]{ }\end{DoxyParamCaption})}
+
+
+
+Liberta memória da estrutura Billings dada. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Billings \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{billing__catalog_8h_a8f4c79c0806140d6111a7e3a0960e52c}\label{billing__catalog_8h_a8f4c79c0806140d6111a7e3a0960e52c}} 
+\index{billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}!get\+Product\+Values\+By\+Month\+Billing\+Cat@{get\+Product\+Values\+By\+Month\+Billing\+Cat}}
+\index{get\+Product\+Values\+By\+Month\+Billing\+Cat@{get\+Product\+Values\+By\+Month\+Billing\+Cat}!billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{get\+Product\+Values\+By\+Month\+Billing\+Cat()}{getProductValuesByMonthBillingCat()}}
+{\footnotesize\ttfamily double$\ast$ get\+Product\+Values\+By\+Month\+Billing\+Cat (\begin{DoxyParamCaption}\item[{\hyperlink{structbillings}{Billings}}]{,  }\item[{char $\ast$}]{,  }\item[{int}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve um array de valores. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & \\
+\hline
+{\em product\+\_\+code} & Código de produto \\
+\hline
+{\em month} & Número do mês \\
+\hline
+{\em is\+Global} & Número usado para representar se é uma buscar global ou por filial \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+double$\ast$ devolve um Billing\+Product inicializado. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing__catalog_8h_a136ebf0fd03ffba060034029cc0f5ebc}\label{billing__catalog_8h_a136ebf0fd03ffba060034029cc0f5ebc}} 
+\index{billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}!get\+Totals\+From\+Billing\+Month\+Interval@{get\+Totals\+From\+Billing\+Month\+Interval}}
+\index{get\+Totals\+From\+Billing\+Month\+Interval@{get\+Totals\+From\+Billing\+Month\+Interval}!billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{get\+Totals\+From\+Billing\+Month\+Interval()}{getTotalsFromBillingMonthInterval()}}
+{\footnotesize\ttfamily \hyperlink{structquerie8Aux}{Query8\+Aux} get\+Totals\+From\+Billing\+Month\+Interval (\begin{DoxyParamCaption}\item[{\hyperlink{structbillings}{Billings}}]{,  }\item[{int}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Devolve uma estrutura auxiliar Query8\+Aux com os valores de entre dois meses dados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em monthI} & Número de um mês \\
+\hline
+{\em monthF} & Número de um mês posterior ou igual a monthI \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Query8\+Aux Uma estrutura Query8\+Aux 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing__catalog_8h_a2462ff818495f6bd29a200f50454548d}\label{billing__catalog_8h_a2462ff818495f6bd29a200f50454548d}} 
+\index{billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}!init\+Billings@{init\+Billings}}
+\index{init\+Billings@{init\+Billings}!billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{init\+Billings()}{initBillings()}}
+{\footnotesize\ttfamily \hyperlink{structbillings}{Billings} init\+Billings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicialização da estrutura Billing\+Product. 
+
+\begin{DoxyReturn}{Retorna}
+Billings um Billing\+Product inicializado. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{billing__catalog_8h_ad48fe031347c627b634eb885e291f261}\label{billing__catalog_8h_ad48fe031347c627b634eb885e291f261}} 
+\index{billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}!insert\+Billing\+Product@{insert\+Billing\+Product}}
+\index{insert\+Billing\+Product@{insert\+Billing\+Product}!billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{insert\+Billing\+Product()}{insertBillingProduct()}}
+{\footnotesize\ttfamily void insert\+Billing\+Product (\begin{DoxyParamCaption}\item[{\hyperlink{structbillings}{Billings}}]{,  }\item[{int}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Insere uma estrutura Billing\+Product dentro de uma estrutura Billing. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Billings \\
+\hline
+{\em month} & Número do mês \\
+\hline
+{\em product\+\_\+code} & Código de produto \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{billing__catalog_8h_ac6d45af13bb32ef0a7296271ad6405ec}\label{billing__catalog_8h_ac6d45af13bb32ef0a7296271ad6405ec}} 
+\index{billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}!update\+Billings@{update\+Billings}}
+\index{update\+Billings@{update\+Billings}!billing\+\_\+catalog.\+h@{billing\+\_\+catalog.\+h}}
+\subsubsection{\texorpdfstring{update\+Billings()}{updateBillings()}}
+{\footnotesize\ttfamily void update\+Billings (\begin{DoxyParamCaption}\item[{\hyperlink{structbillings}{Billings}}]{,  }\item[{\hyperlink{structsale}{Sale}}]{ }\end{DoxyParamCaption})}
+
+
+
+Atualização dos valores da estrutura Billings. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bs} & Estrutura Billings \\
+\hline
+{\em sale} & Estrutura Sale \\
+\hline
+\end{DoxyParams}
