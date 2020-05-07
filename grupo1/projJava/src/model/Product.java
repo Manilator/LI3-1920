@@ -19,12 +19,9 @@ public class Product {
         int number = Integer.parseInt(productCode.substring(2));
         char first_letter = productCode.charAt(0);
         char second_letter = productCode.charAt(1);
-        if( (number >= 1000 && number <= 9999) &&
+        return (number >= 1000 && number <= 9999) &&
                 (first_letter >= 'A' && first_letter <= 'Z') &&
-                (second_letter >= 'A' && second_letter <= 'Z')) {
-            return true;
-        }
-        return false;
+                (second_letter >= 'A' && second_letter <= 'Z');
     }
 
     Product newProduct(String productCode) {
