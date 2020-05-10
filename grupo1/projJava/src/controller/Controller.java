@@ -1,15 +1,18 @@
 package controller;
 
+import model.SGV;
 import view.View;
 
 import java.util.Scanner;
 
 public class Controller {
     public View view;
+    private final SGV sgv;
     private final Scanner in;
 
     public Controller() {
         this.view = new View();
+        this.sgv = new SGV();
         in = new Scanner(System.in);
     }
 
@@ -50,9 +53,11 @@ public class Controller {
                     initial = 1;
                     break;
                 case 2:
+                    sgv.startSGV();
                     /*controllerQuery2(sgv);*/
                     break;
                 case 3:
+                    System.out.println("Query 3");
                     /*controllerQuery3(sgv);*/
                     break;
                 case 4:

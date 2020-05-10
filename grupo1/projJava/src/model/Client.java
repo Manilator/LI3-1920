@@ -10,6 +10,11 @@ public class Client {
         this.number = number;
     }
 
+    public Client (String clientCode) {
+        this.letter = clientCode.charAt(0);
+        this.number = Integer.parseInt(clientCode.substring(1));
+    }
+
     public String getClientCode(Client client) {
         return String.format("%c%d",client.getLetter(),client.getNumber());
     }
