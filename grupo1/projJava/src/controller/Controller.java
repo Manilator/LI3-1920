@@ -4,6 +4,7 @@ import model.SGV;
 import view.View;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Controller {
     public View view;
@@ -53,7 +54,13 @@ public class Controller {
                     initial = 1;
                     break;
                 case 2:
+                    long startTime = System.nanoTime();
                     sgv.startSGV();
+                    long stopTime = System.nanoTime();
+                    double time = (double) (stopTime - startTime) / 1_000_000_000;
+                    System.out.println("Tempo a ler os dados: " + time + " segundos");
+                    view.printMessage(String.valueOf("Clientes lidos: " + this.sgv.getClientsSize()));
+                    view.printMessage(String.valueOf("Produtos lidos: " + this.sgv.getProductsSize()));
                     /*controllerQuery2(sgv);*/
                     break;
                 case 3:
@@ -95,16 +102,5 @@ public class Controller {
                     break;
             }
         }
-        /*
-        g_free(choice);
-        if (sgv != NULL){
-            boldRed();
-            printMessage("A libertar dados antigos...\n");
-            resetColor();
-            destroySGV(sgv);
-        }
-
-        if (sv != NULL)
-            destroyStartValues(sv);*/
     }
 }

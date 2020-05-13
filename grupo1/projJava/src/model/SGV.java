@@ -1,15 +1,13 @@
 package model;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SGV {
 
     private final ClientCatalog client_catalog; /**< Cátalogo de clientes */
     private final ProductCatalog product_catalog; /**< Cátalogo de produto */
     private final BillingCatalog billing_catalog; /**< Cátalogo de faturação */
-    private final BranchesCatalog branches_catalog; /**< Cátalogo de filiais */
+    private final BranchCatalog branches_catalog; /**< Cátalogo de filiais */
 
     /*
     StartValues initStartValues(){
@@ -37,7 +35,7 @@ public class SGV {
         this.client_catalog = new ClientCatalog();
         this.product_catalog = new ProductCatalog();
         this.billing_catalog = new BillingCatalog();
-        this.branches_catalog = new BranchesCatalog();
+        this.branches_catalog = new BranchCatalog();
     }
 
     public void parseClients() {
@@ -56,6 +54,24 @@ public class SGV {
             e.printStackTrace();
         }
     }
+
+    public void parseProducts() {
+        File file = new File("data/Produtos.txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String productCode = null;
+
+            while ((productCode = reader.readLine()) != null) {
+                this.product_catalog.insertProduct(productCode);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not Found!");
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /*
     int parseProducts(Products products, Billings bs, StartValues startValues)
     {
@@ -109,10 +125,18 @@ public class SGV {
     public void startSGV()
     {
         parseClients();
-        /*parseProducts(sgv->product_catalog, sgv->billings, sv);
-        parseSales(sgv, sv);*/
+        parseProducts();
+        /*parseSales(sgv, sv);*/
     }
 
+    public int getClientsSize(){
+        return this.client_catalog.getSize();
+    }
+
+    public int getProductsSize(){
+        return this.product_catalog.getSize();
+    }
+/*
     public ClientCatalog getClient_catalog() {
         return client_catalog;
     }
@@ -125,7 +149,8 @@ public class SGV {
         return billing_catalog;
     }
 
-    public BranchesCatalog getBranches_catalog() {
+    public BranchCatalog getBranches_catalog() {
         return branches_catalog;
     }
+    */
 }

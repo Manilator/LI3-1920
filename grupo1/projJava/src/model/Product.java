@@ -11,8 +11,20 @@ public class Product {
         this.number = number;
     }
 
-    String getProductCode(Product product) {
-        return String.format("%c%c%d",product.getFirst_letter(),product.getSecond_letter(),product.getNumber());
+    public Product (String productCode) {
+        this.first_letter = productCode.charAt(0);
+        this.second_letter = productCode.charAt(1);
+        this.number = Integer.parseInt(productCode.substring(2));
+    }
+
+    public Product(Product product) {
+        this.first_letter = product.getFirst_letter();
+        this.second_letter = product.getSecond_letter();
+        this.number = product.getNumber();
+    }
+
+    String getProductCode() {
+        return String.format("%c%c%d",this.getFirst_letter(),this.getSecond_letter(),this.getNumber());
     }
 
     public Boolean verifyProduct(String productCode) {

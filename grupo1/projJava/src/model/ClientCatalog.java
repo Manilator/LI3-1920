@@ -61,7 +61,11 @@ public class ClientCatalog {
         return getSizeClients(client_catalog) - g_hash_table_size(clients_used);
     }*/
 
+    public int getSize() {
+        return this.clients.size();
+    }
+
     public Hashtable<String, Client> getClients() {
-        return clients;
+        return (Hashtable<String, Client>) this.clients.clone();
     }
 }
