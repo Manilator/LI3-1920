@@ -1,22 +1,28 @@
 package model;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 
 public class ProductCatalog {
 
-    private final Hashtable<String,Product> products;
+    private final HashMap<String,Product> products;
 
 
     public ProductCatalog() {
-        products = new Hashtable<>();
+        products = new HashMap<>();
     }
 
     public Hashtable<String, Product> getProducts() {
         return (Hashtable<String, Product>) products.clone();
     }
 
-    public void insertProduct(String productCode){
-        this.products.put(productCode, new Product(productCode));
+    public boolean insertProduct(String productCode){
+        Product product = new Product(productCode);
+        if (product.validate()) {
+            this.products.put(productCode, product);
+            return true;
+        }
+        return false;
     }
 
     public Product getProduct(String cod) {
@@ -25,5 +31,9 @@ public class ProductCatalog {
 
     public int getSize() {
         return this.products.size();
+    }
+
+    public boolean existProduct(String code) {
+        return this.products.containsKey(code);
     }
 }

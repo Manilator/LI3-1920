@@ -1,13 +1,15 @@
 package model;
 
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 public class ClientCatalog {
 
-    private final Hashtable<String,Client> clients;
+    private HashMap<String,Client> clients;
 
     public ClientCatalog(){
-        clients = new Hashtable<>();
+        clients = new HashMap<>();
     }
 
     public void insertClient(String clientCode){
@@ -65,7 +67,12 @@ public class ClientCatalog {
         return this.clients.size();
     }
 
-    public Hashtable<String, Client> getClients() {
+    /*public Hashtable<String, Client> getClients() {
         return (Hashtable<String, Client>) this.clients.clone();
+    }*/
+
+    public boolean existClient(String code) {
+        return this.clients.containsKey(code);
     }
+
 }

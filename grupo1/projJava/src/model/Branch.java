@@ -1,16 +1,18 @@
 package model;
 
 import javax.management.relation.Relation;
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Hashtable;
 
 public class Branch {
 
-    private Hashtable<String, RelationWithClient> productsClients; /**< Códigos de produtos e a sua estrutura atribuída RelationWithClient */
-    private Hashtable<String, RelationWithProduct> clientsProducts; /**< Códigos de clientes e a sua estrutura atribuída RelationWithProduct */
+    private HashMap<String, RelationWithClient> productsClients; /**< Códigos de produtos e a sua estrutura atribuída RelationWithClient */
+    private HashMap<String, RelationWithProduct> clientsProducts; /**< Códigos de clientes e a sua estrutura atribuída RelationWithProduct */
 
     public Branch() {
-        this.productsClients = new Hashtable<>();
-        this.clientsProducts = new Hashtable<>();
+        this.productsClients = new HashMap<>();
+        this.clientsProducts = new HashMap<>();
     }
 
     public void addRelationWithClient(String product_code, RelationWithClient rcc) {

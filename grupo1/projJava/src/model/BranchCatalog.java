@@ -1,22 +1,33 @@
 package model;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Hashtable;
+
+import static Utils.Constants.N_BRANCHES;
 
 public class BranchCatalog {
 
-    private final Hashtable<Integer,Branch> branches;
+    private final Branch[] branches;
 
     public BranchCatalog() {
-        this.branches = new Hashtable<>();
+        this.branches = new Branch[N_BRANCHES];
+        this.initBranchCatalog(N_BRANCHES);
     }
 
-    public BranchCatalog getBranches() {
-        return (BranchCatalog) this.branches.clone();
+    public Branch[] getBranches() {
+        return this.branches.clone();
     }
 
     public void initBranchCatalog(int n) {
         for (int i = 0; i < n; i++) {
-            this.branches.put(i, new Branch());
+            this.branches[i] = new Branch();
         }
+    }
+
+    public void updateBranches(Sale sale) {
+        int branch_number = sale.getBranch();
+        Branch exist = this.branches[branch_number-1];
+        exist.updateBranch(sale.getClient(), sale.getProduct(), sale.getUnits(), sale.getPromotion(), sale.getPrice() * sale.getUnits(), sale.getMonth());
     }
 }

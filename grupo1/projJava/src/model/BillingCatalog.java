@@ -1,24 +1,38 @@
 package model;
 
-import java.util.Hashtable;
+import java.math.BigDecimal;
+import java.util.HashMap;
 
 import static Utils.Constants.N_MONTHS;
 
 public class BillingCatalog {
 
-    private final Hashtable<Integer,Billing> billings;
+    private final Billing[] billings;
 
     public BillingCatalog() {
-        this.billings = new Hashtable<>();
+        this.billings = new Billing[N_MONTHS];
+        this.initBillingCatalog();
     }
 
-    public BranchCatalog getBranches() {
-        return (BranchCatalog) this.billings.clone();
+    public Billing[] getBranches() {
+        return  this.billings.clone();
     }
 
-    public void initBranchCatalog() {
+    public void initBillingCatalog() {
         for (int i = 0; i < N_MONTHS; i++) {
-            this.billings.put(i, new Billing());
+            this.billings[i] = new Billing();
         }
+    }
+
+    public void addBillingProduct(String code) {
+        for (Billing e : this.billings) {
+            e.addBillingProduct(code);
+        }
+    }
+
+    void updateBillings(Sale sale) {
+        int mes = sale.getMonth();
+        Billing exist = this.billings[mes-1];
+        exist.updateBilling(sale.getProduct(), sale.getPrice() * sale.getUnits(), sale.getUnits(), sale.getPromotion(), sale.getBranch());
     }
 }

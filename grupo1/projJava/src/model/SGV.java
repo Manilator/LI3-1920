@@ -1,13 +1,24 @@
 package model;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class SGV {
 
-    private final ClientCatalog client_catalog; /**< Cátalogo de clientes */
+    private ClientCatalog client_catalog; /**< Cátalogo de clientes */
     private final ProductCatalog product_catalog; /**< Cátalogo de produto */
     private final BillingCatalog billing_catalog; /**< Cátalogo de faturação */
     private final BranchCatalog branches_catalog; /**< Cátalogo de filiais */
+    private int readProducts;
+    private int readSales;
+    private int validSales;
 
     /*
     StartValues initStartValues(){
@@ -36,6 +47,8 @@ public class SGV {
         this.product_catalog = new ProductCatalog();
         this.billing_catalog = new BillingCatalog();
         this.branches_catalog = new BranchCatalog();
+        this.readProducts = 0;
+        this.readSales = 0;
     }
 
     public void parseClients() {
@@ -62,7 +75,10 @@ public class SGV {
             String productCode = null;
 
             while ((productCode = reader.readLine()) != null) {
-                this.product_catalog.insertProduct(productCode);
+                if (this.product_catalog.insertProduct(productCode)) {
+                    this.billing_catalog.addBillingProduct(productCode);
+                }
+                this.readProducts++;
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not Found!");
@@ -71,31 +87,62 @@ public class SGV {
             e.printStackTrace();
         }
     }
+/*
+    public void parseSales() {
+        File file = new File("data/Vendas_1M.txt");
 
-    /*
-    int parseProducts(Products products, Billings bs, StartValues startValues)
-    {
-        FILE* file_pointer = fopen((startValues->path_products)->str,"r");
-        char * _fileline = g_malloc(sizeof(char)*1024);
-        while(fgets(_fileline, 1024, file_pointer) != NULL)
-        {
-            if(addProduct(products,_fileline))
-            {
-                int month;
-                for (month = 1; month < 13; month++) {
-                    insertBillingProduct(bs, month, _fileline);
-                }
-                startValues->valid_products++;
+        List<String> lista_vendas = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String sale_line = null;
+
+            while ((sale_line = reader.readLine()) != null) {
+                Sale new_sale = new Sale(sale_line);
+
+                lista_vendas.add(sale_line);
             }
-            startValues->read_products++;
-            g_free(_fileline);
-            _fileline = g_malloc(sizeof(char)*1024);
-        }
-        g_free(_fileline);
-        fclose(file_pointer);
-        return 1;
-    }
+            this.readSales = lista_vendas.size();
 
+            List<Sale> valid_vendas = new ArrayList<>();
+            valid_vendas = lista_vendas
+                    .parallelStream()
+                    .map(Sale::new)
+                    .filter(e -> this.client_catalog.existClient(e.getClient())
+                            && this.product_catalog.existProduct(e.getProduct()))
+                    .collect(Collectors.toList());
+            valid_vendas.forEach(e -> {this.billing_catalog.updateBillings(e); this.branches_catalog.updateBranches(e); this.validSales++;});
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not Found!");
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    */
+    public void parseSales() {
+        File file = new File("data/Vendas_1M.txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String sale_line = null;
+
+            while ((sale_line = reader.readLine()) != null) {
+                Sale new_sale = new Sale(sale_line);
+                if (new_sale.validSale() && this.client_catalog.existClient(new_sale.getClient()) && this.product_catalog.existProduct(new_sale.getProduct())) {
+                    this.billing_catalog.updateBillings(new_sale);
+                    this.branches_catalog.updateBranches(new_sale);
+                    this.validSales++;
+                }
+                this.readSales++;
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not Found!");
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+/*
     int parseSales(SGV sgv, StartValues startValues)
     {
         FILE* file_pointer = fopen((startValues->path_sales)->str,"r");
@@ -122,11 +169,10 @@ public class SGV {
         return 1;
     }*/
 
-    public void startSGV()
-    {
+    public void startSGV() throws IOException {
         parseClients();
         parseProducts();
-        /*parseSales(sgv, sv);*/
+        parseSales();
     }
 
     public int getClientsSize(){
@@ -136,7 +182,20 @@ public class SGV {
     public int getProductsSize(){
         return this.product_catalog.getSize();
     }
-/*
+
+    public int getReadSales() {
+        return readSales;
+    }
+
+    public int getValidSales() {
+        return validSales;
+    }
+
+    public int getReadProducts() {
+        return readProducts;
+    }
+
+    /*
     public ClientCatalog getClient_catalog() {
         return client_catalog;
     }

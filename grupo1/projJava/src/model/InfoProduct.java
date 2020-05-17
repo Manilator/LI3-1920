@@ -1,5 +1,8 @@
 package model;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
+
 public class InfoProduct {
 
     private int[] quantities; /**< Quantidades por cada mês */
@@ -8,6 +11,7 @@ public class InfoProduct {
     public InfoProduct() {
         this.quantities = new int[12];
         this.totalBilled = new double[12];
+        Arrays.fill(this.totalBilled, 0);
     }
 
     public void updateInfoProduct(int quantity, double billed, int month) {

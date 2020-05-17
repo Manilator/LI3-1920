@@ -27,13 +27,9 @@ public class Product {
         return String.format("%c%c%d",this.getFirst_letter(),this.getSecond_letter(),this.getNumber());
     }
 
-    public Boolean verifyProduct(String productCode) {
-        int number = Integer.parseInt(productCode.substring(2));
-        char first_letter = productCode.charAt(0);
-        char second_letter = productCode.charAt(1);
-        return (number >= 1000 && number <= 9999) &&
-                (first_letter >= 'A' && first_letter <= 'Z') &&
-                (second_letter >= 'A' && second_letter <= 'Z');
+    public boolean verifyProduct() {
+        String id = this.first_letter + this.second_letter + String.valueOf(this.number);
+        return id.matches("[A-Z][A-Z]([0-4]\\d{3}|50{3})");
     }
 
     Product newProduct(String productCode) {
@@ -56,6 +52,12 @@ public class Product {
 
     public int getNumber() {
         return number;
+    }
+
+    public boolean validate() {
+        return (this.first_letter >= 'A' && this.first_letter <= 'Z' &&
+                this.second_letter >= 'A' && this.second_letter <= 'Z' &&
+                this.number >= 1000 && this.number <= 9999);
     }
 
     /*

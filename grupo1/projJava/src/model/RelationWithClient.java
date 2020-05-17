@@ -1,15 +1,15 @@
 package model;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 public class RelationWithClient {
 
-    private Hashtable<String,InfoClient> infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
+    private HashMap<String,InfoClient> infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
     private int totalProductsSold; /**< Quantidade de produtos que um certo cliente comprou */
 
 
     public RelationWithClient() {
-        this.infoClients = new Hashtable<>();
+        this.infoClients = new HashMap<>();
         this.totalProductsSold = 0;
     }
 

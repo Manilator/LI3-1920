@@ -15,19 +15,18 @@ public class Client {
         this.number = Integer.parseInt(clientCode.substring(1));
     }
 
-    public String getClientCode(Client client) {
+    public static String getClientCode(Client client) {
         return String.format("%c%d",client.getLetter(),client.getNumber());
     }
 
-    public Boolean verifyClient(String clientCode) {
-        int number = Integer.parseInt(clientCode.substring(1));
-        char letter = clientCode.charAt(0);
-        return (number >= 1000 && number <= 5000) &&
-                (letter >= 'A' && letter <= 'Z');
-    }
 
     Client newClient(String clientCode) {
         return new Client(clientCode.charAt(0), Integer.parseInt(clientCode.substring(1)));
+    }
+
+    public boolean verifyClient() {
+        String id = this.letter + String.valueOf(this.number);
+        return id.matches("[A-Z]([0-4]\\d{3}|50{3})");
     }
 
     public Boolean equalsClient(Client a, Client b) {

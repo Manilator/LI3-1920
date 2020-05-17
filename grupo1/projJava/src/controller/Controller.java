@@ -3,6 +3,7 @@ package controller;
 import model.SGV;
 import view.View;
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -17,14 +18,14 @@ public class Controller {
         in = new Scanner(System.in);
     }
 
-    public void startController(){
+    public void startController() throws IOException {
         System.out.println("Starting Controller!\n----------");
         menu();
         System.out.println("Closing Controller!\n----------");
     }
 
     /* void menu(SGV sgv) */
-    void menu() {
+    void menu() throws IOException {
         String choice;
         int querie = -1;
         int initial = 0;
@@ -59,8 +60,11 @@ public class Controller {
                     long stopTime = System.nanoTime();
                     double time = (double) (stopTime - startTime) / 1_000_000_000;
                     System.out.println("Tempo a ler os dados: " + time + " segundos");
-                    view.printMessage(String.valueOf("Clientes lidos: " + this.sgv.getClientsSize()));
-                    view.printMessage(String.valueOf("Produtos lidos: " + this.sgv.getProductsSize()));
+                    view.printMessage(String.valueOf("Clientes válidos lidos: " + this.sgv.getClientsSize()));
+                    view.printMessage(String.valueOf("Produtos válidos lidos: " + this.sgv.getProductsSize()));
+                    view.printMessage(String.valueOf("Produtos lidos: " + this.sgv.getReadProducts()));
+                    view.printMessage(String.valueOf("Vendas válidos lidas: " + this.sgv.getValidSales()));
+                    view.printMessage(String.valueOf("Vendas lidas: " + this.sgv.getReadSales()));
                     /*controllerQuery2(sgv);*/
                     break;
                 case 3:

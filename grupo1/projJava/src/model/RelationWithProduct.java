@@ -1,15 +1,18 @@
 package model;
 
-import java.util.Hashtable;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class RelationWithProduct {
 
-    private Hashtable<String,InfoProduct> infoProducts; /**< Códigos de produto e a sua estrutura atribuída InfoProduct */
+    private HashMap<String,InfoProduct> infoProducts; /**< Códigos de produto e a sua estrutura atribuída InfoProduct */
     private double[] totalBilled; /**< Faturação total por cada mês */
 
     public RelationWithProduct() {
-        this.infoProducts = new Hashtable<>();
+        this.infoProducts = new HashMap<>();
         this.totalBilled = new double[12];
+        Arrays.fill(this.totalBilled, 0);
     }
 
     public void updateRelationWithProduct(String product_code, int quantity, double billed, int month) {
