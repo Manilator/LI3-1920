@@ -32,24 +32,20 @@ public class Branch {
     }
 
     public void updateBranch(String client_code, String product_code, int units, char promotion_type, double billed, int month) {
-        RelationWithClient rcc = this.productsClients.get(product_code);
-        RelationWithProduct rcp = this.clientsProducts.get(client_code);
-        if (rcc == null) {
+        if (!this.productsClients.containsKey(product_code)) {
             String _code_product = product_code;
 
             _code_product = _code_product.replace("\\r\\n", "");
             this.productsClients.put(_code_product, new RelationWithClient());
-            rcc = this.productsClients.get(_code_product);
         }
-        if (rcp == null) {
+        if (!this.clientsProducts.containsKey(client_code)) {
             String _code_client = client_code;
 
             _code_client = _code_client.replace("\\r\\n", "");
             this.clientsProducts.put(_code_client, new RelationWithProduct());
-            rcp = this.clientsProducts.get(_code_client);
         }
-        rcc.updateRelationWithClient(client_code, units, promotion_type);
-        rcp.updateRelationWithProduct(product_code, units, billed, month);
+        this.productsClients.get(product_code).updateRelationWithClient(client_code, units, promotion_type);
+        this.clientsProducts.get(client_code).updateRelationWithProduct(product_code, units, billed, month);
     }
 
 }

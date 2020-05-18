@@ -12,8 +12,14 @@ public class ClientCatalog {
         clients = new HashMap<>();
     }
 
-    public void insertClient(String clientCode){
-        this.clients.put(clientCode, new Client(clientCode));
+    public boolean insertClient(String clientCode){
+
+        Client client = new Client(clientCode);
+        if (client.validate()) {
+            this.clients.put(clientCode, client);
+            return true;
+        }
+        return false;
     }
 /*
     void fillClientsHT(Clients clients, GHashTable * clients_ht){
@@ -75,4 +81,7 @@ public class ClientCatalog {
         return this.clients.containsKey(code);
     }
 
+    public void setClients(HashMap<String, Client> clients) {
+        this.clients = clients;
+    }
 }

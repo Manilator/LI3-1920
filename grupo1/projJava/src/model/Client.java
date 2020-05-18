@@ -1,5 +1,9 @@
 package model;
 
+import java.util.regex.Matcher;
+
+import static Utils.Constants.clientPattern;
+
 public class Client {
 
     private final char letter; /**< Primeira letra no código de cliente */
@@ -24,9 +28,11 @@ public class Client {
         return new Client(clientCode.charAt(0), Integer.parseInt(clientCode.substring(1)));
     }
 
-    public boolean verifyClient() {
-        String id = this.letter + String.valueOf(this.number);
-        return id.matches("[A-Z]([0-4]\\d{3}|50{3})");
+    public boolean validate() {
+        String id = this.letter +
+                String.valueOf(this.number);
+        Matcher e = clientPattern.matcher(id);
+        return e.matches();
     }
 
     public Boolean equalsClient(Client a, Client b) {

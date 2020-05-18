@@ -1,5 +1,9 @@
 package model;
 
+import java.util.regex.Matcher;
+
+import static Utils.Constants.*;
+
 public class Product {
     private final char first_letter;
     private final char second_letter;
@@ -24,12 +28,16 @@ public class Product {
     }
 
     String getProductCode() {
-        return String.format("%c%c%d",this.getFirst_letter(),this.getSecond_letter(),this.getNumber());
+        StringBuilder id = new StringBuilder();
+        id.append(this.first_letter);
+        id.append(this.second_letter);
+        id.append(String.valueOf(this.number));
+        return id.toString();
     }
 
-    public boolean verifyProduct() {
-        String id = this.first_letter + this.second_letter + String.valueOf(this.number);
-        return id.matches("[A-Z][A-Z]([0-4]\\d{3}|50{3})");
+    public boolean validate() {
+        Matcher e = productPattern.matcher(getProductCode());
+        return e.matches();
     }
 
     Product newProduct(String productCode) {
@@ -53,12 +61,12 @@ public class Product {
     public int getNumber() {
         return number;
     }
-
+/*
     public boolean validate() {
         return (this.first_letter >= 'A' && this.first_letter <= 'Z' &&
                 this.second_letter >= 'A' && this.second_letter <= 'Z' &&
                 this.number >= 1000 && this.number <= 9999);
-    }
+    }*/
 
     /*
     void destroyProduct(Product product) {

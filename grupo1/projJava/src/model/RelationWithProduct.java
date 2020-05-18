@@ -17,15 +17,13 @@ public class RelationWithProduct {
 
     public void updateRelationWithProduct(String product_code, int quantity, double billed, int month) {
         this.totalBilled[month-1] += billed;
-        InfoProduct ip = this.infoProducts.get(product_code);
-        if (ip == null) {
+        if (!this.infoProducts.containsKey(product_code)) {
             String _code_product = product_code;
 
             _code_product = _code_product.replace("\\r\\n", "");
             this.infoProducts.put(_code_product, new InfoProduct());
-            ip = this.infoProducts.get(_code_product);
         }
-        ip.updateInfoProduct(quantity,billed,month);
+        this.infoProducts.get(product_code).updateInfoProduct(quantity,billed,month);
     }
 
 }

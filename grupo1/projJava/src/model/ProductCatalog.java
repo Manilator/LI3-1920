@@ -5,7 +5,7 @@ import java.util.Hashtable;
 
 public class ProductCatalog {
 
-    private final HashMap<String,Product> products;
+    private HashMap<String,Product> products;
 
 
     public ProductCatalog() {
@@ -35,5 +35,9 @@ public class ProductCatalog {
 
     public boolean existProduct(String code) {
         return this.products.containsKey(code);
+    }
+
+    public void setProducts(HashMap<String, Product> products) {
+        this.products = products;
     }
 }

@@ -27,7 +27,8 @@ public class BranchCatalog {
 
     public void updateBranches(Sale sale) {
         int branch_number = sale.getBranch();
+        int units = sale.getUnits();
         Branch exist = this.branches[branch_number-1];
-        exist.updateBranch(sale.getClient(), sale.getProduct(), sale.getUnits(), sale.getPromotion(), sale.getPrice() * sale.getUnits(), sale.getMonth());
+        exist.updateBranch(sale.getClient(), sale.getProduct(), units, sale.getPromotion(), sale.getPrice() * units, sale.getMonth());
     }
 }

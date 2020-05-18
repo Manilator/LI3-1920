@@ -1,6 +1,7 @@
 package model;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static Utils.Constants.N_MONTHS;
@@ -8,9 +9,11 @@ import static Utils.Constants.N_MONTHS;
 public class BillingCatalog {
 
     private final Billing[] billings;
+    private final HashMap<String, BillingProduct> billingsProduct; /**< Faturação dividida por produtos */
 
     public BillingCatalog() {
         this.billings = new Billing[N_MONTHS];
+        this.billingsProduct = new HashMap<>();
         this.initBillingCatalog();
     }
 
@@ -25,14 +28,31 @@ public class BillingCatalog {
     }
 
     public void addBillingProduct(String code) {
-        for (Billing e : this.billings) {
-            e.addBillingProduct(code);
+        String _code = code;
+
+        _code = _code.replace("\\r\\n", "");
+        if (!this.billingsProduct.containsKey(_code)) {
+            this.billingsProduct.put(_code, new BillingProduct());
         }
     }
 
     void updateBillings(Sale sale) {
-        int mes = sale.getMonth();
-        Billing exist = this.billings[mes-1];
-        exist.updateBilling(sale.getProduct(), sale.getPrice() * sale.getUnits(), sale.getUnits(), sale.getPromotion(), sale.getBranch());
+        String code = sale.getProduct();
+        int month = sale.getMonth();
+        double totalBilled = sale.getPrice() * sale.getUnits();
+        int unities = sale.getUnits();
+        int branch = sale.getBranch();
+        char promotion_type = sale.getPromotion();
+        this.billings[month-1]
+                .updateBilling(code,
+                totalBilled,
+                unities, promotion_type,
+                branch);
+        this.billingsProduct.get(code).updateBillingProduct(totalBilled, unities, promotion_type, branch, month);
+    }
+
+
+    private BillingProduct getBillingProduct(String product_code) {
+        return this.billingsProduct.get(product_code);
     }
 }

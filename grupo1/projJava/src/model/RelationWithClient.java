@@ -15,14 +15,12 @@ public class RelationWithClient {
 
     public void updateRelationWithClient(String client_code, int units, char promotion_type) {
         this.totalProductsSold += units;
-        InfoClient ic = this.infoClients.get(client_code);
-        if (ic == null) {
+        if (!this.infoClients.containsKey(client_code)) {
             String _code_client = client_code;
 
             _code_client = _code_client.replace("\\r\\n", "");
             this.infoClients.put(_code_client, new InfoClient());
-            ic = this.infoClients.get(_code_client);
         }
-        ic.updateInfoClient(units,promotion_type);
+        this.infoClients.get(client_code).updateInfoClient(units,promotion_type);
     }
 }
