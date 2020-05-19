@@ -1,8 +1,8 @@
 package view;
 
-public class View {
+public class GestVendasView implements IGestVendasView {
 
-    public View() {
+    public GestVendasView() {
     }
 
     public void printMenu(){

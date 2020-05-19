@@ -12,7 +12,7 @@ import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-public class SGV {
+public class GestVendasModel implements IGestVendasModel {
 
     private IClientCatalog client_catalog; /**< Cátalogo de clientes */
     private final IProductCatalog product_catalog; /**< Cátalogo de produto */
@@ -44,7 +44,7 @@ public class SGV {
         startValues->path_sales = g_string_new(sales_path);
     }*/
 
-    public SGV(){
+    public GestVendasModel(){
         this.client_catalog = new ClientCatalog();
         this.product_catalog = new ProductCatalog();
         this.billing_catalog = new BillingCatalog();

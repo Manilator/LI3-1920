@@ -1,12 +1,13 @@
-import controller.Controller;
+import controller.GestVendasController;
+import controller.IGestVendasController;
 
 import java.io.IOException;
 
-public class Main {
+public class GestVendasAppMVC {
     public static void main(String[] args) throws IOException {
         System.out.println("Starting Main!\n----------");
 
-        Controller controller = new Controller();
+        IGestVendasController controller = new GestVendasController();
 
         if (args.length == 0) {
             controller.startController();

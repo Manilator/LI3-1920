@@ -1,20 +1,21 @@
 package controller;
 
-import model.SGV;
-import view.View;
+import model.GestVendasModel;
+import model.IGestVendasModel;
+import view.GestVendasView;
+import view.IGestVendasView;
 
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
-public class Controller {
-    public View view;
-    private final SGV sgv;
+public class GestVendasController implements IGestVendasController {
+    public IGestVendasView view;
+    private final IGestVendasModel gv;
     private final Scanner in;
 
-    public Controller() {
-        this.view = new View();
-        this.sgv = new SGV();
+    public GestVendasController() {
+        this.view = new GestVendasView();
+        this.gv = new GestVendasModel();
         in = new Scanner(System.in);
     }
 
@@ -56,15 +57,15 @@ public class Controller {
                     break;
                 case 2:
                     long startTime = System.nanoTime();
-                    sgv.startSGV();
+                    gv.startSGV();
                     long stopTime = System.nanoTime();
                     double time = (double) (stopTime - startTime) / 1_000_000_000;
                     System.out.println("Tempo a ler os dados: " + time + " segundos");
-                    view.printMessage(String.valueOf("Clientes válidos lidos: " + this.sgv.getClientsSize()));
-                    view.printMessage(String.valueOf("Produtos válidos lidos: " + this.sgv.getProductsSize()));
-                    view.printMessage(String.valueOf("Produtos lidos: " + this.sgv.getReadProducts()));
-                    view.printMessage(String.valueOf("Vendas válidos lidas: " + this.sgv.getValidSales()));
-                    view.printMessage(String.valueOf("Vendas lidas: " + this.sgv.getReadSales()));
+                    view.printMessage(String.valueOf("Clientes válidos lidos: " + this.gv.getClientsSize()));
+                    view.printMessage(String.valueOf("Produtos válidos lidos: " + this.gv.getProductsSize()));
+                    view.printMessage(String.valueOf("Produtos lidos: " + this.gv.getReadProducts()));
+                    view.printMessage(String.valueOf("Vendas válidos lidas: " + this.gv.getValidSales()));
+                    view.printMessage(String.valueOf("Vendas lidas: " + this.gv.getReadSales()));
                     /*controllerQuery2(sgv);*/
                     break;
                 case 3:
