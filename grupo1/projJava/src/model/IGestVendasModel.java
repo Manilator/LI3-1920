@@ -1,6 +1,7 @@
 package model;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface IGestVendasModel {
 
@@ -16,4 +17,5 @@ public interface IGestVendasModel {
 
     public int getReadProducts();
 
+    List<String> query1();
 }

@@ -70,6 +70,7 @@ public class GestVendasController implements IGestVendasController {
                     break;
                 case 3:
                     System.out.println("Query 3");
+                    System.out.println(gv.query1().size());
                     /*controllerQuery3(sgv);*/
                     break;
                 case 4:

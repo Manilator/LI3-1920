@@ -49,4 +49,10 @@ public class Branch implements IBranch {
         this.clientsProducts.get(client_code).updateRelationWithProduct(product_code, units, billed, month);
     }
 
+    public Map<String, String> getProductsNeverBought(Map<String, String> productsBought){
+        for (String productCode : this.productsClients.keySet())
+            if (!productsBought.containsKey(productCode))
+                productsBought.put(productCode,productCode);
+        return productsBought;
+    }
 }

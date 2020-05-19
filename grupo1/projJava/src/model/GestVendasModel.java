@@ -170,6 +170,11 @@ public class GestVendasModel implements IGestVendasModel {
     }
 */
 
+    public List<String> query1() {
+        Map<String,String> allProductsBought = this.branches_catalog.getProductNeverBought();
+        return this.product_catalog.getProductsNotBought(allProductsBought);
+    }
+
     public void startSGV() throws IOException {
         parseClients();
         parseProducts();
