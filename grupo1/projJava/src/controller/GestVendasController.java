@@ -4,15 +4,19 @@ import model.GestVendasModel;
 import model.IGestVendasModel;
 import view.GestVendasView;
 import view.IGestVendasView;
+import view.IPages;
+import view.Pages;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class GestVendasController implements IGestVendasController {
     public IGestVendasView view;
     private final IGestVendasModel gv;
     private final Scanner in;
+    private IPages pages;
 
     public GestVendasController() {
         this.view = new GestVendasView();
@@ -34,6 +38,31 @@ public class GestVendasController implements IGestVendasController {
         menu();
     }
 
+    void query1Controller() {
+        int n_page = 0;
+        List<String> list = gv.query1();
+        String choice = "-1";
+        Scanner sc = new Scanner(System.in);
+        while(!choice.equals("0")) {
+            view.printMessage("==================================");
+            view.printMessage("#### Produtos nunca comprados ####");
+            view.printMessage("==================================");
+            pages = new Pages(list.size(),list);
+            pages.show(n_page);
+            pages.choices();
+            choice = sc.nextLine();
+            switch (choice) {
+                case "n" -> n_page++;
+                case "p" -> n_page--;
+                case "c" -> {
+                    view.printMessage("Número da página: ");
+                    n_page = in.nextInt();
+                }
+                default -> choice = "0";
+            }
+        }
+    }
+
     /* void menu(SGV sgv) */
     void menu() throws IOException {
 
@@ -52,14 +81,13 @@ public class GestVendasController implements IGestVendasController {
             switch (querie)
             {
                 case 1:
-
+                    query1Controller();
                     break;
                 case 2:
                     /*controllerQuery2(sgv);*/
                     break;
                 case 3:
-                    System.out.println("Query 3");
-                    System.out.println(gv.query1().size());
+
                     /*controllerQuery3(sgv);*/
                     break;
                 case 4:
