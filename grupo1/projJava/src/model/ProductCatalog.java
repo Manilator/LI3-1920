@@ -1,5 +1,7 @@
 package model;
 
+import java.util.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,5 +34,15 @@ public class ProductCatalog implements IProductCatalog {
 
     public void setProducts(HashMap<String, IProduct> products) {
         this.products = products;
+    }
+
+    public List<String> getProductsNotBought(Map<String,String> allProductsBought){
+        List<String> result = new ArrayList<>();
+
+        for (Map.Entry<String, IProduct> entry : products.entrySet())
+            if(!allProductsBought.containsKey(entry.getKey()))
+                result.add(entry.getKey());
+        Collections.sort(result);
+        return result;
     }
 }

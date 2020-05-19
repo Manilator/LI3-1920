@@ -1,8 +1,7 @@
 package model;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Hashtable;
+import java.util.*;
 
 import static Utils.Constants.N_BRANCHES;
 
@@ -29,5 +28,15 @@ public class BranchCatalog implements IBranchCatalog {
         int branch_number = sale.getBranch();
         int units = sale.getUnits();
         this.branches[branch_number-1].updateBranch(sale.getClient(), sale.getProduct(), units, sale.getPromotion(), sale.getPrice() * units, sale.getMonth());
+    }
+
+    @Override
+    public Map<String,String> getProductNeverBought() {
+        Map<String,String> productsBought = new LinkedHashMap<>();
+
+        for (int branch = 0; branch < N_BRANCHES; branch++)
+            productsBought = this.branches[branch].getProductsNeverBought(productsBought);
+
+        return productsBought;
     }
 }
