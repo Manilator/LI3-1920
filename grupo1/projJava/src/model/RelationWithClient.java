@@ -1,10 +1,11 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class RelationWithClient implements IRelationWithClient {
 
-    private HashMap<String,IInfoClient> infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
+    private Map<String,IInfoClient> infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
     private int totalProductsSold; /**< Quantidade de produtos que um certo cliente comprou */
 
 

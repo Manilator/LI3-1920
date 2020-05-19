@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class ClientCatalog implements IClientCatalog {
 
-    private HashMap<String,IClient> clients;
+    private Map<String,IClient> clients;
 
     public ClientCatalog(){
         clients = new HashMap<>();

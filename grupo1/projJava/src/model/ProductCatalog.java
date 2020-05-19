@@ -2,19 +2,17 @@ package model;
 
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 public class ProductCatalog implements IProductCatalog {
 
-    private HashMap<String,IProduct> products;
+    private Map<String,IProduct> products;
 
 
     public ProductCatalog() {
         products = new HashMap<>();
     }
 
-    public Hashtable<String, IProduct> getProducts() {
-        return (Hashtable<String, IProduct>) products.clone();
-    }
 
     public boolean insertProduct(String productCode){
         Product product = new Product(productCode);
@@ -23,10 +21,6 @@ public class ProductCatalog implements IProductCatalog {
             return true;
         }
         return false;
-    }
-
-    public IProduct getProduct(String cod) {
-        return this.getProducts().get(cod);
     }
 
     public int getSize() {

@@ -4,11 +4,12 @@ import javax.management.relation.Relation;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 public class Branch implements IBranch {
 
-    private HashMap<String, IRelationWithClient> productsClients; /**< Códigos de produtos e a sua estrutura atribuída RelationWithClient */
-    private HashMap<String, IRelationWithProduct> clientsProducts; /**< Códigos de clientes e a sua estrutura atribuída RelationWithProduct */
+    private Map<String, IRelationWithClient> productsClients; /**< Códigos de produtos e a sua estrutura atribuída RelationWithClient */
+    private Map<String, IRelationWithProduct> clientsProducts; /**< Códigos de clientes e a sua estrutura atribuída RelationWithProduct */
 
     public Branch() {
         this.productsClients = new HashMap<>();

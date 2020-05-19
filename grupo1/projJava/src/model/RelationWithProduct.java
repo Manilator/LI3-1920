@@ -3,10 +3,11 @@ package model;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class RelationWithProduct implements IRelationWithProduct {
 
-    private HashMap<String,IInfoProduct> infoProducts; /**< Códigos de produto e a sua estrutura atribuída InfoProduct */
+    private Map<String,IInfoProduct> infoProducts; /**< Códigos de produto e a sua estrutura atribuída InfoProduct */
     private double[] totalBilled; /**< Faturação total por cada mês */
 
     public RelationWithProduct() {

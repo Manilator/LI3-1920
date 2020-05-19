@@ -3,13 +3,14 @@ package model;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import static Utils.Constants.N_MONTHS;
 
 public class BillingCatalog implements IBillingCatalog{
 
     private final IBilling[] billings;
-    private final HashMap<String, IBillingProduct> billingsProduct; /**< Faturação dividida por produtos */
+    private final Map<String, IBillingProduct> billingsProduct; /**< Faturação dividida por produtos */
 
     public BillingCatalog() {
         this.billings = new Billing[N_MONTHS];
