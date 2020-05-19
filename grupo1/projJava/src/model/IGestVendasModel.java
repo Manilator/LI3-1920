@@ -5,7 +5,6 @@ import java.util.List;
 
 public interface IGestVendasModel {
 
-    public void startSGV() throws IOException;
 
     public int getClientsSize();
 
@@ -18,4 +17,7 @@ public interface IGestVendasModel {
     public int getReadProducts();
 
     List<String> query1();
+
+    public int getReadClients();
+
 }
