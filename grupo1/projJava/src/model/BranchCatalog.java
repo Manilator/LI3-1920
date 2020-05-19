@@ -1,7 +1,7 @@
 package model;
 
-import java.math.BigDecimal;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static Utils.Constants.N_BRANCHES;
 
@@ -38,5 +38,9 @@ public class BranchCatalog implements IBranchCatalog {
             productsBought = this.branches[branch].getProductsNeverBought(productsBought);
 
         return productsBought;
+    }
+
+    public int distinctClientsMonth(int month, int branch) {
+        return this.branches[branch-1].distinctClientsMonth(month);
     }
 }
