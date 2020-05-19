@@ -6,6 +6,7 @@ import view.GestVendasView;
 import view.IGestVendasView;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GestVendasController implements IGestVendasController {
@@ -15,57 +16,45 @@ public class GestVendasController implements IGestVendasController {
 
     public GestVendasController() {
         this.view = new GestVendasView();
+        long startTime = System.nanoTime();
         this.gv = new GestVendasModel();
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        System.out.println("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage(String.valueOf("Clientes válidos: " + this.gv.getClientsSize()));
+        view.printMessage(String.valueOf("Clientes lidos: " + this.gv.getReadClients()));
+        view.printMessage(String.valueOf("Produtos válidos: " + this.gv.getProductsSize()));
+        view.printMessage(String.valueOf("Produtos lidos: " + this.gv.getReadProducts()));
+        view.printMessage(String.valueOf("Vendas válidos: " + this.gv.getValidSales()));
+        view.printMessage(String.valueOf("Vendas lidas: " + this.gv.getReadSales()));
         in = new Scanner(System.in);
     }
 
     public void startController() throws IOException {
-        System.out.println("Starting Controller!\n----------");
         menu();
-        System.out.println("Closing Controller!\n----------");
     }
 
     /* void menu(SGV sgv) */
     void menu() throws IOException {
-        String choice;
+
         int querie = -1;
-        int initial = 0;
-        /*StartValues sv = initStartValues();
-        cleanConsole();*/
+        view.cleanConsole();
         while (querie != 0)
         {
             view.printMenu();
-            querie = in.nextInt();
-            while (querie != 1 && initial != 1 && querie != 0 && querie <= 13)
-            {
-                view.printMessage("Faça a querie 1 primeiro para carregamento dos dados.\n");
+            try {
                 querie = in.nextInt();
+            } catch (InputMismatchException e) {
+                view.printMessage("Terminando a aplicação...");
+                querie = 0;
             }
+
             switch (querie)
             {
                 case 1:
-                    if(initial == 1) {
-                        view.printMessage("A libertar dados antigos...\n");
-                        /*destroyStartValues(sv);
-                        destroySGV(sgv);
-                        sgv = initSGV();
-                        sv = initStartValues();*/
 
-                    }
-                    /*controllerQuery1(sv, sgv);*/
-                    initial = 1;
                     break;
                 case 2:
-                    long startTime = System.nanoTime();
-                    gv.startSGV();
-                    long stopTime = System.nanoTime();
-                    double time = (double) (stopTime - startTime) / 1_000_000_000;
-                    System.out.println("Tempo a ler os dados: " + time + " segundos");
-                    view.printMessage(String.valueOf("Clientes válidos lidos: " + this.gv.getClientsSize()));
-                    view.printMessage(String.valueOf("Produtos válidos lidos: " + this.gv.getProductsSize()));
-                    view.printMessage(String.valueOf("Produtos lidos: " + this.gv.getReadProducts()));
-                    view.printMessage(String.valueOf("Vendas válidos lidas: " + this.gv.getValidSales()));
-                    view.printMessage(String.valueOf("Vendas lidas: " + this.gv.getReadSales()));
                     /*controllerQuery2(sgv);*/
                     break;
                 case 3:
@@ -98,9 +87,6 @@ public class GestVendasController implements IGestVendasController {
                     break;
                 case 12:
                     /*controllerQuery12(sgv);*/
-                    break;
-                case 13:
-                    /*controllerQuery13(sv);*/
                     break;
                 default:
                     querie = 0;

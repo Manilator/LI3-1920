@@ -6,22 +6,21 @@ public class GestVendasView implements IGestVendasView {
     }
 
     public void printMenu(){
-        System.out.println("! --------------- !");
-        System.out.println("1  - Query 1");
-        System.out.println("2  - Query 2");
-        System.out.println("3  - Query 3");
-        System.out.println("4  - Query 4");
-        System.out.println("5  - Query 5");
-        System.out.println("6  - Query 6");
-        System.out.println("7  - Query 7");
-        System.out.println("8  - Query 8");
-        System.out.println("9  - Query 9");
-        System.out.println("10 - Query 10");
-        System.out.println("11 - Query 11");
-        System.out.println("12 - Query 12");
-        System.out.println("13 - Query 13");
+        System.out.println("! --------------------------------------------- !");
+        System.out.println("1  - Query 1  # Produtos nunca comprados");
+        System.out.println("2  - Query 2  # Total global de vendas & Compradores distintos");
+        System.out.println("3  - Query 3  # Informações mensais de um cliente");
+        System.out.println("4  - Query 4  # Informações mensais de um produto");
+        System.out.println("5  - Query 5  # Produtos mais comprados por um Cliente");
+        System.out.println("6  - Query 6  # Top produtos mais comprados");
+        System.out.println("7  - Query 7  # Top 3 clientes por filial");
+        System.out.println("8  - Query 8  # Top clientes que compraram produtos únicos");
+        System.out.println("9  - Query 9  # Top clientes de um produto");
+        System.out.println("10 - Query 10 # Faturação mensal de cada filial");
+        System.out.println("11 - Carregar dados");
+        System.out.println("12 - Guardar dados");
         System.out.println("*  - Exit");
-        System.out.println("! --------------- !");
+        System.out.println("! --------------------------------------------- !");
     }
 
     void printSeparator()
@@ -45,5 +44,12 @@ public class GestVendasView implements IGestVendasView {
 
     public void printMessage(String message){
         System.out.println(message);
+    }
+
+
+    public void cleanConsole()
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
