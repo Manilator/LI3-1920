@@ -1,29 +1,32 @@
 package controller;
 
-import model.SGV;
-import view.View;
+import model.GestVendasModel;
+import model.IGestVendasModel;
+import view.GestVendasView;
+import view.IGestVendasView;
 
+import java.io.IOException;
 import java.util.Scanner;
 
-public class Controller {
-    public View view;
-    private final SGV sgv;
+public class GestVendasController implements IGestVendasController {
+    public IGestVendasView view;
+    private final IGestVendasModel gv;
     private final Scanner in;
 
-    public Controller() {
-        this.view = new View();
-        this.sgv = new SGV();
+    public GestVendasController() {
+        this.view = new GestVendasView();
+        this.gv = new GestVendasModel();
         in = new Scanner(System.in);
     }
 
-    public void startController(){
+    public void startController() throws IOException {
         System.out.println("Starting Controller!\n----------");
         menu();
         System.out.println("Closing Controller!\n----------");
     }
 
     /* void menu(SGV sgv) */
-    void menu() {
+    void menu() throws IOException {
         String choice;
         int querie = -1;
         int initial = 0;
@@ -53,7 +56,16 @@ public class Controller {
                     initial = 1;
                     break;
                 case 2:
-                    sgv.startSGV();
+                    long startTime = System.nanoTime();
+                    gv.startSGV();
+                    long stopTime = System.nanoTime();
+                    double time = (double) (stopTime - startTime) / 1_000_000_000;
+                    System.out.println("Tempo a ler os dados: " + time + " segundos");
+                    view.printMessage(String.valueOf("Clientes válidos lidos: " + this.gv.getClientsSize()));
+                    view.printMessage(String.valueOf("Produtos válidos lidos: " + this.gv.getProductsSize()));
+                    view.printMessage(String.valueOf("Produtos lidos: " + this.gv.getReadProducts()));
+                    view.printMessage(String.valueOf("Vendas válidos lidas: " + this.gv.getValidSales()));
+                    view.printMessage(String.valueOf("Vendas lidas: " + this.gv.getReadSales()));
                     /*controllerQuery2(sgv);*/
                     break;
                 case 3:
@@ -95,16 +107,5 @@ public class Controller {
                     break;
             }
         }
-        /*
-        g_free(choice);
-        if (sgv != NULL){
-            boldRed();
-            printMessage("A libertar dados antigos...\n");
-            resetColor();
-            destroySGV(sgv);
-        }
-
-        if (sv != NULL)
-            destroyStartValues(sv);*/
     }
 }

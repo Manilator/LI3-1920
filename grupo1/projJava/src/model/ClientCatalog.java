@@ -1,17 +1,25 @@
 package model;
 
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
-public class ClientCatalog {
+public class ClientCatalog implements IClientCatalog {
 
-    private final Hashtable<String,Client> clients;
+    private Map<String,IClient> clients;
 
     public ClientCatalog(){
-        clients = new Hashtable<>();
+        clients = new HashMap<>();
     }
 
-    public void insertClient(String clientCode){
-        this.clients.put(clientCode, new Client(clientCode));
+    public boolean insertClient(String clientCode){
+
+        IClient client = new Client(clientCode);
+        if (client.validate()) {
+            this.clients.put(clientCode, client);
+            return true;
+        }
+        return false;
     }
 /*
     void fillClientsHT(Clients clients, GHashTable * clients_ht){
@@ -61,7 +69,19 @@ public class ClientCatalog {
         return getSizeClients(client_catalog) - g_hash_table_size(clients_used);
     }*/
 
-    public Hashtable<String, Client> getClients() {
-        return clients;
+    public int getSize() {
+        return this.clients.size();
+    }
+
+    /*public Hashtable<String, Client> getClients() {
+        return (Hashtable<String, Client>) this.clients.clone();
+    }*/
+
+    public boolean existClient(String code) {
+        return this.clients.containsKey(code);
+    }
+
+    public void setClients(HashMap<String, IClient> clients) {
+        this.clients = clients;
     }
 }
