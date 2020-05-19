@@ -1,15 +1,8 @@
 package model;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class GestVendasModel implements IGestVendasModel {
@@ -18,39 +11,22 @@ public class GestVendasModel implements IGestVendasModel {
     private final IProductCatalog product_catalog; /**< Cátalogo de produto */
     private final IBillingCatalog billing_catalog; /**< Cátalogo de faturação */
     private final IBranchCatalog branches_catalog; /**< Cátalogo de filiais */
+    private int readClients;
     private int readProducts;
     private int readSales;
     private int validSales;
-
-    /*
-    StartValues initStartValues(){
-        StartValues startValues = g_malloc(sizeof(struct startValues));
-
-        startValues->path_clients = NULL;
-        startValues->path_products = NULL;
-        startValues->path_sales = NULL;
-        startValues->valid_clients = 0;
-        startValues->read_clients = 0;
-        startValues->valid_products = 0;
-        startValues->read_products = 0;
-        startValues->valid_sales = 0;
-        startValues->read_sales = 0;
-        return startValues;
-    }
-
-    void setPathsSV(StartValues startValues, char * clients_path, char * products_path, char * sales_path){
-        startValues->path_clients = g_string_new(clients_path);
-        startValues->path_products = g_string_new(products_path);
-        startValues->path_sales = g_string_new(sales_path);
-    }*/
 
     public GestVendasModel(){
         this.client_catalog = new ClientCatalog();
         this.product_catalog = new ProductCatalog();
         this.billing_catalog = new BillingCatalog();
         this.branches_catalog = new BranchCatalog();
+        this.readClients = 0;
         this.readProducts = 0;
         this.readSales = 0;
+        parseClients();
+        parseProducts();
+        parseSales();
     }
 
     public void parseClients() {
@@ -61,6 +37,7 @@ public class GestVendasModel implements IGestVendasModel {
 
             while ((clientCode = reader.readLine()) != null) {
                 this.client_catalog.insertClient(clientCode);
+                this.readClients++;
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not Found!");
@@ -69,32 +46,6 @@ public class GestVendasModel implements IGestVendasModel {
             e.printStackTrace();
         }
     }
-/*
-    public void parseProducts() {
-        File file = new File("data/Produtos.txt");
-        List<String> produtos = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String productCode = null;
-
-            while ((productCode = reader.readLine()) != null) {
-                produtos.add(productCode);
-                this.readProducts++;
-            }
-            produtos
-                    .forEach(e -> {
-                        if (this.product_catalog.insertProduct(e)) {
-                            this.billing_catalog.addBillingProduct(e);
-                        }
-                    });
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File not Found!");
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-*/
 
     public void parseProducts() {
         File file = new File("data/Produtos.txt");
@@ -201,21 +152,7 @@ public class GestVendasModel implements IGestVendasModel {
         return readProducts;
     }
 
-    /*
-    public ClientCatalog getClient_catalog() {
-        return client_catalog;
+    public int getReadClients() {
+        return readClients;
     }
-
-    public ProductCatalog getProduct_catalog() {
-        return product_catalog;
-    }
-
-    public BillingCatalog getBilling_catalog() {
-        return billing_catalog;
-    }
-
-    public BranchCatalog getBranches_catalog() {
-        return branches_catalog;
-    }
-    */
 }

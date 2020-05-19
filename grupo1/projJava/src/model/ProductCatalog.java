@@ -2,6 +2,9 @@ package model;
 
 import java.util.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ProductCatalog implements IProductCatalog {
 
     private Map<String,IProduct> products;
