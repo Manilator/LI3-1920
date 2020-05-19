@@ -39,7 +39,7 @@ public class ProductCatalog implements IProductCatalog {
         for (Map.Entry<String, IProduct> entry : products.entrySet())
             if(!allProductsBought.containsKey(entry.getKey()))
                 result.add(entry.getKey());
-
+        Collections.sort(result);
         return result;
     }
 }

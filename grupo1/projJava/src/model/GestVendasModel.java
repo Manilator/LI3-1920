@@ -145,31 +145,6 @@ public class GestVendasModel implements IGestVendasModel {
         }
     }
 
-/*
-    public void parseSales() {
-        File file = new File("data/Vendas_1M.txt");
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String sale_line = null;
-
-            while ((sale_line = reader.readLine()) != null) {
-                Sale new_sale = new Sale(sale_line);
-                if (new_sale.validSale() && this.client_catalog.existClient(new_sale.getClient()) && this.product_catalog.existProduct(new_sale.getProduct())) {
-                    this.billing_catalog.updateBillings(new_sale);
-                    this.branches_catalog.updateBranches(new_sale);
-                    this.validSales++;
-                }
-                this.readSales++;
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not Found!");
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-*/
-
     public List<String> query1() {
         Map<String,String> allProductsBought = this.branches_catalog.getProductNeverBought();
         return this.product_catalog.getProductsNotBought(allProductsBought);
