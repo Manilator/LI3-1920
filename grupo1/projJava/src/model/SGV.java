@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 
 public class SGV {
 
-    private ClientCatalog client_catalog; /**< Cátalogo de clientes */
-    private final ProductCatalog product_catalog; /**< Cátalogo de produto */
-    private final BillingCatalog billing_catalog; /**< Cátalogo de faturação */
-    private final BranchCatalog branches_catalog; /**< Cátalogo de filiais */
+    private IClientCatalog client_catalog; /**< Cátalogo de clientes */
+    private final IProductCatalog product_catalog; /**< Cátalogo de produto */
+    private final IBillingCatalog billing_catalog; /**< Cátalogo de faturação */
+    private final IBranchCatalog branches_catalog; /**< Cátalogo de filiais */
     private int readProducts;
     private int readSales;
     private int validSales;

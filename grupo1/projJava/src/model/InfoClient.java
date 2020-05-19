@@ -1,6 +1,6 @@
 package model;
 
-public class InfoClient {
+public class InfoClient implements IInfoClient {
 
     private int unitsN; /**< Número de unidades do tipo N */
     private int unitsP; /**< Número de unidades do tipo P */

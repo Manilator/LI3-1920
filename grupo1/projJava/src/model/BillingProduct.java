@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import static Utils.Constants.*;
 
-public class BillingProduct {
+public class BillingProduct implements IBillingProduct{
 
     private double[] totalBilledN; /**< Total faturado no tipo N*/
     private double[] totalBilledP; /**< Total faturado no tipo P*/
@@ -59,7 +59,7 @@ public class BillingProduct {
         return brachesBilled.clone();
     }
 
-    void updateBillingProduct(double totalBilled, int unities, char promotion_type, int branch, int month) {
+    public void updateBillingProduct(double totalBilled, int unities, char promotion_type, int branch, int month) {
         int r = 0;
         if (promotion_type == 'N') {
             this.totalBilledN[month-1] += totalBilled;

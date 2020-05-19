@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import static Utils.Constants.N_BRANCHES;
 
-public class Sale {
+public class Sale implements ISale {
     private String  product; /**< Código de produto */
     private String  client; /**< Código de cliente */
     private double price; /**< Preço do produto */

@@ -3,17 +3,17 @@ package model;
 import java.util.HashMap;
 import java.util.Hashtable;
 
-public class ProductCatalog {
+public class ProductCatalog implements IProductCatalog {
 
-    private HashMap<String,Product> products;
+    private HashMap<String,IProduct> products;
 
 
     public ProductCatalog() {
         products = new HashMap<>();
     }
 
-    public Hashtable<String, Product> getProducts() {
-        return (Hashtable<String, Product>) products.clone();
+    public Hashtable<String, IProduct> getProducts() {
+        return (Hashtable<String, IProduct>) products.clone();
     }
 
     public boolean insertProduct(String productCode){
@@ -25,7 +25,7 @@ public class ProductCatalog {
         return false;
     }
 
-    public Product getProduct(String cod) {
+    public IProduct getProduct(String cod) {
         return this.getProducts().get(cod);
     }
 
@@ -37,7 +37,7 @@ public class ProductCatalog {
         return this.products.containsKey(code);
     }
 
-    public void setProducts(HashMap<String, Product> products) {
+    public void setProducts(HashMap<String, IProduct> products) {
         this.products = products;
     }
 }

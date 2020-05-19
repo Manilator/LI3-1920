@@ -6,10 +6,10 @@ import java.util.HashMap;
 
 import static Utils.Constants.N_MONTHS;
 
-public class BillingCatalog {
+public class BillingCatalog implements IBillingCatalog{
 
-    private final Billing[] billings;
-    private final HashMap<String, BillingProduct> billingsProduct; /**< Faturação dividida por produtos */
+    private final IBilling[] billings;
+    private final HashMap<String, IBillingProduct> billingsProduct; /**< Faturação dividida por produtos */
 
     public BillingCatalog() {
         this.billings = new Billing[N_MONTHS];
@@ -17,8 +17,8 @@ public class BillingCatalog {
         this.initBillingCatalog();
     }
 
-    public Billing[] getBranches() {
-        return  this.billings.clone();
+    public IBilling[] getBillings() {
+        return billings;
     }
 
     public void initBillingCatalog() {
@@ -36,7 +36,7 @@ public class BillingCatalog {
         }
     }
 
-    void updateBillings(Sale sale) {
+    public void updateBillings(Sale sale) {
         String code = sale.getProduct();
         int month = sale.getMonth();
         double totalBilled = sale.getPrice() * sale.getUnits();
@@ -52,7 +52,7 @@ public class BillingCatalog {
     }
 
 
-    private BillingProduct getBillingProduct(String product_code) {
+    private IBillingProduct getBillingProduct(String product_code) {
         return this.billingsProduct.get(product_code);
     }
 }

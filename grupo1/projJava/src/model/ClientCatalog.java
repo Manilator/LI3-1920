@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
-public class ClientCatalog {
+public class ClientCatalog implements IClientCatalog {
 
-    private HashMap<String,Client> clients;
+    private HashMap<String,IClient> clients;
 
     public ClientCatalog(){
         clients = new HashMap<>();
@@ -14,7 +14,7 @@ public class ClientCatalog {
 
     public boolean insertClient(String clientCode){
 
-        Client client = new Client(clientCode);
+        IClient client = new Client(clientCode);
         if (client.validate()) {
             this.clients.put(clientCode, client);
             return true;
@@ -81,7 +81,7 @@ public class ClientCatalog {
         return this.clients.containsKey(code);
     }
 
-    public void setClients(HashMap<String, Client> clients) {
+    public void setClients(HashMap<String, IClient> clients) {
         this.clients = clients;
     }
 }

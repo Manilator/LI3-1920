@@ -2,9 +2,9 @@ package model;
 
 import java.util.HashMap;
 
-public class RelationWithClient {
+public class RelationWithClient implements IRelationWithClient {
 
-    private HashMap<String,InfoClient> infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
+    private HashMap<String,IInfoClient> infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
     private int totalProductsSold; /**< Quantidade de produtos que um certo cliente comprou */
 
 
@@ -22,5 +22,9 @@ public class RelationWithClient {
             this.infoClients.put(_code_client, new InfoClient());
         }
         this.infoClients.get(client_code).updateInfoClient(units,promotion_type);
+    }
+
+    public int getTotalProductsSold() {
+        return totalProductsSold;
     }
 }

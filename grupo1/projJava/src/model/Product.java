@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 
 import static Utils.Constants.*;
 
-public class Product {
+public class Product implements IProduct {
     private final char first_letter;
     private final char second_letter;
     private final int number;

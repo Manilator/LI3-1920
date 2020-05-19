@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class RelationWithProduct {
+public class RelationWithProduct implements IRelationWithProduct {
 
-    private HashMap<String,InfoProduct> infoProducts; /**< Códigos de produto e a sua estrutura atribuída InfoProduct */
+    private HashMap<String,IInfoProduct> infoProducts; /**< Códigos de produto e a sua estrutura atribuída InfoProduct */
     private double[] totalBilled; /**< Faturação total por cada mês */
 
     public RelationWithProduct() {

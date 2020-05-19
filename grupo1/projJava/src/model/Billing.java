@@ -6,7 +6,7 @@ import java.util.*;
 
 import static Utils.Constants.N_BRANCHES;
 
-public class Billing {
+public class Billing implements IBilling{
 
     private int n_sales; /**< Número de Vendas */
     private double totalBilled; /**< Total faturado */

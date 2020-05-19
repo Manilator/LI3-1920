@@ -5,10 +5,10 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Hashtable;
 
-public class Branch {
+public class Branch implements IBranch {
 
-    private HashMap<String, RelationWithClient> productsClients; /**< Códigos de produtos e a sua estrutura atribuída RelationWithClient */
-    private HashMap<String, RelationWithProduct> clientsProducts; /**< Códigos de clientes e a sua estrutura atribuída RelationWithProduct */
+    private HashMap<String, IRelationWithClient> productsClients; /**< Códigos de produtos e a sua estrutura atribuída RelationWithClient */
+    private HashMap<String, IRelationWithProduct> clientsProducts; /**< Códigos de clientes e a sua estrutura atribuída RelationWithProduct */
 
     public Branch() {
         this.productsClients = new HashMap<>();
@@ -23,11 +23,11 @@ public class Branch {
         this.clientsProducts.put(client_code, rcp);
     }
 
-    private RelationWithClient getRelationWithClient(String cod) {
+    private IRelationWithClient getRelationWithClient(String cod) {
         return this.productsClients.get(cod);
     }
 
-    private RelationWithProduct getRelationWithProduct(String cod) {
+    private IRelationWithProduct getRelationWithProduct(String cod) {
         return this.clientsProducts.get(cod);
     }
 

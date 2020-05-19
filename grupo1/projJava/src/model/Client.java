@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 
 import static Utils.Constants.clientPattern;
 
-public class Client {
+public class Client implements IClient {
 
     private final char letter; /**< Primeira letra no código de cliente */
     private final int number; /**< Número presente no código de cliente */

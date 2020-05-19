@@ -3,7 +3,7 @@ package model;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-public class InfoProduct {
+public class InfoProduct implements IInfoProduct {
 
     private int[] quantities; /**< Quantidades por cada mês */
     private double[] totalBilled; /**< Faturação total por cada mês */
