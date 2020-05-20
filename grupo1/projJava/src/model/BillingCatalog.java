@@ -35,7 +35,7 @@ public class BillingCatalog implements IBillingCatalog{
         }
     }
 
-    public void updateBillings(Sale sale) {
+    public void updateBillings(ISale sale) {
         String code = sale.getProduct();
         int month = sale.getMonth();
         double totalBilled = sale.getPrice() * sale.getUnits();
@@ -61,5 +61,13 @@ public class BillingCatalog implements IBillingCatalog{
 
     public int getTotalSalesMonth(int month, int branch) {
         return this.billings[month-1].getN_sales(branch);
+    }
+
+    public int[] getNSalesProduct(String product) {
+        return this.billingsProduct.get(product).getN_sales();
+    }
+
+    public double[] getTotalBilledMonth(String product) {
+        return this.billingsProduct.get(product).getTotalBilled();
     }
 }

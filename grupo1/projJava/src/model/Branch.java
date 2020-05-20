@@ -42,7 +42,7 @@ public class Branch implements IBranch {
             _code_client = _code_client.replace("\\r\\n", "");
             this.clientsProducts.put(_code_client, new RelationWithProduct());
         }
-        this.productsClients.get(product_code).updateRelationWithClient(client_code, units, promotion_type);
+        this.productsClients.get(product_code).updateRelationWithClient(client_code, units, promotion_type, month);
         this.clientsProducts.get(client_code).updateRelationWithProduct(product_code, units, billed, month);
     }
 
@@ -56,5 +56,9 @@ public class Branch implements IBranch {
     public int distinctClientsMonth(int month) {
         HashMap<String, IRelationWithProduct> list = new HashMap<>(this.clientsProducts);
         return (int) this.clientsProducts.values().stream().filter(e -> e.didPurchaseMonth(month)).count();
+    }
+
+    public int[] getDistinctsClientsProductMonth(String product) {
+        return this.productsClients.get(product).getDistinctsClientsProductMonth();
     }
 }

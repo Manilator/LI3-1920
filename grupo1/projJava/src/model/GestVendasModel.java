@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static Utils.Constants.N_BRANCHES;
+import static Utils.Constants.*;
 
 public class GestVendasModel implements IGestVendasModel {
 
@@ -115,6 +115,20 @@ public class GestVendasModel implements IGestVendasModel {
         }
 
         return list;
+    }
+
+    public double[][] query4(String product) {
+        double[][] array = new double[N_MONTHS][3];
+        int[] salesMonth = this.billing_catalog.getNSalesProduct(product);
+        double[] billedMonth = this.billing_catalog.getTotalBilledMonth(product);
+        int[] clientsMonth = this.branches_catalog.getTotalDistinctsClientsProductMonth(product);
+
+        for (int i = 0; i < N_MONTHS; i++) {
+            array[i][0] = salesMonth[i];
+            array[i][1] = billedMonth[i];
+            array[i][2] = clientsMonth[i];
+        }
+        return array;
     }
 
     public void startSGV() throws IOException {

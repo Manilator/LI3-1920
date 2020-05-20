@@ -9,4 +9,6 @@ public interface IBranch {
     Map<String, String> getProductsNeverBought(Map<String, String> productsBought);
 
     public int distinctClientsMonth(int month);
+
+    public int[] getDistinctsClientsProductMonth(String product);
 }

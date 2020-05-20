@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static Utils.Constants.N_BRANCHES;
+import static Utils.Constants.N_MONTHS;
 
 public class GestVendasController implements IGestVendasController {
     public IGestVendasView view;
@@ -59,13 +60,15 @@ public class GestVendasController implements IGestVendasController {
             pages.choices();
             choice = sc.nextLine();
             switch (choice) {
-                case "n" -> n_page++;
-                case "p" -> n_page--;
-                case "c" -> {
+                case "n":
+                    n_page++;
+                case "p":
+                    n_page--;
+                case "c":
                     view.printMessage("Número da página: ");
                     n_page = in.nextInt();
-                }
-                default -> choice = "0";
+                default:
+                    choice = "0";
             }
         }
     }
@@ -96,6 +99,17 @@ public class GestVendasController implements IGestVendasController {
 
     }
 
+    void query4Controller() {
+        Scanner sc = new Scanner(System.in);
+        String product = sc.nextLine();
+        long startTime = System.nanoTime();
+        double[][] result = gv.query4(product);
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        System.out.println("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.query4View(result);
+    }
+
     /* void menu(SGV sgv) */
     void menu() throws IOException {
 
@@ -124,6 +138,7 @@ public class GestVendasController implements IGestVendasController {
                     /*controllerQuery3(sgv);*/
                     break;
                 case 4:
+                    query4Controller();
                     /*controllerQuery4(sgv);*/
                     break;
                 case 5:
