@@ -90,4 +90,8 @@ public class BillingProduct implements IBillingProduct{
         return result;
     }
 
+    public int getTotalUnits() {
+        return Arrays.stream(unitiesN).sum() + Arrays.stream(unitiesP).sum();
+    }
+
 }

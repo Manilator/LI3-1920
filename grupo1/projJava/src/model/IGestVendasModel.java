@@ -21,6 +21,8 @@ public interface IGestVendasModel {
 
     public double[][] query4(String product);
 
+    public String[][] query6(int n);
+
     public int getReadClients();
 
 }
