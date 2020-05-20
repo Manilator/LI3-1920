@@ -124,6 +124,11 @@ public class GestVendasController implements IGestVendasController {
                     /*controllerQuery3(sgv);*/
                     break;
                 case 4:
+                    long startTime = System.nanoTime();
+                    gv.query4("AF1184");
+                    long stopTime = System.nanoTime();
+                    double time = (double) (stopTime - startTime) / 1_000_000_000;
+                    System.out.println("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
                     /*controllerQuery4(sgv);*/
                     break;
                 case 5:

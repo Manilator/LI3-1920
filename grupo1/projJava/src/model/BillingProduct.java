@@ -6,12 +6,13 @@ import static Utils.Constants.*;
 
 public class BillingProduct implements IBillingProduct{
 
-    private double[] totalBilledN; /**< Total faturado no tipo N*/
-    private double[] totalBilledP; /**< Total faturado no tipo P*/
-    private int[] unitiesP; /**< Unidades P vendidas */
-    private int[] unitiesN; /**< Unidades N vendidas */
+    private double[] totalBilledN; /**< Total faturado no tipo N separado por meses*/
+    private double[] totalBilledP; /**< Total faturado no tipo P separado por meses*/
+    private int[] unitiesP; /**< Unidades P vendidas separado por meses*/
+    private int[] unitiesN; /**< Unidades N vendidas separado por meses*/
     private int[][] branchesQnt; /**< Quantdade dividida por filiais e tipo de promoção */
     private double[][] brachesBilled; /**< Faturação dividida por filiais e tipo de promoção */
+    private int[] n_sales; /**< Número de vendas separadas por mês */
 
     BillingProduct() {
         this.totalBilledN = new double[N_MONTHS];
@@ -20,6 +21,7 @@ public class BillingProduct implements IBillingProduct{
         this.unitiesN = new int[N_MONTHS];
         this.branchesQnt = new int[N_BRANCHES][N_TYPES];
         this.brachesBilled = new double[N_BRANCHES][N_TYPES];
+        this.n_sales = new int[N_MONTHS];
         this.initArrays();
     }
 
@@ -33,6 +35,7 @@ public class BillingProduct implements IBillingProduct{
         Arrays.fill(this.totalBilledP, 0);
         Arrays.fill(this.unitiesN, 0);
         Arrays.fill(this.unitiesP, 0);
+        Arrays.fill(this.n_sales,0);
     }
 
     public double[] getTotalBilledN() {
@@ -74,6 +77,17 @@ public class BillingProduct implements IBillingProduct{
             this.branchesQnt[branch-1][P] += unities;
             r = 1;
         }
+        this.n_sales[month-1]++;
+    }
+
+    public int[] getN_sales() {
+        return this.n_sales;
+    }
+
+    public double[] getTotalBilled() {
+        double[] result = new double[N_MONTHS];
+        Arrays.setAll(result, e -> this.totalBilledN[e] + this.totalBilledP[e]);
+        return result;
     }
 
 }

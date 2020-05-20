@@ -9,4 +9,6 @@ public interface IBranchCatalog {
     Map<String,String> getProductNeverBought();
 
     public int distinctClientsMonth(int month, int branch);
+
+    public int[] getTotalDistinctsClientsProductMonth(String product);
 }

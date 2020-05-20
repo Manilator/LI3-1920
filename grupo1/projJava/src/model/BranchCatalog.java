@@ -1,9 +1,11 @@
 package model;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static Utils.Constants.N_BRANCHES;
+import static Utils.Constants.N_MONTHS;
 
 public class BranchCatalog implements IBranchCatalog {
 
@@ -42,5 +44,20 @@ public class BranchCatalog implements IBranchCatalog {
 
     public int distinctClientsMonth(int month, int branch) {
         return this.branches[branch-1].distinctClientsMonth(month);
+    }
+
+    public int[] getTotalDistinctsClientsProductMonth(String product) {
+        int[][] totals = new int[N_BRANCHES][N_MONTHS];
+        for(int i = 0; i < N_BRANCHES; i++) {
+            totals[i] = this.branches[i].getDistinctsClientsProductMonth(product);
+        }
+        int[] result = new int[N_MONTHS];
+        Arrays.fill(result,0);
+        for(int i = 0; i < N_BRANCHES; i++) {
+            for (int j = 0; j < N_MONTHS; j++) {
+                result[j] += totals[i][j];
+            }
+        }
+        return result;
     }
 }

@@ -10,4 +10,8 @@ public interface IBillingCatalog {
 
     public int getTotalSalesMonth(int month, int branch);
 
+    public int[] getNSalesProduct(String product);
+
+    public double[] getTotalBilledMonth(String product);
+
 }
