@@ -35,7 +35,7 @@ public class BillingCatalog implements IBillingCatalog{
         }
     }
 
-    public void updateBillings(Sale sale) {
+    public void updateBillings(ISale sale) {
         String code = sale.getProduct();
         int month = sale.getMonth();
         double totalBilled = sale.getPrice() * sale.getUnits();

@@ -117,22 +117,18 @@ public class GestVendasModel implements IGestVendasModel {
         return list;
     }
 
-    public int[][] query4(String product) {
-        int[][] array = new int[N_MONTHS][3];
+    public double[][] query4(String product) {
+        double[][] array = new double[N_MONTHS][3];
         int[] salesMonth = this.billing_catalog.getNSalesProduct(product);
         double[] billedMonth = this.billing_catalog.getTotalBilledMonth(product);
         int[] clientsMonth = this.branches_catalog.getTotalDistinctsClientsProductMonth(product);
 
         for (int i = 0; i < N_MONTHS; i++) {
-            System.out.println("Mês " + String.valueOf(i+1));
-            System.out.println(salesMonth[i]);
-            System.out.println(billedMonth[i]);
-            System.out.println(clientsMonth[i]);
+            array[i][0] = salesMonth[i];
+            array[i][1] = billedMonth[i];
+            array[i][2] = clientsMonth[i];
         }
-
-
-
-        return null;
+        return array;
     }
 
     public void startSGV() throws IOException {

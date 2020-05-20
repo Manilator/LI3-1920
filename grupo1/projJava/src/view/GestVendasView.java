@@ -1,5 +1,10 @@
 package view;
 
+import java.util.List;
+
+import static Utils.Constants.N_BRANCHES;
+import static Utils.Constants.N_MONTHS;
+
 public class GestVendasView implements IGestVendasView {
 
     public GestVendasView() {
@@ -46,6 +51,14 @@ public class GestVendasView implements IGestVendasView {
         System.out.println(message);
     }
 
+    public void query4View(double[][] result) {
+        for (int i = 0; i < N_MONTHS; i++) {
+            printMessage("Mês " + String.valueOf(i+1));
+            printMessage("Número de vendas: " + String.valueOf((int) result[i][0]));
+            printMessage("Faturado: " + String.format("%.3f", result[i][1]));
+            printMessage("Número de cliente: " + String.valueOf((int) result[i][2]));
+        }
+    }
 
     public void cleanConsole()
     {

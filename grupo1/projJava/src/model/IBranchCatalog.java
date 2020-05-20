@@ -4,7 +4,7 @@ import java.util.Map;
 
 public interface IBranchCatalog {
 
-    public void updateBranches(Sale sale);
+    public void updateBranches(ISale sale);
 
     Map<String,String> getProductNeverBought();
 

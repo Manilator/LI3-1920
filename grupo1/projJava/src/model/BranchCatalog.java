@@ -26,7 +26,7 @@ public class BranchCatalog implements IBranchCatalog {
         }
     }
 
-    public void updateBranches(Sale sale) {
+    public void updateBranches(ISale sale) {
         int branch_number = sale.getBranch();
         int units = sale.getUnits();
         this.branches[branch_number-1].updateBranch(sale.getClient(), sale.getProduct(), units, sale.getPromotion(), sale.getPrice() * units, sale.getMonth());

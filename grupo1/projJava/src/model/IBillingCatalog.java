@@ -4,7 +4,7 @@ public interface IBillingCatalog {
 
     public void addBillingProduct(String code);
 
-    public void updateBillings(Sale sale);
+    public void updateBillings(ISale sale);
 
     public int getTotalSalesMonth(int month);
 

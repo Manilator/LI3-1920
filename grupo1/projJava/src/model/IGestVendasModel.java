@@ -19,7 +19,7 @@ public interface IGestVendasModel {
 
     public List<Integer> query2(int month);
 
-    public int[][] query4(String product);
+    public double[][] query4(String product);
 
     public int getReadClients();
 
