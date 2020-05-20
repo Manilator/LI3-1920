@@ -99,8 +99,12 @@ public class GestVendasModel implements IGestVendasModel {
         }
     }
 
-    public List<String> query1() {
-        Map<String,String> allProductsBought = this.branches_catalog.getProductNeverBought();
+    /**
+     *  Lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respetivo total
+     * @return Lista ordenada com os códigos de produtos nunca comprados
+     */
+    public List<String> getProductNeverBought() {
+        Map<String,String> allProductsBought = this.branches_catalog.getProductsBought();
         return this.product_catalog.getProductsNotBought(allProductsBought);
     }
 
@@ -115,6 +119,15 @@ public class GestVendasModel implements IGestVendasModel {
         }
 
         return list;
+    }
+
+    /**
+     * Dado um código de cliente, determinar, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total
+     * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês
+     */
+    public double[] query3(){
+        this.branches_catalog.("F2916");
+        return null;
     }
 
     public double[][] query4(String product) {

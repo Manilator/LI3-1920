@@ -15,7 +15,7 @@ public interface IGestVendasModel {
 
     public int getReadProducts();
 
-    List<String> query1();
+    List<String> getProductNeverBought();
 
     public List<Integer> query2(int month);
 

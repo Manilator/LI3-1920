@@ -45,7 +45,7 @@ public class GestVendasController implements IGestVendasController {
     void query1Controller() {
         int n_page = 0;
         long startTime = System.nanoTime();
-        List<String> list = gv.query1();
+        List<String> list = gv.getProductNeverBought();
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         System.out.println("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");

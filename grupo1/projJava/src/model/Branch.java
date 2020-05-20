@@ -46,7 +46,11 @@ public class Branch implements IBranch {
         this.clientsProducts.get(client_code).updateRelationWithProduct(product_code, units, billed, month);
     }
 
-    public Map<String, String> getProductsNeverBought(Map<String, String> productsBought){
+    /**
+     * Hashtable com os códigos de todos os produtos que efetuaram compras na filial
+     * @return Map com códigos de produtos como valores e chaves que compraram na filial
+     */
+    public Map<String, String> getProductsBought(Map<String, String> productsBought){
         for (String productCode : this.productsClients.keySet())
             if (!productsBought.containsKey(productCode))
                 productsBought.put(productCode,productCode);

@@ -4,11 +4,15 @@ import java.util.Map;
 
 public interface IBranchCatalog {
 
-    public void updateBranches(ISale sale);
+    void updateBranches(ISale sale);
 
-    Map<String,String> getProductNeverBought();
+    /**
+     * Hashtable com todos os códigos de todos os produtos que efetuaram compras em pelo menos uma filial
+     * @return Map com códigos de produtos como valores e chaves
+     */
+    Map<String,String> getProductsBought();
 
-    public int distinctClientsMonth(int month, int branch);
+    int distinctClientsMonth(int month, int branch);
 
-    public int[] getTotalDistinctsClientsProductMonth(String product);
+    int[] getTotalDistinctsClientsProductMonth(String product);
 }
