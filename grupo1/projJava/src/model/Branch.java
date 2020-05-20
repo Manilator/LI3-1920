@@ -1,9 +1,6 @@
 package model;
 
-import javax.management.relation.Relation;
-import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 public class Branch implements IBranch {
@@ -54,5 +51,10 @@ public class Branch implements IBranch {
             if (!productsBought.containsKey(productCode))
                 productsBought.put(productCode,productCode);
         return productsBought;
+    }
+
+    public int distinctClientsMonth(int month) {
+        HashMap<String, IRelationWithProduct> list = new HashMap<>(this.clientsProducts);
+        return (int) this.clientsProducts.values().stream().filter(e -> e.didPurchaseMonth(month)).count();
     }
 }

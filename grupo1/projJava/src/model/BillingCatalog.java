@@ -1,7 +1,5 @@
 package model;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,5 +53,13 @@ public class BillingCatalog implements IBillingCatalog{
 
     private IBillingProduct getBillingProduct(String product_code) {
         return this.billingsProduct.get(product_code);
+    }
+
+    public int getTotalSalesMonth(int month) {
+        return this.billings[month-1].getN_sales();
+    }
+
+    public int getTotalSalesMonth(int month, int branch) {
+        return this.billings[month-1].getN_sales(branch);
     }
 }

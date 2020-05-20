@@ -50,4 +50,11 @@ public class Billing implements IBilling{
         this.branchesBilling[branch-1] += totalBilled;
     }
 
+    public int getN_sales() {
+        return n_sales;
+    }
+
+    public int getN_sales(int branch) {
+         return branchesNSales[branch-1];
+    }
 }
