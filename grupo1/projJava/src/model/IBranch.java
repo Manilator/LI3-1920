@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IBranch {
@@ -21,4 +22,6 @@ public interface IBranch {
     int distinctClientsMonth(int month);
 
     int[] getDistinctsClientsProductMonth(String product);
+
+    public List<String> getClientsWithPurchasesMonth(int month);
 }

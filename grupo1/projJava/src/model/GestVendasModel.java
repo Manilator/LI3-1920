@@ -1,14 +1,14 @@
 package model;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static Utils.Constants.*;
+import static Utils.Constants.N_BRANCHES;
+import static Utils.Constants.N_MONTHS;
 
 public class GestVendasModel implements IGestVendasModel {
 
@@ -119,7 +119,7 @@ public class GestVendasModel implements IGestVendasModel {
             list.add(this.billing_catalog
                             .getTotalSalesMonth(month, i + 1));
         }
-
+        list.add(this.branches_catalog.distinctClientsMonth(month));
         return list;
     }
 
@@ -145,6 +145,7 @@ public class GestVendasModel implements IGestVendasModel {
         }
         return array;
     }
+
 
     public String[][] query6(int n) {
         String[][] array = new String[n][3];

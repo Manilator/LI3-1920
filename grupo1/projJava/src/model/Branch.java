@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Branch implements IBranch {
@@ -75,12 +77,35 @@ public class Branch implements IBranch {
         return shopLog;
     }
 
+    /**
+     * Função que recolhe o número de clientes que realizaram compras num mês dado
+     * @param month mês no qual os clientes realizaram compras
+     * @return número de clientes distintos que realizaram compras num mês especifico
+     */
     public int distinctClientsMonth(int month) {
-        HashMap<String, IRelationWithProduct> list = new HashMap<>(this.clientsProducts);
         return (int) this.clientsProducts.values().stream().filter(e -> e.didPurchaseMonth(month)).count();
     }
 
+    /**
+     * Função que recolhe o número de clientes distintos que realizaram compras separado por meses
+     * @param product produto que se pretende obter o número de clientes distintos que o compraram
+     * @return Array de inteiros que correspondem ao número de clientes distintos que compraram certo produto separado por meses
+     */
     public int[] getDistinctsClientsProductMonth(String product) {
         return this.productsClients.get(product).getDistinctsClientsProductMonth();
+    }
+
+    /**
+     * Função que recolhe a lista de clientes que realizaram compras num certo mês
+     * @param month mês no qual os clientes realizaram compras
+     * @return Lista de códigos de clientes que realizaram compras no mês
+     */
+    public List<String> getClientsWithPurchasesMonth(int month) {
+        List<String> list = new ArrayList<>();
+        for (Map.Entry<String, IRelationWithProduct> c : this.clientsProducts.entrySet()) {
+            if(c.getValue().didPurchaseMonth(month))
+                list.add(c.getKey());
+        }
+        return list;
     }
 }
