@@ -18,4 +18,12 @@ public class InfoProduct implements IInfoProduct {
         this.quantities[month-1] += quantity;
         this.totalBilled[month-1] += billed;
     }
+
+    /**
+     * Get amount of products bought each month
+     * @return Array of ints with the amount of products bought
+     */
+    public int[] getQuantities() {
+        return quantities;
+    }
 }

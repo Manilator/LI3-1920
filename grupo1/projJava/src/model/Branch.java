@@ -57,6 +57,24 @@ public class Branch implements IBranch {
         return productsBought;
     }
 
+    /**
+     * Dado um código de cliente, determinar, para cada mês na filial, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total
+     * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês na filial
+     */
+    public double[][] getClientShoppingLog(String clientCode, double[][] shopLog){
+        int[] distinctProducts = clientsProducts.get(clientCode).getAmountDistinctInfoProducts();
+        double[] spentTotal = clientsProducts.get(clientCode).getTotalBilled();
+        int[] numberSales = clientsProducts.get(clientCode).getN_sales();
+
+        for (int i=0; i<12 ; i++){
+            shopLog[i][0] += numberSales[i];
+            shopLog[i][1] += distinctProducts[i];
+            shopLog[i][2] += spentTotal[i];
+        }
+
+        return shopLog;
+    }
+
     public int distinctClientsMonth(int month) {
         HashMap<String, IRelationWithProduct> list = new HashMap<>(this.clientsProducts);
         return (int) this.clientsProducts.values().stream().filter(e -> e.didPurchaseMonth(month)).count();

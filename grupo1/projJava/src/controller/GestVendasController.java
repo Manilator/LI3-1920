@@ -134,7 +134,15 @@ public class GestVendasController implements IGestVendasController {
                     query2Controller();
                     break;
                 case 3:
-
+                    gv.getClientShoppingLog();
+                    /*  for (int i=0;i < 12;i++) {
+                            System.out.println(i);
+                            System.out.println("Numero Compras:"+ result[i][0]);
+                            System.out.println("Produtos Distintos:"+ result[i][1]);
+                            System.out.println("Valor total gasto:"+ result[i][2]);
+                            System.out.println("------------------");
+                        }
+                    */
                     /*controllerQuery3(sgv);*/
                     break;
                 case 4:

@@ -45,6 +45,19 @@ public class BranchCatalog implements IBranchCatalog {
         return productsBought;
     }
 
+    /**
+     * Dado um código de cliente, determinar, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total em todas as filiais
+     * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês em todas as filiais
+     */
+    public double[][] getClientShoppingLog(String clientCode){
+        double[][] result = new double[N_MONTHS][3];
+
+        for (int branch = 0; branch < N_BRANCHES; branch++)
+            result = this.branches[branch].getClientShoppingLog(clientCode, result);
+
+        return result;
+    }
+
     public int distinctClientsMonth(int month, int branch) {
         return this.branches[branch-1].distinctClientsMonth(month);
     }

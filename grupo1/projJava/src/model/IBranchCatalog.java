@@ -12,6 +12,12 @@ public interface IBranchCatalog {
      */
     Map<String,String> getProductsBought();
 
+    /**
+     * Dado um código de cliente, determinar, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total em todas as filiais
+     * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês em todas as filiais
+     */
+    double[][] getClientShoppingLog(String clientCode);
+
     int distinctClientsMonth(int month, int branch);
 
     int[] getTotalDistinctsClientsProductMonth(String product);
