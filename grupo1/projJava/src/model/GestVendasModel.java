@@ -1,7 +1,9 @@
 package model;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -127,6 +129,24 @@ public class GestVendasModel implements IGestVendasModel {
             array[i][0] = salesMonth[i];
             array[i][1] = billedMonth[i];
             array[i][2] = clientsMonth[i];
+        }
+        return array;
+    }
+
+    public String[][] query6(int n) {
+        String[][] array = new String[n][3];
+        List<String> products = this.billing_catalog.getTopMostPurchased(n);
+        int[] clients = new int[n];
+        List<Integer> units = new ArrayList<>();
+        int j = 0;
+        for (String p : products) {
+            units.add(this.billing_catalog.getProductUnits(p));
+            clients[j++] = Arrays.stream(this.branches_catalog.getTotalDistinctsClientsProductMonth(p)).sum();
+        }
+        for (int i = 0; i < n; i++) {
+            array[i][0] = products.get(i);
+            array[i][1] = String.valueOf(units.get(i));
+            array[i][2] = String.valueOf(clients[i]);
         }
         return array;
     }

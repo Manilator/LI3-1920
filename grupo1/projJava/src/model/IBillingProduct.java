@@ -8,4 +8,6 @@ public interface IBillingProduct {
 
     public double[] getTotalBilled();
 
+    public int getTotalUnits();
+
 }
