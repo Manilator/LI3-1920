@@ -1,7 +1,9 @@
 package model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.security.KeyStore;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static Utils.Constants.N_MONTHS;
 
@@ -69,5 +71,18 @@ public class BillingCatalog implements IBillingCatalog{
 
     public double[] getTotalBilledMonth(String product) {
         return this.billingsProduct.get(product).getTotalBilled();
+    }
+
+    public List<String> getTopMostPurchased(int n) {
+        Comparator<Map.Entry<String,IBillingProduct>> c =
+                (Map.Entry<String,IBillingProduct> a, Map.Entry<String,IBillingProduct> b)
+                        -> b.getValue().getTotalUnits() - a.getValue().getTotalUnits();
+        List<String> sorted = this.billingsProduct.entrySet().parallelStream().sorted(c).map(Map.Entry::getKey).collect(Collectors.toList());
+
+        return sorted.subList(0,n);
+    }
+
+    public int getProductUnits(String product) {
+        return this.billingsProduct.get(product).getTotalUnits();
     }
 }

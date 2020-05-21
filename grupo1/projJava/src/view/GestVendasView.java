@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static Utils.Constants.N_BRANCHES;
@@ -68,6 +69,15 @@ public class GestVendasView implements IGestVendasView {
             printMessage("Faturado: " + String.format("%.3f", result[i][1]));
             printMessage("Número de cliente: " + String.valueOf((int) result[i][2]));
         }
+    }
+
+    public void query6View(String[][] result) {
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i < N_MONTHS; i++) {
+            list.add("---- Produto " + result[i][0] + "\n" + "Quantidade: " + result[i][1] + "\n" + "Clientes distintos: " + result[i][2]);
+        }
+        Pages pages = new Pages(list.size(), list);
+        pages.show(0);
     }
 
     public void cleanConsole()

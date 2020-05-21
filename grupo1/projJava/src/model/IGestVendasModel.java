@@ -33,5 +33,6 @@ public interface IGestVendasModel {
     double[][] query4(String product);
 
     int getReadClients();
-
+  
+    String[][] query6(int n);
 }

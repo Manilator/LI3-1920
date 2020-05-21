@@ -8,10 +8,7 @@ import view.IPages;
 import view.Pages;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
@@ -42,7 +39,7 @@ public class GestVendasController implements IGestVendasController {
         menu();
     }
 
-    void query1Controller() {
+    private void query1Controller() {
         int n_page = 0;
         long startTime = System.nanoTime();
         List<String> list = gv.getProductNeverBought();
@@ -73,7 +70,7 @@ public class GestVendasController implements IGestVendasController {
         }
     }
 
-    void query2Controller() {
+    private void query2Controller() {
         int month = 0;
         view.printMessage("Insira o mês:");
         while(month < 1 || month > 12) {
@@ -98,8 +95,8 @@ public class GestVendasController implements IGestVendasController {
         view.printMessage("Total vendas:                " + total[1]);
 
     }
-
-    void query3Controller() {
+  
+    private void query3Controller() {
         Scanner sc = new Scanner(System.in);
         String client = sc.nextLine();
         long startTime = System.nanoTime();
@@ -109,9 +106,10 @@ public class GestVendasController implements IGestVendasController {
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
         view.query3View(result);
     }
-
-    void query4Controller() {
+  
+    private void query4Controller() {
         Scanner sc = new Scanner(System.in);
+        view.printMessage("Insira o produto: ");
         String product = sc.nextLine();
         long startTime = System.nanoTime();
         double[][] result = gv.query4(product);
@@ -119,6 +117,38 @@ public class GestVendasController implements IGestVendasController {
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
         view.query4View(result);
+    }
+
+    private void query6Controller() {
+        // Resolver os scanners
+        Scanner sr = new Scanner(System.in);
+        int n_page = 0;
+        view.printMessage("Insira o número de produtos que deseja ver: ");
+        int n = sr.nextInt();
+        String[][] result = gv.query6(n);
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i < N_MONTHS; i++) {
+            list.add("---- Produto " + result[i][0] + "\n" + "Quantidade: " + result[i][1] + "\n" + "Clientes distintos: " + result[i][2]);
+        }
+        String choice = "-1";
+        Scanner sc = new Scanner(System.in);
+        while(!choice.equals("0")) {
+            Pages pages = new Pages(list.size(),list);
+            pages.show(n_page);
+            pages.choices();
+            choice = sc.nextLine();
+            switch (choice) {
+                case "n":
+                    n_page++;
+                case "p":
+                    n_page--;
+                case "c":
+                    view.printMessage("Número da página: ");
+                    n_page = sr.nextInt();
+                default:
+                    choice = "0";
+            }
+        }
     }
 
     /* void menu(SGV sgv) */
@@ -156,6 +186,7 @@ public class GestVendasController implements IGestVendasController {
                     /*controllerQuery5(sgv);*/
                     break;
                 case 6:
+                    query6Controller();
                     /*controllerQuery6(sgv);*/
                     break;
                 case 7:
