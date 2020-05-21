@@ -11,39 +11,39 @@ public class GestVendasView implements IGestVendasView {
     }
 
     public void printMenu(){
-        System.out.println("! --------------------------------------------- !");
-        System.out.println("1  - Query 1  # Produtos nunca comprados");
-        System.out.println("2  - Query 2  # Total global de vendas & Compradores distintos");
-        System.out.println("3  - Query 3  # Informações mensais de um cliente");
-        System.out.println("4  - Query 4  # Informações mensais de um produto");
-        System.out.println("5  - Query 5  # Produtos mais comprados por um Cliente");
-        System.out.println("6  - Query 6  # Top produtos mais comprados");
-        System.out.println("7  - Query 7  # Top 3 clientes por filial");
-        System.out.println("8  - Query 8  # Top clientes que compraram produtos únicos");
-        System.out.println("9  - Query 9  # Top clientes de um produto");
-        System.out.println("10 - Query 10 # Faturação mensal de cada filial");
-        System.out.println("11 - Carregar dados");
-        System.out.println("12 - Guardar dados");
-        System.out.println("*  - Exit");
-        System.out.println("! --------------------------------------------- !");
+        printMessage("! --------------------------------------------- !");
+        printMessage("1  - Query 1  # Produtos nunca comprados");
+        printMessage("2  - Query 2  # Total global de vendas & Compradores distintos");
+        printMessage("3  - Query 3  # Informações mensais de um cliente");
+        printMessage("4  - Query 4  # Informações mensais de um produto");
+        printMessage("5  - Query 5  # Produtos mais comprados por um Cliente");
+        printMessage("6  - Query 6  # Top produtos mais comprados");
+        printMessage("7  - Query 7  # Top 3 clientes por filial");
+        printMessage("8  - Query 8  # Top clientes que compraram produtos únicos");
+        printMessage("9  - Query 9  # Top clientes de um produto");
+        printMessage("10 - Query 10 # Faturação mensal de cada filial");
+        printMessage("11 - Carregar dados");
+        printMessage("12 - Guardar dados");
+        printMessage("*  - Exit");
+        printMessage("! --------------------------------------------- !");
     }
 
     void printSeparator()
     {
-        System.out.println("===========================");
+        printMessage("===========================");
     }
 
     public void viewPrintStartValues(String clients_path, String products_path, String sales_path, int valid_clients, int valid_products, int valid_sales, int clients_read, int products_read, int sales_read) {
         printSeparator();
-        System.out.println("Path Clients: " + clients_path);
-        System.out.println("Path Products: " + products_path);
-        System.out.println("Path Sales: " + sales_path);
-        System.out.println("Clientes válidos: " + valid_clients);
-        System.out.println("Produtos válidos: " + valid_products);
-        System.out.println("Vendas válidas: " + valid_sales);
-        System.out.println("Clientes lidos: " + clients_read);
-        System.out.println("Produtos lidos: " + products_read);
-        System.out.println("Vendas lidas: " + sales_read);
+        printMessage("Path Clients: " + clients_path);
+        printMessage("Path Products: " + products_path);
+        printMessage("Path Sales: " + sales_path);
+        printMessage("Clientes válidos: " + valid_clients);
+        printMessage("Produtos válidos: " + valid_products);
+        printMessage("Vendas válidas: " + valid_sales);
+        printMessage("Clientes lidos: " + clients_read);
+        printMessage("Produtos lidos: " + products_read);
+        printMessage("Vendas lidas: " + sales_read);
         printSeparator();
     }
 
@@ -53,11 +53,11 @@ public class GestVendasView implements IGestVendasView {
 
     public void query3View(double[][] result) {
         for (int i=0;i < 12;i++) {
-            System.out.println(i);
-            System.out.println("Numero Compras:"+ result[i][0]);
-            System.out.println("Produtos Distintos:"+ result[i][1]);
-            System.out.println("Valor total gasto:"+ result[i][2]);
-            System.out.println("------------------");
+            printMessage(i);
+            printMessage("Numero Compras:"+ result[i][0]);
+            printMessage("Produtos Distintos:"+ result[i][1]);
+            printMessage("Valor total gasto:"+ result[i][2]);
+            printMessage("------------------");
 	}
     }
 
@@ -72,7 +72,7 @@ public class GestVendasView implements IGestVendasView {
 
     public void cleanConsole()
     {
-        System.out.print("\033[H\033[2J");
+        printMessage("\033[H\033[2J");
         System.out.flush();
     }
 }
