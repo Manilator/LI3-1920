@@ -2,8 +2,25 @@ package model;
 
 public interface IRelationWithProduct {
 
-    public void updateRelationWithProduct(String product_code, int quantity, double billed, int month);
+    void updateRelationWithProduct(String product_code, int quantity, double billed, int month);
 
-    public boolean didPurchaseMonth(int month);
+    boolean didPurchaseMonth(int month);
 
+    /**
+     * Get amount of distinct products that bought in each month
+     * @return Array of ints with amount of distinct products bought
+     */
+    int[] getAmountDistinctInfoProducts();
+
+    /**
+     * Get amount the amount billed each month
+     * @return Array of ints with the amount billed each month
+     */
+    double[] getTotalBilled();
+
+    /**
+     * Get amount of sales made at each month
+     * @return Array of ints with the amount of sales in each month
+     */
+    int[] getN_sales();
 }

@@ -25,7 +25,7 @@ public class GestVendasController implements IGestVendasController {
         this.gv = new GestVendasModel();
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
-        System.out.println("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
         view.printMessage(String.valueOf("Clientes válidos: " + this.gv.getClientsSize()));
         view.printMessage(String.valueOf("Clientes lidos: " + this.gv.getReadClients()));
         view.printMessage(String.valueOf("Produtos válidos: " + this.gv.getProductsSize()));
@@ -42,10 +42,10 @@ public class GestVendasController implements IGestVendasController {
     private void query1Controller() {
         int n_page = 0;
         long startTime = System.nanoTime();
-        List<String> list = gv.query1();
+        List<String> list = gv.getProductNeverBought();
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
-        System.out.println("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
         String choice = "-1";
         Scanner sc = new Scanner(System.in);
         while(!choice.equals("0")) {
@@ -80,7 +80,7 @@ public class GestVendasController implements IGestVendasController {
         List<Integer> list = gv.query2(month);
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
-        System.out.println("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
         int[] total = new int[2];
         Arrays.fill(total,0);
         for (int i = 0, j = 1; i < N_BRANCHES*2; i++, j++) {
@@ -95,7 +95,18 @@ public class GestVendasController implements IGestVendasController {
         view.printMessage("Total vendas:                " + total[1]);
 
     }
-
+  
+    private void query3Controller() {
+        Scanner sc = new Scanner(System.in);
+        String client = sc.nextLine();
+        long startTime = System.nanoTime();
+        double[][] result = gv.getClientShoppingLog(client);
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.query3View(result);
+    }
+  
     private void query4Controller() {
         Scanner sc = new Scanner(System.in);
         view.printMessage("Insira o produto: ");
@@ -104,7 +115,7 @@ public class GestVendasController implements IGestVendasController {
         double[][] result = gv.query4(product);
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
-        System.out.println("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
         view.query4View(result);
     }
 
@@ -164,7 +175,7 @@ public class GestVendasController implements IGestVendasController {
                     query2Controller();
                     break;
                 case 3:
-
+		    query3Controller();
                     /*controllerQuery3(sgv);*/
                     break;
                 case 4:

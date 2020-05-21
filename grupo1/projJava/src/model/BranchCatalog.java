@@ -32,14 +32,30 @@ public class BranchCatalog implements IBranchCatalog {
         this.branches[branch_number-1].updateBranch(sale.getClient(), sale.getProduct(), units, sale.getPromotion(), sale.getPrice() * units, sale.getMonth());
     }
 
-    @Override
-    public Map<String,String> getProductNeverBought() {
+    /**
+     * Hashtable com todos os códigos de todos os produtos que efetuaram compras em pelo menos uma filial
+     * @return Map com códigos de produtos como valores e chaves
+     */
+    public Map<String,String> getProductsBought() {
         Map<String,String> productsBought = new LinkedHashMap<>();
 
         for (int branch = 0; branch < N_BRANCHES; branch++)
-            productsBought = this.branches[branch].getProductsNeverBought(productsBought);
+            productsBought = this.branches[branch].getProductsBought(productsBought);
 
         return productsBought;
+    }
+
+    /**
+     * Dado um código de cliente, determinar, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total em todas as filiais
+     * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês em todas as filiais
+     */
+    public double[][] getClientShoppingLog(String clientCode){
+        double[][] result = new double[N_MONTHS][3];
+
+        for (int branch = 0; branch < N_BRANCHES; branch++)
+            result = this.branches[branch].getClientShoppingLog(clientCode, result);
+
+        return result;
     }
 
     public int distinctClientsMonth(int month, int branch) {

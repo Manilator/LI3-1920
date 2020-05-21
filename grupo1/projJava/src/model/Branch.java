@@ -46,11 +46,33 @@ public class Branch implements IBranch {
         this.clientsProducts.get(client_code).updateRelationWithProduct(product_code, units, billed, month);
     }
 
-    public Map<String, String> getProductsNeverBought(Map<String, String> productsBought){
+    /**
+     * Hashtable com os códigos de todos os produtos que efetuaram compras na filial
+     * @return Map com códigos de produtos como valores e chaves que compraram na filial
+     */
+    public Map<String, String> getProductsBought(Map<String, String> productsBought){
         for (String productCode : this.productsClients.keySet())
             if (!productsBought.containsKey(productCode))
                 productsBought.put(productCode,productCode);
         return productsBought;
+    }
+
+    /**
+     * Dado um código de cliente, determinar, para cada mês na filial, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total
+     * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês na filial
+     */
+    public double[][] getClientShoppingLog(String clientCode, double[][] shopLog){
+        int[] distinctProducts = clientsProducts.get(clientCode).getAmountDistinctInfoProducts();
+        double[] spentTotal = clientsProducts.get(clientCode).getTotalBilled();
+        int[] numberSales = clientsProducts.get(clientCode).getN_sales();
+
+        for (int i=0; i<12 ; i++){
+            shopLog[i][0] += numberSales[i];
+            shopLog[i][1] += distinctProducts[i];
+            shopLog[i][2] += spentTotal[i];
+        }
+
+        return shopLog;
     }
 
     public int distinctClientsMonth(int month) {
