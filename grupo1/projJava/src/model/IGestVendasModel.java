@@ -25,9 +25,10 @@ public interface IGestVendasModel {
 
     /**
      * Dado um código de cliente, determinar, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total
+     * @param clientCode Code of the selected client
      * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês
      */
-    double[][] getClientShoppingLog();
+    double[][] getClientShoppingLog(String clientCode);
 
     double[][] query4(String product);
 

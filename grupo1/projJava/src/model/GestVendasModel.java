@@ -123,10 +123,11 @@ public class GestVendasModel implements IGestVendasModel {
 
     /**
      * Dado um código de cliente, determinar, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total
+     * @param clientCode Code of the selected client
      * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês
      */
-    public double[][] getClientShoppingLog(){
-        return this.branches_catalog.getClientShoppingLog("F2916");
+    public double[][] getClientShoppingLog(String clientCode){
+        return this.branches_catalog.getClientShoppingLog(clientCode);
     }
 
     public double[][] query4(String product) {
