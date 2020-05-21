@@ -51,6 +51,16 @@ public class GestVendasView implements IGestVendasView {
         System.out.println(message);
     }
 
+    public void query3View(double[][] result) {
+        for (int i=0;i < 12;i++) {
+            System.out.println(i);
+            System.out.println("Numero Compras:"+ result[i][0]);
+            System.out.println("Produtos Distintos:"+ result[i][1]);
+            System.out.println("Valor total gasto:"+ result[i][2]);
+            System.out.println("------------------");
+	}
+    }
+
     public void query4View(double[][] result) {
         for (int i = 0; i < N_MONTHS; i++) {
             printMessage("Mês " + String.valueOf(i+1));
