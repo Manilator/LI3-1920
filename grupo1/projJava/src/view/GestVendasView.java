@@ -54,7 +54,7 @@ public class GestVendasView implements IGestVendasView {
 
     public void query3View(double[][] result) {
         for (int i=0;i < 12;i++) {
-            printMessage(i);
+            printMessage(Integer.toString(i));
             printMessage("Numero Compras:"+ result[i][0]);
             printMessage("Produtos Distintos:"+ result[i][1]);
             printMessage("Valor total gasto:"+ result[i][2]);
