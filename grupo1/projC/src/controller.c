@@ -139,7 +139,7 @@ void askQuery1Paths(char *clients_path, char *products_path, char *sales_path)
 {
     resetColor();
     char choice = '0';
-    printf("1 - Choose files path\nOther value - Default paths\n");
+    printMessage("1 - Choose files path\nOther value - Default paths\n");
     boldCyan();
     scanf(" %c", &choice);
     switch (choice)
@@ -259,11 +259,11 @@ void controllerQuery2(SGV sgv)
         }
         else if (choice[0] == 'c')
         {
-            printf("Número da página:\n");
+            printMessage("Número da página:\n");
             scanf(" %s", choice);
             while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
             {
-                printf("Página não existe. Insira novo número:\n");
+                printMessage("Página não existe. Insira novo número:\n");
                 scanf(" %s", choice);
             }
             page = atoi(choice);
@@ -343,11 +343,11 @@ void controllerQuery4(SGV sgv)
             }
             else if (choice[0] == 'c')
             {
-                printf("Número da página:\n");
+                printMessage("Número da página:\n");
                 scanf(" %s", choice);
                 while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
                 {
-                    printf("Página não existe. Insira novo número:\n");
+                    printMessage("Página não existe. Insira novo número:\n");
                     scanf(" %s", choice);
                 }
                 page = atoi(choice);
@@ -400,11 +400,11 @@ void controllerQuery5(SGV sgv)
         }
         else if (choice[0] == 'c')
         {
-            printf("Número da página:\n");
+            printMessage("Número da página:\n");
             scanf(" %s", choice);
             while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
             {
-                printf("Página não existe. Insira novo número:\n");
+                printMessage("Página não existe. Insira novo número:\n");
                 scanf(" %s", choice);
             }
             page = atoi(choice);
@@ -504,11 +504,11 @@ void controllerQuery9(SGV sgv)
             }
             else if (choice[0] == 'c')
             {
-                printf("Número da página:\n");
+                printMessage("Número da página:\n");
                 scanf(" %s", choice);
                 while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
                 {
-                    printf("Página não existe. Insira novo número:\n");
+                    printMessage("Página não existe. Insira novo número:\n");
                     scanf(" %s", choice);
                 }
                 page = atoi(choice);
@@ -570,11 +570,11 @@ void controllerQuery10(SGV sgv)
             }
             else if (choice[0] == 'c')
             {
-                printf("Número da página:\n");
+                printMessage("Número da página:\n");
                 scanf(" %s", choice);
                 while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
                 {
-                    printf("Página não existe. Insira novo número:\n");
+                    printMessage("Página não existe. Insira novo número:\n");
                     scanf(" %s", choice);
                 }
                 page = atoi(choice);
@@ -620,11 +620,11 @@ void controllerQuery11(SGV sgv)
         }
         else if (choice[0] == 'c')
         {
-            printf("Número da página:\n");
+            printMessage("Número da página:\n");
             scanf(" %s", choice);
             while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
             {
-                printf("Página não existe. Insira novo número:\n");
+                printMessage("Página não existe. Insira novo número:\n");
                 scanf(" %s", choice);
             }
             page = atoi(choice);
@@ -675,11 +675,11 @@ void controllerQuery12(SGV sgv)
             }
             else if (choice[0] == 'c')
             {
-                printf("Número da página:\n");
+                printMessage("Número da página:\n");
                 scanf(" %s", choice);
                 while (atoi(choice) > max || page < 0 || atoi(choice) < 0)
                 {
-                    printf("Página não existe. Insira novo número:\n");
+                    printMessage("Página não existe. Insira novo número:\n");
                     scanf(" %s", choice);
                 }
                 page = atoi(choice);

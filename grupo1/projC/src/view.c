@@ -6,100 +6,105 @@
 #include <string.h>
 #include <math.h>
 
+void printMessage(char *message)
+{
+    printf("%s", message);
+}
+
 void cleanConsole()
 {
-    printf("\e[1;1H\e[2J");
+    printMessage("\e[1;1H\e[2J");
 }
 
 void resetColor()
 {
-    printf("\033[0m");
+    printMessage("\033[0m");
 }
 
 void red()
 {
-    printf("\033[0;31m");
+    printMessage("\033[0;31m");
 }
 
 void boldRed()
 {
-    printf("\033[1;31m");
+    printMessage("\033[1;31m");
 }
 
 void green()
 {
-    printf("\033[0;32m");
+    printMessage("\033[0;32m");
 }
 
 void boldGreen()
 {
-    printf("\033[1;32m");
+    printMessage("\033[1;32m");
 }
 
 void yellow()
 {
-    printf("\033[0;33m");
+    printMessage("\033[0;33m");
 }
 
 void boldYellow()
 {
-    printf("\033[1;33m");
+    printMessage("\033[1;33m");
 }
 
 void blue()
 {
-    printf("\033[0;34m");
+    printMessage("\033[0;34m");
 }
 
 void boldBlue()
 {
-    printf("\033[1;34m");
+    printMessage("\033[1;34m");
 }
 
 void magenta()
 {
-    printf("\033[0;35m");
+    printMessage("\033[0;35m");
 }
 
 void boldMagenta()
 {
-    printf("\033[1;35m");
+    printMessage("\033[1;35m");
 }
 
 void cyan()
 {
-    printf("\033[1;36m");
+    printMessage("\033[1;36m");
 }
 
 void boldCyan()
 {
-    printf("\033[1;36m");
+    printMessage("\033[1;36m");
 }
 
 void printMenu()
 {
-    printf("! --------------- !\n");
-    printf("1  - Query 1\n");
-    printf("2  - Query 2\n");
-    printf("3  - Query 3\n");
-    printf("4  - Query 4\n");
-    printf("5  - Query 5\n");
-    printf("6  - Query 6\n");
-    printf("7  - Query 7\n");
-    printf("8  - Query 8\n");
-    printf("9  - Query 9\n");
-    printf("10 - Query 10\n");
-    printf("11 - Query 11\n");
-    printf("12 - Query 12\n");
-    printf("13 - Query 13\n");
-    printf("*  - Exit\n");
-    printf("! --------------- !\n");
+    printMessage("! --------------- !\n");
+    printMessage("1  - Query 1\n");
+    printMessage("2  - Query 2\n");
+    printMessage("3  - Query 3\n");
+    printMessage("4  - Query 4\n");
+    printMessage("5  - Query 5\n");
+    printMessage("6  - Query 6\n");
+    printMessage("7  - Query 7\n");
+    printMessage("8  - Query 8\n");
+    printMessage("9  - Query 9\n");
+    printMessage("10 - Query 10\n");
+    printMessage("11 - Query 11\n");
+    printMessage("12 - Query 12\n");
+    printMessage("13 - Query 13\n");
+    printMessage("*  - Exit\n");
+    printMessage("! --------------- !\n");
     boldCyan();
 }
 
 void printSeparator()
 {
-    printf("===========================\n");
+    printMessage("===========================\n");
 }
 
 void viewPrintStartValues(char *clients_path,
@@ -115,22 +120,17 @@ void viewPrintStartValues(char *clients_path,
     resetColor();
     printSeparator();
     boldGreen();
-    printf("Path Clients:%s\n", clients_path);
-    printf("Path Products:%s\n", products_path);
-    printf("Path Sales:%s\n", sales_path);
-    printf("Clientes válidos: %d\n", valid_clients);
-    printf("Produtos válidos: %d\n", valid_products);
-    printf("Vendas válidas: %d\n", valid_sales);
-    printf("Clientes lidos: %d\n", clients_read);
-    printf("Produtos lidos: %d\n", products_read);
-    printf("Vendas lidas: %d\n", sales_read);
+    printMessage("Path Clients:%s\n", clients_path);
+    printMessage("Path Products:%s\n", products_path);
+    printMessage("Path Sales:%s\n", sales_path);
+    printMessage("Clientes válidos: %d\n", valid_clients);
+    printMessage("Produtos válidos: %d\n", valid_products);
+    printMessage("Vendas válidas: %d\n", valid_sales);
+    printMessage("Clientes lidos: %d\n", clients_read);
+    printMessage("Produtos lidos: %d\n", products_read);
+    printMessage("Vendas lidas: %d\n", sales_read);
     resetColor();
     printSeparator();
-}
-
-void printMessage(char *message)
-{
-    printf("%s", message);
 }
 
 void listView(char **list, int size, int page)
@@ -148,15 +148,15 @@ void listView(char **list, int size, int page)
     /* Página inicial */
     cleanConsole();
     resetColor();
-    printf("--------- Página %d de %d ---------\n", page, max);
+    printMessage("--------- Página %d de %d ---------\n", page, max);
     boldGreen();
     for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && list[i] != 0; i++, j++)
     {
-        printf("%s\n", list[i]);
+        printMessage("%s\n", list[i]);
     }
     resetColor();
-    printf("--------- Página %d de %d ---------\n", page, max);
-    printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
+    printMessage("--------- Página %d de %d ---------\n", page, max);
+    printMessage("n - Próxima página\np - Página anterior\nc - Escolher página\n");
     boldCyan();
     /* Pagina inicial */
 
@@ -177,30 +177,30 @@ void querie4View(char ***products, int global, int branch, int *sizes, int page)
     char **list = products[branch];
     if (branch == 0 && global == 1)
     {
-        printf("--------- Global\n");
+        printMessage("--------- Global\n");
     }
     else
     {
-        printf("--------- Filial %d\n", branch + 1);
+        printMessage("--------- Filial %d\n", branch + 1);
     }
-    printf("--------- Página %d de %d ---------\n", page, max);
+    printMessage("--------- Página %d de %d ---------\n", page, max);
     boldGreen();
     for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && list[i] != 0; i++, j++)
     {
-        printf("%s\n", list[i]);
+        printMessage("%s\n", list[i]);
     }
     resetColor();
-    printf("--------- Página %d de %d ---------\n", page, max);
-    printf("--------- TOTAL ---------\n");
-    printf("%d\n", sizes[branch]);
-    printf("--------- TOTAL ---------\n");
+    printMessage("--------- Página %d de %d ---------\n", page, max);
+    printMessage("--------- TOTAL ---------\n");
+    printMessage("%d\n", sizes[branch]);
+    printMessage("--------- TOTAL ---------\n");
     if (branch == 0 && global == 1)
     {
-        printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
+        printMessage("n - Próxima página\np - Página anterior\nc - Escolher página\n");
     }
     else
     {
-        printf("n - Próxima página\np - Página anterior\nc - Escolher página\nt - Filial seguinte\n");
+        printMessage("n - Próxima página\np - Página anterior\nc - Escolher página\nt - Filial seguinte\n");
     }
     /*boldCyan();*/
     /* Pagina inicial */
@@ -247,39 +247,39 @@ void tableView(int **list, char *client)
             }
         }
 
-        printf("--------- Cliente %s\n", client);
+        printMessage("--------- Cliente %s\n", client);
         boldGreen();
         /* Imprimir meses */
-        printf("    ");
-        printf("|");
+        printMessage("    ");
+        printMessage("|");
         for (j = 0; j < columns; j++)
         {
             for (h = 0; h < ((space - 3) / 2); h++)
-                printf(" ");
+                printMessage(" ");
 
-            printf("%s", _text[j]);
+            printMessage("%s", _text[j]);
 
             for (h = 0; h < ((space - 3) / 2); h++)
-                printf(" ");
+                printMessage(" ");
 
-            printf("|");
+            printMessage("|");
         }
-        printf("\n");
-        printf("----+");
+        printMessage("\n");
+        printMessage("----+");
         for (i = 0; i < columns; i++)
         {
             for (j = 0; j < space; j++)
-                printf("-");
-            printf("+");
+                printMessage("-");
+            printMessage("+");
         }
-        printf("\n");
+        printMessage("\n");
 
         /* Inicio da linha com o n da filial*/
         for (i = 0; i < rows; i++)
         {
-            printf("%d", i + 1);
-            printf("   ");
-            printf("|");
+            printMessage("%d", i + 1);
+            printMessage("   ");
+            printMessage("|");
             for (j = 0; j < columns; j++)
             {
                 if (list[i][j] == 0)
@@ -291,18 +291,18 @@ void tableView(int **list, char *client)
                     ss = floor(log10(abs(list[i][j]))) + 2;
                 }
                 for (h = 0; h <= (space - ss); h++)
-                    printf(" ");
-                printf("%d", list[i][j]);
-                printf("|");
+                    printMessage(" ");
+                printMessage("%d", list[i][j]);
+                printMessage("|");
             }
-            printf("\n");
+            printMessage("\n");
         }
         resetColor();
     }
     else
     {
         boldRed();
-        printf("Cliente não existe.\n");
+        printMessage("Cliente não existe.\n");
     }
     resetColor();
 }
@@ -312,9 +312,9 @@ void querie2View(char **list)
     int i;
     for (i = 0; list[i] != NULL; i++)
     {
-        printf("ELEM:%s\n", (char *)list[i]);
+        printMessage("ELEM:%s\n", (char *)list[i]);
     }
-    printf("Number of products: %d\n", i);
+    printMessage("Number of products: %d\n", i);
 }
 
 void querie3View(double *products, int choice, char *product)
@@ -335,16 +335,16 @@ void querie3View(double *products, int choice, char *product)
     {
         if (j == 0 && length == 12)
         {
-            printf("------ Filial %d (%s) ------\n", branch, product);
+            printMessage("------ Filial %d (%s) ------\n", branch, product);
             branch++;
         }
         else if (branch == 1)
         {
-            printf("------ Global (%s) ------\n", product);
+            printMessage("------ Global (%s) ------\n", product);
             branch++;
         }
         boldGreen();
-        printf("%s%f\n", _text[j], products[i]);
+        printMessage("%s%f\n", _text[j], products[i]);
         resetColor();
         if (j == 3)
         {
@@ -358,17 +358,17 @@ void querie5View(char **clients)
     int i;
     puts("Printing codes:");
     for (i = 0; clients[i] != NULL; i++)
-        printf("%s\n", clients[i]);
+        printMessage("%s\n", clients[i]);
 
-    printf("Clients in common: %d\n", i);
+    printMessage("Clients in common: %d\n", i);
 }
 
 void querie6View(int *list)
 {
     cleanConsole();
     boldGreen();
-    printf("Produtos que ninguém comprou: %d\n", list[0]);
-    printf("Clientes que não compraram: %d\n", list[1]);
+    printMessage("Produtos que ninguém comprou: %d\n", list[0]);
+    printMessage("Clientes que não compraram: %d\n", list[1]);
     resetColor();
 }
 
@@ -379,12 +379,12 @@ void querie7View(int **totals)
 
     for (; branch < 3; branch++)
     {
-        printf("--------- Filial %d ---------\n", branch + 1);
+        printMessage("--------- Filial %d ---------\n", branch + 1);
 
         for (; month < 12; month++)
         {
-            printf("--- Mês %d ---\n", month + 1);
-            printf("Total: %d\n", totals[branch][month]);
+            printMessage("--- Mês %d ---\n", month + 1);
+            printMessage("Total: %d\n", totals[branch][month]);
         }
         month = 0;
     }
@@ -394,13 +394,13 @@ void querie8View(Query8Aux aux, int first, int second)
 {
     cleanConsole();
     resetColor();
-    printf("--------- Meses [%d-%d] ---------\n", first, second);
+    printMessage("--------- Meses [%d-%d] ---------\n", first, second);
     boldGreen();
-    printf("Unidades vendidas: %d\n", getQuery8AuxUnits(aux));
-    printf("Total faturado: %f\n", getQuery8AuxBilled(aux));
-    printf("Registo de Vendas: %d\n", getQuery8AuxSales(aux));
+    printMessage("Unidades vendidas: %d\n", getQuery8AuxUnits(aux));
+    printMessage("Total faturado: %f\n", getQuery8AuxBilled(aux));
+    printMessage("Registo de Vendas: %d\n", getQuery8AuxSales(aux));
     resetColor();
-    printf("--------- Meses [%d-%d] ---------\n", first, second);
+    printMessage("--------- Meses [%d-%d] ---------\n", first, second);
 }
 
 void querie9View(Query9Aux aux, char type, int page)
@@ -410,7 +410,7 @@ void querie9View(Query9Aux aux, char type, int page)
     if (aux == NULL)
     {
         boldRed();
-        printf("Produto inválido\n");
+        printMessage("Produto inválido\n");
     }
     else
     {
@@ -432,35 +432,35 @@ void querie9View(Query9Aux aux, char type, int page)
         /* Página inicial */
         cleanConsole();
         resetColor();
-        printf("--------- Produtos %c\n", type);
-        printf("--------- Página %d de %d ---------\n", page, max);
+        printMessage("--------- Produtos %c\n", type);
+        printMessage("--------- Página %d de %d ---------\n", page, max);
         boldGreen();
         for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && i < size; i++, j++)
         {
             if (type == 'N')
             {
-                printf("%s\n", getQuery9ClientN(aux, i));
+                printMessage("%s\n", getQuery9ClientN(aux, i));
             }
             else
             {
-                printf("%s\n", getQuery9ClientP(aux, i));
+                printMessage("%s\n", getQuery9ClientP(aux, i));
             }
         }
         resetColor();
-        printf("--------- Página %d de %d ---------\n", page, max);
-        printf("--------- TOTAL %c: ---------\n", type);
+        printMessage("--------- Página %d de %d ---------\n", page, max);
+        printMessage("--------- TOTAL %c: ---------\n", type);
         boldGreen();
         if (type == 'N')
         {
-            printf("Quantidade: %d\n", totalN);
+            printMessage("Quantidade: %d\n", totalN);
         }
         else
         {
-            printf("Quantidade: %d\n", totalP);
+            printMessage("Quantidade: %d\n", totalP);
         }
         resetColor();
-        printf("--------- TOTAL %c: ---------\n", type);
-        printf("n - Próxima página\np - Página anterior\nc - Escolher página\nt - Mudar tipo\n");
+        printMessage("--------- TOTAL %c: ---------\n", type);
+        printMessage("n - Próxima página\np - Página anterior\nc - Escolher página\nt - Mudar tipo\n");
         boldCyan();
         /* Pagina inicial */
     }
@@ -477,16 +477,16 @@ void querie10View(Info *info, int n, char *client, int page)
     /* Página inicial */
     cleanConsole();
     resetColor();
-    printf("--------- Cliente (%s)\n", client);
-    printf("--------- Página %d de %d ---------\n", page, max);
+    printMessage("--------- Cliente (%s)\n", client);
+    printMessage("--------- Página %d de %d ---------\n", page, max);
     boldGreen();
     for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && i < n; i++, j++)
     {
-        printf("Produto: %s | Unidades: %d\n", getInfoProduct(info[i]), getInfoUnitsSold(info[i]));
+        printMessage("Produto: %s | Unidades: %d\n", getInfoProduct(info[i]), getInfoUnitsSold(info[i]));
     }
     resetColor();
-    printf("--------- Página %d de %d ---------\n", page, max);
-    printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
+    printMessage("--------- Página %d de %d ---------\n", page, max);
+    printMessage("n - Próxima página\np - Página anterior\nc - Escolher página\n");
     boldCyan();
     /* Pagina inicial */
     resetColor();
@@ -510,21 +510,21 @@ void querie11View(Aux *result, int n, int page)
     /* Página inicial */
     cleanConsole();
     resetColor();
-    printf("--------- Página %d de %d ---------\n", page, max);
+    printMessage("--------- Página %d de %d ---------\n", page, max);
     boldGreen();
     for (i = page * 2, j = 0; j < 2 && i < n; j++)
     {
         Aux aux = result[i];
-        printf("--------- Produto %s (%dº)\n", getAuxProduct(aux), i + 1);
+        printMessage("--------- Produto %s (%dº)\n", getAuxProduct(aux), i + 1);
         for (h = 0; h < N_BRANCHES; h++)
         {
-            printf("Filial: %d | Total de clientes diferentes: %d | Unidades vendidas: %d\n", (h + 1), getAuxTotalClients(aux, h), getAuxUnitsSold(aux, h));
+            printMessage("Filial: %d | Total de clientes diferentes: %d | Unidades vendidas: %d\n", (h + 1), getAuxTotalClients(aux, h), getAuxUnitsSold(aux, h));
         }
         aux = result[i++];
     }
     resetColor();
-    printf("--------- Página %d de %d ---------\n", page, max);
-    printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
+    printMessage("--------- Página %d de %d ---------\n", page, max);
+    printMessage("n - Próxima página\np - Página anterior\nc - Escolher página\n");
     boldCyan();
     /* Pagina inicial */
    resetColor();
@@ -539,17 +539,17 @@ void querie12View(Money *list, int n, char *client, int page)
     /* Página inicial */
     cleanConsole();
     resetColor();
-    printf("--------- Cliente (%s)\n", client);
-    printf("--------- Página %d de %d ---------\n", page, max);
+    printMessage("--------- Cliente (%s)\n", client);
+    printMessage("--------- Página %d de %d ---------\n", page, max);
     boldGreen();
     for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && i < n; i++, j++)
     {
         Money money = list[i];
-        printf("Produto: %s | Gastou: %f\n", getMoneyProduct(money), getMoneySpent(money));
+        printMessage("Produto: %s | Gastou: %f\n", getMoneyProduct(money), getMoneySpent(money));
     }
     resetColor();
-    printf("--------- Página %d de %d ---------\n", page, max);
-    printf("n - Próxima página\np - Página anterior\nc - Escolher página\n");
+    printMessage("--------- Página %d de %d ---------\n", page, max);
+    printMessage("n - Próxima página\np - Página anterior\nc - Escolher página\n");
     boldCyan();
     /* Pagina inicial */
 }
