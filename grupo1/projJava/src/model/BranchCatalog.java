@@ -18,12 +18,20 @@ public class BranchCatalog implements IBranchCatalog {
         return this.branches.clone();
     }
 
+    /**
+     * Função que inicializa as estruturas das filiais
+     * @param n número de filiais
+     */
     public void initBranchCatalog(int n) {
         for (int i = 0; i < n; i++) {
             this.branches[i] = new Branch();
         }
     }
 
+    /**
+     * Função que atualiza as filiais com as informações de uma venda
+     * @param sale venda com as informações a serem adicionadas às filiais
+     */
     public void updateBranches(ISale sale) {
         int branch_number = sale.getBranch();
         int units = sale.getUnits();
@@ -60,6 +68,10 @@ public class BranchCatalog implements IBranchCatalog {
         return this.branches[branch-1].distinctClientsMonth(month);
     }
 
+    /**
+     * @param month mês no qual o número de clientes distintos realizaram compras
+     * @return Total de clientes distintos que realizaram compras nas diferentes filiais no mês dado
+     */
     public int distinctClientsMonth(int month) {
         Set<String> list = new HashSet<>();
         int total = 0;
@@ -68,6 +80,10 @@ public class BranchCatalog implements IBranchCatalog {
         return list.size();
     }
 
+    /**
+     * @param product Produto qual os clientes distintos compraram
+     * @return Array de inteiros com os clientes distintos que compraram certo produto
+     */
     public int[] getTotalDistinctsClientsProductMonth(String product) {
         int[][] totals = new int[N_BRANCHES][N_MONTHS];
         for(int i = 0; i < N_BRANCHES; i++) {
