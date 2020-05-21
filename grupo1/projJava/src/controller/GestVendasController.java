@@ -83,13 +83,14 @@ public class GestVendasController implements IGestVendasController {
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
         int[] total = new int[2];
         Arrays.fill(total,0);
-        for (int i = 0, j = 1; i < N_BRANCHES*2; i++, j++) {
+        int i = 0;
+        for (int j = 1; i < N_BRANCHES*2; i++, j++) {
             view.printMessage("---- Filial " + String.valueOf(j));
-            total[0] += list.get(i);
             view.printMessage("Número distinto de clientes: " + String.valueOf(list.get(i++)));
             total[1] += list.get(i);
             view.printMessage("Número de vendas:            " + String.valueOf(list.get(i)));
         }
+        total[0] = list.get(i);
         view.printMessage("---- Total ");
         view.printMessage("Total clientes distintos:    " + total[0]);
         view.printMessage("Total vendas:                " + total[1]);

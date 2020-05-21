@@ -1,7 +1,11 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static Utils.Constants.N_MONTHS;
 
 public class Branch implements IBranch {
 
@@ -76,11 +80,19 @@ public class Branch implements IBranch {
     }
 
     public int distinctClientsMonth(int month) {
-        HashMap<String, IRelationWithProduct> list = new HashMap<>(this.clientsProducts);
         return (int) this.clientsProducts.values().stream().filter(e -> e.didPurchaseMonth(month)).count();
     }
 
     public int[] getDistinctsClientsProductMonth(String product) {
         return this.productsClients.get(product).getDistinctsClientsProductMonth();
+    }
+
+    public List<String> getClientsWithPurchasesMonth(int month) {
+        List<String> list = new ArrayList<>();
+        for (Map.Entry<String, IRelationWithProduct> c : this.clientsProducts.entrySet()) {
+            if(c.getValue().didPurchaseMonth(month))
+                list.add(c.getKey());
+        }
+        return list;
     }
 }

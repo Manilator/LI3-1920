@@ -21,4 +21,6 @@ public interface IBranchCatalog {
     int distinctClientsMonth(int month, int branch);
 
     int[] getTotalDistinctsClientsProductMonth(String product);
+
+    public int distinctClientsMonth(int month);
 }

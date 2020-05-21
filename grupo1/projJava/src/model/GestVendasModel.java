@@ -119,7 +119,7 @@ public class GestVendasModel implements IGestVendasModel {
             list.add(this.billing_catalog
                             .getTotalSalesMonth(month, i + 1));
         }
-
+        list.add(this.branches_catalog.distinctClientsMonth(month));
         return list;
     }
 
