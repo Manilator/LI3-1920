@@ -98,4 +98,28 @@ public class BranchCatalog implements IBranchCatalog {
         }
         return result;
     }
+
+    /**
+     * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
+     * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
+     */
+    public Map<String, Set<String>> getClientsDistinctsProducts() {
+        Map<String, Set<String>> list = new HashMap<>();
+        for(IBranch b : this.branches) {
+            Map<String, Set<String>> clients = b.getClientsDistinctProducts();
+            for (Map.Entry<String, Set<String>> c : clients.entrySet()) {
+                String client = c.getKey();
+                Set<String> products = c.getValue();
+                if (!list.containsKey(client))
+                    list.put(client,c.getValue());
+                else {
+                    Set<String> _products = new HashSet<>();
+                    _products.addAll(products);
+                    _products.addAll(list.get(client));
+                    list.replace(client, _products);
+                }
+            }
+        }
+        return list;
+    }
 }

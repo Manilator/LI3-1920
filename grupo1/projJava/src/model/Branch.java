@@ -1,9 +1,7 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Branch implements IBranch {
 
@@ -108,4 +106,19 @@ public class Branch implements IBranch {
         }
         return list;
     }
+
+    /**
+     * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
+     * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
+     */
+    public Map<String, Set<String>> getClientsDistinctProducts() { 
+        return this.clientsProducts
+                        .entrySet()
+                        .stream()
+                        .collect(Collectors
+                                .toMap(Map.Entry::getKey, 
+                                        e -> e.getValue().getTotalDistinctProducts()));
+        
+    }
+
 }

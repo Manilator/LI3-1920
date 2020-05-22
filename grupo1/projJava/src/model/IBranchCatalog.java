@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Map;
+import java.util.Set;
 
 public interface IBranchCatalog {
 
@@ -23,4 +24,6 @@ public interface IBranchCatalog {
     int[] getTotalDistinctsClientsProductMonth(String product);
 
     public int distinctClientsMonth(int month);
+
+    public Map<String, Set<String>> getClientsDistinctsProducts();
 }

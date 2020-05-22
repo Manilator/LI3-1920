@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Set;
+
 public interface IRelationWithProduct {
 
     void updateRelationWithProduct(String product_code, int quantity, double billed, int month);
@@ -23,4 +25,6 @@ public interface IRelationWithProduct {
      * @return Array of ints with the amount of sales in each month
      */
     int[] getN_sales();
+
+    public Set<String> getTotalDistinctProducts();
 }
