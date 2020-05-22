@@ -98,4 +98,24 @@ public class BranchCatalog implements IBranchCatalog {
         }
         return result;
     }
+
+    public Map<String, Set<String>> getClientsDistinctsProducts() {
+        Map<String, Set<String>> list = new HashMap<>();
+        for(IBranch b : this.branches) {
+            Map<String, Set<String>> clients = b.getClientsDistinctProducts();
+            for (Map.Entry<String, Set<String>> c : clients.entrySet()) {
+                String client = c.getKey();
+                Set<String> products = c.getValue();
+                if (!list.containsKey(client))
+                    list.put(client,c.getValue());
+                else {
+                    Set<String> _products = new HashSet<>();
+                    _products.addAll(products);
+                    _products.addAll(list.get(client));
+                    list.replace(client, _products);
+                }
+            }
+        }
+        return list;
+    }
 }

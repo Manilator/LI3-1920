@@ -35,4 +35,6 @@ public interface IGestVendasModel {
     int getReadClients();
   
     String[][] query6(int n);
+
+    public String[][] query8(int n);
 }

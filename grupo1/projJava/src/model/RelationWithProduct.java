@@ -3,6 +3,7 @@ package model;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import static Utils.Constants.N_MONTHS;
 
@@ -66,5 +67,9 @@ public class RelationWithProduct implements IRelationWithProduct {
      */
     public int[] getN_sales() {
         return n_sales;
+    }
+
+    public Set<String> getTotalDistinctProducts() {
+        return this.infoProducts.keySet();
     }
 }
