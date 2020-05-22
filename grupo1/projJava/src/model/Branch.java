@@ -107,6 +107,10 @@ public class Branch implements IBranch {
         return list;
     }
 
+    /**
+     * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
+     * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
+     */
     public Map<String, Set<String>> getClientsDistinctProducts() { 
         return this.clientsProducts
                         .entrySet()

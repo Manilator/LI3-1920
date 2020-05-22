@@ -176,6 +176,9 @@ public class GestVendasController implements IGestVendasController {
         }
     }
 
+    /**
+     * Função que trata do controller da query 8
+     */
     private void query8Controller() {
         long startTime = System.nanoTime();
         String[][] test = gv.query8(20);

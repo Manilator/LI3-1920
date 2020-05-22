@@ -69,6 +69,10 @@ public class RelationWithProduct implements IRelationWithProduct {
         return n_sales;
     }
 
+    /**
+     * Get amount of sales made at each month
+     * @return Array of ints with the amount of sales in each month
+     */
     public Set<String> getTotalDistinctProducts() {
         return this.infoProducts.keySet();
     }

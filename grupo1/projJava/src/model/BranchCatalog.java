@@ -99,6 +99,10 @@ public class BranchCatalog implements IBranchCatalog {
         return result;
     }
 
+    /**
+     * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
+     * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
+     */
     public Map<String, Set<String>> getClientsDistinctsProducts() {
         Map<String, Set<String>> list = new HashMap<>();
         for(IBranch b : this.branches) {
