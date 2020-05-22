@@ -29,6 +29,20 @@ public class RelationWithProduct implements IRelationWithProduct {
         this.infoProducts.get(product_code).updateInfoProduct(quantity,billed,month);
     }
 
+    public double[] getTotalBilled()
+    {
+        return this.totalBilled;
+    }
+
+    /**
+     * Devolve a soma do total faturado de todos os meses
+     * @return Valor total faturado
+     */
+    public double getSumTotalBilled()
+    {
+        return Arrays.stream(this.totalBilled).sum();
+    }
+
     public boolean didPurchaseMonth(int month) {
         return n_sales[month-1] != 0;
     }

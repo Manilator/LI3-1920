@@ -60,4 +60,17 @@ public class BranchCatalog implements IBranchCatalog {
         }
         return result;
     }
+
+    /**
+     * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
+     * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
+     */
+    public String[][][] getTop3BuyersByBranch() {
+        String[][][] result = new String[N_BRANCHES][3][2];
+        for(int i = 0; i < N_BRANCHES; i++) {
+            result[i] = this.branches[i].getTop3BuyersInBranchX();
+        }
+        return result;
+    }
+
 }

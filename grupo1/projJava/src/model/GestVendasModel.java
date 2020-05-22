@@ -131,6 +131,14 @@ public class GestVendasModel implements IGestVendasModel {
         return array;
     }
 
+    /**
+     * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
+     * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
+     */
+    public String[][][] query7() {
+        return this.branches_catalog.getTop3BuyersByBranch();
+    }
+
     public void startSGV() throws IOException {
         parseClients();
         parseProducts();

@@ -11,4 +11,10 @@ public interface IBranch {
     public int distinctClientsMonth(int month);
 
     public int[] getDistinctsClientsProductMonth(String product);
+
+    /**
+     * Query 7: Determina numa dada filial os 3 maiores compradores (a nivel de dinheiro faturado)
+     * @return Matriz de strings com o codigo de cliente e total faturado dos 3 maiores compradores dessa filial
+     */
+    public String[][] getTop3BuyersInBranchX();
 }

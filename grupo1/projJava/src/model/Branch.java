@@ -1,7 +1,7 @@
 package model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Branch implements IBranch {
 
@@ -60,5 +60,36 @@ public class Branch implements IBranch {
 
     public int[] getDistinctsClientsProductMonth(String product) {
         return this.productsClients.get(product).getDistinctsClientsProductMonth();
+    }
+
+    /**
+     * Query 7: Determina numa dada filial os 3 maiores compradores (a nivel de dinheiro faturado)
+     * @return Matriz de strings com o codigo de cliente e total faturado dos 3 maiores compradores dessa filial
+     */
+    public String[][] getTop3BuyersInBranchX() {
+
+        // para cada cliente no clientsProducts ha o valor total faturado:
+        Map<String, Double> totais = this.clientsProducts.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().getSumTotalBilled()));
+
+        List<Map.Entry<String, Double>> clients = new ArrayList<>(totais.entrySet());
+
+        // ordenar a lista de ordem decrescente por valor
+        final double aux[] = new double[1];
+        Comparator<Map.Entry<String, Double>> comp = (a, b) ->
+                (int) ((aux[0] = b.getValue() - a.getValue())
+                                        == 0 ? a.getKey().compareTo(b.getKey()) : aux[0]);
+        clients.sort(comp);
+
+        // devolver os 3 maiores
+        String[][] result = new String[3][2];
+        int i = 0;
+        for( Map.Entry<String, Double> c : clients ) {
+            if (i >= 3) {
+                break;
+            }
+            result[i][0] = c.getKey();
+            result[i++][1] = String.valueOf(c.getValue());
+        }
+        return result;
     }
 }

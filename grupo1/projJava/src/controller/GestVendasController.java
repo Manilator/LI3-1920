@@ -110,6 +110,18 @@ public class GestVendasController implements IGestVendasController {
         view.query4View(result);
     }
 
+    /**
+     * Função que trata do controller da query 7
+     */
+    void query7Controller() {
+        long startTime = System.nanoTime();
+        String[][][] result = gv.query7();
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        System.out.println("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.query7View(result);
+    }
+
     /* void menu(SGV sgv) */
     void menu() throws IOException {
 
@@ -148,7 +160,7 @@ public class GestVendasController implements IGestVendasController {
                     /*controllerQuery6(sgv);*/
                     break;
                 case 7:
-                    /*controllerQuery7(sgv);*/
+                    query7Controller();
                     break;
                 case 8:
                     /*controllerQuery8(sgv);*/

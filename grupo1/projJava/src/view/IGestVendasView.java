@@ -11,4 +11,6 @@ public interface IGestVendasView {
     public void cleanConsole();
 
     public void query4View(double[][] result);
+
+    public void query7View(String[][][] result);
 }

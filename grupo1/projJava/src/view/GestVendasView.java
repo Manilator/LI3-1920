@@ -60,6 +60,16 @@ public class GestVendasView implements IGestVendasView {
         }
     }
 
+    public void query7View(String[][][] result) {
+        for (int i = 0; i < N_BRANCHES; i++) {
+            printMessage("Filial: " + String.valueOf(i+1));
+            for (int j = 0; j < 3; j++) {
+                printMessage("Codigo de cliente: " + result[i][j][0]);
+                printMessage("Faturado: " + result[i][j][1]);
+            }
+        }
+    }
+
     public void cleanConsole()
     {
         System.out.print("\033[H\033[2J");
