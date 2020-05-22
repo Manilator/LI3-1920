@@ -169,11 +169,10 @@ public class GestVendasModel implements IGestVendasModel {
 
         final int aux[] = new int[1];
         Comparator<Map.Entry<String, Integer>> comp = (a, b) ->
-                (aux[0] = a.getValue() - b.getValue())
-                        == 0 ? b.getKey().compareTo(a.getKey()) : aux[0];
+                (aux[0] = b.getValue() - a.getValue())
+                        == 0 ? a.getKey().compareTo(b.getKey()) : aux[0];
 
         clients.sort(comp);
-        Collections.reverse(clients);
         String[][] result = new String[clients.size()][2];
         int i = 0;
         for( Map.Entry<String, Integer> c : clients) {
