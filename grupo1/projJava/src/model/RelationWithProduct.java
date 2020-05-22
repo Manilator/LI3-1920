@@ -3,6 +3,9 @@ package model;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
+import static Utils.Constants.N_MONTHS;
 
 public class RelationWithProduct implements IRelationWithProduct {
 
@@ -47,4 +50,44 @@ public class RelationWithProduct implements IRelationWithProduct {
         return n_sales[month-1] != 0;
     }
 
+    /**
+     * Get amount of distinct products that bought in each month
+     * @return Array of ints with amount of distinct products bought
+     */
+    public int[] getAmountDistinctInfoProducts(){
+        int[] result = new int[N_MONTHS];
+        int[] tmp;
+        for (String productCode: infoProducts.keySet()){
+            tmp = infoProducts.get(productCode).getQuantities();
+            for (int i=0;i<N_MONTHS;i++)
+                if(tmp[i] != 0)
+                    result[i] += 1;
+        }
+
+        return result;
+    }
+
+    /**
+     * Get amount the amount billed each month
+     * @return Array of ints with the amount billed each month
+     */
+    public double[] getTotalBilled() {
+        return totalBilled;
+    }
+
+    /**
+     * Get amount of sales made at each month
+     * @return Array of ints with the amount of sales in each month
+     */
+    public int[] getN_sales() {
+        return n_sales;
+    }
+
+    /**
+     * Get amount of sales made at each month
+     * @return Array of ints with the amount of sales in each month
+     */
+    public Set<String> getTotalDistinctProducts() {
+        return this.infoProducts.keySet();
+    }
 }

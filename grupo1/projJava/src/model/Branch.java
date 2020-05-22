@@ -46,18 +46,49 @@ public class Branch implements IBranch {
         this.clientsProducts.get(client_code).updateRelationWithProduct(product_code, units, billed, month);
     }
 
-    public Map<String, String> getProductsNeverBought(Map<String, String> productsBought){
+    /**
+     * Hashtable com os códigos de todos os produtos que efetuaram compras na filial
+     * @return Map com códigos de produtos como valores e chaves que compraram na filial
+     */
+    public Map<String, String> getProductsBought(Map<String, String> productsBought){
         for (String productCode : this.productsClients.keySet())
             if (!productsBought.containsKey(productCode))
                 productsBought.put(productCode,productCode);
         return productsBought;
     }
 
+    /**
+     * Dado um código de cliente, determinar, para cada mês na filial, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total
+     * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês na filial
+     */
+    public double[][] getClientShoppingLog(String clientCode, double[][] shopLog){
+        int[] distinctProducts = clientsProducts.get(clientCode).getAmountDistinctInfoProducts();
+        double[] spentTotal = clientsProducts.get(clientCode).getTotalBilled();
+        int[] numberSales = clientsProducts.get(clientCode).getN_sales();
+
+        for (int i=0; i<12 ; i++){
+            shopLog[i][0] += numberSales[i];
+            shopLog[i][1] += distinctProducts[i];
+            shopLog[i][2] += spentTotal[i];
+        }
+
+        return shopLog;
+    }
+
+    /**
+     * Função que recolhe o número de clientes que realizaram compras num mês dado
+     * @param month mês no qual os clientes realizaram compras
+     * @return número de clientes distintos que realizaram compras num mês especifico
+     */
     public int distinctClientsMonth(int month) {
-        HashMap<String, IRelationWithProduct> list = new HashMap<>(this.clientsProducts);
         return (int) this.clientsProducts.values().stream().filter(e -> e.didPurchaseMonth(month)).count();
     }
 
+    /**
+     * Função que recolhe o número de clientes distintos que realizaram compras separado por meses
+     * @param product produto que se pretende obter o número de clientes distintos que o compraram
+     * @return Array de inteiros que correspondem ao número de clientes distintos que compraram certo produto separado por meses
+     */
     public int[] getDistinctsClientsProductMonth(String product) {
         return this.productsClients.get(product).getDistinctsClientsProductMonth();
     }
@@ -91,5 +122,32 @@ public class Branch implements IBranch {
             result[i++][1] = String.valueOf(c.getValue());
         }
         return result;
+    }
+
+     * Função que recolhe a lista de clientes que realizaram compras num certo mês
+     * @param month mês no qual os clientes realizaram compras
+     * @return Lista de códigos de clientes que realizaram compras no mês
+     */
+    public List<String> getClientsWithPurchasesMonth(int month) {
+        List<String> list = new ArrayList<>();
+        for (Map.Entry<String, IRelationWithProduct> c : this.clientsProducts.entrySet()) {
+            if(c.getValue().didPurchaseMonth(month))
+                list.add(c.getKey());
+        }
+        return list;
+    }
+
+    /**
+     * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
+     * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
+     */
+    public Map<String, Set<String>> getClientsDistinctProducts() { 
+        return this.clientsProducts
+                        .entrySet()
+                        .stream()
+                        .collect(Collectors
+                                .toMap(Map.Entry::getKey, 
+                                        e -> e.getValue().getTotalDistinctProducts()));
+        
     }
 }
