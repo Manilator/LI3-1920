@@ -4,15 +4,17 @@ import java.util.List;
 
 public interface IGestVendasView {
 
-    public void printMenu();
+    void printMenu();
 
-    public void printMessage(String message);
+    void printMessage(String message);
 
-    public void cleanConsole();
+    void cleanConsole();
 
     void query3View(double[][] result);
 
-    public void query4View(double[][] result);
+    void query4View(double[][] result);
 
-    public void query6View(String[][] result);
+    void query5View(String[][] result);
+
+    void query6View(String[][] result);
 }

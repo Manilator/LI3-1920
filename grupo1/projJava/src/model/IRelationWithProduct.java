@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Map;
+
 public interface IRelationWithProduct {
 
     void updateRelationWithProduct(String product_code, int quantity, double billed, int month);
@@ -7,20 +9,27 @@ public interface IRelationWithProduct {
     boolean didPurchaseMonth(int month);
 
     /**
-     * Get amount of distinct products that bought in each month
-     * @return Array of ints with amount of distinct products bought
+     * Devolve o numero de produtos distintos comprados em cada mês
+     * @return Array de ints com a quantidade de produtos distintos comprados em cada mês
      */
     int[] getAmountDistinctInfoProducts();
 
     /**
-     * Get amount the amount billed each month
-     * @return Array of ints with the amount billed each month
+     * Deolve o total faturado em cada mês
+     * @return Array de ints com o total faturado em cada mês
      */
     double[] getTotalBilled();
 
     /**
-     * Get amount of sales made at each month
-     * @return Array of ints with the amount of sales in each month
+     * Devolve a quantidade de vendas feitas em cada mês
+     * @return Array de ints com a quantidade de vendas feitas em cada mês
      */
     int[] getN_sales();
+
+    /**
+     * Dada uma hashtable com os códigos de produtos atualizar com as quantidades compradas por cada
+     * @param productsBought Hashtable com os códigos de produtos mais comprados pelo mesmo em todas as filiais
+     * @return Hashtable com os códigos de produtos mais comprados pelo mesmo na filial
+     */
+    Map<String,Integer> getClientsFavoriteProductsBranch(Map<String,Integer> productsBought);
 }

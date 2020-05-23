@@ -119,6 +119,18 @@ public class GestVendasController implements IGestVendasController {
         view.query4View(result);
     }
 
+    private void query5Controller(){
+        Scanner sc = new Scanner(System.in);
+        view.printMessage("Insira o Cliente: ");
+        String client = sc.nextLine();
+        long startTime = System.nanoTime();
+        String[][] result = gv.getClientsFavoriteProducts(client);
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.query5View(result);
+    }
+
     private void query6Controller() {
         // Resolver os scanners
         Scanner sr = new Scanner(System.in);
@@ -175,7 +187,7 @@ public class GestVendasController implements IGestVendasController {
                     query2Controller();
                     break;
                 case 3:
-		    query3Controller();
+		            query3Controller();
                     /*controllerQuery3(sgv);*/
                     break;
                 case 4:
@@ -183,7 +195,7 @@ public class GestVendasController implements IGestVendasController {
                     /*controllerQuery4(sgv);*/
                     break;
                 case 5:
-                    /*controllerQuery5(sgv);*/
+                    query5Controller();
                     break;
                 case 6:
                     query6Controller();

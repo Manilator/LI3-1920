@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IBranchCatalog {
@@ -17,6 +18,13 @@ public interface IBranchCatalog {
      * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês em todas as filiais
      */
     double[][] getClientShoppingLog(String clientCode);
+
+    /**
+     * Dado um código de cliente retorna uma lista ordenada com os códigos de produtos mais comprados pelo mesmo em todas as filiais
+     * @param clientCode String com o código do cliente
+     * @return Lista de strings com códigos de produtos mais comprados nas filiais
+     */
+    String[][] getClientsFavoriteProducts(String clientCode);
 
     int distinctClientsMonth(int month, int branch);
 
