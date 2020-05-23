@@ -40,4 +40,6 @@ public interface IBranchCatalog {
     public int distinctClientsMonth(int month);
 
     public Map<String, Set<String>> getClientsDistinctsProducts();
+
+    public Map<String, List<Double>> getProductAllClients(String product);
 }

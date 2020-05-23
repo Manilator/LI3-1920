@@ -8,10 +8,12 @@ import view.IPages;
 import view.Pages;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 import static Utils.Constants.N_BRANCHES;
-import static Utils.Constants.N_MONTHS;
 
 public class GestVendasController implements IGestVendasController {
     public IGestVendasView view;
@@ -174,29 +176,13 @@ public class GestVendasController implements IGestVendasController {
         int n_page = 0;
         view.printMessage("Insira o número de produtos que deseja ver: ");
         int n = sr.nextInt();
+        long startTime = System.nanoTime();
         String[][] result = gv.query6(n);
-        List<String> list = new ArrayList<>();
-        for(int i = 0; i < N_MONTHS; i++) {
-            list.add("---- Produto " + result[i][0] + "\n" + "Quantidade: " + result[i][1] + "\n" + "Clientes distintos: " + result[i][2]);
-        }
-        String choice = "-1";
-        Scanner sc = new Scanner(System.in);
-        while(!choice.equals("0")) {
-            Pages pages = new Pages(list.size(),list);
-            pages.show(n_page);
-            pages.choices();
-            choice = sc.nextLine();
-            switch (choice) {
-                case "n":
-                    n_page++;
-                case "p":
-                    n_page--;
-                case "c":
-                    view.printMessage("Número da página: ");
-                    n_page = sr.nextInt();
-                default:
-                    choice = "0";
-            }
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        for(int i = 0; i < n; i++) {
+            System.out.println("---- Produto " + result[i][0] + "\n" + "Quantidade: " + result[i][1] + "\n" + "Clientes distintos: " + result[i][2]);
         }
     }
 
@@ -210,6 +196,19 @@ public class GestVendasController implements IGestVendasController {
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
         for (int i = 0; i < 20; i++)
+            System.out.println(Arrays.toString(test[i]));
+    }
+
+    /**
+     * Função que trata do controller da query 9
+     */
+    private void query9Controller() {
+        long startTime = System.nanoTime();
+        String[][] test = gv.query9("AF1184",10);
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        for (int i = 0; i < 10 && i < test.length; i++)
             System.out.println(Arrays.toString(test[i]));
     }
 
@@ -259,6 +258,7 @@ public class GestVendasController implements IGestVendasController {
                     /*controllerQuery8(sgv);*/
                     break;
                 case 9:
+                    query9Controller();
                     /*controllerQuery9(sgv);*/
                     break;
                 case 10:
