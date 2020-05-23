@@ -20,8 +20,6 @@ public interface IRelationWithProduct {
      */
     double[] getTotalBilled();
 
-    public boolean didPurchaseMonth(int month);
-
     /**
      * Devolve a soma do total faturado de todos os meses
      * @return Valor total faturado

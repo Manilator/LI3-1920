@@ -33,4 +33,11 @@ public interface IBranch {
     public List<String> getClientsWithPurchasesMonth(int month);
 
     public Map<String, Set<String>> getClientsDistinctProducts();
+
+    /**
+     * Recolhe todos os clientes que compraram o produto
+     * @param product Código do produto
+     * @return Set com todas as entradas do Hashmap que contém os clientes que compraram o produto
+     */
+    public Set<Map.Entry<String, IInfoClient>> getProductAllClients(String product);
 }

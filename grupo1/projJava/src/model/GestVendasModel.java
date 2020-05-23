@@ -174,7 +174,7 @@ public class GestVendasModel implements IGestVendasModel {
         Map<String, Integer> _list = list.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().size()));
         List<Map.Entry<String, Integer>> clients = new ArrayList<>(_list.entrySet());
 
-        final int aux[] = new int[1];
+        final int[] aux = new int[1];
         Comparator<Map.Entry<String, Integer>> comp = (a, b) ->
                 (aux[0] = b.getValue() - a.getValue())
                         == 0 ? a.getKey().compareTo(b.getKey()) : aux[0];
@@ -187,6 +187,27 @@ public class GestVendasModel implements IGestVendasModel {
             result[i++][1] = String.valueOf(c.getValue());
         }
         return result;
+    }
+
+    public String[][] query9(String product, int n) {
+        Map<String, List<Double>> list = this.branches_catalog.getProductAllClients(product);
+        List<Map.Entry<String, List<Double>>> clients = new ArrayList<>(list.entrySet());
+
+        final int[] aux = new int[1];
+        Comparator<Map.Entry<String, List<Double>>> comp = (a, b) ->
+                (aux[0] = (int) (b.getValue().get(0) - a.getValue().get(0)))
+                        == 0 ? a.getKey().compareTo(b.getKey()) : aux[0];
+
+        clients.sort(comp);
+        String[][] result = new String[clients.size()][3];
+        int i = 0;
+        for( Map.Entry<String, List<Double>> c : clients) {
+            result[i][0] = c.getKey();
+            result[i][1] = String.valueOf(c.getValue().get(0));
+            result[i++][2] = String.valueOf(c.getValue().get(1));
+        }
+        return result;
+
     }
 
     public void startSGV() throws IOException {

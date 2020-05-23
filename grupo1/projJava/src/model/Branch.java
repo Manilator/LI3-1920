@@ -42,7 +42,7 @@ public class Branch implements IBranch {
             _code_client = _code_client.replace("\\r\\n", "");
             this.clientsProducts.put(_code_client, new RelationWithProduct());
         }
-        this.productsClients.get(product_code).updateRelationWithClient(client_code, units, promotion_type, month);
+        this.productsClients.get(product_code).updateRelationWithClient(client_code, units, promotion_type, month, billed);
         this.clientsProducts.get(client_code).updateRelationWithProduct(product_code, units, billed, month);
     }
 
@@ -124,6 +124,7 @@ public class Branch implements IBranch {
         return result;
     }
 
+    /*
      * Função que recolhe a lista de clientes que realizaram compras num certo mês
      * @param month mês no qual os clientes realizaram compras
      * @return Lista de códigos de clientes que realizaram compras no mês
@@ -149,5 +150,14 @@ public class Branch implements IBranch {
                                 .toMap(Map.Entry::getKey, 
                                         e -> e.getValue().getTotalDistinctProducts()));
         
+    }
+
+    /**
+     * Recolhe todos os clientes que compraram o produto
+     * @param product Código do produto
+     * @return Set com todas as entradas do Hashmap que contém os clientes que compraram o produto
+     */
+    public Set<Map.Entry<String, IInfoClient>> getProductAllClients(String product) {
+        return this.productsClients.get(product).getAllClients();
     }
 }

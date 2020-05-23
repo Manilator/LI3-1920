@@ -43,4 +43,6 @@ public interface IGestVendasModel {
     public String[][][] query7();
 
     public String[][] query8(int n);
+
+    public String[][] query9(String product, int n);
 }

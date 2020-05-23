@@ -1,7 +1,9 @@
 package model;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import static Utils.Constants.N_MONTHS;
 
@@ -16,7 +18,7 @@ public class RelationWithClient implements IRelationWithClient {
         this.totalProductsSold = new int[12];
     }
 
-    public void updateRelationWithClient(String client_code, int units, char promotion_type, int month) {
+    public void updateRelationWithClient(String client_code, int units, char promotion_type, int month, double totalbilled) {
         this.totalProductsSold[month-1] += units;
         if (!this.infoClients.containsKey(client_code)) {
             String _code_client = client_code;
@@ -24,7 +26,7 @@ public class RelationWithClient implements IRelationWithClient {
             _code_client = _code_client.replace("\\r\\n", "");
             this.infoClients.put(_code_client, new InfoClient());
         }
-        this.infoClients.get(client_code).updateInfoClient(units,promotion_type, month);
+        this.infoClients.get(client_code).updateInfoClient(units,promotion_type, month, totalbilled);
     }
 
     public int[] getTotalProductsSold() {
@@ -44,5 +46,13 @@ public class RelationWithClient implements IRelationWithClient {
             }
         }
         return totals;
+    }
+
+    /**
+     * Recolhe todos os clientes que compraram o produto
+     * @return Set com todas as entradas do Hashmap que contém os clientes que compraram o produto
+     */
+    public Set<Map.Entry<String, IInfoClient>> getAllClients() {
+        return new HashSet<>(this.infoClients.entrySet());
     }
 }

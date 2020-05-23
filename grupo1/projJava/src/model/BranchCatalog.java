@@ -110,7 +110,8 @@ public class BranchCatalog implements IBranchCatalog {
         }
         return result;
     }
-  
+
+    /*
      * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
      * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
      */
@@ -128,6 +129,36 @@ public class BranchCatalog implements IBranchCatalog {
                     _products.addAll(products);
                     _products.addAll(list.get(client));
                     list.replace(client, _products);
+                }
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Recolhe todos os clientes que compraram o produto com unidades e gastos totais
+     * @param product Código do produto
+     * @return Map com todos os clientes que compraram o produto e associado a cada um o total de unidades e total gasto
+     */
+    public Map<String, List<Double>> getProductAllClients(String product) {
+        Map<String, List<Double>> list = new HashMap<>();
+        for(IBranch b : this.branches) {
+            Set<Map.Entry<String, IInfoClient>> clients = b.getProductAllClients(product);
+            for(Map.Entry<String, IInfoClient> c : clients) {
+                String key = c.getKey();
+                IInfoClient value = c.getValue();
+                List<Double> value_list = new ArrayList<>();
+                value_list.add((double) value.getTotalUnits());
+                value_list.add(value.getTotalBilled());
+
+                if(!list.containsKey(key))
+                    list.put(key, value_list);
+                else {
+                    List<Double> old = list.get(key);
+                    List<Double> value_new = new ArrayList<>();
+                    value_new.add(old.get(0) + value_list.get(0));
+                    value_new.add(old.get(1) + value_list.get(1));
+                    list.replace(key,value_new);
                 }
             }
         }
