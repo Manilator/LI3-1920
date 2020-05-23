@@ -76,6 +76,16 @@ public class Branch implements IBranch {
     }
 
     /**
+     * Dado um código de cliente retorna uma hashtable com os códigos de produtos mais comprados pelo mesmo na filial
+     * @param clientCode String com o código do cliente
+     * @param productsBought Hashtable com os códigos de produtos mais comprados pelo mesmo em todas as filiais
+     * @return Hashtable com os códigos de produtos mais comprados pelo mesmo na filial
+     */
+    public Map<String,Integer> getClientsFavoriteProductsBranch(String clientCode, Map<String,Integer> productsBought){
+        return clientsProducts.get(clientCode).getClientsFavoriteProductsBranch(productsBought);
+    }
+
+    /**
      * Função que recolhe o número de clientes que realizaram compras num mês dado
      * @param month mês no qual os clientes realizaram compras
      * @return número de clientes distintos que realizaram compras num mês especifico

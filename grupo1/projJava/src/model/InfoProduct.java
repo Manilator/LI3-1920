@@ -3,6 +3,8 @@ package model;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+import static Utils.Constants.N_MONTHS;
+
 public class InfoProduct implements IInfoProduct {
 
     private int[] quantities; /**< Quantidades por cada mês */
@@ -20,10 +22,23 @@ public class InfoProduct implements IInfoProduct {
     }
 
     /**
-     * Get amount of products bought each month
-     * @return Array of ints with the amount of products bought
+     * Devolve o numero de produtos comprados em cada mês
+     * @return Array de inteiros com o numero de produtos comprados
      */
     public int[] getQuantities() {
         return quantities;
+    }
+
+    /**
+     * Devolve a quantidade de compras do produto no ano inteiro
+     * @return Int com a quantidade comprada do produto no ano inteiro
+     */
+    public int getTotalQuantity(){
+        int result = 0;
+
+        for (int i=0;i<N_MONTHS;i++)
+            result += quantities[i];
+
+        return result;
     }
 }

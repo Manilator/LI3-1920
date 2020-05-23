@@ -143,6 +143,18 @@ public class GestVendasController implements IGestVendasController {
         view.query4View(result);
     }
 
+    private void query5Controller(){
+        Scanner sc = new Scanner(System.in);
+        view.printMessage("Insira o Cliente: ");
+        String client = sc.nextLine();
+        long startTime = System.nanoTime();
+        String[][] result = gv.getClientsFavoriteProducts(client);
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.query5View(result);
+    }
+
     /**
      * Função que trata do controller da query 7
      */
@@ -232,7 +244,7 @@ public class GestVendasController implements IGestVendasController {
                     /*controllerQuery4(sgv);*/
                     break;
                 case 5:
-                    /*controllerQuery5(sgv);*/
+                    query5Controller();
                     break;
                 case 6:
                     query6Controller();

@@ -26,6 +26,13 @@ public interface IBranchCatalog {
      */
     public String[][][] getTop3BuyersByBranch();
 
+    /**
+     * Dado um código de cliente retorna uma lista ordenada com os códigos de produtos mais comprados pelo mesmo em todas as filiais
+     * @param clientCode String com o código do cliente
+     * @return Lista de strings com códigos de produtos mais comprados nas filiais
+     */
+    String[][] getClientsFavoriteProducts(String clientCode);
+
     int distinctClientsMonth(int month, int branch);
 
     int[] getTotalDistinctsClientsProductMonth(String product);

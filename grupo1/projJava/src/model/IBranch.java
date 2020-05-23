@@ -21,6 +21,14 @@ public interface IBranch {
     double[][] getClientShoppingLog(String clientCode, double[][] shopLog);
 
     /**
+     * Dado um código de cliente retorna uma hashtable com os códigos de produtos mais comprados pelo mesmo na filial
+     * @param clientCode String com o código do cliente
+     * @param productsBought Hashtable com os códigos de produtos mais comprados pelo mesmo em todas as filiais
+     * @return Hashtable com os códigos de produtos mais comprados pelo mesmo na filial
+     */
+    Map<String,Integer> getClientsFavoriteProductsBranch(String clientCode, Map<String,Integer> productsBought);
+
+    /**
      * Query 7: Determina numa dada filial os 3 maiores compradores (a nivel de dinheiro faturado)
      * @return Matriz de strings com o codigo de cliente e total faturado dos 3 maiores compradores dessa filial
      */

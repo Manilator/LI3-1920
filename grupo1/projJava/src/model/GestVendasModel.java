@@ -143,6 +143,15 @@ public class GestVendasModel implements IGestVendasModel {
         return array;
     }
 
+    /**
+     * Dado um código de cliente retorna uma lista ordenada com os códigos de produtos mais comprados pelo mesmo
+     * @param clientCode String com o código do cliente
+     * @return Lista de strings com códigos de produtos mais comprados
+     */
+    public String[][] getClientsFavoriteProducts(String clientCode){
+        return this.branches_catalog.getClientsFavoriteProducts(clientCode);
+    }
+
     public String[][] query6(int n) {
         String[][] array = new String[n][3];
         System.out.println("x");

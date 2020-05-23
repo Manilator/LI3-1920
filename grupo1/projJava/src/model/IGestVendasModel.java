@@ -30,6 +30,13 @@ public interface IGestVendasModel {
      */
     double[][] getClientShoppingLog(String clientCode);
 
+    /**
+     * Dado um código de cliente retorna uma lista ordenada com os códigos de produtos mais comprados pelo mesmo
+     * @param clientCode String com o código do cliente
+     * @return Lista de strings com códigos de produtos mais comprados
+     */
+    String[][] getClientsFavoriteProducts(String clientCode);
+
     double[][] query4(String product);
 
     int getReadClients();

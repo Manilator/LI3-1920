@@ -46,8 +46,8 @@ public class RelationWithProduct implements IRelationWithProduct {
     }
 
     /**
-     * Get amount of distinct products that bought in each month
-     * @return Array of ints with amount of distinct products bought
+     * Devolve o numero de produtos distintos comprados em cada mês
+     * @return Array de ints com a quantidade de produtos distintos comprados em cada mês
      */
     public int[] getAmountDistinctInfoProducts(){
         int[] result = new int[N_MONTHS];
@@ -63,21 +63,36 @@ public class RelationWithProduct implements IRelationWithProduct {
     }
 
     /**
-     * Get amount the amount billed each month
-     * @return Array of ints with the amount billed each month
+     * Deolve o total faturado em cada mês
+     * @return Array de ints com o total faturado em cada mês
      */
     public double[] getTotalBilled() {
         return totalBilled;
     }
 
     /**
-     * Get amount of sales made at each month
-     * @return Array of ints with the amount of sales in each month
+     * Devolve a quantidade de vendas feitas em cada mês
+     * @return Array de ints com a quantidade de vendas feitas em cada mês
      */
     public int[] getN_sales() {
         return n_sales;
     }
 
+    /**
+     * Dada uma hashtable com os códigos de produtos atualizar com as quantidades compradas por cada
+     * @param productsBought Hashtable com os códigos de produtos mais comprados pelo mesmo em todas as filiais
+     * @return Hashtable com os códigos de produtos mais comprados pelo mesmo na filial
+     */
+    public Map<String,Integer> getClientsFavoriteProductsBranch(Map<String,Integer> productsBought){
+        for (String key : infoProducts.keySet()){
+            if(productsBought.containsKey(key))
+                productsBought.put(key, productsBought.get(key) + infoProducts.get(key).getTotalQuantity());
+            else
+                productsBought.put(key, infoProducts.get(key).getTotalQuantity());
+        }
+        return productsBought;
+    }
+  
     /**
      * Get amount of sales made at each month
      * @return Array of ints with the amount of sales in each month
