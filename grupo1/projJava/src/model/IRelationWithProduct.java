@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Map;
+import java.util.Set;
 
 public interface IRelationWithProduct {
 
@@ -20,6 +21,14 @@ public interface IRelationWithProduct {
      */
     double[] getTotalBilled();
 
+    boolean didPurchaseMonth(int month);
+
+    /**
+     * Devolve a soma do total faturado de todos os meses
+     * @return Valor total faturado
+     */
+    double getSumTotalBilled();
+
     /**
      * Devolve a quantidade de vendas feitas em cada mês
      * @return Array de ints com a quantidade de vendas feitas em cada mês
@@ -32,4 +41,6 @@ public interface IRelationWithProduct {
      * @return Hashtable com os códigos de produtos mais comprados pelo mesmo na filial
      */
     Map<String,Integer> getClientsFavoriteProductsBranch(Map<String,Integer> productsBought);
+
+    Set<String> getTotalDistinctProducts();
 }

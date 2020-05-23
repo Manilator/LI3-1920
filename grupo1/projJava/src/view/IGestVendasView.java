@@ -17,4 +17,6 @@ public interface IGestVendasView {
     void query5View(String[][] result);
 
     void query6View(String[][] result);
+  
+    public void query7View(String[][][] result);
 }

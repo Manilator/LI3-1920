@@ -3,6 +3,7 @@ package model;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import static Utils.Constants.N_MONTHS;
 
@@ -29,6 +30,20 @@ public class RelationWithProduct implements IRelationWithProduct {
             this.infoProducts.put(_code_product, new InfoProduct());
         }
         this.infoProducts.get(product_code).updateInfoProduct(quantity,billed,month);
+    }
+
+    public double[] getTotalBilled()
+    {
+        return this.totalBilled;
+    }
+
+    /**
+     * Devolve a soma do total faturado de todos os meses
+     * @return Valor total faturado
+     */
+    public double getSumTotalBilled()
+    {
+        return Arrays.stream(this.totalBilled).sum();
     }
 
     public boolean didPurchaseMonth(int month) {
@@ -81,5 +96,13 @@ public class RelationWithProduct implements IRelationWithProduct {
                 productsBought.put(key, infoProducts.get(key).getTotalQuantity());
         }
         return productsBought;
+    }
+  
+    /**
+     * Get amount of sales made at each month
+     * @return Array of ints with the amount of sales in each month
+     */
+    public Set<String> getTotalDistinctProducts() {
+        return this.infoProducts.keySet();
     }
 }

@@ -25,6 +25,10 @@ public class InfoClient implements IInfoClient {
         }
     }
 
+    /**
+     * Recolhe se um cliente realizou a compra de um produto por mês
+     * @return Array de booleanos em que cada entrada corresponde aos meses
+     */
     public boolean[] didPurchaseMonth() {
         boolean[] months = new boolean[N_MONTHS];
         for(int i = 0; i < N_MONTHS; i++) {

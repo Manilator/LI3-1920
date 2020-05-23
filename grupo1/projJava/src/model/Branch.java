@@ -1,7 +1,7 @@
 package model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Branch implements IBranch {
 
@@ -85,12 +85,79 @@ public class Branch implements IBranch {
         return clientsProducts.get(clientCode).getClientsFavoriteProductsBranch(productsBought);
     }
 
+    /**
+     * Função que recolhe o número de clientes que realizaram compras num mês dado
+     * @param month mês no qual os clientes realizaram compras
+     * @return número de clientes distintos que realizaram compras num mês especifico
+     */
     public int distinctClientsMonth(int month) {
-        HashMap<String, IRelationWithProduct> list = new HashMap<>(this.clientsProducts);
         return (int) this.clientsProducts.values().stream().filter(e -> e.didPurchaseMonth(month)).count();
     }
 
+    /**
+     * Função que recolhe o número de clientes distintos que realizaram compras separado por meses
+     * @param product produto que se pretende obter o número de clientes distintos que o compraram
+     * @return Array de inteiros que correspondem ao número de clientes distintos que compraram certo produto separado por meses
+     */
     public int[] getDistinctsClientsProductMonth(String product) {
         return this.productsClients.get(product).getDistinctsClientsProductMonth();
+    }
+
+    /**
+     * Query 7: Determina numa dada filial os 3 maiores compradores (a nivel de dinheiro faturado)
+     * @return Matriz de strings com o codigo de cliente e total faturado dos 3 maiores compradores dessa filial
+     */
+    public String[][] getTop3BuyersInBranchX() {
+
+        // para cada cliente no clientsProducts ha o valor total faturado:
+        Map<String, Double> totais = this.clientsProducts.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().getSumTotalBilled()));
+
+        List<Map.Entry<String, Double>> clients = new ArrayList<>(totais.entrySet());
+
+        // ordenar a lista de ordem decrescente por valor
+        final double aux[] = new double[1];
+        Comparator<Map.Entry<String, Double>> comp = (a, b) ->
+                (int) ((aux[0] = b.getValue() - a.getValue())
+                                        == 0 ? a.getKey().compareTo(b.getKey()) : aux[0]);
+        clients.sort(comp);
+
+        // devolver os 3 maiores
+        String[][] result = new String[3][2];
+        int i = 0;
+        for( Map.Entry<String, Double> c : clients ) {
+            if (i >= 3) {
+                break;
+            }
+            result[i][0] = c.getKey();
+            result[i++][1] = String.valueOf(c.getValue());
+        }
+        return result;
+    }
+
+     * Função que recolhe a lista de clientes que realizaram compras num certo mês
+     * @param month mês no qual os clientes realizaram compras
+     * @return Lista de códigos de clientes que realizaram compras no mês
+     */
+    public List<String> getClientsWithPurchasesMonth(int month) {
+        List<String> list = new ArrayList<>();
+        for (Map.Entry<String, IRelationWithProduct> c : this.clientsProducts.entrySet()) {
+            if(c.getValue().didPurchaseMonth(month))
+                list.add(c.getKey());
+        }
+        return list;
+    }
+
+    /**
+     * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
+     * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
+     */
+    public Map<String, Set<String>> getClientsDistinctProducts() { 
+        return this.clientsProducts
+                        .entrySet()
+                        .stream()
+                        .collect(Collectors
+                                .toMap(Map.Entry::getKey, 
+                                        e -> e.getValue().getTotalDistinctProducts()));
+        
     }
 }

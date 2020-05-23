@@ -31,6 +31,10 @@ public class RelationWithClient implements IRelationWithClient {
         return totalProductsSold;
     }
 
+    /**
+     * Recolhe o número de clientes distintos que compraram um produto separado por meses
+     * @return Array de inteiros separado por meses dos clientes distintos que realizaram compras de um produto especifico
+     */
     public int[] getDistinctsClientsProductMonth() {
         int[] totals = new int[N_MONTHS];
         for(IInfoClient e : this.infoClients.values()) {

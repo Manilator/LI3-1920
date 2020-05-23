@@ -19,12 +19,20 @@ public class BranchCatalog implements IBranchCatalog {
         return this.branches.clone();
     }
 
+    /**
+     * Função que inicializa as estruturas das filiais
+     * @param n número de filiais
+     */
     public void initBranchCatalog(int n) {
         for (int i = 0; i < n; i++) {
             this.branches[i] = new Branch();
         }
     }
 
+    /**
+     * Função que atualiza as filiais com as informações de uma venda
+     * @param sale venda com as informações a serem adicionadas às filiais
+     */
     public void updateBranches(ISale sale) {
         int branch_number = sale.getBranch();
         int units = sale.getUnits();
@@ -91,6 +99,22 @@ public class BranchCatalog implements IBranchCatalog {
         return this.branches[branch-1].distinctClientsMonth(month);
     }
 
+    /**
+     * @param month mês no qual o número de clientes distintos realizaram compras
+     * @return Total de clientes distintos que realizaram compras nas diferentes filiais no mês dado
+     */
+    public int distinctClientsMonth(int month) {
+        Set<String> list = new HashSet<>();
+        int total = 0;
+        for(int i = 0; i < N_BRANCHES; i++)
+            list.addAll(this.branches[i].getClientsWithPurchasesMonth(month));
+        return list.size();
+    }
+
+    /**
+     * @param product Produto qual os clientes distintos compraram
+     * @return Array de inteiros com os clientes distintos que compraram certo produto
+     */
     public int[] getTotalDistinctsClientsProductMonth(String product) {
         int[][] totals = new int[N_BRANCHES][N_MONTHS];
         for(int i = 0; i < N_BRANCHES; i++) {
@@ -104,5 +128,40 @@ public class BranchCatalog implements IBranchCatalog {
             }
         }
         return result;
+    }
+
+    /**
+     * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
+     * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
+     */
+    public String[][][] getTop3BuyersByBranch() {
+        String[][][] result = new String[N_BRANCHES][3][2];
+        for(int i = 0; i < N_BRANCHES; i++) {
+            result[i] = this.branches[i].getTop3BuyersInBranchX();
+        }
+        return result;
+    }
+  
+     * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
+     * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
+     */
+    public Map<String, Set<String>> getClientsDistinctsProducts() {
+        Map<String, Set<String>> list = new HashMap<>();
+        for(IBranch b : this.branches) {
+            Map<String, Set<String>> clients = b.getClientsDistinctProducts();
+            for (Map.Entry<String, Set<String>> c : clients.entrySet()) {
+                String client = c.getKey();
+                Set<String> products = c.getValue();
+                if (!list.containsKey(client))
+                    list.put(client,c.getValue());
+                else {
+                    Set<String> _products = new HashSet<>();
+                    _products.addAll(products);
+                    _products.addAll(list.get(client));
+                    list.replace(client, _products);
+                }
+            }
+        }
+        return list;
     }
 }

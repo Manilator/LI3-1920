@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface IBranchCatalog {
 
@@ -18,6 +19,12 @@ public interface IBranchCatalog {
      * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês em todas as filiais
      */
     double[][] getClientShoppingLog(String clientCode);
+  
+    /**
+     * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
+     * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
+     */
+    public String[][][] getTop3BuyersByBranch();
 
     /**
      * Dado um código de cliente retorna uma lista ordenada com os códigos de produtos mais comprados pelo mesmo em todas as filiais
@@ -29,4 +36,8 @@ public interface IBranchCatalog {
     int distinctClientsMonth(int month, int branch);
 
     int[] getTotalDistinctsClientsProductMonth(String product);
+
+    public int distinctClientsMonth(int month);
+
+    public Map<String, Set<String>> getClientsDistinctsProducts();
 }

@@ -1,14 +1,11 @@
 package model;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static Utils.Constants.*;
+import static Utils.Constants.N_BRANCHES;
+import static Utils.Constants.N_MONTHS;
 
 public class GestVendasModel implements IGestVendasModel {
 
@@ -119,7 +116,7 @@ public class GestVendasModel implements IGestVendasModel {
             list.add(this.billing_catalog
                             .getTotalSalesMonth(month, i + 1));
         }
-
+        list.add(this.branches_catalog.distinctClientsMonth(month));
         return list;
     }
 
@@ -171,6 +168,34 @@ public class GestVendasModel implements IGestVendasModel {
             array[i][2] = String.valueOf(clients[i]);
         }
         return array;
+    }
+
+    /**
+     * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
+     * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
+     */
+    public String[][][] query7() {
+        return this.branches_catalog.getTop3BuyersByBranch();
+    }
+
+    public String[][] query8(int n) {
+        Map<String, Set<String>> list = this.branches_catalog.getClientsDistinctsProducts();
+        Map<String, Integer> _list = list.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().size()));
+        List<Map.Entry<String, Integer>> clients = new ArrayList<>(_list.entrySet());
+
+        final int aux[] = new int[1];
+        Comparator<Map.Entry<String, Integer>> comp = (a, b) ->
+                (aux[0] = b.getValue() - a.getValue())
+                        == 0 ? a.getKey().compareTo(b.getKey()) : aux[0];
+
+        clients.sort(comp);
+        String[][] result = new String[clients.size()][2];
+        int i = 0;
+        for( Map.Entry<String, Integer> c : clients) {
+            result[i][0] = c.getKey();
+            result[i++][1] = String.valueOf(c.getValue());
+        }
+        return result;
     }
 
     public void startSGV() throws IOException {
