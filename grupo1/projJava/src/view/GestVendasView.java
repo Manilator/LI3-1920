@@ -59,7 +59,7 @@ public class GestVendasView implements IGestVendasView {
             printMessage("Produtos Distintos:"+ result[i][1]);
             printMessage("Valor total gasto:"+ result[i][2]);
             printMessage("------------------");
-	}
+	      }
     }
 
     public void query4View(double[][] result) {
@@ -70,7 +70,7 @@ public class GestVendasView implements IGestVendasView {
             printMessage("Número de cliente: " + String.valueOf((int) result[i][2]));
         }
     }
-
+  
     public void query6View(String[][] result) {
         List<String> list = new ArrayList<>();
         for(int i = 0; i < N_MONTHS; i++) {
@@ -78,6 +78,16 @@ public class GestVendasView implements IGestVendasView {
         }
         Pages pages = new Pages(list.size(), list);
         pages.show(0);
+    }
+
+    public void query7View(String[][][] result) {
+        for (int i = 0; i < N_BRANCHES; i++) {
+            printMessage("Filial: " + String.valueOf(i+1));
+            for (int j = 0; j < 3; j++) {
+                printMessage("Codigo de cliente: " + result[i][j][0]);
+                printMessage("Faturado: " + result[i][j][1]);
+            }
+        }
     }
 
     public void cleanConsole()

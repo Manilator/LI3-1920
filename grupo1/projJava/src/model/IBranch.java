@@ -20,6 +20,12 @@ public interface IBranch {
      */
     double[][] getClientShoppingLog(String clientCode, double[][] shopLog);
 
+    /**
+     * Query 7: Determina numa dada filial os 3 maiores compradores (a nivel de dinheiro faturado)
+     * @return Matriz de strings com o codigo de cliente e total faturado dos 3 maiores compradores dessa filial
+     */
+    public String[][] getTop3BuyersInBranchX();
+
     int distinctClientsMonth(int month);
 
     int[] getDistinctsClientsProductMonth(String product);

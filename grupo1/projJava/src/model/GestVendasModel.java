@@ -143,7 +143,6 @@ public class GestVendasModel implements IGestVendasModel {
         return array;
     }
 
-
     public String[][] query6(int n) {
         String[][] array = new String[n][3];
         List<String> products = this.billing_catalog.getTopMostPurchased(n);
@@ -160,6 +159,14 @@ public class GestVendasModel implements IGestVendasModel {
             array[i][2] = String.valueOf(clients[i]);
         }
         return array;
+    }
+
+    /**
+     * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
+     * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
+     */
+    public String[][][] query7() {
+        return this.branches_catalog.getTop3BuyersByBranch();
     }
 
     public String[][] query8(int n) {
