@@ -22,9 +22,11 @@ public class Pages implements IPages {
         int i;
         int j = 0;
 
-        if (page > max) {
+        if (page > max)
             page = max;
-        }
+        else if (page < 0)
+            page = 0;
+
         view.printMessage("--------- Página " + page + " de " + max + " ---------");
         for (i = page * 10, j = 0; j < ELEMENTS_PER_PAGE && i < this.size; i++, j++)
         {

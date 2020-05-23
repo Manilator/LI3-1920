@@ -192,9 +192,10 @@ public class GestVendasModel implements IGestVendasModel {
                         == 0 ? a.getKey().compareTo(b.getKey()) : aux[0];
 
         clients.sort(comp);
-        String[][] result = new String[clients.size()][2];
+        String[][] result = new String[n][2];
         int i = 0;
         for( Map.Entry<String, Integer> c : clients) {
+            if( i >= n) break;
             result[i][0] = c.getKey();
             result[i++][1] = String.valueOf(c.getValue());
         }

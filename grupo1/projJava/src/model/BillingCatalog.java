@@ -79,7 +79,8 @@ public class BillingCatalog implements IBillingCatalog{
         Comparator<Map.Entry<String,IBillingProduct>> c =
                 (a,b) -> (aux[0] = b.getValue().getTotalUnits() - a.getValue().getTotalUnits()) == 0 ? a.getKey().compareTo(b.getKey()) : aux[0];
         List<String> sorted = this.billingsProduct
-                .entrySet().parallelStream()
+                .entrySet()
+                .parallelStream()
                 .sorted(c)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
