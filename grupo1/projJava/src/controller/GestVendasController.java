@@ -51,11 +51,13 @@ public class GestVendasController implements IGestVendasController {
      */
     private void query1Controller() throws IOException {
         int n_page = 0;
+
         long startTime = System.nanoTime();
         List<String> list = gv.getProductNeverBought();
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         String choice = "-1";
         while(!choice.equals("0")) {
             view.printMessage("==================================");
@@ -93,11 +95,13 @@ public class GestVendasController implements IGestVendasController {
         while(month < 1 || month > 12) {
             month = Integer.parseInt(in.readLine());
         }
+
         long startTime = System.nanoTime();
         List<Integer> list = gv.query2(month);
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         int[] total = new int[2];
         Arrays.fill(total,0);
         int i = 0;
@@ -120,11 +124,13 @@ public class GestVendasController implements IGestVendasController {
     private void query3Controller() throws IOException {
         view.printMessage("Insira o cliente: ");
         String client = in.readLine();
+
         long startTime = System.nanoTime();
         double[][] result = gv.getClientShoppingLog(client);
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         ITable table = new Table();
         table.table3View(result, client);
     }
@@ -132,15 +138,16 @@ public class GestVendasController implements IGestVendasController {
     /**
      * Função que trata do controller da query 4
      */
-    private void query4Controller() {
-        Scanner sc = new Scanner(System.in);
+    private void query4Controller() throws IOException {
         view.printMessage("Insira o produto: ");
-        String product = sc.nextLine();
+        String product = in.readLine();
+
         long startTime = System.nanoTime();
         double[][] result = gv.query4(product);
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         ITable table = new Table();
         table.table4View(result, product);
     }
@@ -149,15 +156,18 @@ public class GestVendasController implements IGestVendasController {
         int n_page = 0;
         view.printMessage("Insira o Cliente: ");
         String client = in.readLine();
+
         long startTime = System.nanoTime();
         String[][] result = gv.getClientsFavoriteProducts(client);
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         List<String> list = new ArrayList<>();
         for(String[] c : result) {
             list.add("Produto: " + c[0] + " | Quantidade: " + c[1]);
         }
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         String choice = "-1";
         while(!choice.equals("0")) {
             view.printMessage("=================================");
@@ -195,7 +205,8 @@ public class GestVendasController implements IGestVendasController {
         String[][][] result = gv.query7();
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
-        System.out.println("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         view.query7View(result);
     }
 
@@ -206,13 +217,43 @@ public class GestVendasController implements IGestVendasController {
         int n_page = 0;
         view.printMessage("Insira o número de produtos que deseja ver: ");
         int n = Integer.parseInt(in.readLine());
+
         long startTime = System.nanoTime();
         String[][] result = gv.query6(n);
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
+        List<String> list = new ArrayList<>();
         for(int i = 0; i < n; i++) {
-            System.out.println("---- Produto " + result[i][0] + "\n" + "Quantidade: " + result[i][1] + "\n" + "Clientes distintos: " + result[i][2]);
+            list.add("---- Produto " + result[i][0] + "\n" + "Quantidade: " + result[i][1] + "\n" + "Clientes distintos: " + result[i][2]);
+        }
+
+        String choice = "-1";
+        while(!choice.equals("0")) {
+            view.printMessage("================================");
+            view.printMessage("###       Top Produtos       ###");
+            view.printMessage("================================");
+            pages = new Pages(list.size(),list);
+            pages.show(n_page);
+            pages.choices();
+            choice = null;
+            choice = in.readLine();
+            view.printMessage("teste");
+            if (choice.equals("n")) {
+                view.printMessage(choice);
+                n_page++;
+            }
+            else if(choice.equals("p")) {
+                view.printMessage(choice);
+                n_page--;
+            }
+            else if(choice.equals("c")) {
+                view.printMessage(choice);
+                view.printMessage("Número da página: ");
+                n_page = Integer.parseInt((in.readLine()));
+            } else
+                choice = "0";
         }
     }
 
@@ -221,17 +262,20 @@ public class GestVendasController implements IGestVendasController {
      */
     private void query8Controller() throws IOException {
         int n_page = 0;
-        long startTime = System.nanoTime();
         view.printMessage("Quantos pretende ver?");
         int n = Integer.parseInt(in.readLine());
+
+        long startTime = System.nanoTime();
         String[][] result = gv.query8(n);
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         List<String> list = new ArrayList<>();
         for(String[] c : result) {
             list.add("Client: " + c[0] + " | Produtos: " + c[1]);
         }
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         String choice = "-1";
         while(!choice.equals("0")) {
             view.printMessage("================================");
@@ -266,19 +310,22 @@ public class GestVendasController implements IGestVendasController {
      */
     private void query9Controller() throws IOException {
         int n_page = 0;
-        long startTime = System.nanoTime();
         view.printMessage("Insira o produto: ");
         String product = in.readLine();
         view.printMessage("Quantos pretende ver?");
         int n = Integer.parseInt(in.readLine());
+
+        long startTime = System.nanoTime();
         String[][] result = gv.query9(product,n);
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         List<String> list = new ArrayList<>();
         for(String[] c : result) {
             list.add("Cliente: " + c[0] + " | Gasto: " + c[1]);
         }
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
         String choice = "-1";
         while(!choice.equals("0")) {
             view.printMessage("=================================");
