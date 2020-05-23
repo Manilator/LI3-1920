@@ -1,6 +1,7 @@
 package model;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
@@ -60,6 +61,36 @@ public class BranchCatalog implements IBranchCatalog {
 
         for (int branch = 0; branch < N_BRANCHES; branch++)
             result = this.branches[branch].getClientShoppingLog(clientCode, result);
+
+        return result;
+    }
+
+    /**
+     * Dado um código de cliente retorna uma lista ordenada com os códigos de produtos mais comprados pelo mesmo em todas as filiais
+     * @param clientCode String com o código do cliente
+     * @return Lista de strings com códigos de produtos mais comprados nas filiais
+     */
+    public String[][] getClientsFavoriteProducts(String clientCode){
+
+        Map<String,Integer> productsBought = new LinkedHashMap<>();
+
+        for (int branch = 0; branch < N_BRANCHES; branch++)
+            productsBought = this.branches[branch].getClientsFavoriteProductsBranch(clientCode, productsBought);
+
+        List<Map.Entry<String, Integer>> clients = new ArrayList<>(productsBought.entrySet());
+
+        final int[] aux = new int[1];
+        Comparator<Map.Entry<String, Integer>> comp = (a, b) ->
+                (aux[0] = b.getValue() - a.getValue())
+                        == 0 ? a.getKey().compareTo(b.getKey()) : aux[0];
+
+        clients.sort(comp);
+        String[][] result = new String[clients.size()][2];
+        int i = 0;
+        for( Map.Entry<String, Integer> c : clients) {
+            result[i][0] = c.getKey();
+            result[i++][1] = String.valueOf(c.getValue());
+        }
 
         return result;
     }

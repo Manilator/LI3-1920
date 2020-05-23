@@ -71,6 +71,11 @@ public class GestVendasView implements IGestVendasView {
         }
     }
   
+    public void query5View(String[][] result) {
+        for (String[] res : result)
+            System.out.println(res[0] + " " + res[1]);
+    }
+
     public void query6View(String[][] result) {
         List<String> list = new ArrayList<>();
         for(int i = 0; i < N_MONTHS; i++) {

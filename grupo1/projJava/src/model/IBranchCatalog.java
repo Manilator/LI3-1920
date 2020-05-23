@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,6 +25,13 @@ public interface IBranchCatalog {
      * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
      */
     public String[][][] getTop3BuyersByBranch();
+
+    /**
+     * Dado um código de cliente retorna uma lista ordenada com os códigos de produtos mais comprados pelo mesmo em todas as filiais
+     * @param clientCode String com o código do cliente
+     * @return Lista de strings com códigos de produtos mais comprados nas filiais
+     */
+    String[][] getClientsFavoriteProducts(String clientCode);
 
     int distinctClientsMonth(int month, int branch);
 
