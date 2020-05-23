@@ -145,11 +145,14 @@ public class GestVendasModel implements IGestVendasModel {
 
     public String[][] query6(int n) {
         String[][] array = new String[n][3];
+        System.out.println("x");
         List<String> products = this.billing_catalog.getTopMostPurchased(n);
+        System.out.println("x");
         int[] clients = new int[n];
         List<Integer> units = new ArrayList<>();
         int j = 0;
         for (String p : products) {
+            System.out.println("teste");
             units.add(this.billing_catalog.getProductUnits(p));
             clients[j++] = Arrays.stream(this.branches_catalog.getTotalDistinctsClientsProductMonth(p)).sum();
         }
