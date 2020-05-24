@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IGestVendasModel {
 
@@ -52,4 +53,10 @@ public interface IGestVendasModel {
     public String[][] query8(int n);
 
     public String[][] query9(String product, int n);
+
+    /**
+     * Query 10: Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
+     * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
+     */
+    public Map<String, double[][]> query10();
 }

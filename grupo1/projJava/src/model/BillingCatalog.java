@@ -1,9 +1,6 @@
 package model;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static Utils.Constants.N_MONTHS;
@@ -90,5 +87,17 @@ public class BillingCatalog implements IBillingCatalog{
 
     public int getProductUnits(String product) {
         return this.billingsProduct.get(product).getTotalUnits();
+    }
+
+    /**
+     * Query 10: Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
+     * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
+     */
+    public Map<String, double[][]> getProductsBillingByMonthAndBranch() {
+        return this.billingsProduct
+                .entrySet()
+                .stream()
+                .collect(Collectors
+                        .toMap(Map.Entry::getKey, e -> e.getValue().getBranchesBilled()));
     }
 }

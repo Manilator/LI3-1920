@@ -57,4 +57,5 @@ public class Billing implements IBilling{
     public int getN_sales(int branch) {
          return branchesNSales[branch-1];
     }
+
 }

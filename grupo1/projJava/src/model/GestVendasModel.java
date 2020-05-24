@@ -223,6 +223,15 @@ public class GestVendasModel implements IGestVendasModel {
 
     }
 
+    /**
+     * Query 10: Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
+     * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
+     */
+    public Map<String, double[][]> query10() {
+        return this.billing_catalog.getProductsBillingByMonthAndBranch();
+    }
+
+
     public void startSGV() throws IOException {
         parseClients();
         parseProducts();

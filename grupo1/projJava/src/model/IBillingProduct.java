@@ -10,4 +10,5 @@ public interface IBillingProduct {
 
     public int getTotalUnits();
 
+    public double[][] getBranchesBilled();
 }

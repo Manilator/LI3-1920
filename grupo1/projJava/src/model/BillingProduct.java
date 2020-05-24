@@ -10,8 +10,8 @@ public class BillingProduct implements IBillingProduct{
     private double[] totalBilledP; /**< Total faturado no tipo P separado por meses*/
     private int[] unitiesP; /**< Unidades P vendidas separado por meses*/
     private int[] unitiesN; /**< Unidades N vendidas separado por meses*/
-    private int[][] branchesQnt; /**< Quantdade dividida por filiais e tipo de promoção */
-    private double[][] brachesBilled; /**< Faturação dividida por filiais e tipo de promoção */
+    private int[][] branchesQnt; /**< Quantidade dividida por mes e filial */
+    private double[][] branchesBilled; /**< Faturação dividida por mes e filial */
     private int[] n_sales; /**< Número de vendas separadas por mês */
 
     BillingProduct() {
@@ -19,8 +19,8 @@ public class BillingProduct implements IBillingProduct{
         this.totalBilledP = new double[N_MONTHS];
         this.unitiesP = new int[N_MONTHS];
         this.unitiesN = new int[N_MONTHS];
-        this.branchesQnt = new int[N_BRANCHES][N_TYPES];
-        this.brachesBilled = new double[N_BRANCHES][N_TYPES];
+        this.branchesQnt = new int[N_MONTHS][N_BRANCHES];
+        this.branchesBilled = new double[N_MONTHS][N_BRANCHES];
         this.n_sales = new int[N_MONTHS];
         this.initArrays();
     }
@@ -28,7 +28,7 @@ public class BillingProduct implements IBillingProduct{
     private void initArrays() {
         for (int[] row : this.branchesQnt)
             Arrays.fill(row, 0);
-        for (double[] row : this.brachesBilled) {
+        for (double[] row : this.branchesBilled) {
             Arrays.fill(row, 0);
         }
         Arrays.fill(this.totalBilledN, 0);
@@ -58,8 +58,8 @@ public class BillingProduct implements IBillingProduct{
         return branchesQnt.clone();
     }
 
-    public double[][] getBrachesBilled() {
-        return brachesBilled.clone();
+    public double[][] getBranchesBilled() {
+        return branchesBilled.clone();
     }
 
     public void updateBillingProduct(double totalBilled, int unities, char promotion_type, int branch, int month) {
@@ -67,17 +67,15 @@ public class BillingProduct implements IBillingProduct{
         if (promotion_type == 'N') {
             this.totalBilledN[month-1] += totalBilled;
             this.unitiesN[month-1] += unities;
-            this.brachesBilled[branch-1][N] += totalBilled;
-            this.branchesQnt[branch-1][N] += unities;
             r = 1;
         } else if (promotion_type == 'P') {
             this.totalBilledP[month-1] += totalBilled;
             this.unitiesP[month-1] += unities;
-            this.brachesBilled[branch-1][P] += totalBilled;
-            this.branchesQnt[branch-1][P] += unities;
             r = 1;
         }
         this.n_sales[month-1]++;
+        this.branchesQnt[month-1][branch-1] += unities;
+        this.branchesBilled[month-1][branch-1] += totalBilled;
     }
 
     public int[] getN_sales() {
