@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IBillingCatalog {
 
@@ -20,4 +21,9 @@ public interface IBillingCatalog {
 
     public int getProductUnits(String product);
 
+    /**
+     * Query 10: Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
+     * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
+     */
+    public Map<String, double[][]> getProductsBillingByMonthAndBranch();
 }

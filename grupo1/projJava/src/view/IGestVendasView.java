@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IGestVendasView {
 
@@ -17,6 +18,8 @@ public interface IGestVendasView {
     void query5View(String[][] result);
 
     void query6View(String[][] result);
-  
+
     public void query7View(String[][][] result);
+
+    public void query10View(Map<String, double[][]> result);
 }

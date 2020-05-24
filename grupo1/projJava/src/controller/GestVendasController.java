@@ -355,6 +355,19 @@ public class GestVendasController implements IGestVendasController {
         }
     }
 
+    /**
+     * Função que trata do controller da query 10
+     */
+    void query10Controller() {
+        long startTime = System.nanoTime();
+        Map<String, double[][]> result =  gv.query10();
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
+        view.query10View(result);
+    }
+
     /* void menu(SGV sgv) */
     void menu() throws IOException {
 

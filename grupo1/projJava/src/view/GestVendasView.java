@@ -2,6 +2,7 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
@@ -92,6 +93,9 @@ public class GestVendasView implements IGestVendasView {
                 printMessage("Codigo de cliente: " + result[i][j][0] + " | Faturado: " + String.format("%.1f", Double.parseDouble(result[i][j][1])));
             }
         }
+    }
+
+    public void query10View(Map<String, double[][]> result){
     }
 
     public void cleanConsole()
