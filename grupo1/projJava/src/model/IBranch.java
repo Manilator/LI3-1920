@@ -32,20 +32,27 @@ public interface IBranch {
      * Query 7: Determina numa dada filial os 3 maiores compradores (a nivel de dinheiro faturado)
      * @return Matriz de strings com o codigo de cliente e total faturado dos 3 maiores compradores dessa filial
      */
-    public String[][] getTop3BuyersInBranchX();
+    String[][] getTop3BuyersInBranchX();
 
     int distinctClientsMonth(int month);
 
     int[] getDistinctsClientsProductMonth(String product);
 
-    public List<String> getClientsWithPurchasesMonth(int month);
+    List<String> getClientsWithPurchasesMonth(int month);
 
-    public Map<String, Set<String>> getClientsDistinctProducts();
+    Map<String, Set<String>> getClientsDistinctProducts();
 
     /**
      * Recolhe todos os clientes que compraram o produto
      * @param product Código do produto
      * @return Set com todas as entradas do Hashmap que contém os clientes que compraram o produto
      */
-    public Set<Map.Entry<String, IInfoClient>> getProductAllClients(String product);
+    Set<Map.Entry<String, IInfoClient>> getProductAllClients(String product);
+
+    /**
+     * Calcula o numero total de compras por mês de uma dada filial e devolve os resultados
+     * @return Devolve um array de inteiros com as compras feitas numa dada filial nos 12 meses do ano
+     * @throws Exception Caso alguma informação esteja corrompida este devolve o erro
+     */
+    int[] getBranchShoppingFrequency(int branch) throws Exception;
 }

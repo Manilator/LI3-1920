@@ -424,6 +424,7 @@ public class GestVendasController implements IGestVendasController {
                     /*controllerQuery11(sgv);*/
                     break;
                 case 12:
+                    gv.ce2();
                     /*controllerQuery12(sgv);*/
                     break;
                 default:

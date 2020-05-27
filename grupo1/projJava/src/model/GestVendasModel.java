@@ -232,6 +232,20 @@ public class GestVendasModel implements IGestVendasModel {
     }
 
 
+    /**
+     * Devolve o numero total de compras por mês, faturação total por mês por filial e global, numero de clientes distintos a comprar cada mes por filial
+     */
+    public void ce2() {
+        int[] shoppingFrequency;
+        try{
+            shoppingFrequency = this.branches_catalog.getShoppingFrequency();
+            for (int i : shoppingFrequency)
+                System.out.println(i);
+        } catch (Exception e) {
+            //e.printStackTrace();
+        }
+    }
+
     public void startSGV() throws IOException {
         parseClients();
         parseProducts();
