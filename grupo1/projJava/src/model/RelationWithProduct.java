@@ -11,7 +11,7 @@ public class RelationWithProduct implements IRelationWithProduct {
 
     private Map<String,IInfoProduct> infoProducts; /**< Códigos de produto e a sua estrutura atribuída InfoProduct */
     private double[] totalBilled; /**< Faturação total por cada mês */
-    private int[] n_sales;
+    private int[] n_sales; /**< Numero de compras por cada mês */
 
     public RelationWithProduct() {
         this.infoProducts = new HashMap<>();
@@ -67,7 +67,7 @@ public class RelationWithProduct implements IRelationWithProduct {
      * @return Array de ints com o total faturado em cada mês
      */
     public double[] getTotalBilled() {
-        return totalBilled;
+        return totalBilled.clone();
     }
 
     /**
@@ -75,7 +75,7 @@ public class RelationWithProduct implements IRelationWithProduct {
      * @return Array de ints com a quantidade de vendas feitas em cada mês
      */
     public int[] getN_sales() {
-        return n_sales;
+        return n_sales.clone();
     }
 
     /**

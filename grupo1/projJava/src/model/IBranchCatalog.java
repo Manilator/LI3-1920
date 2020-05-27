@@ -67,4 +67,10 @@ public interface IBranchCatalog {
      * @throws Exception Caso alguma informação esteja corrompida este devolve o erro
      */
     int[] getShoppingFrequency() throws Exception;
+
+    /**
+     * A quantidade de clientes distintos que compraram num certo mês num conjunto de filiais
+     * @return Devolve um array multi dimensional de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
+     */
+    int[][] getNumberOfDistinctClients();
 }

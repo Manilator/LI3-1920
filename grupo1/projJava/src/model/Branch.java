@@ -187,4 +187,21 @@ public class Branch implements IBranch {
         }
         return result;
     }
+
+    /**
+     * A quantidade de clientes distintos que compraram num certo mês numa certa filial
+     * @return Devolve um array de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
+     */
+    public int[] getBranchNumberOfDistinctClients(int branch){
+        int[] result = new int[N_MONTHS];
+        for (String key : this.productsClients.keySet()){
+            int month = 0;
+            for (int monthSales : this.productsClients.get(key).getTotalProductsBought()){
+                if(monthSales > 0)
+                    result[month] += 1;
+                month++;
+            }
+        }
+        return result;
+    }
 }

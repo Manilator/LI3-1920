@@ -236,17 +236,26 @@ public class GestVendasModel implements IGestVendasModel {
      * Devolve o numero total de compras por mês, faturação total por mês por filial e global, numero de clientes distintos a comprar cada mes por filial
      */
     public void ce2() {
-        int[] shoppingFrequency;
         double[][] shoppingLogByBranch;
+        int[][] numberOfDistinctClients;
+        int[] shoppingFrequency;
         try{
-            shoppingFrequency = this.branches_catalog.getShoppingFrequency();
+            numberOfDistinctClients = this.branches_catalog.getNumberOfDistinctClients();
             shoppingLogByBranch = this.billing_catalog.getBillingByMonthAndBranch();
+            shoppingFrequency = this.branches_catalog.getShoppingFrequency();
 
-            for (int i : shoppingFrequency)
+            /* Valores altos, leitura deve ser facilitada na view*/
+            /*for (int i : shoppingFrequency)
                 System.out.println(i);
+
             for (double[] i : shoppingLogByBranch)
                 for (double j : i)
                     System.out.println(j);
+
+            for (int i : numberOfDistinctClients)
+                for (int j : i)
+                    System.out.println(j);*/
+
         } catch (Exception e) {
             //e.printStackTrace();
         }

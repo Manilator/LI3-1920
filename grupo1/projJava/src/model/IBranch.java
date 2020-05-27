@@ -55,4 +55,10 @@ public interface IBranch {
      * @throws Exception Caso alguma informação esteja corrompida este devolve o erro
      */
     int[] getBranchShoppingFrequency(int branch) throws Exception;
+
+    /**
+     * A quantidade de clientes distintos que compraram num certo mês numa certa filial
+     * @return Devolve um array de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
+     */
+    int[] getBranchNumberOfDistinctClients(int branch);
 }

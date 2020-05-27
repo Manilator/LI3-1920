@@ -209,4 +209,15 @@ public class BranchCatalog implements IBranchCatalog {
         }
         return result;
     }
+
+    /**
+     * A quantidade de clientes distintos que compraram num certo mês num conjunto de filiais
+     * @return Devolve um array multi dimensional de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
+     */
+    public int[][] getNumberOfDistinctClients(){
+        int[][] result = new int[N_BRANCHES][N_MONTHS];
+        for(int branch = 0; branch < N_BRANCHES; branch++)
+                result[branch] = this.branches[branch].getBranchNumberOfDistinctClients(branch);
+        return result;
+    }
 }
