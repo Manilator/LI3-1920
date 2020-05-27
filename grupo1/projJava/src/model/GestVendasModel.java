@@ -237,8 +237,11 @@ public class GestVendasModel implements IGestVendasModel {
      */
     public void ce2() {
         int[] shoppingFrequency;
+        float[][] shoppingLogByBranch;
         try{
             shoppingFrequency = this.branches_catalog.getShoppingFrequency();
+            shoppingLogByBranch = this.billing_catalog.getProductsBillingByMonthAndBranch();
+
             for (int i : shoppingFrequency)
                 System.out.println(i);
         } catch (Exception e) {
