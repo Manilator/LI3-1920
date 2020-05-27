@@ -61,8 +61,20 @@ public interface IGestVendasModel {
     Map<String, double[][]> query10();
 
     /**
-     * Devolve o numero total de compras por mês, faturação total por mês por filial e global, numero de clientes distintos a comprar cada mes por filial
-     * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
+     * Numero de clientes distintos a comprar cada mes por filial
+     * @return Devolve um array multi dimensional de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
      */
-    void ce2();
+    int[][] getNumberOfDistinctClients();
+
+    /**
+     * Devolve o numero total de compras por mês
+     * @return Devolve um array de inteiros com as compras feitas nos 12 meses do ano
+     */
+    int[] getShoppingFrequency();
+
+    /**
+     * Faturação total por mês por filial e global
+     * @return Devolve um array multi dimensional de doubles com a faturacao por mes e filial
+     */
+    double[][] getBillingByMonthAndBranch();
 }
