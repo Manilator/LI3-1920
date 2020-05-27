@@ -26,4 +26,10 @@ public interface IBillingCatalog {
      * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
      */
     Map<String, double[][]> getProductsBillingByMonthAndBranch();
+
+    /**
+     * Faturacao por mes e por filial
+     * @return Devolve um array multi dimensional de doubles com a faturacao por mes e filial
+     */
+    double[][] getBillingByMonthAndBranch();
 }

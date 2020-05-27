@@ -3,6 +3,7 @@ package model;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
 
 public class BillingCatalog implements IBillingCatalog{
@@ -99,5 +100,20 @@ public class BillingCatalog implements IBillingCatalog{
                 .stream()
                 .collect(Collectors
                         .toMap(Map.Entry::getKey, e -> e.getValue().getBranchesBilled()));
+    }
+
+    /**
+     * Faturacao por mes e por filial
+     * @return Devolve um array multi dimensional de doubles com a faturacao por mes e filial
+     */
+    public double[][] getBillingByMonthAndBranch(){
+        double[][] result = new double[N_MONTHS][N_BRANCHES];
+        for (String key : this.billingsProduct.keySet()){
+            double[][] tmp = this.billingsProduct.get(key).getBranchesBilled();
+            for (int month = 0; month < N_MONTHS; month++)
+                for (int branch = 0; branch < N_BRANCHES; branch++ )
+                    result[month][branch] += tmp[month][branch];
+        }
+        return result;
     }
 }
