@@ -24,7 +24,7 @@ public interface IBranchCatalog {
      * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
      * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
      */
-    public String[][][] getTop3BuyersByBranch();
+    String[][][] getTop3BuyersByBranch();
 
     /**
      * Dado um código de cliente retorna uma lista ordenada com os códigos de produtos mais comprados pelo mesmo em todas as filiais
@@ -33,13 +33,44 @@ public interface IBranchCatalog {
      */
     String[][] getClientsFavoriteProducts(String clientCode);
 
+
     int distinctClientsMonth(int month, int branch);
 
+    /**
+     * @param product Produto qual os clientes distintos compraram
+     * @return Array de inteiros com os clientes distintos que compraram certo produto
+     */
     int[] getTotalDistinctsClientsProductMonth(String product);
 
-    public int distinctClientsMonth(int month);
+    /**
+     * @param month mês no qual o número de clientes distintos realizaram compras
+     * @return Total de clientes distintos que realizaram compras nas diferentes filiais no mês dado
+     */
+    int distinctClientsMonth(int month);
 
-    public Map<String, Set<String>> getClientsDistinctsProducts();
+    /**
+     * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
+     * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
+     */
+    Map<String, Set<String>> getClientsDistinctsProducts();
 
-    public Map<String, List<Double>> getProductAllClients(String product);
+    /**
+     * Recolhe todos os clientes que compraram o produto com unidades e gastos totais
+     * @param product Código do produto
+     * @return Map com todos os clientes que compraram o produto e associado a cada um o total de unidades e total gasto
+     */
+    Map<String, List<Double>> getProductAllClients(String product);
+
+    /**
+     * Calcula o numero total de compras por mês e devolve os resultados
+     * @return Devolve um array de inteiros com as compras feitas nos 12 meses do ano
+     * @throws Exception Caso alguma informação esteja corrompida este devolve o erro
+     */
+    int[] getShoppingFrequency() throws Exception;
+
+    /**
+     * A quantidade de clientes distintos que compraram num certo mês num conjunto de filiais
+     * @return Devolve um array multi dimensional de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
+     */
+    int[][] getNumberOfDistinctClients();
 }

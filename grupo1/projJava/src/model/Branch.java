@@ -3,6 +3,8 @@ package model;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static Utils.Constants.N_MONTHS;
+
 public class Branch implements IBranch {
 
     private Map<String, IRelationWithClient> productsClients; /**< Códigos de produtos e a sua estrutura atribuída RelationWithClient */
@@ -169,5 +171,37 @@ public class Branch implements IBranch {
      */
     public Set<Map.Entry<String, IInfoClient>> getProductAllClients(String product) {
         return this.productsClients.get(product).getAllClients();
+    }
+
+    /**
+     * Calcula o numero total de compras por mês de uma dada filial e devolve os resultados
+     * @return Devolve um array de inteiros com as compras feitas numa dada filial nos 12 meses do ano
+     * @throws Exception Caso alguma informação esteja corrompida este devolve o erro
+     */
+    public int[] getBranchShoppingFrequency(int branch) throws Exception{
+        int[] result = new int[N_MONTHS];
+        for (String key : this.productsClients.keySet()){
+            int month = 0;
+            for (int monthBuys : this.productsClients.get(key).getTotalProductsBought())
+                result[month++] += monthBuys;
+        }
+        return result;
+    }
+
+    /**
+     * A quantidade de clientes distintos que compraram num certo mês numa certa filial
+     * @return Devolve um array de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
+     */
+    public int[] getBranchNumberOfDistinctClients(int branch){
+        int[] result = new int[N_MONTHS];
+        for (String key : this.productsClients.keySet()){
+            int month = 0;
+            for (int monthSales : this.productsClients.get(key).getTotalProductsBought()){
+                if(monthSales > 0)
+                    result[month] += 1;
+                month++;
+            }
+        }
+        return result;
     }
 }

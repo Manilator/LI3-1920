@@ -10,16 +10,16 @@ import static Utils.Constants.N_MONTHS;
 public class RelationWithClient implements IRelationWithClient {
 
     private Map<String,IInfoClient> infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
-    private int[] totalProductsSold; /**< Quantidade de produtos que um certo cliente comprou */
+    private int[] totalProductsBought; /**< Quantidade de produtos que um certo cliente comprou */
 
 
     public RelationWithClient() {
         this.infoClients = new HashMap<>();
-        this.totalProductsSold = new int[12];
+        this.totalProductsBought = new int[12];
     }
 
     public void updateRelationWithClient(String client_code, int units, char promotion_type, int month, double totalbilled) {
-        this.totalProductsSold[month-1] += units;
+        this.totalProductsBought[month-1] += units;
         if (!this.infoClients.containsKey(client_code)) {
             String _code_client = client_code;
 
@@ -29,8 +29,12 @@ public class RelationWithClient implements IRelationWithClient {
         this.infoClients.get(client_code).updateInfoClient(units,promotion_type, month, totalbilled);
     }
 
-    public int[] getTotalProductsSold() {
-        return totalProductsSold;
+    /**
+     * Get da variável que contém a quantidade de produtos que um certo cliente comprou
+     * @return Array de ints com a quantidade de produtos que um certo cliente comprou
+     */
+    public int[] getTotalProductsBought() {
+        return totalProductsBought.clone();
     }
 
     /**

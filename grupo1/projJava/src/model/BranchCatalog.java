@@ -105,7 +105,6 @@ public class BranchCatalog implements IBranchCatalog {
      */
     public int distinctClientsMonth(int month) {
         Set<String> list = new HashSet<>();
-        int total = 0;
         for(int i = 0; i < N_BRANCHES; i++)
             list.addAll(this.branches[i].getClientsWithPurchasesMonth(month));
         return list.size();
@@ -142,7 +141,7 @@ public class BranchCatalog implements IBranchCatalog {
         return result;
     }
 
-    /*
+    /**
      * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
      * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
      */
@@ -194,5 +193,31 @@ public class BranchCatalog implements IBranchCatalog {
             }
         }
         return list;
+    }
+
+    /**
+     * Calcula o numero total de compras por mês e devolve os resultados
+     * @return Devolve um array de inteiros com as compras feitas nos 12 meses do ano
+     * @throws Exception Caso alguma informação esteja corrompida este devolve o erro
+     */
+    public int[] getShoppingFrequency() throws Exception{
+        int[] result = new int[N_MONTHS];
+        for(int branch = 0; branch < N_BRANCHES; branch++) {
+            int month = 0;
+            for (int monthBuys : this.branches[branch].getBranchShoppingFrequency(branch))
+                result[month++] += monthBuys;
+        }
+        return result;
+    }
+
+    /**
+     * A quantidade de clientes distintos que compraram num certo mês num conjunto de filiais
+     * @return Devolve um array multi dimensional de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
+     */
+    public int[][] getNumberOfDistinctClients(){
+        int[][] result = new int[N_BRANCHES][N_MONTHS];
+        for(int branch = 0; branch < N_BRANCHES; branch++)
+                result[branch] = this.branches[branch].getBranchNumberOfDistinctClients(branch);
+        return result;
     }
 }

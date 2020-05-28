@@ -231,6 +231,42 @@ public class GestVendasModel implements IGestVendasModel {
         return this.billing_catalog.getProductsBillingByMonthAndBranch();
     }
 
+    /**
+     * Numero de clientes distintos a comprar cada mes por filial
+     * @return Devolve um array multi dimensional de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
+     */
+    public int[][] getNumberOfDistinctClients(){
+        try {
+            return this.branches_catalog.getNumberOfDistinctClients();
+        }catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Devolve o numero total de compras por mês
+     * @return Devolve um array de inteiros com as compras feitas nos 12 meses do ano
+     */
+    public int[] getShoppingFrequency(){
+        try {
+            return this.branches_catalog.getShoppingFrequency();
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    /**
+     * Faturação total por mês por filial e global
+     * @return Devolve um array multi dimensional de doubles com a faturacao por mes e filial
+     */
+    public double[][] getBillingByMonthAndBranch(){
+        try {
+            return this.billing_catalog.getBillingByMonthAndBranch();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public void startSGV() throws IOException {
         parseClients();

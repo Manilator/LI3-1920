@@ -5,25 +5,31 @@ import java.util.Map;
 
 public interface IBillingCatalog {
 
-    public void addBillingProduct(String code);
+    void addBillingProduct(String code);
 
-    public void updateBillings(ISale sale);
+    void updateBillings(ISale sale);
 
-    public int getTotalSalesMonth(int month);
+    int getTotalSalesMonth(int month);
 
-    public int getTotalSalesMonth(int month, int branch);
+    int getTotalSalesMonth(int month, int branch);
 
-    public int[] getNSalesProduct(String product);
+    int[] getNSalesProduct(String product);
 
-    public double[] getTotalBilledMonth(String product);
+    double[] getTotalBilledMonth(String product);
 
-    public List<String> getTopMostPurchased(int n);
+    List<String> getTopMostPurchased(int n);
 
-    public int getProductUnits(String product);
+    int getProductUnits(String product);
 
     /**
      * Query 10: Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
      * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
      */
-    public Map<String, double[][]> getProductsBillingByMonthAndBranch();
+    Map<String, double[][]> getProductsBillingByMonthAndBranch();
+
+    /**
+     * Faturacao por mes e por filial
+     * @return Devolve um array multi dimensional de doubles com a faturacao por mes e filial
+     */
+    double[][] getBillingByMonthAndBranch();
 }

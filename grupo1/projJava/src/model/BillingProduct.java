@@ -39,19 +39,19 @@ public class BillingProduct implements IBillingProduct{
     }
 
     public double[] getTotalBilledN() {
-        return totalBilledN;
+        return totalBilledN.clone();
     }
 
     public double[] getTotalBilledP() {
-        return totalBilledP;
+        return totalBilledP.clone();
     }
 
     public int[] getUnitiesP() {
-        return unitiesP;
+        return unitiesP.clone();
     }
 
     public int[] getUnitiesN() {
-        return unitiesN;
+        return unitiesN.clone();
     }
 
     public int[][] getBranchesQnt() {
@@ -79,7 +79,7 @@ public class BillingProduct implements IBillingProduct{
     }
 
     public int[] getN_sales() {
-        return this.n_sales;
+        return this.n_sales.clone();
     }
 
     public double[] getTotalBilled() {

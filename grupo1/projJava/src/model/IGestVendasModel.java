@@ -48,15 +48,33 @@ public interface IGestVendasModel {
      * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
      * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
      */
-    public String[][][] query7();
+    String[][][] query7();
 
-    public String[][] query8(int n);
+    String[][] query8(int n);
 
-    public String[][] query9(String product, int n);
+    String[][] query9(String product, int n);
 
     /**
      * Query 10: Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
      * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
      */
-    public Map<String, double[][]> query10();
+    Map<String, double[][]> query10();
+
+    /**
+     * Numero de clientes distintos a comprar cada mes por filial
+     * @return Devolve um array multi dimensional de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
+     */
+    int[][] getNumberOfDistinctClients();
+
+    /**
+     * Devolve o numero total de compras por mês
+     * @return Devolve um array de inteiros com as compras feitas nos 12 meses do ano
+     */
+    int[] getShoppingFrequency();
+
+    /**
+     * Faturação total por mês por filial e global
+     * @return Devolve um array multi dimensional de doubles com a faturacao por mes e filial
+     */
+    double[][] getBillingByMonthAndBranch();
 }
