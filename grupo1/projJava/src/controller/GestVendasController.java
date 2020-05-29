@@ -19,12 +19,31 @@ public class GestVendasController implements IGestVendasController {
 
 
     /**
-     * Construtor do controller
+     * Construtor vazio do controller
      */
     public GestVendasController() {
         this.view = new GestVendasView();
         long startTime = System.nanoTime();
-        this.gv = new GestVendasModel();
+        this.gv = new GestVendasModel("data/Clientes.txt", "data/Produtos.txt", "data/Vendas_1M.txt");
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage(String.valueOf("Clientes válidos: " + this.gv.getClientsSize()));
+        view.printMessage(String.valueOf("Clientes lidos: " + this.gv.getReadClients()));
+        view.printMessage(String.valueOf("Produtos válidos: " + this.gv.getProductsSize()));
+        view.printMessage(String.valueOf("Produtos lidos: " + this.gv.getReadProducts()));
+        view.printMessage(String.valueOf("Vendas válidos: " + this.gv.getValidSales()));
+        view.printMessage(String.valueOf("Vendas lidas: " + this.gv.getReadSales()));
+        in = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    /**
+     * Construtor custom do controller
+     */
+    public GestVendasController(String clientPath, String productPath, String salesPath) {
+        this.view = new GestVendasView();
+        long startTime = System.nanoTime();
+        this.gv = new GestVendasModel(clientPath, productPath, salesPath);
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
@@ -44,7 +63,6 @@ public class GestVendasController implements IGestVendasController {
     public void startController() throws IOException {
         menu();
     }
-
 
     /**
      * Função que trata do controller da query 1

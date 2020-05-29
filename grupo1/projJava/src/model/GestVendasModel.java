@@ -9,7 +9,7 @@ import static Utils.Constants.N_MONTHS;
 
 public class GestVendasModel implements IGestVendasModel {
 
-    private IClientCatalog client_catalog; /**< Cátalogo de clientes */
+    private final IClientCatalog client_catalog; /**< Cátalogo de clientes */
     private final IProductCatalog product_catalog; /**< Cátalogo de produto */
     private final IBillingCatalog billing_catalog; /**< Cátalogo de faturação */
     private final IBranchCatalog branches_catalog; /**< Cátalogo de filiais */
@@ -18,7 +18,10 @@ public class GestVendasModel implements IGestVendasModel {
     private int readSales;
     private int validSales;
 
-    public GestVendasModel(){
+    /**
+     * Construtor com paths do model
+     */
+    public GestVendasModel(String clientsPath, String productPath, String salesPath){
         this.client_catalog = new ClientCatalog();
         this.product_catalog = new ProductCatalog();
         this.billing_catalog = new BillingCatalog();
@@ -26,13 +29,13 @@ public class GestVendasModel implements IGestVendasModel {
         this.readClients = 0;
         this.readProducts = 0;
         this.readSales = 0;
-        parseClients();
-        parseProducts();
-        parseSales();
+        parseClients(clientsPath);
+        parseProducts(productPath);
+        parseSales(salesPath);
     }
 
-    public void parseClients() {
-        File file = new File("data/Clientes.txt");
+    public void parseClients(String clientPath) {
+        File file = new File(clientPath);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String clientCode = null;
@@ -49,8 +52,8 @@ public class GestVendasModel implements IGestVendasModel {
         }
     }
 
-    public void parseProducts() {
-        File file = new File("data/Produtos.txt");
+    public void parseProducts(String productPath) {
+        File file = new File(productPath);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String productCode = null;
@@ -70,13 +73,13 @@ public class GestVendasModel implements IGestVendasModel {
     }
 
 
-    public void parseSales() {
-        File file = new File("data/Vendas_1M.txt");
+    public void parseSales(String salesPath) {
+        File file = new File(salesPath);
 
         List<String> lista_vendas = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String sale_line = null;
+            String sale_line;
 
             while ((sale_line = reader.readLine()) != null) {
                 lista_vendas.add(sale_line);
@@ -266,12 +269,6 @@ public class GestVendasModel implements IGestVendasModel {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public void startSGV() throws IOException {
-        parseClients();
-        parseProducts();
-        parseSales();
     }
 
     public int getClientsSize(){
