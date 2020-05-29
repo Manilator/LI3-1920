@@ -386,7 +386,15 @@ public class GestVendasController implements IGestVendasController {
         view.query10View(result);
     }
 
-    /* void menu(SGV sgv) */
+    /**
+     * Função que trata do controller da query estatistica 2
+     */
+    void queryE2(){
+        gv.getNumberOfDistinctClients();/*int[][]*/
+        gv.getShoppingFrequency();/*int[]*/
+        gv.getBillingByMonthAndBranch(); /*double[][]*/
+    }
+
     void menu() throws IOException {
 
         int querie = -1;
@@ -411,41 +419,39 @@ public class GestVendasController implements IGestVendasController {
                     break;
                 case 3:
 		            query3Controller();
-                    /*controllerQuery3(sgv);*/
                     break;
                 case 4:
                     query4Controller();
-                    /*controllerQuery4(sgv);*/
                     break;
                 case 5:
                     query5Controller();
                     break;
                 case 6:
                     query6Controller();
-                    /*controllerQuery6(sgv);*/
                     break;
                 case 7:
                     query7Controller();
                     break;
                 case 8:
                     query8Controller();
-                    /*controllerQuery8(sgv);*/
                     break;
                 case 9:
                     query9Controller();
-                    /*controllerQuery9(sgv);*/
                     break;
                 case 10:
-                    /*controllerQuery10(sgv);*/
+                    query10Controller();
                     break;
                 case 11:
                     /*controllerQuery11(sgv);*/
                     break;
                 case 12:
-                    gv.getNumberOfDistinctClients();
-                    gv.getShoppingFrequency();
-                    gv.getBillingByMonthAndBranch();
-                    /*controllerQuery12(sgv);*/
+                    queryE2();
+                    break;
+                case 13:
+                    /*carregar*/
+                    break;
+                case 14:
+                    /*guardar*/
                     break;
                 default:
                     querie = 0;
