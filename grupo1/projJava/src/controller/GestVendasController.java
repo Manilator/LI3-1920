@@ -19,12 +19,31 @@ public class GestVendasController implements IGestVendasController {
 
 
     /**
-     * Construtor do controller
+     * Construtor vazio do controller
      */
     public GestVendasController() {
         this.view = new GestVendasView();
         long startTime = System.nanoTime();
-        this.gv = new GestVendasModel();
+        this.gv = new GestVendasModel("data/Clientes.txt", "data/Produtos.txt", "data/Vendas_1M.txt");
+        long stopTime = System.nanoTime();
+        double time = (double) (stopTime - startTime) / 1_000_000_000;
+        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage(String.valueOf("Clientes válidos: " + this.gv.getClientsSize()));
+        view.printMessage(String.valueOf("Clientes lidos: " + this.gv.getReadClients()));
+        view.printMessage(String.valueOf("Produtos válidos: " + this.gv.getProductsSize()));
+        view.printMessage(String.valueOf("Produtos lidos: " + this.gv.getReadProducts()));
+        view.printMessage(String.valueOf("Vendas válidos: " + this.gv.getValidSales()));
+        view.printMessage(String.valueOf("Vendas lidas: " + this.gv.getReadSales()));
+        in = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    /**
+     * Construtor custom do controller
+     */
+    public GestVendasController(String clientPath, String productPath, String salesPath) {
+        this.view = new GestVendasView();
+        long startTime = System.nanoTime();
+        this.gv = new GestVendasModel(clientPath, productPath, salesPath);
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
@@ -44,7 +63,6 @@ public class GestVendasController implements IGestVendasController {
     public void startController() throws IOException {
         menu();
     }
-
 
     /**
      * Função que trata do controller da query 1
@@ -368,7 +386,15 @@ public class GestVendasController implements IGestVendasController {
         view.query10View(result);
     }
 
-    /* void menu(SGV sgv) */
+    /**
+     * Função que trata do controller da query estatistica 2
+     */
+    void queryE2(){
+        gv.getNumberOfDistinctClients();/*int[][]*/
+        gv.getShoppingFrequency();/*int[]*/
+        gv.getBillingByMonthAndBranch(); /*double[][]*/
+    }
+
     void menu() throws IOException {
 
         int querie = -1;
@@ -393,41 +419,39 @@ public class GestVendasController implements IGestVendasController {
                     break;
                 case 3:
 		            query3Controller();
-                    /*controllerQuery3(sgv);*/
                     break;
                 case 4:
                     query4Controller();
-                    /*controllerQuery4(sgv);*/
                     break;
                 case 5:
                     query5Controller();
                     break;
                 case 6:
                     query6Controller();
-                    /*controllerQuery6(sgv);*/
                     break;
                 case 7:
                     query7Controller();
                     break;
                 case 8:
                     query8Controller();
-                    /*controllerQuery8(sgv);*/
                     break;
                 case 9:
                     query9Controller();
-                    /*controllerQuery9(sgv);*/
                     break;
                 case 10:
-                    /*controllerQuery10(sgv);*/
+                    query10Controller();
                     break;
                 case 11:
                     /*controllerQuery11(sgv);*/
                     break;
                 case 12:
-                    gv.getNumberOfDistinctClients();
-                    gv.getShoppingFrequency();
-                    gv.getBillingByMonthAndBranch();
-                    /*controllerQuery12(sgv);*/
+                    queryE2();
+                    break;
+                case 13:
+                    /*carregar*/
+                    break;
+                case 14:
+                    /*guardar*/
                     break;
                 default:
                     querie = 0;

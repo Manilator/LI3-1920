@@ -7,10 +7,12 @@ public class GestVendasAppMVC {
     public static void main(String[] args) throws IOException {
         System.out.println("Loading data...");
 
-        IGestVendasController controller = new GestVendasController();
+        IGestVendasController controller;
 
-        if (args.length == 0) {
-            controller.startController();
-        }
+        if (args.length == 0)
+            controller = new GestVendasController();
+        else
+            controller = new GestVendasController(args[0],args[1],args[2]);
+        controller.startController();
     }
 }

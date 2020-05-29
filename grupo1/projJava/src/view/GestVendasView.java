@@ -24,8 +24,10 @@ public class GestVendasView implements IGestVendasView {
         printMessage("8  - Query 8  # Top clientes que compraram produtos únicos");
         printMessage("9  - Query 9  # Top clientes de um produto");
         printMessage("10 - Query 10 # Faturação mensal de cada filial");
-        printMessage("11 - Carregar dados");
-        printMessage("12 - Guardar dados");
+        printMessage("11 - Query Estatistica 1 # Dados referentes á ultima leitura");
+        printMessage("12 - Query Estatistica 2 # Dados gerais atuais já registados nas estruturas");
+        printMessage("13 - Carregar dados");
+        printMessage("14 - Guardar dados");
         printMessage("*  - Exit");
         printMessage("! --------------------------------------------- !");
     }
