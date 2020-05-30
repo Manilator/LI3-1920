@@ -10,6 +10,16 @@ public interface IGestVendasView {
     void printMenu();
 
     /**
+     * Imprimir o menu de loadd
+     */
+    public void printLoad();
+
+    /**
+     * Imprimir as escolhas de load
+     */
+    public void loadChoice();
+
+    /**
      * Imprime a mensagem fornecida
      * @param message Mensagem a ser impressa
      */

@@ -1,10 +1,16 @@
 package model;
 
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 
 public interface IGestVendasModel {
 
+    public void parseClients(String clientPath);
+
+    public void parseProducts(String productPath);
+
+    public void parseSales(String salesPath);
 
     int getClientsSize();
 
@@ -98,5 +104,13 @@ public interface IGestVendasModel {
      */
     double[][] getBillingByMonthAndBranch();
 
+    /**
+     * Guarda o estado atual do Model para um dado ficheiro
+     * @param path Caminho do ficheiro a guardar
+     * @throws IOException Exceção de erro a escrever para o ficheiro
+     */
+    void save(String path) throws IOException;
+
     String[] statisticalConsult();
+
 }

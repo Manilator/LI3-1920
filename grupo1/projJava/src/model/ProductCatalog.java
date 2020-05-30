@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
 import java.util.HashMap;
@@ -8,8 +9,9 @@ import java.util.regex.Matcher;
 
 import static Utils.Constants.productPattern;
 
-public class ProductCatalog implements IProductCatalog {
+public class ProductCatalog implements IProductCatalog, Serializable {
 
+    private static final long serialVersionUID = -885894091262755264L;
     private Map<String,IProduct> products;
 
     public ProductCatalog() {

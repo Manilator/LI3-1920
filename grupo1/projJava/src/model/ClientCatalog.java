@@ -1,10 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class ClientCatalog implements IClientCatalog {
+public class ClientCatalog implements IClientCatalog, Serializable {
 
-    private final Map<String,IClient> clients;
+    private static final long serialVersionUID = 695838861959300349L;
+    private Map<String,IClient> clients;
 
     public ClientCatalog(){
         clients = new HashMap<>();
