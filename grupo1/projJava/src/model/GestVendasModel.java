@@ -7,8 +7,9 @@ import java.util.stream.Collectors;
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
 
-public class GestVendasModel implements IGestVendasModel {
+public class GestVendasModel implements IGestVendasModel, Serializable {
 
+    private static final long serialVersionUID = -633886111828325882L;
     private final IClientCatalog client_catalog; /**< Cátalogo de clientes */
     private final IProductCatalog product_catalog; /**< Cátalogo de produto */
     private final IBillingCatalog billing_catalog; /**< Cátalogo de faturação */
@@ -329,5 +330,33 @@ public class GestVendasModel implements IGestVendasModel {
 
     public int getReadClients() {
         return readClients;
+    }
+
+    /**
+     * Guarda o estado atual do Model para um dado ficheiro
+     * @param path Caminho do ficheiro a guardar
+     * @throws IOException Exceção de erro a escrever para o ficheiro
+     */
+    public void save(String path) throws IOException {
+        FileOutputStream a = new FileOutputStream(path);
+        ObjectOutputStream r = new ObjectOutputStream(a);
+        r.writeObject(this);
+        r.flush();
+        r.close();
+    }
+
+    /**
+     * Carrega o Model de um ficheiro de ObjectStream
+     * @param path Caminho do ficheiro a carregar
+     * @return Modelo lido
+     * @throws IOException Erro a ler do ficheiro
+     * @throws ClassNotFoundException O ficheiro lido é invalido
+     */
+    public static GestVendasModel load(String path) throws IOException, ClassNotFoundException {
+        FileInputStream r = new FileInputStream(path);
+        ObjectInputStream a = new ObjectInputStream(r);
+        GestVendasModel u = (GestVendasModel) a.readObject();
+        a.close();
+        return u;
     }
 }

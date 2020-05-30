@@ -1,18 +1,20 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import static Utils.Constants.N_BRANCHES;
 
-public class Billing implements IBilling{
+public class Billing implements IBilling, Serializable {
 
-    private int n_sales; /** Número de Vendas */
-    private double totalBilled; /** Total faturado */
-    private int unitiesP; /** Unidades P vendidas */
-    private int unitiesN; /** Unidades N vendidas */
-    private int[] branchesUnities; /** Número de unidades vendidas dividida por filiais */
-    private double[] branchesBilling; /** Faturação dividida por filiais */
-    private int[] branchesNSales; /** Número de vendas dividida por filiais */
+    private static final long serialVersionUID = 2537488678609275391L;
+    private int n_sales; /**< Número de Vendas */
+    private double totalBilled; /**< Total faturado */
+    private int unitiesP; /**< Unidades P vendidas */
+    private int unitiesN; /**< Unidades N vendidas */
+    private int[] branchesUnities; /**< Número de unidades vendidas dividida por filiais */
+    private double[] branchesBilling; /**< Faturação dividida por filiais */
+    private int[] branchesNSales; /**< Número de vendas dividida por filiais */
     private int giveaways;
 
     /**

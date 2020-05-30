@@ -1,11 +1,14 @@
 package model;
 
+
+import java.io.Serializable;
 import java.util.Arrays;
 
 import static Utils.Constants.N_MONTHS;
 
-public class InfoProduct implements IInfoProduct {
+public class InfoProduct implements IInfoProduct, Serializable {
 
+    private static final long serialVersionUID = -677107323861266485L;
     private int[] quantities; /**< Quantidades por cada mês */
     private double[] totalBilled; /**< Faturação total por cada mês */
 

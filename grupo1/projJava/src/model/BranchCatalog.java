@@ -1,13 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
 
-public class BranchCatalog implements IBranchCatalog {
+public class BranchCatalog implements IBranchCatalog, Serializable {
 
+    private static final long serialVersionUID = -2413572818685657627L;
     private final IBranch[] branches;
 
     public BranchCatalog() {
