@@ -45,6 +45,10 @@ public class Sale implements ISale {
         }
     }
 
+    /**
+     * Verifica se uma venda é válida
+     * @return True se a venda for válida e False se for inválida
+     */
     public boolean validSale() {
         return this.price >= 0
                 && this.price<= 999.99
@@ -56,30 +60,58 @@ public class Sale implements ISale {
                 && this.branch <= N_BRANCHES;
     }
 
+    /**
+     * Get product
+     * @return Devolve o código do produto
+     */
     public String getProduct() {
         return product;
     }
 
+    /**
+     * Get client
+     * @return Devolve o código do cliente
+     */
     public String getClient() {
         return client;
     }
 
+    /**
+     * Get price
+     * @return Devolve o preço
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     * Get units
+     * @return Devolve o número de unidades vendidas
+     */
     public int getUnits() {
         return units;
     }
 
+    /**
+     * Get promotion
+     * @return Devolve o tipo de promoção
+     */
     public char getPromotion() {
         return promotion;
     }
 
+    /**
+     * Get month
+     * @return Devolve o mês
+     */
     public int getMonth() {
         return month;
     }
 
+    /**
+     * Get branch
+     * @return Devolve o número da filial
+     */
     public int getBranch() {
         return branch;
     }
