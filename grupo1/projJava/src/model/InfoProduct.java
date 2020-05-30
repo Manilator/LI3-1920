@@ -1,6 +1,5 @@
 package model;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 
 import static Utils.Constants.N_MONTHS;
@@ -32,7 +31,7 @@ public class InfoProduct implements IInfoProduct {
      * @return Array de inteiros com o numero de produtos comprados
      */
     public int[] getQuantities() {
-        return quantities;
+        return this.quantities.clone();
     }
 
     /**
@@ -43,7 +42,7 @@ public class InfoProduct implements IInfoProduct {
         int result = 0;
 
         for (int i=0;i<N_MONTHS;i++)
-            result += quantities[i];
+            result += this.quantities[i];
 
         return result;
     }

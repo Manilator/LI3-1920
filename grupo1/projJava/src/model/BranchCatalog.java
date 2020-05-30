@@ -15,18 +15,13 @@ public class BranchCatalog implements IBranchCatalog {
         this.initBranchCatalog(N_BRANCHES);
     }
 
-    public IBranch[] getBranches() {
-        return this.branches.clone();
-    }
-
     /**
      * Função que inicializa as estruturas das filiais
      * @param n número de filiais
      */
     public void initBranchCatalog(int n) {
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
             this.branches[i] = new Branch();
-        }
     }
 
     /**

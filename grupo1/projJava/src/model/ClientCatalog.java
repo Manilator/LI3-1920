@@ -1,6 +1,7 @@
 package model;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ClientCatalog implements IClientCatalog {
 

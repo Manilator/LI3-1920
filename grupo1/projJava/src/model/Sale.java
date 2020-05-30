@@ -14,23 +14,11 @@ public class Sale implements ISale {
     private char    promotion; /**< Tipo de promoção N ou P */
     private int     month; /**< Número do mês */
     private int     branch; /**< Número da filial */
-/*
-    public Sale(String sale_line) {
-        String pattern = "([A-Z][A-Z](1000|5000|[1-4][0-9][0-9][0-9]))\\ (0.0|999.99|[1-9][0-9]?[0-9]?\\.[0-9][0-9]?|0\\.[0-9][0-9])\\ ([1-2][0-9][0-9]|[1-9][0-9]|[1-9])\\ (N|P)\\ ([A-Z](1000|5000|[1-4][0-9][0-9][0-9]))\\ (1[0-2]|[1-9])\\ ([1-3])";
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(sale_line);
-        if (m.find()) {
-            this.product = m.group(1);
-            this.price = new BigDecimal(m.group(3));
-            this.units = Integer.parseInt(m.group(4));
-            this.promotion = m.group(5).charAt(0);
-            this.client = m.group(6);
-            this.month = Integer.parseInt(m.group(8));
-            this.branch = Integer.parseInt(m.group(9));
-        }
-    }
-    */
 
+    /**
+     * Construtor com String para a classe
+     * @param sale_line Linha com informacao de uma venda
+     */
     public Sale(String sale_line) {
         String[] saleGroups = sale_line.split(" ");
         if(saleGroups.length != 7) this.price = -1;
