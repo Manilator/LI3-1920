@@ -2,13 +2,37 @@ package model;
 
 public interface IBillingProduct {
 
-    public void updateBillingProduct(double totalBilled, int unities, char promotion_type, int branch, int month);
+    /**
+     * Atualiza a classe BillingProdutct
+     * @param totalBilled Faturacao dada
+     * @param unities Numero de unidades
+     * @param promotion_type Tipo de promocao
+     * @param branch Numero de filial
+     * @param month Numero do mes
+     */
+    void updateBillingProduct(double totalBilled, int unities, char promotion_type, int branch, int month);
 
-    public int[] getN_sales();
+    /**
+     * Numero de vendas em cada mes
+     * @return Devolve o numero venda em cada mes
+     */
+    int[] getN_sales();
 
-    public double[] getTotalBilled();
+    /**
+     * A faturacao total em cada mes
+     * @return Devolve faturacao total em cada mes
+     */
+    double[] getTotalBilled();
 
-    public int getTotalUnits();
+    /**
+     * Numero total de unidades
+     * @return Devolve o numero total de unidades
+     */
+    int getTotalUnits();
 
-    public double[][] getBranchesBilled();
+    /**
+     * Faturação dividida por mes e filial
+     * @return Devolve o clone da variavel
+     */
+    double[][] getBranchesBilled();
 }

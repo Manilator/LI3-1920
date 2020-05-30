@@ -11,22 +11,28 @@ public class BillingCatalog implements IBillingCatalog{
     private final IBilling[] billings;
     private final Map<String, IBillingProduct> billingsProduct; /**< Faturação dividida por produtos */
 
+    /**
+     * Construtor vazio da classe BillingCatalog
+     */
     public BillingCatalog() {
         this.billings = new Billing[N_MONTHS];
         this.billingsProduct = new HashMap<>();
         this.initBillingCatalog();
     }
 
-    public IBilling[] getBillings() {
-        return billings;
-    }
-
+    /**
+     * Funcao auxiliar que inicia variaveis da classe
+     */
     public void initBillingCatalog() {
         for (int i = 0; i < N_MONTHS; i++) {
             this.billings[i] = new Billing();
         }
     }
 
+    /**
+     * Adiciona um BillingProduct dado um codigo de produto
+     * @param code Codigo do produto
+     */
     public void addBillingProduct(String code) {
         String _code = code;
 
@@ -36,6 +42,10 @@ public class BillingCatalog implements IBillingCatalog{
         }
     }
 
+    /**
+     * Atualiza a classe Billings
+     * @param sale Classe auxiliar de uma venda
+     */
     public void updateBillings(ISale sale) {
         String code = sale.getProduct();
         int month = sale.getMonth();
@@ -44,41 +54,16 @@ public class BillingCatalog implements IBillingCatalog{
         int branch = sale.getBranch();
         char promotion_type = sale.getPromotion();
         this.billings[month-1]
-                .updateBilling(code,
-                totalBilled,
+                .updateBilling(totalBilled,
                 unities, promotion_type,
                 branch);
         this.billingsProduct.get(code).updateBillingProduct(totalBilled, unities, promotion_type, branch, month);
     }
 
-
-    private IBillingProduct getBillingProduct(String product_code) {
-        return this.billingsProduct.get(product_code);
-    }
-
-    public int getTotalSalesMonth(int month) {
-        return this.billings[month-1].getN_sales();
-    }
-
-    public int getTotalSalesMonth(int month, int branch) {
-        return this.billings[month-1].getN_sales(branch);
-    }
-
-    public int[] getNSalesProduct(String product) {
-        return this.billingsProduct.get(product).getN_sales();
-    }
-
-    public double[] getTotalBilledMonth(String product) {
-        return this.billingsProduct.get(product).getTotalBilled();
-    }
-
-    public double getTotalBilledSum() {
-        int result = 0;
-        for (int month = 0; month < N_MONTHS; month++)
-            result += billings[month].getTotalBilled();
-        return result;
-    }
-
+    /**
+     * Numero total de vendas com faturacao a 0
+     * @return Devolve o numero total de vendas com faturacao 0
+     */
     public int getGiveawaysAmount(){
         int result = 0;
         for (int month = 0; month < N_MONTHS; month++)
@@ -86,6 +71,11 @@ public class BillingCatalog implements IBillingCatalog{
         return result;
     }
 
+    /**
+     * N Produtos mais comprados
+     * @param n Numero de elementos requisitados
+     * @return Devolve uma lista com os produtos mais comprados
+     */
     public List<String> getTopMostPurchased(int n) {
         final int[] aux = new int[1];
         Comparator<Map.Entry<String,IBillingProduct>> c =
@@ -98,10 +88,6 @@ public class BillingCatalog implements IBillingCatalog{
                 .collect(Collectors.toList());
 
         return sorted.subList(0,n);
-    }
-
-    public int getProductUnits(String product) {
-        return this.billingsProduct.get(product).getTotalUnits();
     }
 
     /**
@@ -129,5 +115,53 @@ public class BillingCatalog implements IBillingCatalog{
                     result[month][branch] += tmp[month][branch];
         }
         return result;
+    }
+
+    /**
+     * Numero de vendas de uma dada filial num certo mes
+     * @param month Mes
+     * @param branch Filial
+     * @return Devolve o numero de venda da filial no mes escolhido
+     */
+    public int getTotalSalesMonth(int month, int branch) {
+        return this.billings[month-1].getN_sales(branch);
+    }
+
+    /**
+     * Numero de vendas de um certo produto
+     * @param product Codigo de produto
+     * @return Devolve um array com o numero de vendas de um produto por mes
+     */
+    public int[] getNSalesProduct(String product) {
+        return this.billingsProduct.get(product).getN_sales().clone();
+    }
+
+    /**
+     * Valor faturado nas vendas de um certo produto
+     * @param product Codigo de produto
+     * @return Devolve um array com a quantidade faturada nas vendas de um produto por mes
+     */
+    public double[] getTotalBilledMonth(String product) {
+        return this.billingsProduct.get(product).getTotalBilled().clone();
+    }
+
+    /**
+     * Total faturado em todos os meses
+     * @return Devolve a quantidade total faturada
+     */
+    public double getTotalBilledSum() {
+        int result = 0;
+        for (int month = 0; month < N_MONTHS; month++)
+            result += billings[month].getTotalBilled();
+        return result;
+    }
+
+    /**
+     * Numero de produtos comprados
+     * @param product Codigo de produto
+     * @return Devolve o numero de produtos comprados
+     */
+    public int getProductUnits(String product) {
+        return this.billingsProduct.get(product).getTotalUnits();
     }
 }
