@@ -1,12 +1,11 @@
 package model;
 
-import java.math.BigDecimal;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.Serializable;
 
 import static Utils.Constants.N_BRANCHES;
 
-public class Sale implements ISale {
+public class Sale implements ISale, Serializable {
+    private static final long serialVersionUID = 4751558143036898335L;
     private String  product; /**< Código de produto */
     private String  client; /**< Código de cliente */
     private double price; /**< Preço do produto */

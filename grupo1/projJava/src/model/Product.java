@@ -1,10 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 
 import static Utils.Constants.*;
 
-public class Product implements IProduct {
+public class Product implements IProduct, Serializable {
+    private static final long serialVersionUID = -8818347045121551911L;
     private final char first_letter;
     private final char second_letter;
     private final int number;

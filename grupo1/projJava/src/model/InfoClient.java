@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import static Utils.Constants.N_MONTHS;
 
-public class InfoClient implements IInfoClient {
+public class InfoClient implements IInfoClient, Serializable {
 
+    private static final long serialVersionUID = -3123923576348809853L;
     private int[] unitsN; /**< Número de unidades do tipo N */
     private int[] unitsP; /**< Número de unidades do tipo P */
     private double totalBilled;

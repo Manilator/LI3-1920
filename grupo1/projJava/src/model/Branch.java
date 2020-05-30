@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static Utils.Constants.N_MONTHS;
 
-public class Branch implements IBranch {
+public class Branch implements IBranch, Serializable {
 
+    private static final long serialVersionUID = -7476925717995734343L;
     private Map<String, IRelationWithClient> productsClients; /**< Códigos de produtos e a sua estrutura atribuída RelationWithClient */
     private Map<String, IRelationWithProduct> clientsProducts; /**< Códigos de clientes e a sua estrutura atribuída RelationWithProduct */
 

@@ -8,13 +8,16 @@ import view.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 import static Utils.Constants.N_BRANCHES;
 
 public class GestVendasController implements IGestVendasController {
     public IGestVendasView view;
-    private final IGestVendasModel gv;
+    private IGestVendasModel gv;
     private final BufferedReader in;
     private IPages pages;
     private Crono crono;
@@ -48,20 +51,24 @@ public class GestVendasController implements IGestVendasController {
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        readStats();
+        in = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    private void readStats() {
         view.printMessage(String.valueOf("Clientes válidos: " + this.gv.getClientsSize()));
         view.printMessage(String.valueOf("Clientes lidos: " + this.gv.getReadClients()));
         view.printMessage(String.valueOf("Produtos válidos: " + this.gv.getProductsSize()));
         view.printMessage(String.valueOf("Produtos lidos: " + this.gv.getReadProducts()));
         view.printMessage(String.valueOf("Vendas válidos: " + this.gv.getValidSales()));
         view.printMessage(String.valueOf("Vendas lidas: " + this.gv.getReadSales()));
-        in = new BufferedReader(new InputStreamReader(System.in));
     }
 
     /**
      * Função que inicia o controller
      * @throws IOException Exceção se ocorrer erros ao ler os ficheiros
      */
-    public void startController() throws IOException {
+    public void startController() throws IOException, ClassNotFoundException {
         menu();
     }
 
@@ -106,11 +113,9 @@ public class GestVendasController implements IGestVendasController {
         try {
             int n_page = 0;
             view.cleanConsole();
-            long startTime = System.nanoTime();
+            crono.start();
             List<String> list = gv.getProductNeverBought();
-            long stopTime = System.nanoTime();
-            double time = (double) (stopTime - startTime) / 1_000_000_000;
-            view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+            view.printMessage(crono.getTImeString());
             String choice = "-1";
             if (list.size() == 0) {
                 view.printMessage("Não existe nenhum produto.");
@@ -152,11 +157,9 @@ public class GestVendasController implements IGestVendasController {
     private void query2Controller() throws IOException {
         int month = askMonth();
 
-        long startTime = System.nanoTime();
+        crono.start();
         List<Integer> list = gv.query2(month);
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage(crono.getTImeString());
 
         int[] total = new int[2];
         Arrays.fill(total,0);
@@ -180,11 +183,9 @@ public class GestVendasController implements IGestVendasController {
     private void query3Controller() throws IOException {
         try {
             String client = askClient();
-            long startTime = System.nanoTime();
+            crono.start();
             double[][] result = gv.getClientShoppingLog(client);
-            long stopTime = System.nanoTime();
-            double time = (double) (stopTime - startTime) / 1_000_000_000;
-            view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+            view.printMessage(crono.getTImeString());
 
             ITable table = new Table();
             table.table3View(result, client);
@@ -200,11 +201,9 @@ public class GestVendasController implements IGestVendasController {
         try {
             String product = askProduct();
 
-            long startTime = System.nanoTime();
+            crono.start();
             double[][] result = gv.query4(product);
-            long stopTime = System.nanoTime();
-            double time = (double) (stopTime - startTime) / 1_000_000_000;
-            view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+            view.printMessage(crono.getTImeString());
 
             ITable table = new Table();
             table.table4View(result, product);
@@ -219,11 +218,9 @@ public class GestVendasController implements IGestVendasController {
             int n_page = 0;
             String client = askClient();
 
-            long startTime = System.nanoTime();
+            crono.start();
             String[][] result = gv.getClientsFavoriteProducts(client);
-            long stopTime = System.nanoTime();
-            double time = (double) (stopTime - startTime) / 1_000_000_000;
-            view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+            view.printMessage(crono.getTImeString());
 
             List<String> list = new ArrayList<>();
             for(String[] c : result) {
@@ -268,11 +265,9 @@ public class GestVendasController implements IGestVendasController {
         int n_page = 0;
         int n = askN();
 
-        long startTime = System.nanoTime();
+        crono.start();
         String[][] result = gv.query6(n);
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage(crono.getTImeString());
 
         List<String> list = new ArrayList<>();
         for(int i = 0; i < n; i++) {
@@ -310,11 +305,9 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 7
      */
     void query7Controller() {
-        long startTime = System.nanoTime();
+        crono.start();
         String[][][] result = gv.query7();
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage(crono.getTImeString());
 
         view.query7View(result);
     }
@@ -326,11 +319,9 @@ public class GestVendasController implements IGestVendasController {
         int n_page = 0;
         int n = askN();
 
-        long startTime = System.nanoTime();
+        crono.start();
         String[][] result = gv.query8(n);
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage(crono.getTImeString());
 
         List<String> list = new ArrayList<>();
         for(String[] c : result) {
@@ -374,11 +365,9 @@ public class GestVendasController implements IGestVendasController {
             String product = askProduct();
             int n = askN();
 
-            long startTime = System.nanoTime();
+            crono.start();
             String[][] result = gv.query9(product,n);
-            long stopTime = System.nanoTime();
-            double time = (double) (stopTime - startTime) / 1_000_000_000;
-            view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+            view.printMessage(crono.getTImeString());
 
             List<String> list = new ArrayList<>();
             for(String[] c : result) {
@@ -420,11 +409,9 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 10
      */
     void query10Controller() {
-        long startTime = System.nanoTime();
+        crono.start();
         Map<String, double[][]> result =  gv.query10();
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage(crono.getTImeString());;
 
         view.query10View(result);
     }
@@ -438,7 +425,56 @@ public class GestVendasController implements IGestVendasController {
         gv.getBillingByMonthAndBranch(); /*double[][]*/
     }
 
-    void menu() throws IOException {
+    void loadController() throws IOException, ClassNotFoundException {
+        view.printLoad();
+        int choice = Integer.parseInt(in.readLine());
+        if (choice == 1) {
+            view.loadChoice();
+            choice = Integer.parseInt(in.readLine());
+            view.printMessage("Insira o path: ");
+            String path = in.readLine();
+            if (choice == 1) {
+                view.printMessage("A ler clientes... ");
+                this.gv.parseClients(path);
+            } else if (choice == 2) {
+                view.printMessage("A ler produtos... ");
+                this.gv.parseProducts(path);
+            } else if (choice == 3) {
+                view.printMessage("A ler vendas... ");
+                this.gv.parseSales(path);
+            } else {
+                view.printMessage("A voltar para o menu...");
+            }
+        } else if (choice == 2){
+            view.printMessage("Insira o path: ");
+            String path = in.readLine();
+            this.gv = GestVendasModel.load(path);
+        } else if (choice == 3) {
+            view.printMessage("A limpar dados... ");
+            view.printMessage("Insira o path dos clientes: ");
+            String clients = in.readLine();
+            view.printMessage("Insira o path dos produtos: ");
+            String products = in.readLine();
+            view.printMessage("Insira o path das vendas: ");
+            String sales = in.readLine();
+            view.printMessage("A ler dados... ");
+            crono.start();
+            this.gv = new GestVendasModel(clients, products, sales);
+            view.printMessage(crono.getTImeString());
+            readStats();
+        } else {
+            view.printMessage("A voltar para o menu...");
+        }
+
+    }
+
+    void saveController() throws IOException {
+        view.printMessage("Insira o path: ");
+        String path = in.readLine();
+        gv.save(path);
+    }
+
+    void menu() throws IOException, ClassNotFoundException {
 
         int querie = -1;
         view.cleanConsole();
@@ -491,10 +527,10 @@ public class GestVendasController implements IGestVendasController {
                     queryE2();
                     break;
                 case 13:
-                    /*carregar*/
+                    loadController();
                     break;
                 case 14:
-                    /*guardar*/
+                    saveController();
                     break;
                 default:
                     querie = 0;

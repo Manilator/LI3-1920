@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,8 +8,9 @@ import java.util.Set;
 
 import static Utils.Constants.N_MONTHS;
 
-public class RelationWithProduct implements IRelationWithProduct {
+public class RelationWithProduct implements IRelationWithProduct, Serializable {
 
+    private static final long serialVersionUID = -3544741927649822138L;
     private Map<String,IInfoProduct> infoProducts; /**< Códigos de produto e a sua estrutura atribuída InfoProduct */
     private double[] totalBilled; /**< Faturação total por cada mês */
     private int[] n_sales; /**< Numero de compras por cada mês */

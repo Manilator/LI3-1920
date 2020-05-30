@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import static Utils.Constants.*;
 
-public class BillingProduct implements IBillingProduct{
+public class BillingProduct implements IBillingProduct, Serializable {
 
+    private static final long serialVersionUID = -3606213631648419941L;
     private double[] totalBilledN; /**< Total faturado no tipo N separado por meses*/
     private double[] totalBilledP; /**< Total faturado no tipo P separado por meses*/
     private int[] unitiesP; /**< Unidades P vendidas separado por meses*/

@@ -4,7 +4,7 @@ import controller.GestVendasController;
 import java.io.IOException;
 
 public class GestVendasAppMVC {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         System.out.println("Loading data...");
 
         IGestVendasController controller;

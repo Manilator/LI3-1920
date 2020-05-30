@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -7,8 +8,9 @@ import java.util.Set;
 
 import static Utils.Constants.N_MONTHS;
 
-public class RelationWithClient implements IRelationWithClient {
+public class RelationWithClient implements IRelationWithClient, Serializable {
 
+    private static final long serialVersionUID = 6685298803648026223L;
     private Map<String,IInfoClient> infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
     private int[] totalProductsBought; /**< Quantidade de produtos que um certo cliente comprou */
 

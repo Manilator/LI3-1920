@@ -15,22 +15,40 @@ public class GestVendasView implements IGestVendasView {
      */
     public void printMenu(){
         printMessage("! --------------------------------------------- !");
-        printMessage("1  - Query 1  # Produtos nunca comprados");
-        printMessage("2  - Query 2  # Total global de vendas & Compradores distintos");
-        printMessage("3  - Query 3  # Informações mensais de um cliente");
-        printMessage("4  - Query 4  # Informações mensais de um produto");
-        printMessage("5  - Query 5  # Produtos mais comprados por um Cliente");
-        printMessage("6  - Query 6  # Top produtos mais comprados");
-        printMessage("7  - Query 7  # Top 3 clientes por filial");
-        printMessage("8  - Query 8  # Top clientes que compraram produtos únicos");
-        printMessage("9  - Query 9  # Top clientes de um produto");
-        printMessage("10 - Query 10 # Faturação mensal de cada filial");
-        printMessage("11 - Query Estatistica 1 # Dados referentes á ultima leitura");
-        printMessage("12 - Query Estatistica 2 # Dados gerais atuais já registados nas estruturas");
+        printMessage("1  - [I] Query 1  # Produtos nunca comprados");
+        printMessage("2  - [I] Query 2  # Total global de vendas & Compradores distintos");
+        printMessage("3  - [I] Query 3  # Informações mensais de um cliente");
+        printMessage("4  - [I] Query 4  # Informações mensais de um produto");
+        printMessage("5  - [I] Query 5  # Produtos mais comprados por um Cliente");
+        printMessage("6  - [I] Query 6  # Top produtos mais comprados");
+        printMessage("7  - [I] Query 7  # Top 3 clientes por filial");
+        printMessage("8  - [I] Query 8  # Top clientes que compraram produtos únicos");
+        printMessage("9  - [I] Query 9  # Top clientes de um produto");
+        printMessage("10 - [I] Query 10 # Faturação mensal de cada filial");
+        printMessage("11 - [E] Query 1 # Dados referentes á ultima leitura");
+        printMessage("12 - [E] Query 2 # Dados gerais atuais já registados nas estruturas");
         printMessage("13 - Carregar dados");
         printMessage("14 - Guardar dados");
         printMessage("*  - Exit");
         printMessage("! --------------------------------------------- !");
+    }
+
+    /**
+     * Imprimir o menu de load
+     */
+    public void printLoad() {
+        printMessage("1 - Carregar dados (linhas)");
+        printMessage("2 - Carregar dados (.dat)");
+        printMessage("3 - Limpar dados");
+    }
+
+    /**
+     * Imprimir as escolhas de load
+     */
+    public void loadChoice() {
+        printMessage("1 - Clientes");
+        printMessage("2 - Produtos");
+        printMessage("3 - Vendas");
     }
 
     /**
