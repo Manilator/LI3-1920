@@ -102,7 +102,13 @@ public class Branch implements IBranch {
      * @return Array de inteiros que correspondem ao número de clientes distintos que compraram certo produto separado por meses
      */
     public int[] getDistinctsClientsProductMonth(String product) {
-        return this.productsClients.get(product).getDistinctsClientsProductMonth();
+        int[] result = new int[12];
+        try {
+            result = this.productsClients.get(product).getDistinctsClientsProductMonth();
+        } catch (Exception e) {
+            Arrays.fill(result,0);
+        }
+        return result;
     }
 
     /**

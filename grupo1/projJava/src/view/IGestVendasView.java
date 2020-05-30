@@ -1,6 +1,5 @@
 package view;
 
-import java.util.List;
 import java.util.Map;
 
 public interface IGestVendasView {
@@ -42,12 +41,7 @@ public interface IGestVendasView {
      * Função responsável por mostrar o resultado da query 6 ao utilizador
      * @param result (!!!)
      */
-    void query6View(String[][] result);
 
-    /**
-     * Função responsável por mostrar o resultado da query 7 ao utilizador
-     * @param result (!!!)
-     */
     public void query7View(String[][][] result);
 
 
