@@ -10,20 +10,20 @@ public interface IProductCatalog {
      * @param productCode Código do produto
      * @return True, caso tenha sido inserido (código válido), False caso contrário
      */
-    public boolean insertProduct(String productCode);
+    boolean insertProduct(String productCode);
 
     /**
      * Verifica se o produto existe
      * @param code Código de produto
      * @return True se o código existir, False se não existir
      */
-    public boolean existProduct(String code);
+    boolean existProduct(String code);
 
     /**
      * Devolve o tamanho da estrutura products
      * @return Tamanho da estrutura products
      */
-    public int getSize();
+    int getSize();
 
     /**
      * Devolve uma lista de produtos não comprados

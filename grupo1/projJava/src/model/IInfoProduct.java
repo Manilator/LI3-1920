@@ -8,7 +8,7 @@ public interface IInfoProduct {
      * @param billed montante faturado com a compra do produto a ser somada à estrutura
      * @param month mês que vai determinar a posição onde as informações serão somadas à estrutura
      */
-    public void updateInfoProduct(int quantity, double billed, int month);
+    void updateInfoProduct(int quantity, double billed, int month);
 
     /**
      * Get amount of products bought each month

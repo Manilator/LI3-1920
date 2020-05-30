@@ -5,11 +5,11 @@ public interface IPages {
     /**
     * (!!!)
     */
-    public void show(int page);
+    void show(int page);
 
     /**
     * Apresenta as opções do menu
     */
-    public void choices();
+    void choices();
 
 }
