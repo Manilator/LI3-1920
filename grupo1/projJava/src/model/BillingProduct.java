@@ -3,7 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import static Utils.Constants.*;
+import static Utils.Constants.N_BRANCHES;
+import static Utils.Constants.N_MONTHS;
 
 public class BillingProduct implements IBillingProduct, Serializable {
 

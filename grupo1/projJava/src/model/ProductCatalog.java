@@ -1,13 +1,12 @@
 package model;
 
 import java.io.Serializable;
-import java.util.*;
 
+import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-
-import static Utils.Constants.productPattern;
 
 public class ProductCatalog implements IProductCatalog, Serializable {
 

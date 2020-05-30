@@ -1,8 +1,22 @@
 package model;
 
-import java.io.*;
-import java.util.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.BufferedReader;
+import java.io.Serializable;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.File;
+
 import java.util.stream.Collectors;
+import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
@@ -37,7 +51,7 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         parseSales(salesPath);
     }
 
-    private void parseClients(String clientPath) {
+    public void parseClients(String clientPath) {
         File file = new File(clientPath);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -52,7 +66,7 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         }
     }
 
-    private void parseProducts(String productPath) {
+    public void parseProducts(String productPath) {
         File file = new File(productPath);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -69,7 +83,7 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         }
     }
 
-    private void parseSales(String salesPath) {
+    public void parseSales(String salesPath) {
         File file = new File(salesPath);
 
         List<String> lista_vendas = new ArrayList<>();

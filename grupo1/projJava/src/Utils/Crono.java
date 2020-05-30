@@ -23,7 +23,7 @@ public class Crono {
     }
 
 
-    public static String getTImeString() {
+    public static String getTimeString() {
         return "Elapsed Time: " +getTime() + " s";
     }
 }
