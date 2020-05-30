@@ -65,16 +65,28 @@ public class GestVendasController implements IGestVendasController {
         menu();
     }
 
+    /**
+     * Função que pede um codigo de produto
+     * @return String codigo de produto
+     */
     private String askProduct() throws IOException {
         view.printMessage("Insira o produto: ");
         return in.readLine();
     }
 
+    /**
+     * Função que pede um codigo de cliente
+     * @return Devolve uma string do codigo do cliente
+     */
     private String askClient() throws IOException {
         view.printMessage("Insira o Cliente: ");
         return in.readLine();
     }
 
+    /**
+     * Função que pede um certo mes
+     * @return Devole um int do mes pedido
+     */
     private int askMonth() throws IOException {
         int month = 0;
         int i = 0;
@@ -87,6 +99,10 @@ public class GestVendasController implements IGestVendasController {
         return month;
     }
 
+    /**
+     * Função que pede uma quantidade para ser inserida
+     * @return Devolve um int da quantidade inserida
+     */
     private int askN() throws IOException {
         int n = 0;
         int i = 0;
@@ -214,6 +230,9 @@ public class GestVendasController implements IGestVendasController {
 
     }
 
+    /**
+     * Função que trata do controller da query 5
+     */
     private void query5Controller() throws IOException {
         try {
             int n_page = 0;
@@ -430,6 +449,13 @@ public class GestVendasController implements IGestVendasController {
     }
 
     /**
+     * Função que trata do controller da query estatistica 1
+     */
+    void queryE1(){
+        gv.statisticalConsult();
+    }
+
+    /**
      * Função que trata do controller da query estatistica 2
      */
     void queryE2(){
@@ -485,7 +511,7 @@ public class GestVendasController implements IGestVendasController {
                     query10Controller();
                     break;
                 case 11:
-                    /*controllerQuery11(sgv);*/
+                    queryE1();
                     break;
                 case 12:
                     queryE2();

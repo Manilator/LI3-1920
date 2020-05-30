@@ -6,6 +6,15 @@ import java.util.Set;
 
 public interface IBranch {
 
+    /**
+     * Atualiza a classe
+     * @param client_code Codigo do cliente
+     * @param product_code Codigo de produto
+     * @param units Numero de unidades compradas
+     * @param promotion_type Tipo de promocao
+     * @param billed Quantidade faturada
+     * @param month Mes da compra
+     */
     void updateBranch(String client_code, String product_code, int units, char promotion_type, double billed, int month);
 
     /**
@@ -81,5 +90,9 @@ public interface IBranch {
      */
     int[] getBranchNumberOfDistinctClients(int branch);
 
+    /**
+     * Clientes que nunca compraram
+     * @return Devolve um Set com os clientes que nunca fizeram compras
+     */
     Set<String> getClientWhoBought();
 }
