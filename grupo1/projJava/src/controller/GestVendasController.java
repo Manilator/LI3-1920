@@ -1,5 +1,6 @@
 package controller;
 
+import Utils.Crono;
 import model.GestVendasModel;
 import model.IGestVendasModel;
 import view.*;
@@ -16,18 +17,18 @@ public class GestVendasController implements IGestVendasController {
     private final IGestVendasModel gv;
     private final BufferedReader in;
     private IPages pages;
+    private Crono crono;
 
 
     /**
      * Construtor vazio do controller
      */
     public GestVendasController() {
+        this.crono = new Crono();
         this.view = new GestVendasView();
-        long startTime = System.nanoTime();
+        crono.start();
         this.gv = new GestVendasModel("data/Clientes.txt", "data/Produtos.txt", "data/Vendas_1M.txt");
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+        view.printMessage(crono.getTImeString());
         view.printMessage(String.valueOf("Clientes válidos: " + this.gv.getClientsSize()));
         view.printMessage(String.valueOf("Clientes lidos: " + this.gv.getReadClients()));
         view.printMessage(String.valueOf("Produtos válidos: " + this.gv.getProductsSize()));
@@ -102,39 +103,47 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 1
      */
     private void query1Controller() throws IOException {
-        int n_page = 0;
-        view.cleanConsole();
-        long startTime = System.nanoTime();
-        List<String> list = gv.getProductNeverBought();
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
-
-        String choice = "-1";
-        while(!choice.equals("0")) {
-            view.printMessage("==================================");
-            view.printMessage("#### Produtos nunca comprados ####");
-            view.printMessage("==================================");
-            pages = new Pages(list.size(),10,list);
-            pages.show(n_page);
-            pages.choices();
-            choice = null;
-            choice = in.readLine();
-            if (choice.equals("n")) {
-                view.printMessage(choice);
-                n_page++;
+        try {
+            int n_page = 0;
+            view.cleanConsole();
+            long startTime = System.nanoTime();
+            List<String> list = gv.getProductNeverBought();
+            long stopTime = System.nanoTime();
+            double time = (double) (stopTime - startTime) / 1_000_000_000;
+            view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+            String choice = "-1";
+            if (list.size() == 0) {
+                view.printMessage("Não existe nenhum produto.");
+            } else {
+                while(!choice.equals("0")) {
+                    view.printMessage("==================================");
+                    view.printMessage("#### Produtos nunca comprados ####");
+                    view.printMessage("==================================");
+                    pages = new Pages(list.size(),10,list);
+                    pages.show(n_page);
+                    pages.choices();
+                    choice = null;
+                    choice = in.readLine();
+                    if (choice.equals("n")) {
+                        view.printMessage(choice);
+                        n_page++;
+                    }
+                    else if(choice.equals("p")) {
+                        view.printMessage(choice);
+                        n_page--;
+                    }
+                    else if(choice.equals("c")) {
+                        view.printMessage(choice);
+                        view.printMessage("Número da página: ");
+                        n_page = Integer.parseInt((in.readLine()));
+                    } else
+                        choice = "0";
+                }
             }
-            else if(choice.equals("p")) {
-                view.printMessage(choice);
-                n_page--;
-            }
-            else if(choice.equals("c")) {
-                view.printMessage(choice);
-                view.printMessage("Número da página: ");
-                n_page = Integer.parseInt((in.readLine()));
-            } else
-                choice = "0";
+        } catch (Exception e) {
+            view.printMessage("Não existe nenhum produto.");
         }
+
     }
 
     /**

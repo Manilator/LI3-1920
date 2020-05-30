@@ -1,6 +1,9 @@
 package model;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -79,10 +82,10 @@ public class GestVendasModel implements IGestVendasModel {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String sale_line;
-
             while ((sale_line = reader.readLine()) != null) {
                 lista_vendas.add(sale_line);
             }
+            //lista_vendas = Files.readAllLines(Paths.get(salesPath), StandardCharsets.UTF_8);
             this.readSales = lista_vendas.size();
             lista_vendas
                     .parallelStream()
