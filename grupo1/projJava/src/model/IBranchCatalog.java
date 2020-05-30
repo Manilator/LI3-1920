@@ -21,7 +21,7 @@ public interface IBranchCatalog {
     double[][] getClientShoppingLog(String clientCode);
   
     /**
-     * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
+     * Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
      * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
      */
     String[][][] getTop3BuyersByBranch();
@@ -33,10 +33,16 @@ public interface IBranchCatalog {
      */
     String[][] getClientsFavoriteProducts(String clientCode);
 
-
+    /**
+     * Dado um mês e uma filial retorna o total de clientes distintos que realizaram compras no mês dado na final
+     * @param month mês no qual o número de clientes distintos realizaram compras
+     * @param branch (MANI)
+     * @return Total de clientes distintos que realizaram compras na filial no mês dado
+     */
     int distinctClientsMonth(int month, int branch);
 
     /**
+     * Dado um código de produto retorna o total de clientes distintos que compraram este produto separado por meses
      * @param product Produto qual os clientes distintos compraram
      * @return Array de inteiros com os clientes distintos que compraram certo produto
      */

@@ -7,6 +7,11 @@ public class Table implements ITable {
     public Table() {
     }
 
+    /**
+     * Função responsável por mostrar o resultado da query 3 ao utilizador em forma de tabela (?) (!!!)
+     * @param list (!!!)
+     * @param client Código do cliente
+     */
     public void table3View(double[][] list, String client)
     {
         if (list != null)
@@ -100,6 +105,11 @@ public class Table implements ITable {
         }
     }
 
+    /**
+     * Função responsável por mostrar o resultado da query 4 ao utilizador em forma de tabela (?) (!!!)
+     * @param list (!!!)
+     * @param product Código do produto
+     */
     public void table4View(double[][] list, String product)
     {
         if (list != null)

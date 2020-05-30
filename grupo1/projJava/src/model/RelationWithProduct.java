@@ -20,6 +20,13 @@ public class RelationWithProduct implements IRelationWithProduct {
         Arrays.fill(this.totalBilled, 0);
     }
 
+    /**
+     * Função que atualiza a estrutura RelationWithProduct com as informações dadas (!!!) confirmar pls
+     * @param product_code código do produto
+     * @param quantity quantidade comprada a ser somada à estrutura
+     * @param billed montante faturado com a compra do produto a ser somada ao total faturado
+     * @param month mês que vai determinar a posição onde as informações serão somadas à estrutura
+     */
     public void updateRelationWithProduct(String product_code, int quantity, double billed, int month) {
         this.totalBilled[month-1] += billed;
         this.n_sales[month-1]++;
@@ -41,6 +48,10 @@ public class RelationWithProduct implements IRelationWithProduct {
         return Arrays.stream(this.totalBilled).sum();
     }
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     public boolean didPurchaseMonth(int month) {
         return n_sales[month-1] != 0;
     }
