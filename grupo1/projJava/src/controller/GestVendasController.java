@@ -31,7 +31,7 @@ public class GestVendasController implements IGestVendasController {
         this.view = new GestVendasView();
         crono.start();
         this.gv = new GestVendasModel("data/Clientes.txt", "data/Produtos.txt", "data/Vendas_1M.txt");
-        view.printMessage(crono.getTImeString());
+        view.printMessage(crono.getTimeString());
         view.printMessage(String.valueOf("Clientes válidos: " + this.gv.getClientsSize()));
         view.printMessage(String.valueOf("Clientes lidos: " + this.gv.getReadClients()));
         view.printMessage(String.valueOf("Produtos válidos: " + this.gv.getProductsSize()));
@@ -131,7 +131,7 @@ public class GestVendasController implements IGestVendasController {
             view.cleanConsole();
             crono.start();
             List<String> list = gv.getProductNeverBought();
-            view.printMessage(crono.getTImeString());
+            view.printMessage(crono.getTimeString());
             String choice = "-1";
             if (list.size() == 0) {
                 view.printMessage("Não existe nenhum produto.");
@@ -175,7 +175,7 @@ public class GestVendasController implements IGestVendasController {
 
         crono.start();
         List<Integer> list = gv.query2(month);
-        view.printMessage(crono.getTImeString());
+        view.printMessage(crono.getTimeString());
 
         int[] total = new int[2];
         Arrays.fill(total,0);
@@ -201,7 +201,7 @@ public class GestVendasController implements IGestVendasController {
             String client = askClient();
             crono.start();
             double[][] result = gv.getClientShoppingLog(client);
-            view.printMessage(crono.getTImeString());
+            view.printMessage(crono.getTimeString());
 
             ITable table = new Table();
             table.table3View(result, client);
@@ -219,7 +219,7 @@ public class GestVendasController implements IGestVendasController {
 
             crono.start();
             double[][] result = gv.query4(product);
-            view.printMessage(crono.getTImeString());
+            view.printMessage(crono.getTimeString());
 
             ITable table = new Table();
             table.table4View(result, product);
@@ -239,7 +239,7 @@ public class GestVendasController implements IGestVendasController {
 
             crono.start();
             String[][] result = gv.getClientsFavoriteProducts(client);
-            view.printMessage(crono.getTImeString());
+            view.printMessage(crono.getTimeString());
 
             List<String> list = new ArrayList<>();
             for(String[] c : result) {
@@ -286,7 +286,7 @@ public class GestVendasController implements IGestVendasController {
 
         crono.start();
         String[][] result = gv.query6(n);
-        view.printMessage(crono.getTImeString());
+        view.printMessage(crono.getTimeString());
 
         List<String> list = new ArrayList<>();
         for(int i = 0; i < n; i++) {
@@ -326,7 +326,7 @@ public class GestVendasController implements IGestVendasController {
     void query7Controller() {
         crono.start();
         String[][][] result = gv.query7();
-        view.printMessage(crono.getTImeString());
+        view.printMessage(crono.getTimeString());
 
         view.query7View(result);
     }
@@ -340,7 +340,7 @@ public class GestVendasController implements IGestVendasController {
 
         crono.start();
         String[][] result = gv.query8(n);
-        view.printMessage(crono.getTImeString());
+        view.printMessage(crono.getTimeString());
 
         List<String> list = new ArrayList<>();
         for(String[] c : result) {
@@ -386,7 +386,7 @@ public class GestVendasController implements IGestVendasController {
 
             crono.start();
             String[][] result = gv.query9(product,n);
-            view.printMessage(crono.getTImeString());
+            view.printMessage(crono.getTimeString());
 
             List<String> list = new ArrayList<>();
             for(String[] c : result) {
@@ -430,7 +430,7 @@ public class GestVendasController implements IGestVendasController {
     void query10Controller() {
         crono.start();
         Map<String, double[][]> result =  gv.query10();
-        view.printMessage(crono.getTImeString());;
+        view.printMessage(crono.getTimeString());
 
         view.query10View(result);
     }
@@ -486,7 +486,7 @@ public class GestVendasController implements IGestVendasController {
             view.printMessage("A ler dados... ");
             crono.start();
             this.gv = new GestVendasModel(clients, products, sales);
-            view.printMessage(crono.getTImeString());
+            view.printMessage(crono.getTimeString());
             readStats();
         } else {
             view.printMessage("A voltar para o menu...");
