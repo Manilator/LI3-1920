@@ -12,27 +12,23 @@ public class Branch implements IBranch, Serializable {
     private Map<String, IRelationWithClient> productsClients; /**< Códigos de produtos e a sua estrutura atribuída RelationWithClient */
     private Map<String, IRelationWithProduct> clientsProducts; /**< Códigos de clientes e a sua estrutura atribuída RelationWithProduct */
 
+    /**
+     * Construtor vazio da classe
+     */
     public Branch() {
         this.productsClients = new HashMap<>();
         this.clientsProducts = new HashMap<>();
     }
 
-    public void addRelationWithClient(String product_code, RelationWithClient rcc) {
-        this.productsClients.put(product_code,rcc);
-    }
-
-    public void addRelationWithProduct(String client_code, RelationWithProduct rcp) {
-        this.clientsProducts.put(client_code, rcp);
-    }
-
-    private IRelationWithClient getRelationWithClient(String cod) {
-        return this.productsClients.get(cod);
-    }
-
-    private IRelationWithProduct getRelationWithProduct(String cod) {
-        return this.clientsProducts.get(cod);
-    }
-
+    /**
+     * Atualiza a classe
+     * @param client_code Codigo do cliente
+     * @param product_code Codigo de produto
+     * @param units Numero de unidades compradas
+     * @param promotion_type Tipo de promocao
+     * @param billed Quantidade faturada
+     * @param month Mes da compra
+     */
     public void updateBranch(String client_code, String product_code, int units, char promotion_type, double billed, int month) {
         if (!this.productsClients.containsKey(product_code)) {
             String _code_product = product_code;
@@ -75,7 +71,6 @@ public class Branch implements IBranch, Serializable {
             shopLog[i][1] += distinctProducts[i];
             shopLog[i][2] += spentTotal[i];
         }
-
         return shopLog;
     }
 
@@ -169,7 +164,6 @@ public class Branch implements IBranch, Serializable {
                         .collect(Collectors
                                 .toMap(Map.Entry::getKey, 
                                         e -> e.getValue().getTotalDistinctProducts()));
-        
     }
 
     /**
@@ -213,6 +207,10 @@ public class Branch implements IBranch, Serializable {
         return result;
     }
 
+    /**
+     * Clientes que nunca compraram
+     * @return Devolve um Set com os clientes que nunca fizeram compras
+     */
     public Set<String> getClientWhoBought(){
         return new HashSet<>(this.clientsProducts.keySet());
     }

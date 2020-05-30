@@ -110,4 +110,7 @@ public interface IGestVendasModel {
      * @throws IOException Exceção de erro a escrever para o ficheiro
      */
     void save(String path) throws IOException;
+
+    String[] statisticalConsult();
+
 }

@@ -52,12 +52,12 @@ public interface IGestVendasView {
      * @param result (!!!)
      */
 
-    public void query7View(String[][][] result);
+    void query7View(String[][][] result);
 
 
     /**
      * Função responsável por mostrar o resultado da query 10 ao utilizador
      * @param result (!!!)
      */
-    public void query10View(Map<String, double[][]> result);
+    void query10View(Map<String, double[][]> result);
 }

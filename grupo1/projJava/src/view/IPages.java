@@ -2,8 +2,14 @@ package view;
 
 public interface IPages {
 
-    public void show(int page);
+    /**
+    * (!!!)
+    */
+    void show(int page);
 
-    public void choices();
+    /**
+    * Apresenta as opções do menu
+    */
+    void choices();
 
 }

@@ -16,7 +16,9 @@ public class Pages implements IPages {
         this.view = new GestVendasView();
     }
 
-
+    /**
+    * (!!!)
+    */
     public void show(int page) {
         int max = (int) Math.ceil(this.size / this.elem_per_page);
         if (this.size % this.elem_per_page == 0)
@@ -37,6 +39,9 @@ public class Pages implements IPages {
         view.printMessage("--------- Página " + page + " de " + max + " ---------");
     }
 
+    /**
+    * Apresenta as opções do menu
+    */
     public void choices() {
         view.printMessage("n - Próxima página");
         view.printMessage("c - Página anterior");

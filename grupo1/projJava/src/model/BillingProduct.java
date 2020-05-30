@@ -16,6 +16,9 @@ public class BillingProduct implements IBillingProduct, Serializable {
     private double[][] branchesBilled; /**< Faturação dividida por mes e filial */
     private int[] n_sales; /**< Número de vendas separadas por mês */
 
+    /**
+     * Construtor vazio da classe BillingProduct
+     */
     BillingProduct() {
         this.totalBilledN = new double[N_MONTHS];
         this.totalBilledP = new double[N_MONTHS];
@@ -27,6 +30,9 @@ public class BillingProduct implements IBillingProduct, Serializable {
         this.initArrays();
     }
 
+    /**
+     * Funcao auxiliar que inicia variaveis da classe
+     */
     private void initArrays() {
         for (int[] row : this.branchesQnt)
             Arrays.fill(row, 0);
@@ -40,30 +46,22 @@ public class BillingProduct implements IBillingProduct, Serializable {
         Arrays.fill(this.n_sales,0);
     }
 
-    public double[] getTotalBilledN() {
-        return totalBilledN.clone();
-    }
-
-    public double[] getTotalBilledP() {
-        return totalBilledP.clone();
-    }
-
-    public int[] getUnitiesP() {
-        return unitiesP.clone();
-    }
-
-    public int[] getUnitiesN() {
-        return unitiesN.clone();
-    }
-
-    public int[][] getBranchesQnt() {
-        return branchesQnt.clone();
-    }
-
+    /**
+     * Faturação dividida por mes e filial
+     * @return Devolve o clone da variavel
+     */
     public double[][] getBranchesBilled() {
         return branchesBilled.clone();
     }
 
+    /**
+     * Atualiza a classe BillingProdutct
+     * @param totalBilled Faturacao dada
+     * @param unities Numero de unidades
+     * @param promotion_type Tipo de promocao
+     * @param branch Numero de filial
+     * @param month Numero do mes
+     */
     public void updateBillingProduct(double totalBilled, int unities, char promotion_type, int branch, int month) {
         int r = 0;
         if (promotion_type == 'N') {
@@ -80,16 +78,28 @@ public class BillingProduct implements IBillingProduct, Serializable {
         this.branchesBilled[month-1][branch-1] += totalBilled;
     }
 
+    /**
+     * Numero de vendas em cada mes
+     * @return Devolve o numero venda em cada mes
+     */
     public int[] getN_sales() {
         return this.n_sales.clone();
     }
 
+    /**
+     * A faturacao total em cada mes
+     * @return Devolve faturacao total em cada mes
+     */
     public double[] getTotalBilled() {
         double[] result = new double[N_MONTHS];
         Arrays.setAll(result, e -> this.totalBilledN[e] + this.totalBilledP[e]);
         return result;
     }
 
+    /**
+     * Numero total de unidades
+     * @return Devolve o numero total de unidades
+     */
     public int getTotalUnits() {
         return Arrays.stream(unitiesN).sum() + Arrays.stream(unitiesP).sum();
     }

@@ -2,18 +2,46 @@ package model;
 
 public interface ISale {
 
-    public String getProduct();
+    /**
+     * Get product
+     * @return Devolve o código do produto
+     */
+    String getProduct();
 
-    public String getClient();
+    /**
+     * Get client
+     * @return Devolve o código do cliente
+     */
+    String getClient();
 
-    public double getPrice();
+    /**
+     * Get price
+     * @return Devolve o preço
+     */
+    double getPrice();
 
-    public int getUnits();
+    /**
+     * Get units
+     * @return Devolve o número de unidades vendidas
+     */
+    int getUnits();
 
-    public char getPromotion();
+    /**
+     * Get promotion
+     * @return Devolve o tipo de promoção
+     */
+    char getPromotion();
 
-    public int getMonth();
+    /**
+     * Get month
+     * @return Devolve o mês
+     */
+    int getMonth();
 
-    public int getBranch();
+    /**
+     * Get branch
+     * @return Devolve o número da filial
+     */
+    int getBranch();
 
 }
