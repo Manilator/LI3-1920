@@ -37,7 +37,7 @@ public class Crono {
      * Devolve a frase a apresentar com o tempo que demorou
      * @return String formatada com o tempo demorado
      */
-    public static String getTImeString() {
+    public static String getTimeString() {
         return "Elapsed Time: " +getTime() + " s";
     }
 }
