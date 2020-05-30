@@ -20,7 +20,7 @@ public class ClientCatalog implements IClientCatalog {
         }
         return false;
     }
-/*
+/* (!!!)
     void fillClientsHT(Clients clients, GHashTable * clients_ht){
         GHashTableIter iter;
         gpointer key, value;

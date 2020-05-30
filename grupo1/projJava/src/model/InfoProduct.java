@@ -16,6 +16,12 @@ public class InfoProduct implements IInfoProduct {
         Arrays.fill(this.totalBilled, 0);
     }
 
+    /**
+     * Função que atualiza a estrutura InfoProduct com as informações dadas (!!!) confirmar pls
+     * @param quantity quantidade comprada do produto a ser somada à estrutura
+     * @param billed montante faturado com a compra do produto a ser somada à estrutura
+     * @param month mês que vai determinar a posição onde as informações serão somadas à estrutura
+     */
     public void updateInfoProduct(int quantity, double billed, int month) {
         this.quantities[month-1] += quantity;
         this.totalBilled[month-1] += billed;

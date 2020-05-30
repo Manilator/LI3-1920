@@ -12,12 +12,19 @@ public class RelationWithClient implements IRelationWithClient {
     private Map<String,IInfoClient> infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
     private int[] totalProductsBought; /**< Quantidade de produtos que um certo cliente comprou */
 
-
     public RelationWithClient() {
         this.infoClients = new HashMap<>();
         this.totalProductsBought = new int[12];
     }
 
+    /**
+     * Função que atualiza a estrutura RelationWithClient com as informações dadas (!!!) confirmar pls
+     * @param client_code código do cliente
+     * @param units unidades compradas pelo cliente a ser somada à estrutura
+     * @param promotion_type tipo de promoção da compra
+     * @param month mês que vai determinar a posição onde as informações serão somadas à estrutura
+     * @param totalbilled montante faturado com a compra do produto a ser somada ao total faturado
+     */
     public void updateRelationWithClient(String client_code, int units, char promotion_type, int month, double totalbilled) {
         this.totalProductsBought[month-1] += units;
         if (!this.infoClients.containsKey(client_code)) {

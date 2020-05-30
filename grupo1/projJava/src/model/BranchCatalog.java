@@ -95,6 +95,11 @@ public class BranchCatalog implements IBranchCatalog {
         return result;
     }
 
+    /**
+     * @param month mês no qual o número de clientes distintos realizaram compras
+     * @param branch (MANI)
+     * @return Total de clientes distintos que realizaram compras nas diferentes filiais no mês dado
+     */
     public int distinctClientsMonth(int month, int branch) {
         return this.branches[branch-1].distinctClientsMonth(month);
     }
@@ -130,7 +135,7 @@ public class BranchCatalog implements IBranchCatalog {
     }
 
     /**
-     * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
+     * Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
      * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
      */
     public String[][][] getTop3BuyersByBranch() {

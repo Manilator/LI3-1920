@@ -72,7 +72,6 @@ public class GestVendasModel implements IGestVendasModel {
         }
     }
 
-
     public void parseSales(String salesPath) {
         File file = new File(salesPath);
 
@@ -110,6 +109,10 @@ public class GestVendasModel implements IGestVendasModel {
         return this.product_catalog.getProductsNotBought(allProductsBought);
     }
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     public List<Integer> query2(int month) {
 
         List<Integer> list = new ArrayList<>();
@@ -132,6 +135,10 @@ public class GestVendasModel implements IGestVendasModel {
         return this.branches_catalog.getClientShoppingLog(clientCode);
     }
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     public double[][] query4(String product) {
         double[][] array = new double[N_MONTHS][3];
         int[] salesMonth = this.billing_catalog.getNSalesProduct(product);
@@ -155,6 +162,10 @@ public class GestVendasModel implements IGestVendasModel {
         return this.branches_catalog.getClientsFavoriteProducts(clientCode);
     }
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     public String[][] query6(int n) {
         String[][] array = new String[n][3];
         System.out.println("x");
@@ -177,13 +188,17 @@ public class GestVendasModel implements IGestVendasModel {
     }
 
     /**
-     * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
+     * Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
      * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
      */
     public String[][][] query7() {
         return this.branches_catalog.getTop3BuyersByBranch();
     }
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     public String[][] query8(int n) {
         Map<String, Set<String>> list = this.branches_catalog.getClientsDistinctsProducts();
         Map<String, Integer> _list = list.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().size()));
@@ -205,6 +220,10 @@ public class GestVendasModel implements IGestVendasModel {
         return result;
     }
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     public String[][] query9(String product, int n) {
         Map<String, List<Double>> list = this.branches_catalog.getProductAllClients(product);
         List<Map.Entry<String, List<Double>>> clients = new ArrayList<>(list.entrySet());
@@ -223,11 +242,10 @@ public class GestVendasModel implements IGestVendasModel {
             result[i++][2] = String.valueOf(c.getValue().get(1));
         }
         return result;
-
     }
 
     /**
-     * Query 10: Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
+     * Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
      * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
      */
     public Map<String, double[][]> query10() {

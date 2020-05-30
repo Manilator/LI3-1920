@@ -5,6 +5,14 @@ import java.util.Set;
 
 public interface IRelationWithClient {
 
+    /**
+     * Função que atualiza a estrutura RelationWithClient com as informações dadas (!!!) confirmar pls
+     * @param client_code código do cliente
+     * @param units unidades compradas pelo cliente a ser somada à estrutura
+     * @param promotion_type tipo de promoção da compra
+     * @param month mês que vai determinar a posição onde as informações serão somadas à estrutura
+     * @param totalbilled montante faturado com a compra do produto a ser somada ao total faturado
+     */
     void updateRelationWithClient(String client_code, int units, char promotion_type, int month, double totalbilled);
 
     /**
@@ -13,6 +21,10 @@ public interface IRelationWithClient {
      */
     int[] getTotalProductsBought();
 
+    /**
+     * Recolhe o número de clientes distintos que compraram um produto separado por meses
+     * @return Array de inteiros separado por meses dos clientes distintos que realizaram compras de um produto especifico
+     */
     int[] getDistinctsClientsProductMonth();
 
     /**

@@ -29,17 +29,36 @@ public interface IBranch {
     Map<String,Integer> getClientsFavoriteProductsBranch(String clientCode, Map<String,Integer> productsBought);
 
     /**
-     * Query 7: Determina numa dada filial os 3 maiores compradores (a nivel de dinheiro faturado)
+     * Determina numa dada filial os 3 maiores compradores (a nivel de dinheiro faturado)
      * @return Matriz de strings com o codigo de cliente e total faturado dos 3 maiores compradores dessa filial
      */
     String[][] getTop3BuyersInBranchX();
 
+    /**
+     * Função que recolhe o número de clientes que realizaram compras num mês dado
+     * @param month mês no qual os clientes realizaram compras
+     * @return número de clientes distintos que realizaram compras num mês especifico
+     */
     int distinctClientsMonth(int month);
 
+    /**
+     * Função que recolhe o número de clientes distintos que realizaram compras separado por meses
+     * @param product produto que se pretende obter o número de clientes distintos que o compraram
+     * @return Array de inteiros que correspondem ao número de clientes distintos que compraram certo produto separado por meses
+     */
     int[] getDistinctsClientsProductMonth(String product);
 
+    /**
+     * Função que recolhe a lista de clientes que realizaram compras num certo mês
+     * @param month mês no qual os clientes realizaram compras
+     * @return Lista de códigos de clientes que realizaram compras no mês
+     */
     List<String> getClientsWithPurchasesMonth(int month);
 
+    /**
+     * Função que recolhe a lista de clientes e associado a eles um set de códigos de produtos que comprou
+     * @return Map com códigos de clientes e associados a eles um Set de códigos de produtos
+     */
     Map<String, Set<String>> getClientsDistinctProducts();
 
     /**

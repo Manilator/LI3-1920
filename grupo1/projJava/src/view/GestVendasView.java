@@ -12,6 +12,9 @@ public class GestVendasView implements IGestVendasView {
     public GestVendasView() {
     }
 
+    /**
+     * Imprimir o menu
+     */
     public void printMenu(){
         printMessage("! --------------------------------------------- !");
         printMessage("1  - Query 1  # Produtos nunca comprados");
@@ -32,11 +35,17 @@ public class GestVendasView implements IGestVendasView {
         printMessage("! --------------------------------------------- !");
     }
 
+    /**
+     * Imprimir um separador
+     */
     void printSeparator()
     {
         printMessage("===========================");
     }
 
+    /**
+     * Imprimir os valores de carregamento da base de dados
+     */
     public void viewPrintStartValues(String clients_path, String products_path, String sales_path, int valid_clients, int valid_products, int valid_sales, int clients_read, int products_read, int sales_read) {
         printSeparator();
         printMessage("Path Clients: " + clients_path);
@@ -51,10 +60,18 @@ public class GestVendasView implements IGestVendasView {
         printSeparator();
     }
 
+    /**
+     * Imprime a mensagem fornecida
+     * @param message Mensagem a ser impressa
+     */
     public void printMessage(String message){
         System.out.println(message);
     }
 
+    /**
+     * Função responsável por mostrar o resultado da query 3 ao utilizador
+     * @param result (!!!)
+     */
     public void query3View(double[][] result) {
         for (int i=0;i < 12;i++) {
             printMessage(Integer.toString(i));
@@ -65,6 +82,10 @@ public class GestVendasView implements IGestVendasView {
 	      }
     }
 
+    /**
+     * Função responsável por mostrar o resultado da query 4 ao utilizador
+     * @param result (!!!)
+     */
     public void query4View(double[][] result) {
         for (int i = 0; i < N_MONTHS; i++) {
             printMessage("Mês " + String.valueOf(i+1));
@@ -73,12 +94,20 @@ public class GestVendasView implements IGestVendasView {
             printMessage("Número de cliente: " + String.valueOf((int) result[i][2]));
         }
     }
-  
+
+    /**
+     * Função responsável por mostrar o resultado da query 5 ao utilizador
+     * @param result (!!!)
+     */
     public void query5View(String[][] result) {
         for (String[] res : result)
             System.out.println(res[0] + " " + res[1]);
     }
 
+    /**
+     * Função responsável por mostrar o resultado da query 6 ao utilizador
+     * @param result (!!!)
+     */
     public void query6View(String[][] result) {
         List<String> list = new ArrayList<>();
         for(int i = 0; i < N_MONTHS; i++) {
@@ -88,6 +117,10 @@ public class GestVendasView implements IGestVendasView {
         pages.show(0);
     }
 
+    /**
+     * Função responsável por mostrar o resultado da query 7 ao utilizador
+     * @param result (!!!)
+     */
     public void query7View(String[][][] result) {
         for (int i = 0; i < N_BRANCHES; i++) {
             printMessage("---- Filial: " + String.valueOf(i+1));
@@ -97,9 +130,16 @@ public class GestVendasView implements IGestVendasView {
         }
     }
 
+    /**
+     * Função responsável por mostrar o resultado da query 10 ao utilizador
+     * @param result (!!!)
+     */
     public void query10View(Map<String, double[][]> result){
     }
 
+    /**
+     * Limpar o terminal
+     */
     public void cleanConsole()
     {
         printMessage("\033[H\033[2J");

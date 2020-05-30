@@ -16,12 +16,18 @@ public interface IGestVendasModel {
 
     int getReadProducts();
 
+    int getReadClients();
+
     /**
      * Lista ordenada alfabeticamente com os códigos dos produtos nunca comprados e o seu respetivo total
      * @return Lista ordenada com os códigos de produtos nunca comprados
      */
     List<String> getProductNeverBought();
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     List<Integer> query2(int month);
 
     /**
@@ -38,24 +44,38 @@ public interface IGestVendasModel {
      */
     String[][] getClientsFavoriteProducts(String clientCode);
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     double[][] query4(String product);
 
-    int getReadClients();
-  
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     String[][] query6(int n);
   
     /**
-     * Query 7: Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
+     * Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
      * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
      */
     String[][][] query7();
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     String[][] query8(int n);
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     String[][] query9(String product, int n);
 
     /**
-     * Query 10: Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
+     * Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
      * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
      */
     Map<String, double[][]> query10();

@@ -19,6 +19,13 @@ public class InfoClient implements IInfoClient {
         Arrays.fill(unitsP,0);
     }
 
+    /**
+     * Função que atualiza a estrutura InfoClient com as informações dadas (!!!) confirmar pls
+     * @param units unidades compradas pelo cliente a ser somada à estrutura
+     * @param promotion_type tipo de promoção da compra
+     * @param month mês que vai determinar a posição onde as informações serão somadas à estrutura
+     * @param totalBilled montante faturado com a compra do produto a ser somada ao total faturado
+     */
     public void updateInfoClient(int units, char promotion_type, int month, double totalBilled) {
         if (promotion_type == 'P') {
             this.unitsP[month-1] += units;

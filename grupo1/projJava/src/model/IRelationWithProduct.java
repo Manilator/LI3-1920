@@ -5,8 +5,19 @@ import java.util.Set;
 
 public interface IRelationWithProduct {
 
+    /**
+     * Função que atualiza a estrutura RelationWithProduct com as informações dadas (!!!) confirmar pls
+     * @param product_code código do produto
+     * @param quantity quantidade comprada a ser somada à estrutura
+     * @param billed montante faturado com a compra do produto a ser somada ao total faturado
+     * @param month mês que vai determinar a posição onde as informações serão somadas à estrutura
+     */
     void updateRelationWithProduct(String product_code, int quantity, double billed, int month);
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     boolean didPurchaseMonth(int month);
 
     /**
@@ -40,5 +51,9 @@ public interface IRelationWithProduct {
      */
     Map<String,Integer> getClientsFavoriteProductsBranch(Map<String,Integer> productsBought);
 
+    /**
+     * Get amount of sales made at each month
+     * @return Array of ints with the amount of sales in each month
+     */
     Set<String> getTotalDistinctProducts();
 }
