@@ -13,6 +13,7 @@ public class GestVendasModel implements IGestVendasModel {
     private final IProductCatalog product_catalog; /**< Cátalogo de produto */
     private final IBillingCatalog billing_catalog; /**< Cátalogo de faturação */
     private final IBranchCatalog branches_catalog; /**< Cátalogo de filiais */
+    private final String saleFileName;
     private int readClients;
     private int readProducts;
     private int readSales;
@@ -29,6 +30,7 @@ public class GestVendasModel implements IGestVendasModel {
         this.readClients = 0;
         this.readProducts = 0;
         this.readSales = 0;
+        this.saleFileName = salesPath;
         parseClients(clientsPath);
         parseProducts(productPath);
         parseSales(salesPath);
@@ -269,6 +271,34 @@ public class GestVendasModel implements IGestVendasModel {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Apresenta ao utilizador os dados referentes ao último ficheiro de vendas lido,
+     * designadamente, nome do ficheiro, número total de registos de venda errados,
+     * número total de produtos, total de diferentes produtos comprados, total de não
+     * comprados, número total de clientes e total dos que realizaram compras, total de
+     * clientes que nada compraram, total de compras de valor total igual a 0.0 e faturação
+     * total.
+     * @return String array com o mencionado acima
+     */
+    public String[] statisticalConsult(){
+        int tmp_NumberOfProducts = this.product_catalog.getSize();
+        int tmp_ProductsBought = this.branches_catalog.getProductsBought().size();
+        int tmp_NumberOfClients = this.client_catalog.getSize();
+        int tmp_ClientsWhoDidntBuy = this.branches_catalog.getClientWhoBought();
+        String[] result = new String[10];
+        result[0] = this.saleFileName; // String
+        result[1] = String.valueOf(this.readSales - this.validSales); // int
+        result[2] = String.valueOf(tmp_NumberOfProducts); // int
+        result[3] = String.valueOf(tmp_ProductsBought); // int
+        result[4] = String.valueOf(tmp_NumberOfProducts - tmp_ProductsBought); // int
+        result[5] = String.valueOf(tmp_NumberOfClients); // int
+        result[6] = String.valueOf(tmp_ClientsWhoDidntBuy); // int
+        result[7] = String.valueOf(tmp_NumberOfClients - tmp_ClientsWhoDidntBuy); //int
+        result[8] = String.valueOf(billing_catalog.getGiveawaysAmount());//int
+        result[9] = String.valueOf(billing_catalog.getTotalBilledSum()); //double
+        return result;
     }
 
     public int getClientsSize(){

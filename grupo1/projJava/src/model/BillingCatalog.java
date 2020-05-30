@@ -72,6 +72,20 @@ public class BillingCatalog implements IBillingCatalog{
         return this.billingsProduct.get(product).getTotalBilled();
     }
 
+    public double getTotalBilledSum() {
+        int result = 0;
+        for (int month = 0; month < N_MONTHS; month++)
+            result += billings[month].getTotalBilled();
+        return result;
+    }
+
+    public int getGiveawaysAmount(){
+        int result = 0;
+        for (int month = 0; month < N_MONTHS; month++)
+            result += this.billings[month].getGiveaways();
+        return result;
+    }
+
     public List<String> getTopMostPurchased(int n) {
         final int[] aux = new int[1];
         Comparator<Map.Entry<String,IBillingProduct>> c =

@@ -73,4 +73,6 @@ public interface IBranchCatalog {
      * @return Devolve um array multi dimensional de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
      */
     int[][] getNumberOfDistinctClients();
+
+    int getClientWhoBought();
 }

@@ -61,4 +61,6 @@ public interface IBranch {
      * @return Devolve um array de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
      */
     int[] getBranchNumberOfDistinctClients(int branch);
+
+    Set<String> getClientWhoBought();
 }

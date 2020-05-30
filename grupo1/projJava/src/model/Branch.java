@@ -204,4 +204,8 @@ public class Branch implements IBranch {
         }
         return result;
     }
+
+    public Set<String> getClientWhoBought(){
+        return new HashSet<>(this.clientsProducts.keySet());
+    }
 }

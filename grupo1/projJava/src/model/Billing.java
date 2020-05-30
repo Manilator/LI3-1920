@@ -13,13 +13,14 @@ public class Billing implements IBilling{
     private int[] branchesUnities; /**< Número de unidades vendidas dividida por filiais */
     private double[] branchesBilling; /**< Faturação dividida por filiais */
     private int[] branchesNSales; /**< Número de vendas dividida por filiais */
-
+    private int giveaways;
 
      Billing() {
         this.n_sales = 0;
         this.totalBilled = 0;
         this.unitiesP = 0;
         this.unitiesN = 0;
+        this.giveaways = 0;
         this.branchesUnities = new int[N_BRANCHES];
         this.branchesBilling = new double[N_BRANCHES];
         this.branchesNSales = new int[N_BRANCHES];
@@ -48,6 +49,8 @@ public class Billing implements IBilling{
         this.branchesNSales[branch-1]++;
         this.branchesUnities[branch-1] += unities;
         this.branchesBilling[branch-1] += totalBilled;
+        if(totalBilled == 0)
+            this.giveaways++;
     }
 
     public int getN_sales() {
@@ -58,4 +61,5 @@ public class Billing implements IBilling{
          return branchesNSales[branch-1];
     }
 
+    public int getGiveaways(){return this.giveaways;}
 }

@@ -220,4 +220,17 @@ public class BranchCatalog implements IBranchCatalog {
                 result[branch] = this.branches[branch].getBranchNumberOfDistinctClients(branch);
         return result;
     }
+
+    public int getClientWhoBought(){
+        Set<String> clientsWhoBought = new HashSet<>();
+        for(int branch = 0; branch < N_BRANCHES; branch++){
+            if(branch > 0)
+                for (String clientCode : this.branches[branch].getClientWhoBought())
+                    if(!clientsWhoBought.contains(clientCode))
+                        clientsWhoBought.add(clientCode);
+            else
+                clientsWhoBought = this.branches[branch].getClientWhoBought();
+        }
+        return clientsWhoBought.size();
+    }
 }

@@ -32,4 +32,8 @@ public interface IBillingCatalog {
      * @return Devolve um array multi dimensional de doubles com a faturacao por mes e filial
      */
     double[][] getBillingByMonthAndBranch();
+
+    double getTotalBilledSum();
+
+    int getGiveawaysAmount();
 }
