@@ -96,6 +96,7 @@ public class BranchCatalog implements IBranchCatalog {
     }
 
     /**
+     * Dado um mÊs e filial reotrna total de clientes distintos que compraram nesse mês nessa filial
      * @param month mês no qual o número de clientes distintos realizaram compras
      * @param branch (MANI)
      * @return Total de clientes distintos que realizaram compras nas diferentes filiais no mês dado
@@ -105,6 +106,7 @@ public class BranchCatalog implements IBranchCatalog {
     }
 
     /**
+     * Dado um mês retorna o total de clientes distintos que comrparam nesse mês em todas as filiais
      * @param month mês no qual o número de clientes distintos realizaram compras
      * @return Total de clientes distintos que realizaram compras nas diferentes filiais no mês dado
      */
@@ -116,6 +118,7 @@ public class BranchCatalog implements IBranchCatalog {
     }
 
     /**
+     * Dado um código de produto retorna os totais de clientes distintos que compraram esse produto separado por meses
      * @param product Produto qual os clientes distintos compraram
      * @return Array de inteiros com os clientes distintos que compraram certo produto
      */
