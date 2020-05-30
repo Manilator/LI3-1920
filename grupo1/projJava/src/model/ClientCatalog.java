@@ -1,7 +1,6 @@
 package model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ClientCatalog implements IClientCatalog {
 
@@ -79,6 +78,7 @@ public class ClientCatalog implements IClientCatalog {
     public boolean existClient(String code) {
         return this.clients.containsKey(code);
     }
+
 
     public void setClients(HashMap<String, IClient> clients) {
         this.clients = clients;
