@@ -1,5 +1,6 @@
 package model;
 
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -33,7 +34,7 @@ public class InfoProduct implements IInfoProduct, Serializable {
      * @return Array de inteiros com o numero de produtos comprados
      */
     public int[] getQuantities() {
-        return quantities;
+        return this.quantities.clone();
     }
 
     /**
@@ -44,7 +45,7 @@ public class InfoProduct implements IInfoProduct, Serializable {
         int result = 0;
 
         for (int i=0;i<N_MONTHS;i++)
-            result += quantities[i];
+            result += this.quantities[i];
 
         return result;
     }

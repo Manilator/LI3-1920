@@ -37,28 +37,26 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         parseSales(salesPath);
     }
 
-    public void parseClients(String clientPath) {
+    private void parseClients(String clientPath) {
         File file = new File(clientPath);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String clientCode = null;
+            String clientCode;
 
             while ((clientCode = reader.readLine()) != null) {
                 this.client_catalog.insertClient(clientCode);
                 this.readClients++;
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not Found!");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void parseProducts(String productPath) {
+    private void parseProducts(String productPath) {
         File file = new File(productPath);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String productCode = null;
+            String productCode;
 
             while ((productCode = reader.readLine()) != null) {
                 if (this.product_catalog.insertProduct(productCode)) {
@@ -66,14 +64,12 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
                 }
                 this.readProducts++;
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not Found!");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void parseSales(String salesPath) {
+    private void parseSales(String salesPath) {
         File file = new File(salesPath);
 
         List<String> lista_vendas = new ArrayList<>();
@@ -93,8 +89,6 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
                     .collect(Collectors.toList())
                     .forEach(e -> {this.billing_catalog.updateBillings(e); this.branches_catalog.updateBranches(e); this.validSales++;});
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not Found!");
         } catch (IOException e) {
             e.printStackTrace();
         }

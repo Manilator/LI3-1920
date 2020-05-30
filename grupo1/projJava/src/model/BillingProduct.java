@@ -63,15 +63,12 @@ public class BillingProduct implements IBillingProduct, Serializable {
      * @param month Numero do mes
      */
     public void updateBillingProduct(double totalBilled, int unities, char promotion_type, int branch, int month) {
-        int r = 0;
         if (promotion_type == 'N') {
             this.totalBilledN[month-1] += totalBilled;
             this.unitiesN[month-1] += unities;
-            r = 1;
         } else if (promotion_type == 'P') {
             this.totalBilledP[month-1] += totalBilled;
             this.unitiesP[month-1] += unities;
-            r = 1;
         }
         this.n_sales[month-1]++;
         this.branchesQnt[month-1][branch-1] += unities;

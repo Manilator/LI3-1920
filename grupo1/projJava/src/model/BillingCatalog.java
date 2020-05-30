@@ -144,7 +144,7 @@ public class BillingCatalog implements IBillingCatalog, Serializable {
      * @return Devolve um array com a quantidade faturada nas vendas de um produto por mes
      */
     public double[] getTotalBilledMonth(String product) {
-        return this.billingsProduct.get(product).getTotalBilled().clone();
+        return this.billingsProduct.get(product).getTotalBilled();
     }
 
     /**

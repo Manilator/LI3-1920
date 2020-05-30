@@ -1,5 +1,6 @@
 package model;
 
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,6 +16,9 @@ public class RelationWithProduct implements IRelationWithProduct, Serializable {
     private double[] totalBilled; /**< Faturação total por cada mês */
     private int[] n_sales; /**< Numero de compras por cada mês */
 
+    /**
+     * Contrustor vazio da classe
+     */
     public RelationWithProduct() {
         this.infoProducts = new HashMap<>();
         this.totalBilled = new double[12];
@@ -65,18 +69,17 @@ public class RelationWithProduct implements IRelationWithProduct, Serializable {
     public int[] getAmountDistinctInfoProducts(){
         int[] result = new int[N_MONTHS];
         int[] tmp;
-        for (String productCode: infoProducts.keySet()){
+        for (String productCode : infoProducts.keySet()){
             tmp = infoProducts.get(productCode).getQuantities();
             for (int i=0;i<N_MONTHS;i++)
                 if(tmp[i] != 0)
                     result[i] += 1;
         }
-
         return result;
     }
 
     /**
-     * Deolve o total faturado em cada mês
+     * Devolve o total faturado em cada mês
      * @return Array de ints com o total faturado em cada mês
      */
     public double[] getTotalBilled() {
@@ -111,6 +114,6 @@ public class RelationWithProduct implements IRelationWithProduct, Serializable {
      * @return Array of ints with the amount of sales in each month
      */
     public Set<String> getTotalDistinctProducts() {
-        return this.infoProducts.keySet();
+        return new HashSet<>(this.infoProducts.keySet());
     }
 }
