@@ -64,12 +64,46 @@ public class GestVendasController implements IGestVendasController {
         menu();
     }
 
+    private String askProduct() throws IOException {
+        view.printMessage("Insira o produto: ");
+        return in.readLine();
+    }
+
+    private String askClient() throws IOException {
+        view.printMessage("Insira o Cliente: ");
+        return in.readLine();
+    }
+
+    private int askMonth() throws IOException {
+        int month = 0;
+        int i = 0;
+        view.printMessage("Insira o mês: ");
+        while(month < 1 || month > 12) {
+            if (i != 0) view.printMessage("Mês inválido.");
+            month = Integer.parseInt(in.readLine());
+            i++;
+        }
+        return month;
+    }
+
+    private int askN() throws IOException {
+        int n = 0;
+        int i = 0;
+        view.printMessage("Insira quantos pretende ver: ");
+        while(n <= 0) {
+            if (i != 0) view.printMessage("Número inválido.");
+            n = Integer.parseInt(in.readLine());
+            i++;
+        }
+        return n;
+    }
+
     /**
      * Função que trata do controller da query 1
      */
     private void query1Controller() throws IOException {
         int n_page = 0;
-
+        view.cleanConsole();
         long startTime = System.nanoTime();
         List<String> list = gv.getProductNeverBought();
         long stopTime = System.nanoTime();
@@ -81,12 +115,11 @@ public class GestVendasController implements IGestVendasController {
             view.printMessage("==================================");
             view.printMessage("#### Produtos nunca comprados ####");
             view.printMessage("==================================");
-            pages = new Pages(list.size(),list);
+            pages = new Pages(list.size(),10,list);
             pages.show(n_page);
             pages.choices();
             choice = null;
             choice = in.readLine();
-            view.printMessage("teste");
             if (choice.equals("n")) {
                 view.printMessage(choice);
                 n_page++;
@@ -108,11 +141,7 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 2
      */
     private void query2Controller() throws IOException {
-        int month = 0;
-        view.printMessage("Insira o mês:");
-        while(month < 1 || month > 12) {
-            month = Integer.parseInt(in.readLine());
-        }
+        int month = askMonth();
 
         long startTime = System.nanoTime();
         List<Integer> list = gv.query2(month);
@@ -140,64 +169,117 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 3
      */
     private void query3Controller() throws IOException {
-        view.printMessage("Insira o cliente: ");
-        String client = in.readLine();
+        try {
+            String client = askClient();
+            long startTime = System.nanoTime();
+            double[][] result = gv.getClientShoppingLog(client);
+            long stopTime = System.nanoTime();
+            double time = (double) (stopTime - startTime) / 1_000_000_000;
+            view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
 
-        long startTime = System.nanoTime();
-        double[][] result = gv.getClientShoppingLog(client);
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
-
-        ITable table = new Table();
-        table.table3View(result, client);
+            ITable table = new Table();
+            table.table3View(result, client);
+        } catch (Exception e) {
+            view.printMessage("Cliente inválido.");
+        }
     }
 
     /**
      * Função que trata do controller da query 4
      */
     private void query4Controller() throws IOException {
-        view.printMessage("Insira o produto: ");
-        String product = in.readLine();
+        try {
+            String product = askProduct();
 
-        long startTime = System.nanoTime();
-        double[][] result = gv.query4(product);
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+            long startTime = System.nanoTime();
+            double[][] result = gv.query4(product);
+            long stopTime = System.nanoTime();
+            double time = (double) (stopTime - startTime) / 1_000_000_000;
+            view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
 
-        ITable table = new Table();
-        table.table4View(result, product);
+            ITable table = new Table();
+            table.table4View(result, product);
+        } catch (Exception e) {
+            view.printMessage("Produto inválido.");
+        }
+
     }
 
     private void query5Controller() throws IOException {
+        try {
+            int n_page = 0;
+            String client = askClient();
+
+            long startTime = System.nanoTime();
+            String[][] result = gv.getClientsFavoriteProducts(client);
+            long stopTime = System.nanoTime();
+            double time = (double) (stopTime - startTime) / 1_000_000_000;
+            view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+
+            List<String> list = new ArrayList<>();
+            for(String[] c : result) {
+                list.add("Produto: " + c[0] + " | Quantidade: " + c[1]);
+            }
+
+            String choice = "-1";
+            while(!choice.equals("0")) {
+                view.printMessage("=================================");
+                view.printMessage("### Produtos que mais comprou ###");
+                view.printMessage("###       Cliente " + client + "       ###");
+                view.printMessage("=================================");
+                pages = new Pages(list.size(),10,list);
+                pages.show(n_page);
+                pages.choices();
+                choice = null;
+                choice = in.readLine();
+                if (choice.equals("n")) {
+                    view.printMessage(choice);
+                    n_page++;
+                }
+                else if(choice.equals("p")) {
+                    view.printMessage(choice);
+                    n_page--;
+                }
+                else if(choice.equals("c")) {
+                    view.printMessage(choice);
+                    view.printMessage("Número da página: ");
+                    n_page = Integer.parseInt((in.readLine()));
+                } else
+                    choice = "0";
+            }
+        } catch (Exception e) {
+            view.printMessage("Cliente inválido.");
+        }
+    }
+
+    /**
+     * Função que trata do controller da query 6
+     */
+    private void query6Controller() throws IOException {
         int n_page = 0;
-        view.printMessage("Insira o Cliente: ");
-        String client = in.readLine();
+        int n = askN();
 
         long startTime = System.nanoTime();
-        String[][] result = gv.getClientsFavoriteProducts(client);
+        String[][] result = gv.query6(n);
         long stopTime = System.nanoTime();
         double time = (double) (stopTime - startTime) / 1_000_000_000;
         view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
 
         List<String> list = new ArrayList<>();
-        for(String[] c : result) {
-            list.add("Produto: " + c[0] + " | Quantidade: " + c[1]);
+        for(int i = 0; i < n; i++) {
+            list.add("---- Produto " + result[i][0] + "\n" + "Quantidade: " + result[i][1] + "\n" + "Clientes distintos: " + result[i][2]);
         }
 
         String choice = "-1";
         while(!choice.equals("0")) {
-            view.printMessage("=================================");
-            view.printMessage("### Produtos que mais comprou ###");
-            view.printMessage("###       Cliente " + client + "       ###");
-            view.printMessage("=================================");
-            pages = new Pages(list.size(),list);
+            view.printMessage("================================");
+            view.printMessage("###       Top Produtos       ###");
+            view.printMessage("================================");
+            pages = new Pages(list.size(),3,list);
             pages.show(n_page);
             pages.choices();
             choice = null;
             choice = in.readLine();
-            view.printMessage("teste");
             if (choice.equals("n")) {
                 view.printMessage(choice);
                 n_page++;
@@ -229,59 +311,11 @@ public class GestVendasController implements IGestVendasController {
     }
 
     /**
-     * Função que trata do controller da query 6
-     */
-    private void query6Controller() throws IOException {
-        int n_page = 0;
-        view.printMessage("Insira o número de produtos que deseja ver: ");
-        int n = Integer.parseInt(in.readLine());
-
-        long startTime = System.nanoTime();
-        String[][] result = gv.query6(n);
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
-
-        List<String> list = new ArrayList<>();
-        for(int i = 0; i < n; i++) {
-            list.add("---- Produto " + result[i][0] + "\n" + "Quantidade: " + result[i][1] + "\n" + "Clientes distintos: " + result[i][2]);
-        }
-
-        String choice = "-1";
-        while(!choice.equals("0")) {
-            view.printMessage("================================");
-            view.printMessage("###       Top Produtos       ###");
-            view.printMessage("================================");
-            pages = new Pages(list.size(),list);
-            pages.show(n_page);
-            pages.choices();
-            choice = null;
-            choice = in.readLine();
-            view.printMessage("teste");
-            if (choice.equals("n")) {
-                view.printMessage(choice);
-                n_page++;
-            }
-            else if(choice.equals("p")) {
-                view.printMessage(choice);
-                n_page--;
-            }
-            else if(choice.equals("c")) {
-                view.printMessage(choice);
-                view.printMessage("Número da página: ");
-                n_page = Integer.parseInt((in.readLine()));
-            } else
-                choice = "0";
-        }
-    }
-
-    /**
      * Função que trata do controller da query 8
      */
     private void query8Controller() throws IOException {
         int n_page = 0;
-        view.printMessage("Quantos pretende ver?");
-        int n = Integer.parseInt(in.readLine());
+        int n = askN();
 
         long startTime = System.nanoTime();
         String[][] result = gv.query8(n);
@@ -300,12 +334,11 @@ public class GestVendasController implements IGestVendasController {
             view.printMessage("###       Top Clientes       ###");
             view.printMessage("###      PRODUTOS ÚNICOS     ###");
             view.printMessage("================================");
-            pages = new Pages(list.size(),list);
+            pages = new Pages(list.size(),10,list);
             pages.show(n_page);
             pages.choices();
             choice = null;
             choice = in.readLine();
-            view.printMessage("teste");
             if (choice.equals("n")) {
                 view.printMessage(choice);
                 n_page++;
@@ -327,49 +360,50 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 9
      */
     private void query9Controller() throws IOException {
-        int n_page = 0;
-        view.printMessage("Insira o produto: ");
-        String product = in.readLine();
-        view.printMessage("Quantos pretende ver?");
-        int n = Integer.parseInt(in.readLine());
+        try {
+            int n_page = 0;
+            String product = askProduct();
+            int n = askN();
 
-        long startTime = System.nanoTime();
-        String[][] result = gv.query9(product,n);
-        long stopTime = System.nanoTime();
-        double time = (double) (stopTime - startTime) / 1_000_000_000;
-        view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
+            long startTime = System.nanoTime();
+            String[][] result = gv.query9(product,n);
+            long stopTime = System.nanoTime();
+            double time = (double) (stopTime - startTime) / 1_000_000_000;
+            view.printMessage("Tempo a ler os dados: " + String.format("%.3f", time) + " segundos");
 
-        List<String> list = new ArrayList<>();
-        for(String[] c : result) {
-            list.add("Cliente: " + c[0] + " | Gasto: " + c[1]);
-        }
-
-        String choice = "-1";
-        while(!choice.equals("0")) {
-            view.printMessage("=================================");
-            view.printMessage("###       Top Clientes        ###");
-            view.printMessage("###      Produto " + product + "       ###");
-            view.printMessage("=================================");
-            pages = new Pages(list.size(),list);
-            pages.show(n_page);
-            pages.choices();
-            choice = null;
-            choice = in.readLine();
-            view.printMessage("teste");
-            if (choice.equals("n")) {
-                view.printMessage(choice);
-                n_page++;
+            List<String> list = new ArrayList<>();
+            for(String[] c : result) {
+                list.add("Cliente: " + c[0] + " | Gasto: " + c[1]);
             }
-            else if(choice.equals("p")) {
-                view.printMessage(choice);
-                n_page--;
+
+            String choice = "-1";
+            while(!choice.equals("0")) {
+                view.printMessage("=================================");
+                view.printMessage("###       Top Clientes        ###");
+                view.printMessage("###      Produto " + product + "       ###");
+                view.printMessage("=================================");
+                pages = new Pages(list.size(),10,list);
+                pages.show(n_page);
+                pages.choices();
+                choice = null;
+                choice = in.readLine();
+                if (choice.equals("n")) {
+                    view.printMessage(choice);
+                    n_page++;
+                }
+                else if(choice.equals("p")) {
+                    view.printMessage(choice);
+                    n_page--;
+                }
+                else if(choice.equals("c")) {
+                    view.printMessage(choice);
+                    view.printMessage("Número da página: ");
+                    n_page = Integer.parseInt((in.readLine()));
+                } else
+                    choice = "0";
             }
-            else if(choice.equals("c")) {
-                view.printMessage(choice);
-                view.printMessage("Número da página: ");
-                n_page = Integer.parseInt((in.readLine()));
-            } else
-                choice = "0";
+        } catch (Exception e) {
+            view.printMessage("Produto inválido.");
         }
     }
 
@@ -404,7 +438,7 @@ public class GestVendasController implements IGestVendasController {
             view.printMenu();
             try {
                 querie = Integer.parseInt(in.readLine());
-            } catch (InputMismatchException e) {
+            } catch (Exception e) {
                 view.printMessage("Terminando a aplicação...");
                 querie = 0;
             }
@@ -455,6 +489,7 @@ public class GestVendasController implements IGestVendasController {
                     break;
                 default:
                     querie = 0;
+                    view.printMessage("Terminando a aplicação...");
                     break;
             }
         }
