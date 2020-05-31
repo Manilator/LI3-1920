@@ -7,6 +7,7 @@ import java.io.IOException;
 public class GestVendasAppMVC {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         GestVendasView view = new GestVendasView();
+        view.cleanConsole();
         view.printMessage("Loading data...");
 
         IGestVendasController controller;

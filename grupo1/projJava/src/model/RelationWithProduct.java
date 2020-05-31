@@ -1,9 +1,8 @@
 package model;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -114,6 +113,6 @@ public class RelationWithProduct implements IRelationWithProduct, Serializable {
      * @return Array of ints with the amount of sales in each month
      */
     public Set<String> getTotalDistinctProducts() {
-        return new HashSet<>(this.infoProducts.keySet());
+        return this.infoProducts.keySet();
     }
 }

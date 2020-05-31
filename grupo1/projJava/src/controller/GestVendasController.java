@@ -182,26 +182,29 @@ public class GestVendasController implements IGestVendasController {
                         n_page = Integer.parseInt((in.readLine()));
                     } else
                         choice = "0";
+                    view.cleanConsole();
                 }
             }
         } catch (Exception e) {
             view.printMessage("Não existe nenhum produto.");
         }
-
+        view.cleanConsole();
     }
 
     /**
      * Função que trata do controller da query 2
      */
     private void query2Controller() {
+
         try{
             int month = askMonth();
-
+            view.cleanConsole();
             Crono.start();
             List<Integer> list = gv.query2(month);
             view.printMessage(Crono.getTimeString());
             view.query2View(list);
         } catch (Exception e) {
+            view.cleanConsole();
             view.printMessage("Mês inválido.");
         }
     }
@@ -210,8 +213,10 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 3
      */
     private void query3Controller() {
+
         try {
             String client = askClient();
+            view.cleanConsole();
             Crono.start();
             double[][] result = gv.getClientShoppingLog(client);
             view.printMessage(Crono.getTimeString());
@@ -219,17 +224,20 @@ public class GestVendasController implements IGestVendasController {
             ITable table = new Table();
             table.table3View(result, client);
         } catch (Exception e) {
+            view.cleanConsole();
             view.printMessage("Cliente inválido.");
         }
+
     }
 
     /**
      * Função que trata do controller da query 4
      */
     private void query4Controller() {
+
         try {
             String product = askProduct();
-
+            view.cleanConsole();
             Crono.start();
             double[][] result = gv.query4(product);
             view.printMessage(Crono.getTimeString());
@@ -237,6 +245,7 @@ public class GestVendasController implements IGestVendasController {
             ITable table = new Table();
             table.table4View(result, product);
         } catch (Exception e) {
+            view.cleanConsole();
             view.printMessage("Produto inválido.");
         }
 
@@ -246,10 +255,11 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 5
      */
     private void query5Controller() {
+
         try {
             int n_page = 0;
             String client = askClient();
-
+            view.cleanConsole();
             Crono.start();
             String[][] result = gv.getClientsFavoriteProducts(client);
             view.printMessage(Crono.getTimeString());
@@ -283,8 +293,10 @@ public class GestVendasController implements IGestVendasController {
                     n_page = Integer.parseInt((in.readLine()));
                 } else
                     choice = "0";
+                view.cleanConsole();
             }
         } catch (Exception e) {
+            view.cleanConsole();
             view.printMessage("Cliente inválido.");
         }
     }
@@ -293,10 +305,11 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 6
      */
     private void query6Controller() {
+
         try {
             int n_page = 0;
             int n = askN();
-
+            view.cleanConsole();
             Crono.start();
             String[][] result = gv.query6(n);
             view.printMessage(Crono.getTimeString());
@@ -329,8 +342,10 @@ public class GestVendasController implements IGestVendasController {
                     n_page = Integer.parseInt((in.readLine()));
                 } else
                     choice = "0";
+                view.cleanConsole();
             }
         } catch (Exception e) {
+            view.cleanConsole();
             view.printMessage("Quantidade inválida.");
         }
     }
@@ -339,6 +354,7 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 7
      */
     void query7Controller() {
+        view.cleanConsole();
         try {
             Crono.start();
             String[][][] result = gv.query7();
@@ -346,6 +362,7 @@ public class GestVendasController implements IGestVendasController {
 
             view.query7View(result);
         } catch (Exception e){
+            view.cleanConsole();
             view.printMessage("Erro ao executar, tente novamente.");
         }
 
@@ -355,10 +372,11 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 8
      */
     private void query8Controller() {
+
         try {
             int n_page = 0;
             int n = askN();
-
+            view.cleanConsole();
             Crono.start();
             String[][] result = gv.query8(n);
             view.printMessage(Crono.getTimeString());
@@ -392,22 +410,24 @@ public class GestVendasController implements IGestVendasController {
                     n_page = Integer.parseInt((in.readLine()));
                 } else
                     choice = "0";
+                view.cleanConsole();
             }
         } catch (Exception e){
+            view.cleanConsole();
             view.printMessage("Quantidade inválida.");
         }
-
     }
 
     /**
      * Função que trata do controller da query 9
      */
     private void query9Controller() {
+
         try {
             int n_page = 0;
             String product = askProduct();
             int n = askN();
-
+            view.cleanConsole();
             Crono.start();
             String[][] result = gv.query9(product,n);
             view.printMessage(Crono.getTimeString());
@@ -441,10 +461,13 @@ public class GestVendasController implements IGestVendasController {
                     n_page = Integer.parseInt((in.readLine()));
                 } else
                     choice = "0";
+                view.cleanConsole();
             }
         } catch (InvalidNumber e) {
+            view.cleanConsole();
             view.printMessage("Quantidade inválida.");
         } catch (Exception e) {
+            view.cleanConsole();
             view.printMessage("Produto inválido.");
         }
     }
@@ -453,9 +476,10 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 10
      */
     void query10Controller() {
+        view.cleanConsole();
         try{
             Crono.start();
-            Map<String, double[][]> result =  gv.query10();
+            Map<String, double[][]> result = gv.query10();
             view.printMessage(Crono.getTimeString());
             String product = askProduct();
             ITable table = new Table();
@@ -464,8 +488,10 @@ public class GestVendasController implements IGestVendasController {
                 table.tableE2View(result.get(product));
                 view.printMessage("(Caso pretenda voltar ao menu, insira qualquer carater)");
                 product = askProduct();
+                view.cleanConsole();
             }
         } catch (Exception e){
+            view.cleanConsole();
             view.printMessage("Produto inválido.");
         }
     }
@@ -474,6 +500,7 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query estatistica 1
      */
     void queryE1(){
+        view.cleanConsole();
         Crono.start();
         String[] list = gv.statisticalConsult();
         view.printMessage(Crono.getTimeString());
@@ -484,6 +511,7 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query estatistica 2
      */
     void queryE2(){
+        view.cleanConsole();
         Crono.start();
         int[][] result = gv.getNumberOfDistinctClients();/*int[][]*/
         int[][] result2 = new int[1][];
@@ -511,19 +539,28 @@ public class GestVendasController implements IGestVendasController {
                 if (choice == 1) {
                     view.printMessage("A ler clientes... ");
                     this.gv.parseClients(path);
+                    view.cleanConsole();
+                    view.printMessage("Leitura concluida");
                 } else if (choice == 2) {
                     view.printMessage("A ler produtos... ");
                     this.gv.parseProducts(path);
+                    view.cleanConsole();
+                    view.printMessage("Leitura concluida");
                 } else if (choice == 3) {
                     view.printMessage("A ler vendas... ");
                     this.gv.parseSales(path);
+                    view.cleanConsole();
+                    view.printMessage("Leitura concluida");
                 } else {
                     view.printMessage("A voltar para o menu...");
                 }
             } else if (choice == 2){
                 view.printMessage("Insira o path: ");
                 String path = in.readLine();
+                view.printMessage("A ler ficheiro .dat...");
                 this.gv = GestVendasModel.load(path);
+                view.cleanConsole();
+                view.printMessage(leitura_concluida);
             } else if (choice == 3) {
                 view.printMessage("A limpar dados... ");
                 view.printMessage("Insira o path dos clientes: ");
@@ -535,26 +572,31 @@ public class GestVendasController implements IGestVendasController {
                 view.printMessage("A ler dados... ");
                 Crono.start();
                 this.gv = new GestVendasModel(clients, products, sales);
+                view.cleanConsole();
                 view.printMessage(Crono.getTimeString());
                 readStats();
             } else {
                 view.printMessage("A voltar para o menu...");
+                view.cleanConsole();
             }
         } catch (IOException e){
+            view.cleanConsole();
             view.printMessage("Ficheiro não encontrado.");
         } catch (ClassNotFoundException e){
+            view.cleanConsole();
             view.printMessage("Insira os dados corretamente.");
         }
-
-
     }
 
     void saveController() {
         try {
-            view.printMessage("Insira o path: ");
+            view.printMessage("Insira o path para guardar o ficheiro: (ex: data/gestVendas.dat)");
             String path = in.readLine();
             gv.save(path);
+            view.cleanConsole();
+            view.printMessage("Guardado com sucesso.");
         } catch (IOException e){
+            view.cleanConsole();
             view.printMessage("Local para guardar inválido.");
         }
 
@@ -563,65 +605,36 @@ public class GestVendasController implements IGestVendasController {
     void menu() {
 
         int querie = -1;
-        view.cleanConsole();
         while (querie != 0)
         {
             view.printMenu();
             try {
                 querie = Integer.parseInt(in.readLine());
             } catch (Exception e) {
+                view.cleanConsole();
                 view.printMessage("Terminando a aplicação...");
                 querie = 0;
             }
 
-            switch (querie)
-            {
-                case 1:
-                    query1Controller();
-                    break;
-                case 2:
-                    query2Controller();
-                    break;
-                case 3:
-		            query3Controller();
-                    break;
-                case 4:
-                    query4Controller();
-                    break;
-                case 5:
-                    query5Controller();
-                    break;
-                case 6:
-                    query6Controller();
-                    break;
-                case 7:
-                    query7Controller();
-                    break;
-                case 8:
-                    query8Controller();
-                    break;
-                case 9:
-                    query9Controller();
-                    break;
-                case 10:
-                    query10Controller();
-                    break;
-                case 11:
-                    queryE1();
-                    break;
-                case 12:
-                    queryE2();
-                    break;
-                case 13:
-                    loadController();
-                    break;
-                case 14:
-                    saveController();
-                    break;
-                default:
+            switch (querie) {
+                case 1 -> query1Controller();
+                case 2 -> query2Controller();
+                case 3 -> query3Controller();
+                case 4 -> query4Controller();
+                case 5 -> query5Controller();
+                case 6 -> query6Controller();
+                case 7 -> query7Controller();
+                case 8 -> query8Controller();
+                case 9 -> query9Controller();
+                case 10 -> query10Controller();
+                case 11 -> queryE1();
+                case 12 -> queryE2();
+                case 13 -> loadController();
+                case 14 -> saveController();
+                default -> {
                     querie = 0;
                     view.printMessage("Terminando a aplicação...");
-                    break;
+                }
             }
         }
     }

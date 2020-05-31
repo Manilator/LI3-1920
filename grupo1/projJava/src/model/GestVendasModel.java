@@ -240,9 +240,10 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
                         == 0 ? a.getKey().compareTo(b.getKey()) : aux[0];
 
         clients.sort(comp);
-        String[][] result = new String[clients.size()][3];
+        String[][] result = new String[n][3];
         int i = 0;
         for( Map.Entry<String, List<Double>> c : clients) {
+            if (i >= n) break;
             result[i][0] = c.getKey();
             result[i][1] = String.valueOf(c.getValue().get(0));
             result[i++][2] = String.valueOf(c.getValue().get(1));
