@@ -156,7 +156,7 @@ public class GestVendasController implements IGestVendasController {
                     view.printMessage("==================================");
                     view.printMessage("#### Produtos nunca comprados ####");
                     view.printMessage("==================================");
-                    pages = new Pages(list.size(),10,list);
+                    pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
                     pages.show(n_page);
                     pages.choices();
                     choice = in.readLine();
@@ -257,7 +257,7 @@ public class GestVendasController implements IGestVendasController {
                 view.printMessage("### Produtos que mais comprou ###");
                 view.printMessage("###       Cliente " + client + "       ###");
                 view.printMessage("=================================");
-                pages = new Pages(list.size(),10,list);
+                pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
                 pages.show(n_page);
                 pages.choices();
                 choice = in.readLine();
@@ -366,7 +366,7 @@ public class GestVendasController implements IGestVendasController {
                 view.printMessage("###       Top Clientes       ###");
                 view.printMessage("###      PRODUTOS ÚNICOS     ###");
                 view.printMessage("================================");
-                pages = new Pages(list.size(),10,list);
+                pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
                 pages.show(n_page);
                 pages.choices();
                 choice = in.readLine();
@@ -415,7 +415,7 @@ public class GestVendasController implements IGestVendasController {
                 view.printMessage("###       Top Clientes        ###");
                 view.printMessage("###      Produto " + product + "       ###");
                 view.printMessage("=================================");
-                pages = new Pages(list.size(),10,list);
+                pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
                 pages.show(n_page);
                 pages.choices();
                 choice = in.readLine();
