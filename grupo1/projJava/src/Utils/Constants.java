@@ -4,11 +4,11 @@ import java.util.regex.Pattern;
 
 public class Constants {
 
-    public static final String ClientsPath = "data/Clientes.txt";
-    public static final String ProductsPath = "data/Produtos.txt";
-    public static final String SalesPath = "data/Vendas_1M.txt";
-    public static final String SalesPath3M = "data/Vendas_3M.txt";
-    public static final String SalesPath5M = "data/Vendas_5M.txt";
+    public static final String DefaultClientsPath = "data/Clientes.txt";
+    public static final String DefaultProductsPath = "data/Produtos.txt";
+    public static final String DefaultSalesPath = "data/Vendas_1M.txt";
+    public static final String DefaultSalesPath3M = "data/Vendas_3M.txt";
+    public static final String DefaultSalesPath5M = "data/Vendas_5M.txt";
     public static final int N_MONTHS = 12;
     public static final int N_BRANCHES = 3;
     public static final int N_TYPES = 2;
