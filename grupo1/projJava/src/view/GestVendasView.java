@@ -88,7 +88,7 @@ public class GestVendasView implements IGestVendasView {
 
     /**
      * Função responsável por mostrar o resultado da query 2 ao utilizador
-     * @param list (!!!)
+     * @param list Lista com os resultados a serem apresentados
      */
     public void query2View(List<Integer> list) {
         int[] total = new int[2];
@@ -108,7 +108,7 @@ public class GestVendasView implements IGestVendasView {
 
     /**
      * Função responsável por mostrar o resultado da query 3 ao utilizador
-     * @param result (!!!)
+     * @param result Matriz com os resultados a serem apresentados
      */
     public void query3View(double[][] result) {
         for (int i=0;i < 12;i++) {
@@ -122,7 +122,7 @@ public class GestVendasView implements IGestVendasView {
 
     /**
      * Função responsável por mostrar o resultado da query 4 ao utilizador
-     * @param result (!!!)
+     * @param result Matriz com os resultados a serem apresentados
      */
     public void query4View(double[][] result) {
         for (int i = 0; i < N_MONTHS; i++) {
@@ -135,7 +135,7 @@ public class GestVendasView implements IGestVendasView {
 
     /**
      * Função responsável por mostrar o resultado da query 5 ao utilizador
-     * @param result (!!!)
+     * @param result Matriz com os resultados a serem apresentados
      */
     public void query5View(String[][] result) {
         for (String[] res : result)
@@ -144,7 +144,7 @@ public class GestVendasView implements IGestVendasView {
 
     /**
      * Função responsável por mostrar o resultado da query 7 ao utilizador
-     * @param result (!!!)
+     * @param result Matriz com os resultados a serem apresentados
      */
     public void query7View(String[][][] result) {
         for (int i = 0; i < N_BRANCHES; i++) {
@@ -157,11 +157,15 @@ public class GestVendasView implements IGestVendasView {
 
     /**
      * Função responsável por mostrar o resultado da query 10 ao utilizador
-     * @param result (!!!)
+     * @param result Hashmap com os códigos e a matriz com os resultados a serem apresentados
      */
     public void query10View(Map<String, double[][]> result){
     }
 
+    /**
+     * Função responsável por mostrar o resultado da query estatistica 1 ao utilizador
+     * @param statisticalConsult Array com os resultados a serem apresentados
+     */
     public void queryE1View(String[] statisticalConsult) {
         printMessage("Nome do ficheiro: " + statisticalConsult[0]);
         printMessage("Vendas inválidas: " + statisticalConsult[1]);

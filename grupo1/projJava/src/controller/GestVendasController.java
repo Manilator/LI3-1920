@@ -1,10 +1,14 @@
 package controller;
 
 import Utils.Crono;
+import exceptions.InvalidClient;
 import exceptions.InvalidMonth;
 import exceptions.InvalidNumber;
+import exceptions.InvalidProduct;
+import model.Client;
 import model.GestVendasModel;
 import model.IGestVendasModel;
+import model.Product;
 import view.*;
 
 import java.io.BufferedReader;
@@ -74,11 +78,13 @@ public class GestVendasController implements IGestVendasController {
      * Função que pede um codigo de produto
      * @return String codigo de produto
      */
-    private String askProduct() {
+    private String askProduct() throws InvalidProduct{
         String produto = null;
         view.printMessage("Insira o produto: ");
         try {
             produto = in.readLine();
+            Product test = new Product(produto);
+            if(!test.validate()) throw new InvalidProduct();
         } catch (IOException e) {
             view.printMessage("Produto inválido. ");
         }
@@ -89,11 +95,13 @@ public class GestVendasController implements IGestVendasController {
      * Função que pede um codigo de cliente
      * @return Devolve uma string do codigo do cliente
      */
-    private String askClient() {
+    private String askClient() throws InvalidClient {
         String cliente = null;
         view.printMessage("Insira o Cliente: ");
         try {
             cliente = in.readLine();
+            Client test = new Client(cliente);
+            if(!test.validate()) throw new InvalidClient();
         } catch (IOException e) {
             view.printMessage("Cliente inválido. ");
         }
