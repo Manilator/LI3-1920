@@ -5,13 +5,14 @@ import java.util.Arrays;
 
 import static Utils.Constants.N_BRANCHES;
 
+/**
+ * Classe que representa uma fatura
+ */
 public class Billing implements IBilling, Serializable {
 
     private static final long serialVersionUID = 2537488678609275391L;
     private int n_sales; /**< Número de Vendas */
     private double totalBilled; /**< Total faturado */
-    private int unitiesP; /**< Unidades P vendidas */
-    private int unitiesN; /**< Unidades N vendidas */
     private int[] branchesUnities; /**< Número de unidades vendidas dividida por filiais */
     private double[] branchesBilling; /**< Faturação dividida por filiais */
     private int[] branchesNSales; /**< Número de vendas dividida por filiais */
@@ -23,8 +24,6 @@ public class Billing implements IBilling, Serializable {
      Billing() {
         this.n_sales = 0;
         this.totalBilled = 0;
-        this.unitiesP = 0;
-        this.unitiesN = 0;
         this.giveaways = 0;
         this.branchesUnities = new int[N_BRANCHES];
         this.branchesBilling = new double[N_BRANCHES];
@@ -52,24 +51,11 @@ public class Billing implements IBilling, Serializable {
 
         this.n_sales++;
         this.totalBilled += totalBilled;
-        if(promotion_type == 'N') {
-            this.unitiesN += unities;
-        } else if (promotion_type == 'P') {
-            this.unitiesP += unities;
-        }
         this.branchesNSales[branch-1]++;
         this.branchesUnities[branch-1] += unities;
         this.branchesBilling[branch-1] += totalBilled;
         if(totalBilled == 0)
             this.giveaways++;
-    }
-
-    /**
-     * Get do numero de vendas total
-     * @return Devolve o int do numero de vendas total
-     */
-    public int getN_sales() {
-        return n_sales;
     }
 
     /**

@@ -8,12 +8,18 @@ import java.util.Set;
 
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que contem o modelo de relacao de um produto e os varios clientes que o compraram
+ */
 public class RelationWithClient implements IRelationWithClient, Serializable {
 
     private static final long serialVersionUID = 6685298803648026223L;
     private Map<String,IInfoClient> infoClients; /**< Códigos de clientes e a sua estrutura atribuída InfoClient */
     private int[] totalProductsBought; /**< Quantidade de produtos que um certo cliente comprou */
 
+    /**
+     * Construtor vazio da classe
+     */
     public RelationWithClient() {
         this.infoClients = new HashMap<>();
         this.totalProductsBought = new int[12];

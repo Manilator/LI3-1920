@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que representa uma filial
+ */
 public class Branch implements IBranch, Serializable {
 
     private static final long serialVersionUID = -7476925717995734343L;

@@ -3,6 +3,9 @@ package model;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Interface da classe que representa o catalogo de produtos
+ */
 public interface IProductCatalog {
 
     /**

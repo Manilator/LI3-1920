@@ -1,5 +1,8 @@
 package view;
 
+/**
+ * Interface da classe que representa as paginas da view
+ */
 public interface IPages {
 
     /**

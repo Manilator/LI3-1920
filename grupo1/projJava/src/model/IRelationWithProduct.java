@@ -3,6 +3,9 @@ package model;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Interface da classe que contem o modelo de relacao de um cliente e os varios produtos que este comprou
+ */
 public interface IRelationWithProduct {
 
     /**
@@ -15,8 +18,8 @@ public interface IRelationWithProduct {
     void updateRelationWithProduct(String product_code, int quantity, double billed, int month);
 
     /**
-     * (!!!)
-     * @return (!!!)
+     * Resultado da validacao de compra num dado mes
+     * @return Devolve um boolean que indica se comprou ou nao num dado mes
      */
     boolean didPurchaseMonth(int month);
 

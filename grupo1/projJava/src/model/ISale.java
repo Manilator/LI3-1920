@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Interface da classe auxiliar Sale
+ */
 public interface ISale {
 
     /**

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Interface da classe que contem a informacao de um dado cliente
+ */
 public interface IInfoClient {
 
     /**

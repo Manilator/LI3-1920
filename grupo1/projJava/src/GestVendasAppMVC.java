@@ -4,6 +4,9 @@ import view.GestVendasView;
 
 import java.io.IOException;
 
+/**
+ * Classe que inicializa a execucao do programa
+ */
 public class GestVendasAppMVC {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         GestVendasView view = new GestVendasView();

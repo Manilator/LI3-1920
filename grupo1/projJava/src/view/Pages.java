@@ -2,6 +2,9 @@ package view;
 
 import java.util.List;
 
+/**
+ * Classe que representa as paginas da view
+ */
 public class Pages implements IPages {
 
     private int size;
@@ -9,6 +12,12 @@ public class Pages implements IPages {
     private List<String> list;
     private IGestVendasView view;
 
+    /**
+     * Construtor com parametros
+     * @param size Tamanho da lista de resultados
+     * @param elem_per_page Numero de elementos por pagina
+     * @param list Lista de strings a ser iterada
+     */
     public Pages(int size, int elem_per_page, List<String> list) {
         this.size = size;
         this.elem_per_page = elem_per_page;

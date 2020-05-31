@@ -6,6 +6,9 @@ import java.util.Arrays;
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que representa a faturacao que um produto teve
+ */
 public class BillingProduct implements IBillingProduct, Serializable {
 
     private static final long serialVersionUID = -3606213631648419941L;

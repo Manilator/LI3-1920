@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Interface da classe que representa o modelo cliente
+ */
 public interface IClient {
 
     /**

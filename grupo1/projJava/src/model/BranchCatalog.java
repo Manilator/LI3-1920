@@ -15,11 +15,17 @@ import java.util.Map;
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que representam todas as filiais
+ */
 public class BranchCatalog implements IBranchCatalog, Serializable {
 
     private static final long serialVersionUID = -2413572818685657627L;
     private final IBranch[] branches;
 
+    /**
+     * Construtor vazio da classe
+     */
     public BranchCatalog() {
         this.branches = new Branch[N_BRANCHES];
         this.initBranchCatalog(N_BRANCHES);
@@ -234,6 +240,10 @@ public class BranchCatalog implements IBranchCatalog, Serializable {
         return result;
     }
 
+    /**
+     * Numero de clientes que compraram
+     * @return Numero de clientes que compraram
+     */
     public int getClientWhoBought(){
         Set<String> clientsWhoBought = new HashSet<>();
         for(int branch = 0; branch < N_BRANCHES; branch++){

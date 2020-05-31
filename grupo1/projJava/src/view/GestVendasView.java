@@ -7,8 +7,14 @@ import java.util.Map;
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe principal da view do sistema
+ */
 public class GestVendasView implements IGestVendasView {
 
+    /**
+     * Contrutor vazio da classe
+     */
     public GestVendasView() {
     }
 
@@ -59,23 +65,6 @@ public class GestVendasView implements IGestVendasView {
     void printSeparator()
     {
         printMessage("===========================");
-    }
-
-    /**
-     * Imprimir os valores de carregamento da base de dados
-     */
-    public void viewPrintStartValues(String clients_path, String products_path, String sales_path, int valid_clients, int valid_products, int valid_sales, int clients_read, int products_read, int sales_read) {
-        printSeparator();
-        printMessage("Path Clients: " + clients_path);
-        printMessage("Path Products: " + products_path);
-        printMessage("Path Sales: " + sales_path);
-        printMessage("Clientes válidos: " + valid_clients);
-        printMessage("Produtos válidos: " + valid_products);
-        printMessage("Vendas válidas: " + valid_sales);
-        printMessage("Clientes lidos: " + clients_read);
-        printMessage("Produtos lidos: " + products_read);
-        printMessage("Vendas lidas: " + sales_read);
-        printSeparator();
     }
 
     /**

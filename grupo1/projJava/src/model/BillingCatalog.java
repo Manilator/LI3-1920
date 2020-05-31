@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que representa a faturacao
+ */
 public class BillingCatalog implements IBillingCatalog, Serializable {
 
     private static final long serialVersionUID = -3319028548749322819L;
