@@ -73,6 +73,7 @@ public interface IGestVendasModel {
     /**
      * Dado um mês determinar o número total global de vendas realizadas e o número total
      * de clientes distintos que as fizeram para cada uma das filiais
+     * @param month Mês
      * @return Lista de inteiros com os valores requisitados
      */
     List<Integer> totalSalesCountAndDistinctBuyers(int month);
@@ -93,12 +94,14 @@ public interface IGestVendasModel {
 
     /**
      * Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total faturado
+     * @param product Código de produto
      * @return Devolve uma matriz com a quantidade de vezes que foi comprado, por mes e filial
      */
     double[][] productInfoByMonth(String product);
 
     /**
      * Determinar os N produtos mais comprados
+     * @param n Número de elementos a mostrar
      * @return Devolve uma matriz com Strings com o codigo de cliente e o numero de produtos diferentes comprados
      */
     String[][] topMostBoughtProducts(int n);
@@ -111,12 +114,15 @@ public interface IGestVendasModel {
 
     /**
      * Determinar os top N clientes que compraram produtos únicos
+     * @param n Número de elementos a mostrar
      * @return Devolve uma matriz com Strings com o codigo de cliente e o numero de produtos diferentes comprados
      */
     String[][] topClientsWhoBoughtDistinctProducts(int n);
 
     /**
      * Dado um codigo de produto determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto por cada
+     * @param product Código de produto
+     * @param n Número de elementos a mostrar
      * @return Devolve uma matriz de Strings com codigo de cliente e o valor gasto por ele
      */
     String[][] topNBuyersAndMoneySpent(String product, int n);

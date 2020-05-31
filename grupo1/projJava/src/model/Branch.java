@@ -51,6 +51,7 @@ public class Branch implements IBranch, Serializable {
 
     /**
      * Hashtable com os códigos de todos os produtos que efetuaram compras na filial
+     * @param productsBought Map com códigos de produtos como valores e chaves que compraram na filial
      * @return Map com códigos de produtos como valores e chaves que compraram na filial
      */
     public Map<String, String> getProductsBought(Map<String, String> productsBought){
@@ -62,6 +63,8 @@ public class Branch implements IBranch, Serializable {
 
     /**
      * Dado um código de cliente, determinar, para cada mês na filial, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total
+     * @param clientCode Código de cliente
+     * @param shopLog Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês na filial
      * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês na filial
      */
     public double[][] getClientShoppingLog(String clientCode, double[][] shopLog){
@@ -180,6 +183,7 @@ public class Branch implements IBranch, Serializable {
 
     /**
      * Calcula o numero total de compras por mês de uma dada filial e devolve os resultados
+     * @param branch Número da filial
      * @return Devolve um array de inteiros com as compras feitas numa dada filial nos 12 meses do ano
      * @throws Exception Caso alguma informação esteja corrompida este devolve o erro
      */
@@ -195,6 +199,7 @@ public class Branch implements IBranch, Serializable {
 
     /**
      * A quantidade de clientes distintos que compraram num certo mês numa certa filial
+     * @param branch Número da filial
      * @return Devolve um array de ints com o numero de clientes distintos que compraram num certo mês dividido por filial
      */
     public int[] getBranchNumberOfDistinctClients(int branch){

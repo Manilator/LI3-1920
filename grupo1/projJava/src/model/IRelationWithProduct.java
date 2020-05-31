@@ -19,6 +19,7 @@ public interface IRelationWithProduct {
 
     /**
      * Resultado da validacao de compra num dado mes
+     * @param month Mês
      * @return Devolve um boolean que indica se comprou ou nao num dado mes
      */
     boolean didPurchaseMonth(int month);

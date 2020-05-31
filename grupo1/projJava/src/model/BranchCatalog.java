@@ -65,6 +65,7 @@ public class BranchCatalog implements IBranchCatalog, Serializable {
 
     /**
      * Dado um código de cliente, determinar, para cada mês, quantas compras fez, quantos produtos distintos comprou e quanto gastou no total em todas as filiais
+     * @param clientCode Código de cliente
      * @return Array de doubles com numero de compras, produtos distintos e valor total gasto, em cada mês em todas as filiais
      */
     public double[][] getClientShoppingLog(String clientCode){
