@@ -560,7 +560,7 @@ public class GestVendasController implements IGestVendasController {
                 view.printMessage("A ler ficheiro .dat...");
                 this.gv = GestVendasModel.load(path);
                 view.cleanConsole();
-                view.printMessage(leitura_concluida);
+                view.printMessage("Leitura concluida");
             } else if (choice == 3) {
                 view.printMessage("A limpar dados... ");
                 view.printMessage("Insira o path dos clientes: ");
