@@ -13,31 +13,28 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static Utils.Constants.N_BRANCHES;
+import static Utils.Constants.*;
 
 public class GestVendasController implements IGestVendasController {
-    public IGestVendasView view;
-    private IGestVendasModel gv;
     private final BufferedReader in;
+    private IGestVendasView view;
+    private IGestVendasModel gv;
     private IPages pages;
-    private Crono crono;
-
 
     /**
      * Construtor vazio do controller
      */
     public GestVendasController() {
-        this.crono = new Crono();
         this.view = new GestVendasView();
-        crono.start();
-        this.gv = new GestVendasModel("data/Clientes.txt", "data/Produtos.txt", "data/Vendas_1M.txt");
-        view.printMessage(crono.getTimeString());
-        view.printMessage(String.valueOf("Clientes válidos: " + this.gv.getClientsSize()));
-        view.printMessage(String.valueOf("Clientes lidos: " + this.gv.getReadClients()));
-        view.printMessage(String.valueOf("Produtos válidos: " + this.gv.getProductsSize()));
-        view.printMessage(String.valueOf("Produtos lidos: " + this.gv.getReadProducts()));
-        view.printMessage(String.valueOf("Vendas válidos: " + this.gv.getValidSales()));
-        view.printMessage(String.valueOf("Vendas lidas: " + this.gv.getReadSales()));
+        Crono.start();
+        this.gv = new GestVendasModel(DefaultClientsPath, DefaultProductsPath, DefaultSalesPath);
+        view.printMessage(Crono.getTimeString());
+        view.printMessage("Clientes válidos: " + this.gv.getClientsSize());
+        view.printMessage("Clientes lidos: " + this.gv.getReadClients());
+        view.printMessage("Produtos válidos: " + this.gv.getProductsSize());
+        view.printMessage("Produtos lidos: " + this.gv.getReadProducts());
+        view.printMessage("Vendas válidos: " + this.gv.getValidSales());
+        view.printMessage("Vendas lidas: " + this.gv.getReadSales());
         in = new BufferedReader(new InputStreamReader(System.in));
     }
 
@@ -125,13 +122,13 @@ public class GestVendasController implements IGestVendasController {
     /**
      * Função que trata do controller da query 1
      */
-    private void query1Controller() throws IOException {
+    private void query1Controller() {
         try {
             int n_page = 0;
             view.cleanConsole();
-            crono.start();
+            Crono.start();
             List<String> list = gv.getProductNeverBought();
-            view.printMessage(crono.getTimeString());
+            view.printMessage(Crono.getTimeString());
             String choice = "-1";
             if (list.size() == 0) {
                 view.printMessage("Não existe nenhum produto.");
@@ -143,7 +140,6 @@ public class GestVendasController implements IGestVendasController {
                     pages = new Pages(list.size(),10,list);
                     pages.show(n_page);
                     pages.choices();
-                    choice = null;
                     choice = in.readLine();
                     if (choice.equals("n")) {
                         view.printMessage(choice);
@@ -170,38 +166,42 @@ public class GestVendasController implements IGestVendasController {
     /**
      * Função que trata do controller da query 2
      */
-    private void query2Controller() throws IOException {
-        int month = askMonth();
+    private void query2Controller() {
+        try{
+            int month = askMonth();
 
-        crono.start();
-        List<Integer> list = gv.query2(month);
-        view.printMessage(crono.getTimeString());
+            Crono.start();
+            List<Integer> list = gv.query2(month);
+            view.printMessage(Crono.getTimeString());
 
-        int[] total = new int[2];
-        Arrays.fill(total,0);
-        int i = 0;
-        for (int j = 1; i < N_BRANCHES*2; i++, j++) {
-            view.printMessage("---- Filial " + String.valueOf(j));
-            view.printMessage("Número distinto de clientes: " + String.valueOf(list.get(i++)));
-            total[1] += list.get(i);
-            view.printMessage("Número de vendas:            " + String.valueOf(list.get(i)));
+            int[] total = new int[2];
+            Arrays.fill(total,0);
+            int i = 0;
+            for (int j = 1; i < N_BRANCHES*2; i++, j++) {
+                view.printMessage("---- Filial " + j);
+                view.printMessage("Número distinto de clientes: " + list.get(i++));
+                total[1] += list.get(i);
+                view.printMessage("Número de vendas:            " + list.get(i));
+            }
+            total[0] = list.get(i);
+            view.printMessage("---- Total ");
+            view.printMessage("Total clientes distintos:    " + total[0]);
+            view.printMessage("Total vendas:                " + total[1]);
+
+        } catch (Exception e) {
+            view.printMessage("Mês inválido.");
         }
-        total[0] = list.get(i);
-        view.printMessage("---- Total ");
-        view.printMessage("Total clientes distintos:    " + total[0]);
-        view.printMessage("Total vendas:                " + total[1]);
-
     }
 
     /**
      * Função que trata do controller da query 3
      */
-    private void query3Controller() throws IOException {
+    private void query3Controller() {
         try {
             String client = askClient();
-            crono.start();
+            Crono.start();
             double[][] result = gv.getClientShoppingLog(client);
-            view.printMessage(crono.getTimeString());
+            view.printMessage(Crono.getTimeString());
 
             ITable table = new Table();
             table.table3View(result, client);
@@ -213,13 +213,13 @@ public class GestVendasController implements IGestVendasController {
     /**
      * Função que trata do controller da query 4
      */
-    private void query4Controller() throws IOException {
+    private void query4Controller() {
         try {
             String product = askProduct();
 
-            crono.start();
+            Crono.start();
             double[][] result = gv.query4(product);
-            view.printMessage(crono.getTimeString());
+            view.printMessage(Crono.getTimeString());
 
             ITable table = new Table();
             table.table4View(result, product);
@@ -232,14 +232,14 @@ public class GestVendasController implements IGestVendasController {
     /**
      * Função que trata do controller da query 5
      */
-    private void query5Controller() throws IOException {
+    private void query5Controller() {
         try {
             int n_page = 0;
             String client = askClient();
 
-            crono.start();
+            Crono.start();
             String[][] result = gv.getClientsFavoriteProducts(client);
-            view.printMessage(crono.getTimeString());
+            view.printMessage(Crono.getTimeString());
 
             List<String> list = new ArrayList<>();
             for(String[] c : result) {
@@ -255,7 +255,6 @@ public class GestVendasController implements IGestVendasController {
                 pages = new Pages(list.size(),10,list);
                 pages.show(n_page);
                 pages.choices();
-                choice = null;
                 choice = in.readLine();
                 if (choice.equals("n")) {
                     view.printMessage(choice);
@@ -280,43 +279,46 @@ public class GestVendasController implements IGestVendasController {
     /**
      * Função que trata do controller da query 6
      */
-    private void query6Controller() throws IOException {
-        int n_page = 0;
-        int n = askN();
+    private void query6Controller() {
+        try {
+            int n_page = 0;
+            int n = askN();
 
-        crono.start();
-        String[][] result = gv.query6(n);
-        view.printMessage(crono.getTimeString());
+            Crono.start();
+            String[][] result = gv.query6(n);
+            view.printMessage(Crono.getTimeString());
 
-        List<String> list = new ArrayList<>();
-        for(int i = 0; i < n; i++) {
-            list.add("---- Produto " + result[i][0] + "\n" + "Quantidade: " + result[i][1] + "\n" + "Clientes distintos: " + result[i][2]);
-        }
-
-        String choice = "-1";
-        while(!choice.equals("0")) {
-            view.printMessage("================================");
-            view.printMessage("###       Top Produtos       ###");
-            view.printMessage("================================");
-            pages = new Pages(list.size(),3,list);
-            pages.show(n_page);
-            pages.choices();
-            choice = null;
-            choice = in.readLine();
-            if (choice.equals("n")) {
-                view.printMessage(choice);
-                n_page++;
+            List<String> list = new ArrayList<>();
+            for(int i = 0; i < n; i++) {
+                list.add("---- Produto " + result[i][0] + "\n" + "Quantidade: " + result[i][1] + "\n" + "Clientes distintos: " + result[i][2]);
             }
-            else if(choice.equals("p")) {
-                view.printMessage(choice);
-                n_page--;
+
+            String choice = "-1";
+            while(!choice.equals("0")) {
+                view.printMessage("================================");
+                view.printMessage("###       Top Produtos       ###");
+                view.printMessage("================================");
+                pages = new Pages(list.size(),3,list);
+                pages.show(n_page);
+                pages.choices();
+                choice = in.readLine();
+                if (choice.equals("n")) {
+                    view.printMessage(choice);
+                    n_page++;
+                }
+                else if(choice.equals("p")) {
+                    view.printMessage(choice);
+                    n_page--;
+                }
+                else if(choice.equals("c")) {
+                    view.printMessage(choice);
+                    view.printMessage("Número da página: ");
+                    n_page = Integer.parseInt((in.readLine()));
+                } else
+                    choice = "0";
             }
-            else if(choice.equals("c")) {
-                view.printMessage(choice);
-                view.printMessage("Número da página: ");
-                n_page = Integer.parseInt((in.readLine()));
-            } else
-                choice = "0";
+        } catch (Exception e) {
+            view.printMessage("Mês inválido.");
         }
     }
 
@@ -324,69 +326,78 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 7
      */
     void query7Controller() {
-        crono.start();
-        String[][][] result = gv.query7();
-        view.printMessage(crono.getTimeString());
+        try {
+            Crono.start();
+            String[][][] result = gv.query7();
+            view.printMessage(Crono.getTimeString());
 
-        view.query7View(result);
+            view.query7View(result);
+        } catch (Exception e){
+            view.printMessage("Erro ao executar, tente novamente.");
+        }
+
     }
 
     /**
      * Função que trata do controller da query 8
      */
-    private void query8Controller() throws IOException {
-        int n_page = 0;
-        int n = askN();
+    private void query8Controller() {
+        try {
+            int n_page = 0;
+            int n = askN();
 
-        crono.start();
-        String[][] result = gv.query8(n);
-        view.printMessage(crono.getTimeString());
+            Crono.start();
+            String[][] result = gv.query8(n);
+            view.printMessage(Crono.getTimeString());
 
-        List<String> list = new ArrayList<>();
-        for(String[] c : result) {
-            list.add("Client: " + c[0] + " | Produtos: " + c[1]);
+            List<String> list = new ArrayList<>();
+            for(String[] c : result) {
+                list.add("Client: " + c[0] + " | Produtos: " + c[1]);
+            }
+
+            String choice = "-1";
+            while(!choice.equals("0")) {
+                view.printMessage("================================");
+                view.printMessage("###       Top Clientes       ###");
+                view.printMessage("###      PRODUTOS ÚNICOS     ###");
+                view.printMessage("================================");
+                pages = new Pages(list.size(),10,list);
+                pages.show(n_page);
+                pages.choices();
+                choice = in.readLine();
+                if (choice.equals("n")) {
+                    view.printMessage(choice);
+                    n_page++;
+                }
+                else if(choice.equals("p")) {
+                    view.printMessage(choice);
+                    n_page--;
+                }
+                else if(choice.equals("c")) {
+                    view.printMessage(choice);
+                    view.printMessage("Número da página: ");
+                    n_page = Integer.parseInt((in.readLine()));
+                } else
+                    choice = "0";
+            }
+        } catch (Exception e){
+            view.printMessage("Quantidade inválida.");
         }
 
-        String choice = "-1";
-        while(!choice.equals("0")) {
-            view.printMessage("================================");
-            view.printMessage("###       Top Clientes       ###");
-            view.printMessage("###      PRODUTOS ÚNICOS     ###");
-            view.printMessage("================================");
-            pages = new Pages(list.size(),10,list);
-            pages.show(n_page);
-            pages.choices();
-            choice = null;
-            choice = in.readLine();
-            if (choice.equals("n")) {
-                view.printMessage(choice);
-                n_page++;
-            }
-            else if(choice.equals("p")) {
-                view.printMessage(choice);
-                n_page--;
-            }
-            else if(choice.equals("c")) {
-                view.printMessage(choice);
-                view.printMessage("Número da página: ");
-                n_page = Integer.parseInt((in.readLine()));
-            } else
-                choice = "0";
-        }
     }
 
     /**
      * Função que trata do controller da query 9
      */
-    private void query9Controller() throws IOException {
+    private void query9Controller() {
         try {
             int n_page = 0;
             String product = askProduct();
             int n = askN();
 
-            crono.start();
+            Crono.start();
             String[][] result = gv.query9(product,n);
-            view.printMessage(crono.getTimeString());
+            view.printMessage(Crono.getTimeString());
 
             List<String> list = new ArrayList<>();
             for(String[] c : result) {
@@ -402,7 +413,6 @@ public class GestVendasController implements IGestVendasController {
                 pages = new Pages(list.size(),10,list);
                 pages.show(n_page);
                 pages.choices();
-                choice = null;
                 choice = in.readLine();
                 if (choice.equals("n")) {
                     view.printMessage(choice);
@@ -428,11 +438,15 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query 10
      */
     void query10Controller() {
-        crono.start();
-        Map<String, double[][]> result =  gv.query10();
-        view.printMessage(crono.getTimeString());
+        try{
+            Crono.start();
+            Map<String, double[][]> result =  gv.query10();
+            view.printMessage(Crono.getTimeString());
 
-        view.query10View(result);
+            view.query10View(result);
+        } catch (Exception e){
+            view.printMessage("Erro ao executar, tente novamente.");
+        }
     }
 
     /**
@@ -451,56 +465,68 @@ public class GestVendasController implements IGestVendasController {
         gv.getBillingByMonthAndBranch(); /*double[][]*/
     }
 
-    void loadController() throws IOException, ClassNotFoundException {
-        view.printLoad();
-        int choice = Integer.parseInt(in.readLine());
-        if (choice == 1) {
-            view.loadChoice();
-            choice = Integer.parseInt(in.readLine());
-            view.printMessage("Insira o path: ");
-            String path = in.readLine();
+    void loadController() {
+        try {
+            view.printLoad();
+            int choice = Integer.parseInt(in.readLine());
             if (choice == 1) {
-                view.printMessage("A ler clientes... ");
-                this.gv.parseClients(path);
-            } else if (choice == 2) {
-                view.printMessage("A ler produtos... ");
-                this.gv.parseProducts(path);
+                view.loadChoice();
+                choice = Integer.parseInt(in.readLine());
+                view.printMessage("Insira o path: ");
+                String path = in.readLine();
+                if (choice == 1) {
+                    view.printMessage("A ler clientes... ");
+                    this.gv.parseClients(path);
+                } else if (choice == 2) {
+                    view.printMessage("A ler produtos... ");
+                    this.gv.parseProducts(path);
+                } else if (choice == 3) {
+                    view.printMessage("A ler vendas... ");
+                    this.gv.parseSales(path);
+                } else {
+                    view.printMessage("A voltar para o menu...");
+                }
+            } else if (choice == 2){
+                view.printMessage("Insira o path: ");
+                String path = in.readLine();
+                this.gv = GestVendasModel.load(path);
             } else if (choice == 3) {
-                view.printMessage("A ler vendas... ");
-                this.gv.parseSales(path);
+                view.printMessage("A limpar dados... ");
+                view.printMessage("Insira o path dos clientes: ");
+                String clients = in.readLine();
+                view.printMessage("Insira o path dos produtos: ");
+                String products = in.readLine();
+                view.printMessage("Insira o path das vendas: ");
+                String sales = in.readLine();
+                view.printMessage("A ler dados... ");
+                Crono.start();
+                this.gv = new GestVendasModel(clients, products, sales);
+                view.printMessage(Crono.getTimeString());
+                readStats();
             } else {
                 view.printMessage("A voltar para o menu...");
             }
-        } else if (choice == 2){
+        } catch (IOException e){
+            view.printMessage("Ficheiro não encontrado.");
+        } catch (ClassNotFoundException e){
+            view.printMessage("Insira os dados corretamente.");
+        }
+
+
+    }
+
+    void saveController() {
+        try {
             view.printMessage("Insira o path: ");
             String path = in.readLine();
-            this.gv = GestVendasModel.load(path);
-        } else if (choice == 3) {
-            view.printMessage("A limpar dados... ");
-            view.printMessage("Insira o path dos clientes: ");
-            String clients = in.readLine();
-            view.printMessage("Insira o path dos produtos: ");
-            String products = in.readLine();
-            view.printMessage("Insira o path das vendas: ");
-            String sales = in.readLine();
-            view.printMessage("A ler dados... ");
-            crono.start();
-            this.gv = new GestVendasModel(clients, products, sales);
-            view.printMessage(crono.getTimeString());
-            readStats();
-        } else {
-            view.printMessage("A voltar para o menu...");
+            gv.save(path);
+        } catch (IOException e){
+            view.printMessage("Local para guardar inválido.");
         }
 
     }
 
-    void saveController() throws IOException {
-        view.printMessage("Insira o path: ");
-        String path = in.readLine();
-        gv.save(path);
-    }
-
-    void menu() throws IOException, ClassNotFoundException {
+    void menu() {
 
         int querie = -1;
         view.cleanConsole();
