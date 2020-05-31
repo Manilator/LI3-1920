@@ -106,7 +106,7 @@ public class Table implements ITable {
         }
         else
         {
-            System.out.print("Cliente não existe.\n");
+            System.out.print("Não existem informações.\n");
         }
     }
 
@@ -204,7 +204,7 @@ public class Table implements ITable {
         }
         else
         {
-            System.out.print("Cliente não existe.\n");
+            System.out.print("Não existem informações.\n");
         }
     }
 
@@ -301,7 +301,7 @@ public class Table implements ITable {
         }
         else
         {
-            System.out.print("Cliente não existe.\n");
+            System.out.print("Não existem informações.\n");
         }
     }
 
