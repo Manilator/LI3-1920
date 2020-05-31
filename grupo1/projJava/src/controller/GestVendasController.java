@@ -161,12 +161,7 @@ public class GestVendasController implements IGestVendasController {
                 view.printMessage("Não existe nenhum produto.");
             } else {
                 while(!choice.equals("0")) {
-                    view.printMessage("==================================");
-                    view.printMessage("#### Produtos nunca comprados ####");
-                    view.printMessage("==================================");
-                    pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
-                    pages.show(n_page);
-                    pages.choices();
+                    view.query1View(list,n_page);
                     choice = in.readLine();
                     if (choice.equals("n")) {
                         view.printMessage(choice);
@@ -221,8 +216,7 @@ public class GestVendasController implements IGestVendasController {
             double[][] result = gv.getClientShoppingLog(client);
             view.printMessage(Crono.getTimeString());
 
-            ITable table = new Table();
-            table.table3View(result, client);
+            view.query3View(result, client);
         } catch (Exception e) {
             view.cleanConsole();
             view.printMessage("Cliente inválido.");
@@ -242,8 +236,8 @@ public class GestVendasController implements IGestVendasController {
             double[][] result = gv.query4(product);
             view.printMessage(Crono.getTimeString());
 
-            ITable table = new Table();
-            table.table4View(result, product);
+            view.query4View(result,product);
+
         } catch (Exception e) {
             view.cleanConsole();
             view.printMessage("Produto inválido.");
@@ -271,13 +265,7 @@ public class GestVendasController implements IGestVendasController {
 
             String choice = "-1";
             while(!choice.equals("0")) {
-                view.printMessage("=================================");
-                view.printMessage("### Produtos que mais comprou ###");
-                view.printMessage("###       Cliente " + client + "       ###");
-                view.printMessage("=================================");
-                pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
-                pages.show(n_page);
-                pages.choices();
+                view.query5View(list,n_page,client);
                 choice = in.readLine();
                 if (choice.equals("n")) {
                     view.printMessage(choice);
@@ -321,12 +309,7 @@ public class GestVendasController implements IGestVendasController {
 
             String choice = "-1";
             while(!choice.equals("0")) {
-                view.printMessage("================================");
-                view.printMessage("###       Top Produtos       ###");
-                view.printMessage("================================");
-                pages = new Pages(list.size(),3,list);
-                pages.show(n_page);
-                pages.choices();
+                view.query6View(list,n_page);
                 choice = in.readLine();
                 if (choice.equals("n")) {
                     view.printMessage(choice);
@@ -388,13 +371,7 @@ public class GestVendasController implements IGestVendasController {
 
             String choice = "-1";
             while(!choice.equals("0")) {
-                view.printMessage("================================");
-                view.printMessage("###       Top Clientes       ###");
-                view.printMessage("###      PRODUTOS ÚNICOS     ###");
-                view.printMessage("================================");
-                pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
-                pages.show(n_page);
-                pages.choices();
+                view.query8View(list,n_page);
                 choice = in.readLine();
                 if (choice.equals("n")) {
                     view.printMessage(choice);
@@ -439,13 +416,7 @@ public class GestVendasController implements IGestVendasController {
 
             String choice = "-1";
             while(!choice.equals("0")) {
-                view.printMessage("=================================");
-                view.printMessage("###       Top Clientes        ###");
-                view.printMessage("###      Produto " + product + "       ###");
-                view.printMessage("=================================");
-                pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
-                pages.show(n_page);
-                pages.choices();
+                view.query9View(list,n_page,product);
                 choice = in.readLine();
                 if (choice.equals("n")) {
                     view.printMessage(choice);
@@ -482,11 +453,8 @@ public class GestVendasController implements IGestVendasController {
             Map<String, double[][]> result = gv.query10();
             view.printMessage(Crono.getTimeString());
             String product = askProduct();
-            ITable table = new Table();
             while (true) {
-                view.printMessage("---- Produto " + product);
-                table.tableE2View(result.get(product));
-                view.printMessage("(Caso pretenda voltar ao menu, insira qualquer carater)");
+                view.query10View(result, product);
                 product = askProduct();
                 view.cleanConsole();
             }
@@ -518,13 +486,7 @@ public class GestVendasController implements IGestVendasController {
         result2[0] = gv.getShoppingFrequency();/*int[]*/
         double[][] result3 = gv.getBillingByMonthAndBranch(); /*double[][]*/
         view.printMessage(Crono.getTimeString());
-        ITable table = new Table();
-        view.printMessage("\n---- Número de distintos clientes que compraram por mês filial a filial: ");
-        table.tableE2View(result);
-        view.printMessage("\n---- Número total de compras por mês: ");
-        table.tableE2View(result2);
-        view.printMessage("\n---- Faturação total por mês filial a filial: ");
-        table.tableE2View(result3);
+        view.queryE2View(result,result2,result3);
     }
 
     void loadController() {

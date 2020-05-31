@@ -4,8 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static Utils.Constants.N_BRANCHES;
-import static Utils.Constants.N_MONTHS;
+import static Utils.Constants.*;
 
 public class GestVendasView implements IGestVendasView {
 
@@ -87,6 +86,20 @@ public class GestVendasView implements IGestVendasView {
     }
 
     /**
+     * Função responsável por mostrar o resultado da query 5 ao utilizador
+     * @param list Matriz com os resultados a serem apresentados
+     * @param n_page Número da página a mostrar
+     */
+    public void query1View(List<String> list, int n_page) {
+        printMessage("==================================");
+        printMessage("#### Produtos nunca comprados ####");
+        printMessage("==================================");
+        IPages pages = new Pages(list.size(), ELEMENTS_PER_PAGE, list);
+        pages.show(n_page);
+        pages.choices();
+    }
+
+    /**
      * Função responsável por mostrar o resultado da query 2 ao utilizador
      * @param list Lista com os resultados a serem apresentados
      */
@@ -109,41 +122,55 @@ public class GestVendasView implements IGestVendasView {
     /**
      * Função responsável por mostrar o resultado da query 3 ao utilizador
      * @param result Matriz com os resultados a serem apresentados
+     * @param client Código de cliente ao qual os resultados estão associados
      */
-    public void query3View(double[][] result) {
-        for (int i=0;i < 12;i++) {
-            printMessage(Integer.toString(i));
-            printMessage("Numero Compras:"+ result[i][0]);
-            printMessage("Produtos Distintos:"+ result[i][1]);
-            printMessage("Valor total gasto:"+ result[i][2]);
-            printMessage("------------------");
-	      }
+    public void query3View(double[][] result, String client) {
+        ITable table = new Table();
+        table.table3View(result, client);
     }
 
     /**
      * Função responsável por mostrar o resultado da query 4 ao utilizador
      * @param result Matriz com os resultados a serem apresentados
+     * @param product Código de produto ao qual os resultados estão associados
      */
-    public void query4View(double[][] result) {
-        for (int i = 0; i < N_MONTHS; i++) {
-            printMessage("Mês " + String.valueOf(i+1));
-            printMessage("Número de vendas: " + String.valueOf((int) result[i][0]));
-            printMessage("Faturado: " + String.format("%.3f", result[i][1]));
-            printMessage("Número de cliente: " + String.valueOf((int) result[i][2]));
-        }
+    public void query4View(double[][] result, String product) {
+        ITable table = new Table();
+        table.table4View(result, product);
     }
 
     /**
      * Função responsável por mostrar o resultado da query 5 ao utilizador
-     * @param result Matriz com os resultados a serem apresentados
+     * @param list Matriz com os resultados a serem apresentados
+     * @param client Código de cliente ao qual os resultados estão associados
+     * @param n_page Número da página a mostrar
      */
-    public void query5View(String[][] result) {
-        for (String[] res : result)
-            System.out.println(res[0] + " " + res[1]);
+    public void query5View(List<String> list, int n_page, String client) {
+        printMessage("=================================");
+        printMessage("### Produtos que mais comprou ###");
+        printMessage("###       Cliente " + client + "       ###");
+        printMessage("=================================");
+        IPages pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
+        pages.show(n_page);
+        pages.choices();
     }
 
     /**
-     * Função responsável por mostrar o resultado da query 7 ao utilizador
+     * Função responsável por mostrar o resultado da query 5 ao utilizador
+     * @param list Matriz com os resultados a serem apresentados
+     * @param n_page Número da página a mostrar
+     */
+    public void query6View(List<String> list, int n_page) {
+        printMessage("================================");
+        printMessage("###       Top Produtos       ###");
+        printMessage("================================");
+        IPages pages = new Pages(list.size(),3,list);
+        pages.show(n_page);
+        pages.choices();
+    }
+
+    /**
+     * Função responsável por mostrar o resultado da query 6 ao utilizador
      * @param result Matriz com os resultados a serem apresentados
      */
     public void query7View(String[][][] result) {
@@ -156,10 +183,46 @@ public class GestVendasView implements IGestVendasView {
     }
 
     /**
+     * Função responsável por mostrar o resultado da query 5 ao utilizador
+     * @param list Matriz com os resultados a serem apresentados
+     * @param n_page Número da página a mostrar
+     */
+    public void query8View(List<String> list, int n_page) {
+        printMessage("================================");
+        printMessage("###       Top Clientes       ###");
+        printMessage("###      PRODUTOS ÚNICOS     ###");
+        printMessage("================================");
+        IPages pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
+        pages.show(n_page);
+        pages.choices();
+    }
+
+    /**
+     * Função responsável por mostrar o resultado da query 5 ao utilizador
+     * @param list Matriz com os resultados a serem apresentados
+     * @param n_page Número da página a mostrar
+     * @param product Código de produto ao qual os resultados estão associados
+     */
+    public void query9View(List<String> list, int n_page, String product) {
+        printMessage("=================================");
+        printMessage("###       Top Clientes        ###");
+        printMessage("###      Produto " + product + "       ###");
+        printMessage("=================================");
+        IPages pages = new Pages(list.size(),ELEMENTS_PER_PAGE,list);
+        pages.show(n_page);
+        pages.choices();
+    }
+
+    /**
      * Função responsável por mostrar o resultado da query 10 ao utilizador
      * @param result Hashmap com os códigos e a matriz com os resultados a serem apresentados
+     * @param product Código de produto ao qual os resultados estão associados
      */
-    public void query10View(Map<String, double[][]> result){
+    public void query10View(Map<String, double[][]> result, String product){
+        ITable table = new Table();
+        printMessage("---- Produto " + product);
+        table.tableE2View(result.get(product));
+        printMessage("(Caso pretenda voltar ao menu, insira qualquer carater)");
     }
 
     /**
@@ -177,6 +240,22 @@ public class GestVendasView implements IGestVendasView {
         printMessage("Total de Clientes que não compraram: " + statisticalConsult[7]);
         printMessage("Total de compras com valor igual a 0: " + statisticalConsult[8]);
         printMessage("Faturação total: " + statisticalConsult[9]);
+    }
+
+    /**
+     * Função responsável por mostrar o resultado da query 10 ao utilizador
+     * @param result Array com os primeiros resultados a serem apresentados
+     * @param result2 Array com os segundos resultados a serem apresentados
+     * @param result3 Array com os terceiros resultados a serem apresentados
+     */
+    public void queryE2View(int[][] result, int[][] result2, double[][] result3) {
+        ITable table = new Table();
+        printMessage("\n---- Número de distintos clientes que compraram por mês filial a filial: ");
+        table.tableE2View(result);
+        printMessage("\n---- Número total de compras por mês: ");
+        table.tableE2View(result2);
+        printMessage("\n---- Faturação total por mês filial a filial: ");
+        table.tableE2View(result3);
     }
 
     /**
