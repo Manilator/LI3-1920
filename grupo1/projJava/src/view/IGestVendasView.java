@@ -30,6 +30,13 @@ public interface IGestVendasView {
     void printMessage(String message);
 
     /**
+     * Imprime a mensagem numa cor nao default
+     * @param message Mensagem a ser impressa
+     * @param color Cor escolhida
+     */
+    void printMessage(String message, String color);
+
+    /**
      * Limpar o terminal
      */
     void cleanConsole();

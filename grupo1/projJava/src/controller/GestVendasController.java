@@ -27,7 +27,6 @@ public class GestVendasController implements IGestVendasController {
     private final BufferedReader in;
     private IGestVendasView view;
     private IGestVendasModel gv;
-    private IPages pages;
 
     /**
      * Construtor vazio do controller
@@ -90,7 +89,7 @@ public class GestVendasController implements IGestVendasController {
             Product test = new Product(produto);
             if(!test.validate()) throw new InvalidProduct();
         } catch (IOException e) {
-            view.printMessage("Produto inválido. ");
+            view.printMessage("Produto inválido.", RED);
         }
         return produto;
     }
@@ -107,7 +106,7 @@ public class GestVendasController implements IGestVendasController {
             Client test = new Client(cliente);
             if(!test.validate()) throw new InvalidClient();
         } catch (IOException e) {
-            view.printMessage("Cliente inválido. ");
+            view.printMessage("Cliente inválido. ", RED);
         }
         return cliente;
     }
@@ -160,7 +159,7 @@ public class GestVendasController implements IGestVendasController {
             view.printMessage(Crono.getTimeString());
             String choice = "-1";
             if (list.size() == 0) {
-                view.printMessage("Não existe nenhum produto.");
+                view.printMessage("Não existe nenhum produto.", RED);
             } else {
                 while(!choice.equals("0")) {
                     view.query1View(list,n_page);
@@ -183,7 +182,7 @@ public class GestVendasController implements IGestVendasController {
                 }
             }
         } catch (Exception e) {
-            view.printMessage("Não existe nenhum produto.");
+            view.printMessage("Não existe nenhum produto.", RED);
         }
         view.cleanConsole();
     }
@@ -202,7 +201,7 @@ public class GestVendasController implements IGestVendasController {
             view.query2View(list);
         } catch (Exception e) {
             view.cleanConsole();
-            view.printMessage("Mês inválido.");
+            view.printMessage("Mês inválido.", RED);
         }
     }
 
@@ -221,7 +220,7 @@ public class GestVendasController implements IGestVendasController {
             view.query3View(result, client);
         } catch (Exception e) {
             view.cleanConsole();
-            view.printMessage("Cliente inválido.");
+            view.printMessage("Cliente inválido.", RED);
         }
 
     }
@@ -242,7 +241,7 @@ public class GestVendasController implements IGestVendasController {
 
         } catch (Exception e) {
             view.cleanConsole();
-            view.printMessage("Produto inválido.");
+            view.printMessage("Produto inválido.", RED);
         }
 
     }
@@ -287,7 +286,7 @@ public class GestVendasController implements IGestVendasController {
             }
         } catch (Exception e) {
             view.cleanConsole();
-            view.printMessage("Cliente inválido.");
+            view.printMessage("Cliente inválido.", RED);
         }
     }
 
@@ -331,7 +330,7 @@ public class GestVendasController implements IGestVendasController {
             }
         } catch (Exception e) {
             view.cleanConsole();
-            view.printMessage("Quantidade inválida.");
+            view.printMessage("Quantidade inválida.", RED);
         }
     }
 
@@ -348,7 +347,7 @@ public class GestVendasController implements IGestVendasController {
             view.query7View(result);
         } catch (Exception e){
             view.cleanConsole();
-            view.printMessage("Erro ao executar, tente novamente.");
+            view.printMessage("Erro ao executar, tente novamente.", RED);
         }
 
     }
@@ -393,7 +392,7 @@ public class GestVendasController implements IGestVendasController {
             }
         } catch (Exception e){
             view.cleanConsole();
-            view.printMessage("Quantidade inválida.");
+            view.printMessage("Quantidade inválida.", RED);
         }
     }
 
@@ -438,10 +437,10 @@ public class GestVendasController implements IGestVendasController {
             }
         } catch (InvalidNumber e) {
             view.cleanConsole();
-            view.printMessage("Quantidade inválida.");
+            view.printMessage("Quantidade inválida.", RED);
         } catch (Exception e) {
             view.cleanConsole();
-            view.printMessage("Produto inválido.");
+            view.printMessage("Produto inválido.", RED);
         }
     }
 
@@ -462,7 +461,7 @@ public class GestVendasController implements IGestVendasController {
             }
         } catch (Exception e){
             view.cleanConsole();
-            view.printMessage("Produto inválido.");
+            view.printMessage("Produto inválido.", RED);
         }
     }
 
@@ -507,17 +506,17 @@ public class GestVendasController implements IGestVendasController {
                     view.printMessage("A ler clientes... ");
                     this.gv.parseClients(path);
                     view.cleanConsole();
-                    view.printMessage("Leitura concluida");
+                    view.printMessage("Leitura concluida", GREEN);
                 } else if (choice == 2) {
                     view.printMessage("A ler produtos... ");
                     this.gv.parseProducts(path);
                     view.cleanConsole();
-                    view.printMessage("Leitura concluida");
+                    view.printMessage("Leitura concluida", GREEN);
                 } else if (choice == 3) {
                     view.printMessage("A ler vendas... ");
                     this.gv.parseSales(path);
                     view.cleanConsole();
-                    view.printMessage("Leitura concluida");
+                    view.printMessage("Leitura concluida", GREEN);
                 } else {
                     view.printMessage("A voltar para o menu...");
                 }
@@ -527,7 +526,7 @@ public class GestVendasController implements IGestVendasController {
                 view.printMessage("A ler ficheiro .dat...");
                 this.gv = GestVendasModel.load(path);
                 view.cleanConsole();
-                view.printMessage("Leitura concluida");
+                view.printMessage("Leitura concluida", GREEN);
             } else if (choice == 3) {
                 view.printMessage("A limpar dados... ");
                 view.printMessage("Insira o path dos clientes: ");
@@ -548,10 +547,10 @@ public class GestVendasController implements IGestVendasController {
             }
         } catch (IOException e){
             view.cleanConsole();
-            view.printMessage("Ficheiro não encontrado.");
+            view.printMessage("Ficheiro não encontrado.", RED);
         } catch (ClassNotFoundException e){
             view.cleanConsole();
-            view.printMessage("Insira os dados corretamente.");
+            view.printMessage("Insira os dados corretamente.", RED);
         }
     }
 
@@ -564,10 +563,10 @@ public class GestVendasController implements IGestVendasController {
             String path = in.readLine();
             gv.save(path);
             view.cleanConsole();
-            view.printMessage("Guardado com sucesso.");
+            view.printMessage("Guardado com sucesso.", GREEN);
         } catch (IOException e){
             view.cleanConsole();
-            view.printMessage("Local para guardar inválido.");
+            view.printMessage("Local para guardar inválido.", RED);
         }
     }
 
@@ -584,7 +583,7 @@ public class GestVendasController implements IGestVendasController {
                 querie = Integer.parseInt(in.readLine());
             } catch (Exception e) {
                 view.cleanConsole();
-                view.printMessage("Terminando a aplicação...");
+                view.printMessage("Terminando a aplicação...", RED);
                 querie = 0;
             }
 
@@ -605,7 +604,7 @@ public class GestVendasController implements IGestVendasController {
                 case 14 -> saveController();
                 default -> {
                     querie = 0;
-                    view.printMessage("Terminando a aplicação...");
+                    view.printMessage("Terminando a aplicação...", RED);
                 }
             }
         }

@@ -11,6 +11,16 @@ import static Utils.Constants.*;
  */
 public class GestVendasView implements IGestVendasView {
 
+    public static final String ANSI_RESET = "\u001B[0m" ;
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
     /**
      * Contrutor vazio da classe
      */
@@ -21,23 +31,23 @@ public class GestVendasView implements IGestVendasView {
      * Imprimir o menu
      */
     public void printMenu(){
-        printMessage("! --------------------------------------------- !");
-        printMessage("1  - [I] Query 1  # Produtos nunca comprados");
-        printMessage("2  - [I] Query 2  # Total global de vendas & Compradores distintos");
-        printMessage("3  - [I] Query 3  # Informações mensais de um cliente");
-        printMessage("4  - [I] Query 4  # Informações mensais de um produto");
-        printMessage("5  - [I] Query 5  # Produtos mais comprados por um Cliente");
-        printMessage("6  - [I] Query 6  # Top produtos mais comprados");
-        printMessage("7  - [I] Query 7  # Top 3 clientes por filial");
-        printMessage("8  - [I] Query 8  # Top clientes que compraram produtos únicos");
-        printMessage("9  - [I] Query 9  # Top clientes de um produto");
-        printMessage("10 - [I] Query 10 # Faturação mensal de cada filial");
-        printMessage("11 - [E] Query 1 # Dados referentes á ultima leitura");
-        printMessage("12 - [E] Query 2 # Dados gerais atuais já registados nas estruturas");
-        printMessage("13 - Carregar dados");
-        printMessage("14 - Guardar dados");
-        printMessage("*  - Exit");
-        printMessage("! --------------------------------------------- !");
+        printMessage("! --------------------------------------------- !",CYAN);
+        printMessage("1  - [I] Query 1  # Produtos nunca comprados",CYAN);
+        printMessage("2  - [I] Query 2  # Total global de vendas & Compradores distintos",CYAN);
+        printMessage("3  - [I] Query 3  # Informações mensais de um cliente",CYAN);
+        printMessage("4  - [I] Query 4  # Informações mensais de um produto",CYAN);
+        printMessage("5  - [I] Query 5  # Produtos mais comprados por um Cliente",CYAN);
+        printMessage("6  - [I] Query 6  # Top produtos mais comprados",CYAN);
+        printMessage("7  - [I] Query 7  # Top 3 clientes por filial",CYAN);
+        printMessage("8  - [I] Query 8  # Top clientes que compraram produtos únicos",CYAN);
+        printMessage("9  - [I] Query 9  # Top clientes de um produto",CYAN);
+        printMessage("10 - [I] Query 10 # Faturação mensal de cada filial",CYAN);
+        printMessage("11 - [E] Query 1 # Dados referentes á ultima leitura",CYAN);
+        printMessage("12 - [E] Query 2 # Dados gerais atuais já registados nas estruturas",CYAN);
+        printMessage("13 - Carregar dados",CYAN);
+        printMessage("14 - Guardar dados",CYAN);
+        printMessage("*  - Exit",CYAN);
+        printMessage("! --------------------------------------------- !",CYAN);
     }
 
     /**
@@ -59,19 +69,31 @@ public class GestVendasView implements IGestVendasView {
     }
 
     /**
-     * Imprimir um separador
+     * Imprime a mensagem fornecida
+     * @param message Mensagem a ser impressa
      */
-    void printSeparator()
-    {
-        printMessage("===========================");
+    public void printMessage(String message){
+        System.out.println(message);
     }
 
     /**
      * Imprime a mensagem fornecida
      * @param message Mensagem a ser impressa
      */
-    public void printMessage(String message){
-        System.out.println(message);
+    public void printMessage(String message, String color){
+        String finalColor;
+        switch (color){
+            case "black" -> finalColor = ANSI_BLACK;
+            case "red" -> finalColor = ANSI_RED;
+            case "green" -> finalColor = ANSI_GREEN;
+            case "yellow" -> finalColor = ANSI_YELLOW;
+            case "blue" -> finalColor = ANSI_BLUE;
+            case "purple" -> finalColor = ANSI_PURPLE;
+            case "cyan" -> finalColor = ANSI_CYAN;
+            case "white" -> finalColor = ANSI_WHITE;
+            default -> finalColor = ANSI_RESET;
+        }
+        System.out.println(finalColor + message + ANSI_RESET);
     }
 
     /**
