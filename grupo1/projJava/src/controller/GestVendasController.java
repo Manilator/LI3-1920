@@ -9,11 +9,10 @@ import model.Client;
 import model.GestVendasModel;
 import model.IGestVendasModel;
 import model.Product;
-import view.*;
+import view.GestVendasView;
+import view.IGestVendasView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,25 +23,32 @@ import static Utils.Constants.*;
  * Classe que controla o fluxo do programa
  */
 public class GestVendasController implements IGestVendasController {
-    private final BufferedReader in;
+    private BufferedReader in;
     private IGestVendasView view;
     private IGestVendasModel gv;
 
     /**
      * Construtor vazio do controller
      */
-    public GestVendasController() {
-        this.view = new GestVendasView();
-        Crono.start();
-        this.gv = new GestVendasModel(DefaultClientsPath, DefaultProductsPath, DefaultSalesPath);
-        view.printMessage(Crono.getTimeString());
-        view.printMessage("Clientes válidos: " + this.gv.getClientsSize());
-        view.printMessage("Clientes lidos: " + this.gv.getReadClients());
-        view.printMessage("Produtos válidos: " + this.gv.getProductsSize());
-        view.printMessage("Produtos lidos: " + this.gv.getReadProducts());
-        view.printMessage("Vendas válidos: " + this.gv.getValidSales());
-        view.printMessage("Vendas lidas: " + this.gv.getReadSales());
-        in = new BufferedReader(new InputStreamReader(System.in));
+    public GestVendasController() throws FileNotFoundException {
+        File f1 = new File(DefaultClientsPath);
+        File f2 = new File(DefaultProductsPath);
+        File f3 = new File(DefaultSalesPath);
+        if(f1.exists() && f2.exists() && f3.exists()) {
+            this.view = new GestVendasView();
+            Crono.start();
+            this.gv = new GestVendasModel(DefaultClientsPath, DefaultProductsPath, DefaultSalesPath);
+            view.printMessage(Crono.getTimeString());
+            view.printMessage("Clientes válidos: " + this.gv.getClientsSize());
+            view.printMessage("Clientes lidos: " + this.gv.getReadClients());
+            view.printMessage("Produtos válidos: " + this.gv.getProductsSize());
+            view.printMessage("Produtos lidos: " + this.gv.getReadProducts());
+            view.printMessage("Vendas válidos: " + this.gv.getValidSales());
+            view.printMessage("Vendas lidas: " + this.gv.getReadSales());
+            in = new BufferedReader(new InputStreamReader(System.in));
+        } else {
+            throw new FileNotFoundException();
+        }
     }
 
     /**
@@ -502,19 +508,23 @@ public class GestVendasController implements IGestVendasController {
             if (choice == 1) {
                 view.loadChoice();
                 choice = Integer.parseInt(in.readLine());
-                view.printMessage("Insira o path: ");
-                String path = in.readLine();
                 if (choice == 1) {
+                    view.printMessage("Insira o path: ");
+                    String path = in.readLine();
                     view.printMessage("A ler clientes... ");
                     this.gv.parseClients(path);
                     view.cleanConsole();
                     view.printMessage("Leitura concluida", GREEN);
                 } else if (choice == 2) {
+                    view.printMessage("Insira o path: ");
+                    String path = in.readLine();
                     view.printMessage("A ler produtos... ");
                     this.gv.parseProducts(path);
                     view.cleanConsole();
                     view.printMessage("Leitura concluida", GREEN);
                 } else if (choice == 3) {
+                    view.printMessage("Insira o path: ");
+                    String path = in.readLine();
                     view.printMessage("A ler vendas... ");
                     this.gv.parseSales(path);
                     view.cleanConsole();
@@ -537,22 +547,35 @@ public class GestVendasController implements IGestVendasController {
                 String products = in.readLine();
                 view.printMessage("Insira o path das vendas: ");
                 String sales = in.readLine();
-                view.printMessage("A ler dados... ");
-                Crono.start();
-                this.gv = new GestVendasModel(clients, products, sales);
-                view.cleanConsole();
-                view.printMessage(Crono.getTimeString());
-                readStats();
+
+                File f1 = new File(clients);
+                File f2 = new File(products);
+                File f3 = new File(sales);
+                
+                if (f1.exists() && f2.exists() && f3.exists()) {
+                    view.printMessage("A ler dados... ");
+                    Crono.start();
+                    this.gv = new GestVendasModel(clients, products, sales);
+                    view.cleanConsole();
+                    view.printMessage(Crono.getTimeString());
+                    readStats();
+                } else {
+                    throw new FileNotFoundException();
+                }
+
             } else {
                 view.printMessage("A voltar para o menu...");
                 view.cleanConsole();
             }
-        } catch (IOException e){
+        } catch (FileNotFoundException e){
             view.cleanConsole();
             view.printMessage("Ficheiro não encontrado.", RED);
         } catch (ClassNotFoundException e){
             view.cleanConsole();
             view.printMessage("Insira os dados corretamente.", RED);
+        } catch (Exception e) {
+            view.cleanConsole();
+            view.printMessage("Erro na inserção dos dados.", RED);
         }
     }
 
