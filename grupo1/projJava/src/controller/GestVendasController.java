@@ -511,34 +511,63 @@ public class GestVendasController implements IGestVendasController {
                 if (choice == 1) {
                     view.printMessage("Insira o path: ");
                     String path = in.readLine();
-                    view.printMessage("A ler clientes... ");
-                    this.gv.parseClients(path);
-                    view.cleanConsole();
-                    view.printMessage("Leitura concluida", GREEN);
+
+                    File f1 = new File(path);
+
+                    if (f1.exists()) {
+                        view.printMessage("A ler clientes... ");
+                        this.gv.parseClients(path);
+                        view.cleanConsole();
+                        view.printMessage("Leitura concluida", GREEN);
+                    } else {
+                        throw new FileNotFoundException();
+                    }
                 } else if (choice == 2) {
                     view.printMessage("Insira o path: ");
                     String path = in.readLine();
-                    view.printMessage("A ler produtos... ");
-                    this.gv.parseProducts(path);
-                    view.cleanConsole();
-                    view.printMessage("Leitura concluida", GREEN);
+
+                    File f1 = new File(path);
+
+                    if (f1.exists()) {
+                        view.printMessage("A ler produtos... ");
+                        this.gv.parseProducts(path);
+                        view.cleanConsole();
+                        view.printMessage("Leitura concluida", GREEN);
+                    } else {
+                        throw new FileNotFoundException();
+                    }
                 } else if (choice == 3) {
                     view.printMessage("Insira o path: ");
                     String path = in.readLine();
-                    view.printMessage("A ler vendas... ");
-                    this.gv.parseSales(path);
-                    view.cleanConsole();
-                    view.printMessage("Leitura concluida", GREEN);
+
+                    File f1 = new File(path);
+
+                    if (f1.exists()) {
+                        view.printMessage("A ler vendas... ");
+                        this.gv.parseSales(path);
+                        view.cleanConsole();
+                        view.printMessage("Leitura concluida", GREEN);
+                    } else {
+                        throw new FileNotFoundException();
+                    }
                 } else {
                     view.printMessage("A voltar para o menu...");
+                    view.cleanConsole();
                 }
             } else if (choice == 2){
                 view.printMessage("Insira o path: ");
                 String path = in.readLine();
-                view.printMessage("A ler ficheiro .dat...");
-                this.gv = GestVendasModel.load(path);
-                view.cleanConsole();
-                view.printMessage("Leitura concluida", GREEN);
+
+                File f1 = new File(path);
+
+                if (f1.exists()) {
+                    view.printMessage("A ler ficheiro .dat...");
+                    this.gv = GestVendasModel.load(path);
+                    view.cleanConsole();
+                    view.printMessage("Leitura concluida", GREEN);
+                } else {
+                    throw new FileNotFoundException();
+                }
             } else if (choice == 3) {
                 view.printMessage("A limpar dados... ");
                 view.printMessage("Insira o path dos clientes: ");
