@@ -465,6 +465,9 @@ public class GestVendasController implements IGestVendasController {
         gv.getBillingByMonthAndBranch(); /*double[][]*/
     }
 
+    /**
+     * Funçao responsavel pelo carregamento de dados
+     */
     void loadController() {
         try {
             view.printLoad();
@@ -512,9 +515,11 @@ public class GestVendasController implements IGestVendasController {
             view.printMessage("Insira os dados corretamente.");
         }
 
-
     }
 
+    /**
+     * Funçao responsavel pelo armazenamento de dados
+     */
     void saveController() {
         try {
             view.printMessage("Insira o path: ");
@@ -526,6 +531,9 @@ public class GestVendasController implements IGestVendasController {
 
     }
 
+    /**
+     * Funçao principal encarregue pelo controlo do menu
+     */
     void menu() {
 
         int querie = -1;

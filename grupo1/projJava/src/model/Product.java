@@ -15,7 +15,7 @@ public class Product implements IProduct, Serializable {
 
     /**
      * Valida um produto
-     * @return String com o código de produto
+     * @return True se o código for valido, False caso contrario
      */
     public boolean validate() {
         Matcher e = productPattern.matcher(this.productCode);

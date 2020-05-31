@@ -13,6 +13,11 @@ public class ClientCatalog implements IClientCatalog, Serializable {
         clients = new HashMap<>();
     }
 
+    /**
+     * (!!!)
+     * @param clientCode (!!!)
+     * @return (!!!)
+     */
     public boolean insertClient(String clientCode){
 
         IClient client = new Client(clientCode);
@@ -23,10 +28,19 @@ public class ClientCatalog implements IClientCatalog, Serializable {
         return false;
     }
 
+    /**
+     * (!!!)
+     * @return (!!!)
+     */
     public int getSize() {
         return this.clients.size();
     }
 
+    /**
+     * (!!!)
+     * @param code (!!!)
+     * @return (!!!)
+     */
     public boolean existClient(String code) {
         return this.clients.containsKey(code);
     }
