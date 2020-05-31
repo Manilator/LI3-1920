@@ -51,6 +51,10 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         parseSales(salesPath);
     }
 
+    /**
+     * (!!!)
+     * @param clientPath (!!!)
+     */
     public void parseClients(String clientPath) {
         File file = new File(clientPath);
 
@@ -66,6 +70,10 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         }
     }
 
+    /**
+     * (!!!)
+     * @param productPath (!!!)
+     */
     public void parseProducts(String productPath) {
         File file = new File(productPath);
 
@@ -83,6 +91,10 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         }
     }
 
+    /**
+     * (!!!)
+     * @param salesPath (!!!)
+     */
     public void parseSales(String salesPath) {
         File file = new File(salesPath);
 

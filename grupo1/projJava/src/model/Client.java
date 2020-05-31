@@ -16,6 +16,10 @@ public class Client implements IClient, Serializable {
         this.number = Integer.parseInt(clientCode.substring(1));
     }
 
+    /**
+     * Valida um cliente
+     * @return True se o código for valido, False caso contrario
+     */
     public boolean validate() {
         String id = this.letter +
                 String.valueOf(this.number);
