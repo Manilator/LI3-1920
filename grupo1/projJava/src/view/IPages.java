@@ -6,8 +6,9 @@ package view;
 public interface IPages {
 
     /**
-    * Mostra a página escolhida ao utilizador
-    */
+     * Mostra a página escolhida ao utilizador
+     * @param page Página a ser mostrada
+     */
     void show(int page);
 
     /**

@@ -47,6 +47,9 @@ public class GestVendasController implements IGestVendasController {
 
     /**
      * Construtor custom do controller
+     * @param clientPath Caminho do ficheiro dos clientes
+     * @param productPath Caminho do ficheiro dos produtos
+     * @param salesPath Caminho do ficheiro das vendas
      */
     public GestVendasController(String clientPath, String productPath, String salesPath) {
         this.view = new GestVendasView();
@@ -73,7 +76,6 @@ public class GestVendasController implements IGestVendasController {
 
     /**
      * Função que inicia o controller
-     * @throws IOException Exceção se ocorrer erros ao ler os ficheiros
      */
     public void startController() { menu(); }
 

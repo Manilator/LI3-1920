@@ -27,10 +27,10 @@ import static Utils.Constants.N_MONTHS;
 public class GestVendasModel implements IGestVendasModel, Serializable {
 
     private static final long serialVersionUID = -633886111828325882L;
-    private final IClientCatalog client_catalog; /**< Cátalogo de clientes */
-    private final IProductCatalog product_catalog; /**< Cátalogo de produto */
-    private final IBillingCatalog billing_catalog; /**< Cátalogo de faturação */
-    private final IBranchCatalog branches_catalog; /**< Cátalogo de filiais */
+    private final IClientCatalog client_catalog;
+    private final IProductCatalog product_catalog;
+    private final IBillingCatalog billing_catalog;
+    private final IBranchCatalog branches_catalog;
     private final String saleFileName;
     private int readClients;
     private int readProducts;
@@ -39,6 +39,9 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
 
     /**
      * Construtor com paths do model
+     * @param clientsPath Caminho do ficheiro dos clientes
+     * @param productPath Caminho do ficheiro dos produtos
+     * @param salesPath Caminho do ficheiro das vendas
      */
     public GestVendasModel(String clientsPath, String productPath, String salesPath){
         this.client_catalog = new ClientCatalog();
@@ -136,6 +139,7 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
     /**
      * Dado um mês determinar o número total global de vendas realizadas e o número total
      * de clientes distintos que as fizeram para cada uma das filiais
+     * @param month Mês
      * @return Lista de inteiros com os valores requisitados
      */
     public List<Integer> totalSalesCountAndDistinctBuyers(int month) {
@@ -162,6 +166,7 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
 
     /**
      * Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total faturado
+     * @param product Código de produto
      * @return Devolve uma matriz com a quantidade de vezes que foi comprado, por mes e filial
      */
     public double[][] productInfoByMonth(String product) {
@@ -189,6 +194,7 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
 
     /**
      * Determinar os N produtos mais comprados
+     * @param n Número de elementos a mostrar
      * @return Devolve uma matriz com Strings com o codigo de cliente e o numero de produtos diferentes comprados
      */
     public String[][] topMostBoughtProducts(int n) {
@@ -219,6 +225,7 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
 
     /**
      * Determinar os top N clientes que compraram produtos únicos
+     * @param n Número de elementos a mostrar
      * @return Devolve uma matriz com Strings com o codigo de cliente e o numero de produtos diferentes comprados
      */
     public String[][] topClientsWhoBoughtDistinctProducts(int n) {
@@ -244,6 +251,8 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
 
     /**
      * Dado um codigo de produto determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto por cada
+     * @param product Código de produto
+     * @param n Número de elementos a mostrar
      * @return Devolve uma matriz de Strings com codigo de cliente e o valor gasto por ele
      */
     public String[][] topNBuyersAndMoneySpent(String product, int n) {

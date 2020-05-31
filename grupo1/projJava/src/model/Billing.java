@@ -11,11 +11,11 @@ import static Utils.Constants.N_BRANCHES;
 public class Billing implements IBilling, Serializable {
 
     private static final long serialVersionUID = 2537488678609275391L;
-    private int n_sales; /**< Número de Vendas */
-    private double totalBilled; /**< Total faturado */
-    private int[] branchesUnities; /**< Número de unidades vendidas dividida por filiais */
-    private double[] branchesBilling; /**< Faturação dividida por filiais */
-    private int[] branchesNSales; /**< Número de vendas dividida por filiais */
+    private int n_sales;
+    private double totalBilled;
+    private int[] branchesUnities;
+    private double[] branchesBilling;
+    private int[] branchesNSales;
     private int giveaways;
 
     /**

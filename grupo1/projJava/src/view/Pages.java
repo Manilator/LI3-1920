@@ -27,6 +27,7 @@ public class Pages implements IPages {
 
     /**
      * Mostra a página escolhida ao utilizador
+     * @param page Página a ser mostrada
      */
     public void show(int page) {
         int max = (int) Math.ceil(this.size / this.elem_per_page);
