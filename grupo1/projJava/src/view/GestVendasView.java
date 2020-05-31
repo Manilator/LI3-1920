@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import static Utils.Constants.N_BRANCHES;
@@ -85,6 +87,26 @@ public class GestVendasView implements IGestVendasView {
     }
 
     /**
+     * Função responsável por mostrar o resultado da query 2 ao utilizador
+     * @param list (!!!)
+     */
+    public void query2View(List<Integer> list) {
+        int[] total = new int[2];
+        Arrays.fill(total,0);
+        int i = 0;
+        for (int j = 1; i < N_BRANCHES*2; i++, j++) {
+            printMessage("---- Filial " + j);
+            printMessage("Número distinto de clientes: " + list.get(i++));
+            total[1] += list.get(i);
+            printMessage("Número de vendas:            " + list.get(i));
+        }
+        total[0] = list.get(i);
+        printMessage("---- Total ");
+        printMessage("Total clientes distintos:    " + total[0]);
+        printMessage("Total vendas:                " + total[1]);
+    }
+
+    /**
      * Função responsável por mostrar o resultado da query 3 ao utilizador
      * @param result (!!!)
      */
@@ -138,6 +160,19 @@ public class GestVendasView implements IGestVendasView {
      * @param result (!!!)
      */
     public void query10View(Map<String, double[][]> result){
+    }
+
+    public void queryE1View(String[] statisticalConsult) {
+        printMessage("Nome do ficheiro: " + statisticalConsult[0]);
+        printMessage("Vendas inválidas: " + statisticalConsult[1]);
+        printMessage("Total de Produtos: " + statisticalConsult[2]);
+        printMessage("Total Produtos distintos comprados: " + statisticalConsult[3]);
+        printMessage("Total Produtos distintos não comprados: " + statisticalConsult[4]);
+        printMessage("Total de Clientes: " + statisticalConsult[5]);
+        printMessage("Total de Clientes que compraram: " + statisticalConsult[6]);
+        printMessage("Total de Clientes que não compraram: " + statisticalConsult[7]);
+        printMessage("Total de compras com valor igual a 0: " + statisticalConsult[8]);
+        printMessage("Faturação total: " + statisticalConsult[9]);
     }
 
     /**

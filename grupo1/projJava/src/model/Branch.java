@@ -1,16 +1,8 @@
 package model;
 
 import java.io.Serializable;
-
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.Comparator;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.HashMap;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import static Utils.Constants.N_MONTHS;
 
@@ -220,6 +212,6 @@ public class Branch implements IBranch, Serializable {
      * @return Devolve um Set com os clientes que nunca fizeram compras
      */
     public Set<String> getClientWhoBought(){
-        return new HashSet<>(this.clientsProducts.keySet());
+        return this.clientsProducts.keySet();
     }
 }

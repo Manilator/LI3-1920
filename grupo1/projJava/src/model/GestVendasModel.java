@@ -95,6 +95,7 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
             }
             //lista_vendas = Files.readAllLines(Paths.get(salesPath), StandardCharsets.UTF_8);
             this.readSales = lista_vendas.size();
+            validSales = 0;
             lista_vendas
                     .parallelStream()
                     .map(Sale::new)

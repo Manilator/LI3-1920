@@ -1,6 +1,8 @@
 package controller;
 
 import Utils.Crono;
+import exceptions.InvalidMonth;
+import exceptions.InvalidNumber;
 import model.GestVendasModel;
 import model.IGestVendasModel;
 import view.*;
@@ -9,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -73,32 +74,47 @@ public class GestVendasController implements IGestVendasController {
      * Função que pede um codigo de produto
      * @return String codigo de produto
      */
-    private String askProduct() throws IOException {
+    private String askProduct() {
+        String produto = null;
         view.printMessage("Insira o produto: ");
-        return in.readLine();
+        try {
+            produto = in.readLine();
+        } catch (IOException e) {
+            view.printMessage("Produto inválido. ");
+        }
+        return produto;
     }
 
     /**
      * Função que pede um codigo de cliente
      * @return Devolve uma string do codigo do cliente
      */
-    private String askClient() throws IOException {
+    private String askClient() {
+        String cliente = null;
         view.printMessage("Insira o Cliente: ");
-        return in.readLine();
+        try {
+            cliente = in.readLine();
+        } catch (IOException e) {
+            view.printMessage("Cliente inválido. ");
+        }
+        return cliente;
     }
 
     /**
      * Função que pede um certo mes
      * @return Devole um int do mes pedido
      */
-    private int askMonth() throws IOException {
+    private int askMonth() throws InvalidMonth {
         int month = 0;
         int i = 0;
         view.printMessage("Insira o mês: ");
-        while(month < 1 || month > 12) {
-            if (i != 0) view.printMessage("Mês inválido.");
+        try {
             month = Integer.parseInt(in.readLine());
-            i++;
+            if (month < 1 || month > 12) {
+                throw new InvalidMonth();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return month;
     }
@@ -107,14 +123,17 @@ public class GestVendasController implements IGestVendasController {
      * Função que pede uma quantidade para ser inserida
      * @return Devolve um int da quantidade inserida
      */
-    private int askN() throws IOException {
+    private int askN() throws InvalidNumber {
         int n = 0;
         int i = 0;
         view.printMessage("Insira quantos pretende ver: ");
-        while(n <= 0) {
-            if (i != 0) view.printMessage("Número inválido.");
+        try {
             n = Integer.parseInt(in.readLine());
-            i++;
+            if (n <= 0) {
+                throw new InvalidNumber();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return n;
     }
@@ -173,21 +192,7 @@ public class GestVendasController implements IGestVendasController {
             Crono.start();
             List<Integer> list = gv.query2(month);
             view.printMessage(Crono.getTimeString());
-
-            int[] total = new int[2];
-            Arrays.fill(total,0);
-            int i = 0;
-            for (int j = 1; i < N_BRANCHES*2; i++, j++) {
-                view.printMessage("---- Filial " + j);
-                view.printMessage("Número distinto de clientes: " + list.get(i++));
-                total[1] += list.get(i);
-                view.printMessage("Número de vendas:            " + list.get(i));
-            }
-            total[0] = list.get(i);
-            view.printMessage("---- Total ");
-            view.printMessage("Total clientes distintos:    " + total[0]);
-            view.printMessage("Total vendas:                " + total[1]);
-
+            view.query2View(list);
         } catch (Exception e) {
             view.printMessage("Mês inválido.");
         }
@@ -318,7 +323,7 @@ public class GestVendasController implements IGestVendasController {
                     choice = "0";
             }
         } catch (Exception e) {
-            view.printMessage("Mês inválido.");
+            view.printMessage("Quantidade inválida.");
         }
     }
 
@@ -429,6 +434,8 @@ public class GestVendasController implements IGestVendasController {
                 } else
                     choice = "0";
             }
+        } catch (InvalidNumber e) {
+            view.printMessage("Quantidade inválida.");
         } catch (Exception e) {
             view.printMessage("Produto inválido.");
         }
@@ -453,16 +460,29 @@ public class GestVendasController implements IGestVendasController {
      * Função que trata do controller da query estatistica 1
      */
     void queryE1(){
-        gv.statisticalConsult();
+        Crono.start();
+        String[] list = gv.statisticalConsult();
+        view.printMessage(Crono.getTimeString());
+        view.queryE1View(list);
     }
 
     /**
      * Função que trata do controller da query estatistica 2
      */
     void queryE2(){
-        gv.getNumberOfDistinctClients();/*int[][]*/
-        gv.getShoppingFrequency();/*int[]*/
-        gv.getBillingByMonthAndBranch(); /*double[][]*/
+        Crono.start();
+        int[][] result = gv.getNumberOfDistinctClients();/*int[][]*/
+        int[][] result2 = new int[1][];
+        result2[0] = gv.getShoppingFrequency();/*int[]*/
+        double[][] result3 = gv.getBillingByMonthAndBranch(); /*double[][]*/
+        view.printMessage(Crono.getTimeString());
+        ITable table = new Table();
+        view.printMessage("\n---- Número de distintos clientes que compraram por mês filial a filial: ");
+        table.tableE2View(result);
+        view.printMessage("\n---- Número total de compras por mês: ");
+        table.tableE2View(result2);
+        view.printMessage("\n---- Faturação total por mês filial a filial: ");
+        table.tableE2View(result3);
     }
 
     void loadController() {

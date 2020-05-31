@@ -1,5 +1,6 @@
 package view;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IGestVendasView {
@@ -31,6 +32,12 @@ public interface IGestVendasView {
     void cleanConsole();
 
     /**
+     * Função responsável por mostrar o resultado da query 2 ao utilizador
+     * @param list (!!!)
+     */
+    void query2View(List<Integer> list);
+
+    /**
      * Função responsável por mostrar o resultado da query 3 ao utilizador
      * @param result (!!!)
      */
@@ -60,4 +67,6 @@ public interface IGestVendasView {
      * @param result (!!!)
      */
     void query10View(Map<String, double[][]> result);
+
+    void queryE1View(String[] statisticalConsult);
 }
