@@ -11,8 +11,8 @@ import static Utils.Constants.N_MONTHS;
 public class InfoProduct implements IInfoProduct, Serializable {
 
     private static final long serialVersionUID = -677107323861266485L;
-    private int[] quantities; /**< Quantidades por cada mês */
-    private double[] totalBilled; /**< Faturação total por cada mês */
+    private int[] quantities;
+    private double[] totalBilled;
 
     /**
      * Construtor vazio da classe

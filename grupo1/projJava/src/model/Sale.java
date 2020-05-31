@@ -9,13 +9,13 @@ import static Utils.Constants.N_BRANCHES;
  */
 public class Sale implements ISale, Serializable {
     private static final long serialVersionUID = 4751558143036898335L;
-    private String  product; /**< Código de produto */
-    private String  client; /**< Código de cliente */
-    private double price; /**< Preço do produto */
-    private int     units; /**< Número de unidades vendidas */
-    private char    promotion; /**< Tipo de promoção N ou P */
-    private int     month; /**< Número do mês */
-    private int     branch; /**< Número da filial */
+    private String  product;
+    private String  client;
+    private double price;
+    private int     units;
+    private char    promotion;
+    private int     month;
+    private int     branch;
 
     /**
      * Construtor com String para a classe

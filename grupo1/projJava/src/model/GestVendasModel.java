@@ -27,10 +27,10 @@ import static Utils.Constants.N_MONTHS;
 public class GestVendasModel implements IGestVendasModel, Serializable {
 
     private static final long serialVersionUID = -633886111828325882L;
-    private final IClientCatalog client_catalog; /**< Cátalogo de clientes */
-    private final IProductCatalog product_catalog; /**< Cátalogo de produto */
-    private final IBillingCatalog billing_catalog; /**< Cátalogo de faturação */
-    private final IBranchCatalog branches_catalog; /**< Cátalogo de filiais */
+    private final IClientCatalog client_catalog;
+    private final IProductCatalog product_catalog;
+    private final IBillingCatalog billing_catalog;
+    private final IBranchCatalog branches_catalog;
     private final String saleFileName;
     private int readClients;
     private int readProducts;

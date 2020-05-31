@@ -17,7 +17,7 @@ public class BillingCatalog implements IBillingCatalog, Serializable {
 
     private static final long serialVersionUID = -3319028548749322819L;
     private final IBilling[] billings;
-    private final Map<String, IBillingProduct> billingsProduct; /**< Faturação dividida por produtos */
+    private final Map<String, IBillingProduct> billingsProduct;
 
     /**
      * Construtor vazio da classe BillingCatalog
