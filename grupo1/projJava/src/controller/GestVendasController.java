@@ -551,7 +551,7 @@ public class GestVendasController implements IGestVendasController {
                 File f1 = new File(clients);
                 File f2 = new File(products);
                 File f3 = new File(sales);
-                
+
                 if (f1.exists() && f2.exists() && f3.exists()) {
                     view.printMessage("A ler dados... ");
                     Crono.start();
@@ -562,7 +562,6 @@ public class GestVendasController implements IGestVendasController {
                 } else {
                     throw new FileNotFoundException();
                 }
-
             } else {
                 view.printMessage("A voltar para o menu...");
                 view.cleanConsole();
