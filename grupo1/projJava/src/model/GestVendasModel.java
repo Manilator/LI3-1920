@@ -21,6 +21,9 @@ import java.util.Set;
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que contem a estrutura modular do sistema
+ */
 public class GestVendasModel implements IGestVendasModel, Serializable {
 
     private static final long serialVersionUID = -633886111828325882L;
@@ -51,6 +54,10 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         parseSales(salesPath);
     }
 
+    /**
+     * Leitura e parsing do ficheiro dos clientes
+     * @param clientPath Caminho para o ficheiro dos clientes
+     */
     public void parseClients(String clientPath) {
         File file = new File(clientPath);
 
@@ -66,6 +73,10 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         }
     }
 
+    /**
+     * Leitura e parsing do ficheiro dos produtos
+     * @param productPath Caminho para o ficheiro dos produtos
+     */
     public void parseProducts(String productPath) {
         File file = new File(productPath);
 
@@ -83,6 +94,10 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         }
     }
 
+    /**
+     * Leitura e parsing do ficheiro das vendas
+     * @param salesPath Caminho para o ficheiro das vendas
+     */
     public void parseSales(String salesPath) {
         File file = new File(salesPath);
 
@@ -119,10 +134,11 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
     }
 
     /**
-     * (!!!)
-     * @return (!!!)
+     * Dado um mês determinar o número total global de vendas realizadas e o número total
+     * de clientes distintos que as fizeram para cada uma das filiais
+     * @return Lista de inteiros com os valores requisitados
      */
-    public List<Integer> query2(int month) {
+    public List<Integer> totalSalesCountAndDistinctBuyers(int month) {
 
         List<Integer> list = new ArrayList<>();
         for(int i = 0; i < N_BRANCHES; i++) {
@@ -145,10 +161,10 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
     }
 
     /**
-     * (!!!)
-     * @return (!!!)
+     * Dado o código de um produto existente, determinar, mês a mês, quantas vezes foi comprado, por quantos clientes diferentes e o total faturado
+     * @return Devolve uma matriz com a quantidade de vezes que foi comprado, por mes e filial
      */
-    public double[][] query4(String product) {
+    public double[][] productInfoByMonth(String product) {
         double[][] array = new double[N_MONTHS][3];
         int[] salesMonth = this.billing_catalog.getNSalesProduct(product);
         double[] billedMonth = this.billing_catalog.getTotalBilledMonth(product);
@@ -172,10 +188,10 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
     }
 
     /**
-     * (!!!)
-     * @return (!!!)
+     * Determinar os N produtos mais comprados
+     * @return Devolve uma matriz com Strings com o codigo de cliente e o numero de produtos diferentes comprados
      */
-    public String[][] query6(int n) {
+    public String[][] topMostBoughtProducts(int n) {
         String[][] array = new String[n][3];
         List<String> products = this.billing_catalog.getTopMostPurchased(n);
         int[] clients = new int[n];
@@ -197,15 +213,15 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
      * Determina os 3 maiores compradores de cada filial (a nivel de dinheiro faturado)
      * @return Array de Matrizes de strings com o codigo de cliente e total faturado dos 3 maiores compradores para cada filial
      */
-    public String[][][] query7() {
+    public String[][][] top3BuyersByBranch() {
         return this.branches_catalog.getTop3BuyersByBranch();
     }
 
     /**
-     * (!!!)
-     * @return (!!!)
+     * Determinar os top N clientes que compraram produtos únicos
+     * @return Devolve uma matriz com Strings com o codigo de cliente e o numero de produtos diferentes comprados
      */
-    public String[][] query8(int n) {
+    public String[][] topClientsWhoBoughtDistinctProducts(int n) {
         Map<String, Set<String>> list = this.branches_catalog.getClientsDistinctsProducts();
         Map<String, Integer> _list = list.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().size()));
         List<Map.Entry<String, Integer>> clients = new ArrayList<>(_list.entrySet());
@@ -227,10 +243,10 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
     }
 
     /**
-     * (!!!)
-     * @return (!!!)
+     * Dado um codigo de produto determinar o conjunto dos X clientes que mais o compraram e qual o valor gasto por cada
+     * @return Devolve uma matriz de Strings com codigo de cliente e o valor gasto por ele
      */
-    public String[][] query9(String product, int n) {
+    public String[][] topNBuyersAndMoneySpent(String product, int n) {
         Map<String, List<Double>> list = this.branches_catalog.getProductAllClients(product);
         List<Map.Entry<String, List<Double>>> clients = new ArrayList<>(list.entrySet());
 
@@ -255,7 +271,7 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
      * Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
      * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
      */
-    public Map<String, double[][]> query10() {
+    public Map<String, double[][]> totalBillingByMonthAndBranch() {
         return this.billing_catalog.getProductsBillingByMonthAndBranch();
     }
 
@@ -311,39 +327,63 @@ public class GestVendasModel implements IGestVendasModel, Serializable {
         int tmp_NumberOfClients = this.client_catalog.getSize();
         int tmp_ClientsWhoDidntBuy = this.branches_catalog.getClientWhoBought();
         String[] result = new String[10];
-        result[0] = this.saleFileName; // String
-        result[1] = String.valueOf(this.readSales - this.validSales); // int
-        result[2] = String.valueOf(tmp_NumberOfProducts); // int
-        result[3] = String.valueOf(tmp_ProductsBought); // int
-        result[4] = String.valueOf(tmp_NumberOfProducts - tmp_ProductsBought); // int
-        result[5] = String.valueOf(tmp_NumberOfClients); // int
-        result[6] = String.valueOf(tmp_ClientsWhoDidntBuy); // int
-        result[7] = String.valueOf(tmp_NumberOfClients - tmp_ClientsWhoDidntBuy); //int
-        result[8] = String.valueOf(billing_catalog.getGiveawaysAmount());//int
-        result[9] = String.valueOf(billing_catalog.getTotalBilledSum()); //double
+        result[0] = this.saleFileName;
+        result[1] = String.valueOf(this.readSales - this.validSales);
+        result[2] = String.valueOf(tmp_NumberOfProducts);
+        result[3] = String.valueOf(tmp_ProductsBought);
+        result[4] = String.valueOf(tmp_NumberOfProducts - tmp_ProductsBought);
+        result[5] = String.valueOf(tmp_NumberOfClients);
+        result[6] = String.valueOf(tmp_ClientsWhoDidntBuy);
+        result[7] = String.valueOf(tmp_NumberOfClients - tmp_ClientsWhoDidntBuy);
+        result[8] = String.valueOf(billing_catalog.getGiveawaysAmount());
+        result[9] = String.valueOf(billing_catalog.getTotalBilledSum());
         return result;
     }
 
+    /**
+     * Numero de clientes na estrutura
+     * @return Devolve o numero de clientes na estrutura
+     */
     public int getClientsSize(){
         return this.client_catalog.getSize();
     }
 
+    /**
+     * Numero de produtos na estrutura
+     * @return Devolve o numero de produtos na estrutura
+     */
     public int getProductsSize(){
         return this.product_catalog.getSize();
     }
 
+    /**
+     * Numero de vendas lidas
+     * @return Devolve o numero de vendas lidas
+     */
     public int getReadSales() {
         return readSales;
     }
 
+    /**
+     * Numero de vendas validas
+     * @return Devolve o numero de vendas validas
+     */
     public int getValidSales() {
         return validSales;
     }
 
+    /**
+     * Numero de produtos lidos
+     * @return Devolve o numero de produtos lidos
+     */
     public int getReadProducts() {
         return readProducts;
     }
 
+    /**
+     * Numero de clientes lidos
+     * @return Devolve o numero de clientes lidos
+     */
     public int getReadClients() {
         return readClients;
     }

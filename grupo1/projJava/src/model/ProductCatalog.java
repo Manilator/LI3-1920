@@ -8,11 +8,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Classe que representa o catalogo de produtos
+ */
 public class ProductCatalog implements IProductCatalog, Serializable {
 
     private static final long serialVersionUID = -885894091262755264L;
     private Map<String,IProduct> products;
 
+    /**
+     * Construtor vazio da classe
+     */
     public ProductCatalog() {
         products = new HashMap<>();
     }

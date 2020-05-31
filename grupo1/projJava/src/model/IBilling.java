@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Interface da classe que representa uma fatura
+ */
 public interface IBilling {
 
     /**
@@ -10,12 +13,6 @@ public interface IBilling {
      * @param branch Filial escolhida
      */
     void updateBilling(double totalBilled, int unities, char promotion_type, int branch);
-
-    /**
-     * Get do numero de vendas total
-     * @return Devolve o int do numero de vendas total
-     */
-    int getN_sales();
 
     /**
      * Get do numero de vendas numa certa filial

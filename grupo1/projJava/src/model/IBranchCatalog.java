@@ -4,8 +4,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Interface da classe que representam todas as filiais
+ */
 public interface IBranchCatalog {
 
+    /**
+     * Função que atualiza as filiais com as informações de uma venda
+     * @param sale venda com as informações a serem adicionadas às filiais
+     */
     void updateBranches(ISale sale);
 
     /**
@@ -80,5 +87,9 @@ public interface IBranchCatalog {
      */
     int[][] getNumberOfDistinctClients();
 
+    /**
+     * Numero de clientes que compraram
+     * @return Numero de clientes que compraram
+     */
     int getClientWhoBought();
 }

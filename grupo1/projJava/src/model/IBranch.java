@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Interface da classe que representa uma filial
+ */
 public interface IBranch {
 
     /**

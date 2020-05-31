@@ -2,6 +2,9 @@ package Utils;
 
 import static java.lang.System.nanoTime;
 
+/**
+ * Classe auxiliar Crono
+ */
 public class Crono {
 
     private static long inicio = 0L;

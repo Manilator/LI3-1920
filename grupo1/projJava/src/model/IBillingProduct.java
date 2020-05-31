@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Interface da classe que representa a faturacao que um produto teve
+ */
 public interface IBillingProduct {
 
     /**

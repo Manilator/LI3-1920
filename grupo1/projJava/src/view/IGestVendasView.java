@@ -3,6 +3,9 @@ package view;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Interface da classe principal da view do sistema
+ */
 public interface IGestVendasView {
 
     /**
@@ -13,12 +16,12 @@ public interface IGestVendasView {
     /**
      * Imprimir o menu de loadd
      */
-    public void printLoad();
+    void printLoad();
 
     /**
      * Imprimir as escolhas de load
      */
-    public void loadChoice();
+     void loadChoice();
 
     /**
      * Imprime a mensagem fornecida

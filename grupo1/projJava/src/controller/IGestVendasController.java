@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 
+/**
+ * Interface da classe que controla o fluxo do programa
+ */
 public interface IGestVendasController {
 
     /**

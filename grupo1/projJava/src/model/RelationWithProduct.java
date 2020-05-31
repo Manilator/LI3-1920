@@ -8,6 +8,9 @@ import java.util.Set;
 
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que contem o modelo de relacao de um cliente e os varios produtos que este comprou
+ */
 public class RelationWithProduct implements IRelationWithProduct, Serializable {
 
     private static final long serialVersionUID = -3544741927649822138L;
@@ -54,8 +57,8 @@ public class RelationWithProduct implements IRelationWithProduct, Serializable {
     }
 
     /**
-     * (!!!)
-     * @return (!!!)
+     * Resultado da validacao de compra num dado mes
+     * @return Devolve um boolean que indica se comprou ou nao num dado mes
      */
     public boolean didPurchaseMonth(int month) {
         return n_sales[month-1] != 0;

@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import static Utils.Constants.N_BRANCHES;
 
+/**
+ * Classe auxiliar Sale
+ */
 public class Sale implements ISale, Serializable {
     private static final long serialVersionUID = 4751558143036898335L;
     private String  product; /**< Código de produto */

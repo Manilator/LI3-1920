@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 import static Utils.Constants.N_BRANCHES;
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que representa a faturacao
+ */
 public class BillingCatalog implements IBillingCatalog, Serializable {
 
     private static final long serialVersionUID = -3319028548749322819L;
@@ -96,7 +99,7 @@ public class BillingCatalog implements IBillingCatalog, Serializable {
     }
 
     /**
-     * Query 10: Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
+     * Determina mes a mes, e para cada mes, filial a filial, a faturacao total com cada produto
      * @return HashMap com codigos de produto e correspondente matriz de faturacao (por meses e por filiais)
      */
     public Map<String, double[][]> getProductsBillingByMonthAndBranch() {

@@ -5,6 +5,9 @@ import java.util.Arrays;
 
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que contem a informacao de um dado cliente
+ */
 public class InfoClient implements IInfoClient, Serializable {
 
     private static final long serialVersionUID = -3123923576348809853L;
@@ -13,6 +16,9 @@ public class InfoClient implements IInfoClient, Serializable {
     private double totalBilled;
 
 
+    /**
+     * Construtor vazio da classe
+     */
     public InfoClient() {
         this.unitsN = new int[N_MONTHS];
         this.unitsP = new int[N_MONTHS];

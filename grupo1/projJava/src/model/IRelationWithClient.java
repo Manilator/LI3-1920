@@ -3,6 +3,9 @@ package model;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Interface da classe que contem o modelo de relacao de um produto e os varios clientes que o compraram
+ */
 public interface IRelationWithClient {
 
     /**

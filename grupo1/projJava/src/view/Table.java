@@ -2,10 +2,15 @@ package view;
 
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que representa as tabelas da view
+ */
 public class Table implements ITable {
 
-    public Table() {
-    }
+    /**
+     * Contrutor vazio da classe
+     */
+    public Table() { }
 
     /**
      * Função responsável por mostrar o resultado da query 3 ao utilizador em forma de tabela por meses e totais

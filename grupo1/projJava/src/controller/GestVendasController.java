@@ -20,6 +20,9 @@ import java.util.Map;
 
 import static Utils.Constants.*;
 
+/**
+ * Classe que controla o fluxo do programa
+ */
 public class GestVendasController implements IGestVendasController {
     private final BufferedReader in;
     private IGestVendasView view;
@@ -57,22 +60,23 @@ public class GestVendasController implements IGestVendasController {
         in = new BufferedReader(new InputStreamReader(System.in));
     }
 
+    /**
+     * Numero de valores lidos total e validos
+     */
     private void readStats() {
-        view.printMessage(String.valueOf("Clientes válidos: " + this.gv.getClientsSize()));
-        view.printMessage(String.valueOf("Clientes lidos: " + this.gv.getReadClients()));
-        view.printMessage(String.valueOf("Produtos válidos: " + this.gv.getProductsSize()));
-        view.printMessage(String.valueOf("Produtos lidos: " + this.gv.getReadProducts()));
-        view.printMessage(String.valueOf("Vendas válidos: " + this.gv.getValidSales()));
-        view.printMessage(String.valueOf("Vendas lidas: " + this.gv.getReadSales()));
+        view.printMessage("Clientes válidos: " + this.gv.getClientsSize());
+        view.printMessage("Clientes lidos: " + this.gv.getReadClients());
+        view.printMessage("Produtos válidos: " + this.gv.getProductsSize());
+        view.printMessage("Produtos lidos: " + this.gv.getReadProducts());
+        view.printMessage("Vendas válidos: " + this.gv.getValidSales());
+        view.printMessage("Vendas lidas: " + this.gv.getReadSales());
     }
 
     /**
      * Função que inicia o controller
      * @throws IOException Exceção se ocorrer erros ao ler os ficheiros
      */
-    public void startController() throws IOException, ClassNotFoundException {
-        menu();
-    }
+    public void startController() { menu(); }
 
     /**
      * Função que pede um codigo de produto
@@ -114,7 +118,6 @@ public class GestVendasController implements IGestVendasController {
      */
     private int askMonth() throws InvalidMonth {
         int month = 0;
-        int i = 0;
         view.printMessage("Insira o mês: ");
         try {
             month = Integer.parseInt(in.readLine());
@@ -133,7 +136,6 @@ public class GestVendasController implements IGestVendasController {
      */
     private int askN() throws InvalidNumber {
         int n = 0;
-        int i = 0;
         view.printMessage("Insira quantos pretende ver: ");
         try {
             n = Integer.parseInt(in.readLine());
@@ -195,7 +197,7 @@ public class GestVendasController implements IGestVendasController {
             int month = askMonth();
             view.cleanConsole();
             Crono.start();
-            List<Integer> list = gv.query2(month);
+            List<Integer> list = gv.totalSalesCountAndDistinctBuyers(month);
             view.printMessage(Crono.getTimeString());
             view.query2View(list);
         } catch (Exception e) {
@@ -233,7 +235,7 @@ public class GestVendasController implements IGestVendasController {
             String product = askProduct();
             view.cleanConsole();
             Crono.start();
-            double[][] result = gv.query4(product);
+            double[][] result = gv.productInfoByMonth(product);
             view.printMessage(Crono.getTimeString());
 
             view.query4View(result,product);
@@ -299,7 +301,7 @@ public class GestVendasController implements IGestVendasController {
             int n = askN();
             view.cleanConsole();
             Crono.start();
-            String[][] result = gv.query6(n);
+            String[][] result = gv.topMostBoughtProducts(n);
             view.printMessage(Crono.getTimeString());
 
             List<String> list = new ArrayList<>();
@@ -340,7 +342,7 @@ public class GestVendasController implements IGestVendasController {
         view.cleanConsole();
         try {
             Crono.start();
-            String[][][] result = gv.query7();
+            String[][][] result = gv.top3BuyersByBranch();
             view.printMessage(Crono.getTimeString());
 
             view.query7View(result);
@@ -361,7 +363,7 @@ public class GestVendasController implements IGestVendasController {
             int n = askN();
             view.cleanConsole();
             Crono.start();
-            String[][] result = gv.query8(n);
+            String[][] result = gv.topClientsWhoBoughtDistinctProducts(n);
             view.printMessage(Crono.getTimeString());
 
             List<String> list = new ArrayList<>();
@@ -406,7 +408,7 @@ public class GestVendasController implements IGestVendasController {
             int n = askN();
             view.cleanConsole();
             Crono.start();
-            String[][] result = gv.query9(product,n);
+            String[][] result = gv.topNBuyersAndMoneySpent(product,n);
             view.printMessage(Crono.getTimeString());
 
             List<String> list = new ArrayList<>();
@@ -450,7 +452,7 @@ public class GestVendasController implements IGestVendasController {
         view.cleanConsole();
         try{
             Crono.start();
-            Map<String, double[][]> result = gv.query10();
+            Map<String, double[][]> result =  gv.totalBillingByMonthAndBranch();
             view.printMessage(Crono.getTimeString());
             String product = askProduct();
             while (true) {
@@ -481,14 +483,17 @@ public class GestVendasController implements IGestVendasController {
     void queryE2(){
         view.cleanConsole();
         Crono.start();
-        int[][] result = gv.getNumberOfDistinctClients();/*int[][]*/
+        int[][] result = gv.getNumberOfDistinctClients();
         int[][] result2 = new int[1][];
-        result2[0] = gv.getShoppingFrequency();/*int[]*/
-        double[][] result3 = gv.getBillingByMonthAndBranch(); /*double[][]*/
+        result2[0] = gv.getShoppingFrequency();
+        double[][] result3 = gv.getBillingByMonthAndBranch();
         view.printMessage(Crono.getTimeString());
         view.queryE2View(result,result2,result3);
     }
 
+    /**
+     * Funçao responsavel pelo carregamento de dados
+     */
     void loadController() {
         try {
             view.printLoad();
@@ -550,6 +555,9 @@ public class GestVendasController implements IGestVendasController {
         }
     }
 
+    /**
+     * Funçao responsavel pelo armazenamento de dados
+     */
     void saveController() {
         try {
             view.printMessage("Insira o path para guardar o ficheiro: (ex: data/gestVendas.dat)");
@@ -561,9 +569,11 @@ public class GestVendasController implements IGestVendasController {
             view.cleanConsole();
             view.printMessage("Local para guardar inválido.");
         }
-
     }
 
+    /**
+     * Funçao principal encarregue pelo controlo do menu
+     */
     void menu() {
 
         int querie = -1;

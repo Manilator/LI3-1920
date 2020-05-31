@@ -5,12 +5,18 @@ import java.util.Arrays;
 
 import static Utils.Constants.N_MONTHS;
 
+/**
+ * Classe que contem a informacao de um dado produto
+ */
 public class InfoProduct implements IInfoProduct, Serializable {
 
     private static final long serialVersionUID = -677107323861266485L;
     private int[] quantities; /**< Quantidades por cada mês */
     private double[] totalBilled; /**< Faturação total por cada mês */
 
+    /**
+     * Construtor vazio da classe
+     */
     public InfoProduct() {
         this.quantities = new int[12];
         this.totalBilled = new double[12];
