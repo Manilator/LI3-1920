@@ -457,10 +457,16 @@ public class GestVendasController implements IGestVendasController {
             Crono.start();
             Map<String, double[][]> result =  gv.query10();
             view.printMessage(Crono.getTimeString());
-
-            view.query10View(result);
+            String product = askProduct();
+            ITable table = new Table();
+            while (true) {
+                view.printMessage("---- Produto " + product);
+                table.tableE2View(result.get(product));
+                view.printMessage("(Caso pretenda voltar ao menu, insira qualquer carater)");
+                product = askProduct();
+            }
         } catch (Exception e){
-            view.printMessage("Erro ao executar, tente novamente.");
+            view.printMessage("Produto inválido.");
         }
     }
 

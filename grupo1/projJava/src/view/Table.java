@@ -225,7 +225,7 @@ public class Table implements ITable {
                 {
                     if (Math.floor(Math.log10(Math.abs(list[j][i]))) + 3 > space)
                     {
-                        space = (int) (Math.floor(Math.log10(Math.abs(list[j][2]))) + 3);
+                        space = (int) (Math.floor(Math.log10(Math.abs(list[j][i]))) + 3);
                     }
                 }
 
@@ -322,7 +322,7 @@ public class Table implements ITable {
                 {
                     if (Math.floor(Math.log10(Math.abs(list[i][j]))) + 3 > space)
                     {
-                        space = (int) (Math.floor(Math.log10(Math.abs(list[j][2]))) + 3);
+                        space = (int) (Math.floor(Math.log10(Math.abs(list[i][j]))) + 3);
                     }
                 }
 
@@ -393,7 +393,7 @@ public class Table implements ITable {
         }
         else
         {
-            System.out.print("Cliente não existe.\n");
+            System.out.print("Não existem informações.\n");
         }
     }
 
